@@ -11,7 +11,7 @@ The outcome rules are fixed in [ADR 0009](../decisions/0009-pipeline-and-agent-o
 |---|---|---|---|
 | `attach` | `integrating` | `generate_template` → store as new version → engine run → `validate.check` (no history) → promote → deliver | `attach_succeeded` / `attach_failed` |
 | `read` | `serving` | engine run with the current template → `validate.check` against history → deliver | `read_succeeded` / `start_healing` |
-| `investigate` (repair) | `healing` | audit candidate → plain re-read → `investigate(trigger="failure")` → re-read or validate the new template | `repair_succeeded` / `repair_failed` |
+| `investigate` (repair) | `healing` | audit candidate → plain re-read → `investigate(trigger="failure")` → re-read or validate the new template. After an audit finding, a re-read that passes doesn't count as a repair ([ADR 0013](../decisions/0013-audit-finding-repair.md)) | `repair_succeeded` / `repair_failed` |
 | `investigate` (audit) | `serving` | re-read → `investigate(trigger="audit")` | `audit_healthy` / `start_healing(found_by_audit=True)` |
 
 A job whose portal was deleted, or isn't in the state the flow expects, closes its run as `failed`
@@ -27,6 +27,8 @@ A job whose portal was deleted, or isn't in the state the flow expects, closes i
    (`template_version`, `stats`, `tenders: {new, changed, unchanged, closed, kept_incomplete}`).
 
 A failed read stores nothing: its run gets `details.problems`, and the first problem becomes the portal's `reason`.
+Runs that got an agent diagnosis also store `details.diagnosis` (its kind) and `details.diagnosis_reason` (its reason or
+notes); audits add `details.audit = true`, and a repair started by an audit `details.audit_finding` (the audit run's id).
 
 ## Agent scenarios
 The pipeline calls the agent only through `Scenarios(generate_template, investigate)`, set with

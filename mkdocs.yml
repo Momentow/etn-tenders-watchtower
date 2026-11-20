@@ -58,6 +58,7 @@ nav:
       - Engine executor: engine/executor.md
       - Normalisers: engine/normalize.md
       - Read validation: validate/checks.md
+      - Health checks (reactive / proactive): notice/health-checks.md
       - Document downloader: documents/downloader.md
       - Agent runtime and tools: agent/runtime.md
       - "Attach: generate_template": agent/attach.md
@@ -84,3 +85,4 @@ nav:
       - "0010 Agent runtime": decisions/0010-agent-runtime-and-tools.md
       - "0011 Investigate": decisions/0011-investigate-deterministic-first.md
       - "0012 Agent toolkit": decisions/0012-agent-toolkit.md
+      - "0013 Audit finding repair": decisions/0013-audit-finding-repair.md

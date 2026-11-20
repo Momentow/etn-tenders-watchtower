@@ -163,15 +163,28 @@ class Pipeline:
         template = _load(tv)
 
         # 1. A template proposed by the audit that found the problem (stored unpromoted, newer than the current one).
-        if trigger == "audit_finding" and (candidate := await self._newest_candidate(portal.id, tv.version)):
-            checked = await self._read(portal.id, _load(candidate), candidate.version)
-            if checked.ok:
-                await self._promote_and_deliver(portal.id, run_id, checked, candidate.notes or "the portal changed")
-                return
+        finding: dict[str, Any] = {}
+        if trigger == "audit_finding":
+            finding = await self._audit_finding(portal.id)
+            if candidate := await self._newest_candidate(portal.id, tv.version):
+                checked = await self._read(portal.id, _load(candidate), candidate.version)
+                if checked.ok:
+                    detail = candidate.notes or finding.get("diagnosis_reason") or "the portal changed"
+                    await self._promote_and_deliver(portal.id, run_id, checked, detail, details=finding)
+                    return
 
         # 2. Deterministic first: a temporary failure is fixed by reading again, without a model call.
         checked = await self._read(portal.id, template, tv.version)
         if checked.ok:
+            if trigger == "audit_finding":
+                # The audit's read passed validation too: a re-read proves nothing about a silent problem (ADR 0013).
+                # Without a working proposed template, the audit's diagnosis stands.
+                reason = finding.get("diagnosis_reason") or "the audit's finding could not be repaired"
+                count = len(checked.result.tenders)
+                details = {**finding, "problems": [reason]}
+                await self.store.finish_run(run_id, "failed", tender_count=count, details=details)
+                await self.states.apply(portal.id, "repair_failed", detail=reason)
+                return
             await self._repaired(
                 portal.id, run_id, checked, "a fresh read passed validation, the failure was temporary"
             )
@@ -180,7 +193,7 @@ class Pipeline:
         # 3. Ask the agent.
         view = await self._view(portal, tv.version)
         diagnosis = await self.scenarios.investigate(view, template, checked.result, checked.health, trigger="failure")
-        details = {"diagnosis": diagnosis.kind}
+        details = _diagnosis_details(diagnosis)
         if isinstance(diagnosis, Transient):
             again = await self._read(portal.id, template, tv.version)
             if again.ok:
@@ -222,7 +235,7 @@ class Pipeline:
             return
         view = await self._view(portal, tv.version)
         diagnosis = await self.scenarios.investigate(view, template, checked.result, checked.health, trigger="audit")
-        details["diagnosis"] = diagnosis.kind
+        details |= _diagnosis_details(diagnosis)
         if isinstance(diagnosis, Healthy | Transient):
             count = await self._deliver(portal.id, run_id, checked, details=details)
             await self.states.apply(portal.id, "audit_healthy", tender_count=count)
@@ -329,6 +342,14 @@ class Pipeline:
             raise RuntimeError(f"portal {portal_id} has no promoted template")
         return tv
 
+    async def _audit_finding(self, portal_id: str) -> dict[str, Any]:
+        """Diagnosis details of the newest audit that found a problem (the one that started this repair)."""
+        for r in await self.store.list_runs(portal_id, limit=20):  # newest first
+            if r.details.get("audit") and r.result == "failed":
+                reason = r.details.get("diagnosis_reason") or next(iter(r.details.get("problems") or []), None)
+                return {"audit_finding": r.id, "diagnosis": r.details.get("diagnosis"), "diagnosis_reason": reason}
+        return {}
+
     async def _newest_candidate(self, portal_id: str, current: int) -> TemplateVersion | None:
         for tv in await self.store.list_template_versions(portal_id):  # newest first
             if tv.version > current and tv.promoted_at is None:
@@ -399,6 +420,15 @@ def first_problem(health: Health) -> str:
         return "no details"
     more = len(health.problems) - 1
     return health.problems[0].rstrip(".") + (f" (and {more} more problem{'s' if more > 1 else ''})" if more else "")
+
+
+def _diagnosis_details(diagnosis: Any) -> dict[str, Any]:
+    """Run details for a diagnosis: its kind and, for the dashboard, its reason or notes (T-023)."""
+    out: dict[str, Any] = {"diagnosis": diagnosis.kind}
+    why = getattr(diagnosis, "reason", None) or getattr(diagnosis, "notes", None)
+    if why:
+        out["diagnosis_reason"] = why
+    return out
 
 
 def _unique(tenders: list[TenderRecord]) -> list[TenderRecord]:

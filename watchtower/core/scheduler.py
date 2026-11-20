@@ -245,18 +245,33 @@ class Scheduler:
         if self.healthcheck.mode != "proactive":
             return []
         now = now or self._clock()
-        interval = self.healthcheck.interval
         due: list[tuple[datetime, str]] = []
         for p in await self.store.schedule_info():
             if p["state"] != "serving" or p["busy"]:
                 continue
-            if p["last_audit_at"] is not None:
-                due_at = p["last_audit_at"] + interval
-            else:
-                due_at = p["created_at"] + interval * (1 + _stagger(p["portal_id"]))
+            due_at = self._audit_due_at(p)
             if due_at <= now:
                 due.append((due_at, p["portal_id"]))
         return [pid for _, pid in sorted(due)]
+
+    async def audit_schedule(self) -> dict[str, dict]:
+        """Per live portal: `last_audit_at` and `next_audit_at` (None in `reactive` mode), for the dashboard (T-023).
+
+        `next_audit_at` is when the portal becomes due; the audit starts at the next tick once it is `serving`, idle,
+        and no more overdue portal is ahead of it.
+        """
+        out = {}
+        for p in await self.store.schedule_info():
+            nxt = self._audit_due_at(p) if self.healthcheck.mode == "proactive" else None
+            out[p["portal_id"]] = {"last_audit_at": p["last_audit_at"], "next_audit_at": nxt}
+        return out
+
+    def _audit_due_at(self, p: dict) -> datetime:
+        interval = self.healthcheck.interval
+        if p["last_audit_at"] is not None:
+            return p["last_audit_at"] + interval
+        # Each portal's first audit is offset by a stable fraction of the interval (staggering).
+        return p["created_at"] + interval * (1 + _stagger(p["portal_id"]))
 
     async def cancel_deleted(self) -> None:
         for job, task in list(self._running.values()):

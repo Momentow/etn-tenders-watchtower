@@ -17,3 +17,4 @@ Never edit an accepted ADR; supersede it with a new one.
 | [0010](0010-agent-runtime-and-tools.md) | Agent runtime, tool registry and budgets | accepted | 2026-11-20 |
 | [0011](0011-investigate-deterministic-first.md) | Investigate: deterministic checks before the model | accepted | 2026-11-20 |
 | [0012](0012-agent-toolkit.md) | Agent toolkit: analysis modules, context inputs, verified suggestions | accepted | 2026-11-20 |
+| [0013](0013-audit-finding-repair.md) | Repairing an audit finding (amends 0009) | accepted | 2026-11-21 |

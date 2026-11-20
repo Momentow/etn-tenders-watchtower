@@ -27,6 +27,7 @@ env = Environment(
 )
 env.filters.update(
     ago=views.ago,
+    due=views.due,
     duration=views.duration,
     iso=views.iso,
     safe_href=views.safe_href,
@@ -39,23 +40,27 @@ def _store(request: Request) -> Store:
     return request.app.state.store
 
 
+def _scheduler(request: Request):
+    return getattr(request.app.state, "scheduler", None)
+
+
 def _render(name: str, status_code: int = 200, **context) -> HTMLResponse:
     return HTMLResponse(env.get_template(name).render(**context), status_code=status_code)
 
 
 @router.get("/", response_class=HTMLResponse)
 async def index(request: Request) -> HTMLResponse:
-    return _render("index.html", ov=await views.overview(_store(request)))
+    return _render("index.html", ov=await views.overview(_store(request), _scheduler(request)))
 
 
 @router.get("/dashboard/partials/portals", response_class=HTMLResponse)
 async def portals_partial(request: Request) -> HTMLResponse:
-    return _render("_overview.html", ov=await views.overview(_store(request)))
+    return _render("_overview.html", ov=await views.overview(_store(request), _scheduler(request)))
 
 
 @router.get("/dashboard/portals/{portal_id}", response_class=HTMLResponse)
 async def portal_page(portal_id: str, request: Request) -> HTMLResponse:
-    detail = await views.portal_detail(_store(request), portal_id)
+    detail = await views.portal_detail(_store(request), portal_id, scheduler=_scheduler(request))
     if detail is None:
         return _render("not_found.html", status_code=404, portal_id=portal_id)
     return _render("portal.html", d=detail)
@@ -63,7 +68,7 @@ async def portal_page(portal_id: str, request: Request) -> HTMLResponse:
 
 @router.get("/dashboard/partials/portals/{portal_id}/live", response_class=HTMLResponse)
 async def portal_live_partial(portal_id: str, request: Request) -> HTMLResponse:
-    detail = await views.portal_detail(_store(request), portal_id, with_tenders=False)
+    detail = await views.portal_detail(_store(request), portal_id, with_tenders=False, scheduler=_scheduler(request))
     if detail is None:
         raise HTTPException(status_code=404)
     return _render("_portal_live.html", d=detail)
@@ -71,7 +76,7 @@ async def portal_live_partial(portal_id: str, request: Request) -> HTMLResponse:
 
 @router.get("/dashboard/partials/portals/{portal_id}/data", response_class=HTMLResponse)
 async def portal_data_partial(portal_id: str, request: Request) -> HTMLResponse:
-    detail = await views.portal_detail(_store(request), portal_id)
+    detail = await views.portal_detail(_store(request), portal_id, scheduler=_scheduler(request))
     if detail is None:
         raise HTTPException(status_code=404)
     return _render("_portal_data.html", d=detail)

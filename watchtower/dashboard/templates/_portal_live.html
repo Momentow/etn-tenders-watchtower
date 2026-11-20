@@ -10,11 +10,13 @@
   <div><span class="muted small">Activity</span>
     {% if d.row.running %}<span class="badge running pulse">{{ d.row.activity }}</span>{% else %}{{ d.row.activity }}{% endif %}
   </div>
+  <div><span class="muted small">Last audit</span>{% set r = d.row %}{% include "_audit_cell.html" %}</div>
   <div><span class="muted small">Added</span><span title="{{ p.created_at|iso }}">{{ p.created_at|ago }}</span></div>
   {% if p.url|safe_href %}<div><span class="muted small">Open portal</span><a href="{{ p.url|safe_href }}" target="_blank" rel="noopener noreferrer">↗ visit</a></div>{% endif %}
 </div>
 
 <div class="reason-box {{ p.state }}">{{ p.reason }}</div>
+{% if d.health %}<p class="muted small">{{ d.health.summary }}</p>{% endif %}
 
 <h2>Run timeline</h2>
 <div class="card">

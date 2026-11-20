@@ -24,6 +24,7 @@ Each run is labelled from its kind and `details.trigger` (ADR 0005):
 | `read` + `scheduled` | Scheduled read |
 | `read` + `refresh` | Refresh requested |
 | `read` + `audit` | Health audit (an audit is recorded as a `read` run, ADR 0002) |
+| `repair` + `audit_finding` | Repair after audit |
 | `repair` | Repair |
 
 The "What happened" column renders these `details` keys when present:
@@ -31,11 +32,18 @@ The "What happened" column renders these `details` keys when present:
 - `problems`: a list of plain sentences, as written by `validate.check` (ADR 0008);
 - `error`: an exception message from the scheduler;
 - `cancelled`: shown as "Cancelled: …" (deleted portal);
+- `diagnosis` + `diagnosis_reason` (written by the pipeline): shown as `Healthy: …`, `Changed: …`;
+- `tenders` (`{new, changed, closed, …}`): shown as "2 new, 1 closed";
 - `diagnosis`: a string, or a dict with `kind` and `reason`/`notes` (for example `{"kind": "Changed", "reason": "…"}`),
   shown as `Changed: …`.
 
-Any other key is listed as a short key/value line, so new pipeline details show up without dashboard changes. Writers
+`audit`, `audit_finding`, `stats` and `template_version` (shown in the Template column) aren't listed. Any other key is listed as a short key/value line, so new pipeline details show up without dashboard changes. Writers
 of run details (T-017, T-016, T-023) should prefer these keys.
+
+## Health checks
+The overview states the health-check mode (reactive / proactive, with the interval) and has a **Last audit** column:
+the last audit's result (healthy / found a problem), when it ran and when the next one is due (from
+`Scheduler.audit_schedule()`). The portal page shows the same in its header. See [health checks](../notice/health-checks.md).
 
 ## Last activity
 

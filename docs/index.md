@@ -7,7 +7,7 @@ Watchtower attaches to public-procurement portals on its own, watches over them,
 - [API contract](spec/api-contract.md): endpoints, portal states, tender fields
 
 ## Engineering
-- [Decisions (ADRs)](decisions/README.md): [tech stack](decisions/0001-tech-stack.md), [architecture](decisions/0002-architecture.md), [template format](decisions/0003-template-format.md), [storage](decisions/0004-storage.md), [run requests](decisions/0005-run-requests.md), [job handlers](decisions/0006-job-handlers-and-state-events.md), [date parsing](decisions/0007-date-parsing.md), [read validation](decisions/0008-read-validation.md), [pipeline outcomes](decisions/0009-pipeline-and-agent-outcomes.md), [agent runtime](decisions/0010-agent-runtime-and-tools.md), [investigate](decisions/0011-investigate-deterministic-first.md), [agent toolkit](decisions/0012-agent-toolkit.md)
+- [Decisions (ADRs)](decisions/README.md): [tech stack](decisions/0001-tech-stack.md), [architecture](decisions/0002-architecture.md), [template format](decisions/0003-template-format.md), [storage](decisions/0004-storage.md), [run requests](decisions/0005-run-requests.md), [job handlers](decisions/0006-job-handlers-and-state-events.md), [date parsing](decisions/0007-date-parsing.md), [read validation](decisions/0008-read-validation.md), [pipeline outcomes](decisions/0009-pipeline-and-agent-outcomes.md), [agent runtime](decisions/0010-agent-runtime-and-tools.md), [investigate](decisions/0011-investigate-deterministic-first.md), [agent toolkit](decisions/0012-agent-toolkit.md), [audit finding repair](decisions/0013-audit-finding-repair.md)
 - [HTTP API](api/http-api.md): implementation notes on the contract
 - [Store](core/store.md): the database layer
 - [Scheduler and state machine](core/scheduler.md): workers, periodic reads, audits, portal states
@@ -20,6 +20,7 @@ Watchtower attaches to public-procurement portals on its own, watches over them,
 - [Dashboard](dashboard/dashboard.md): the operator pages at `/`, run timeline, live refresh
 - [Agent runtime and tools](agent/runtime.md): model calls, budgets, the tool registry, pruned pages, dry runs
 - [Attach scenario](agent/attach.md): how a new portal is learned, and what each outcome means
+- [Health checks](notice/health-checks.md): reactive and proactive modes, audits, what the dashboard shows
 - [Investigate](repair/investigate.md): diagnosing failed reads, audits, repairs; deterministic checks first
 - [Agent toolkit](agent/toolkit.md): discovery, recognition, verification and repair tools
 - [Test-portal registry](portals/registry.md) · [Mock portals](test-portals/mock-portals.md)
