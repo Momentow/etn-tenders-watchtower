@@ -24,7 +24,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-012 | Document downloader & `/files` store | documents | done | Lavrtajx | feat/T-012-document-downloader | T-004, T-007 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
 | T-013 | Mock portals + mutated variants | test-portals | done | OrangeCanvas705 | feat/T-013-mock-portals | T-003 | [requirements](docs/spec/requirements.md#finding-test-portals) |
 | T-014 | Agent runtime & tools | agent | done | Momentow | feat/T-014-agent-runtime | T-007, T-009 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
-| T-015 | Scenario `generate_template` (Attach) | agent | in-progress | Momentow | feat/T-015-generate-template | T-013, T-014 | [0002](docs/decisions/0002-architecture.md) |
+| T-015 | Scenario `generate_template` (Attach) | agent | review | Momentow | feat/T-015-generate-template | T-013, T-014 | [0002](docs/decisions/0002-architecture.md) |
 | T-016 | Scenario `investigate` (Notice → Repair) | repair | done | Lavrtajx | feat/T-016-investigate | T-011, T-013, T-014 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
 | T-017 | Read pipeline wiring (attach / read / heal flows) | core | done | OrangeCanvas705 | feat/T-017-read-pipeline | T-006, T-009, T-010, T-011, T-012 | [0002 read pipeline](docs/decisions/0002-architecture.md#read-pipeline-no-model-call) |
 | T-018 | Dashboard | dashboard | done | Lavrtajx | feat/T-018-dashboard | T-005 | [requirements](docs/spec/requirements.md) |
@@ -172,10 +172,11 @@ truth for engine/E2E tests. Use `selectolax.lexbor` (the old `selectolax.parser`
 
 ### T-015 — Scenario `generate_template`
 **Acceptance:**
-- [ ] Returns an `AttachOutcome`; handles summary-page links (finds the real tender list); detects login/captcha → `Blocked`
-- [ ] Doesn't report `Blocked` when a captcha is shown but the list and documents still download without it (try first, then decide)
-- [ ] Produces a validated template for every mock portal kind
+- [x] Returns an `AttachOutcome`; handles summary-page links (finds the real tender list); detects login/captcha → `Blocked`
+- [x] Doesn't report `Blocked` when a captcha is shown but the list and documents still download without it (try first, then decide)
+- [x] Produces a validated template for every mock portal kind
 **Refs:** [0002](docs/decisions/0002-architecture.md)
+**Notes (2026-11-20):** live runs on all 7 mock kinds match (5 `TemplateFound`, `login`/`robot` → `Blocked`); results in `docs/agent/attach.md`. PR open.
 **Notes (handover, 2026-11-21):** released by OrangeCanvas705; Momentow finishes it. The work so far is on the pushed branch
 `feat/T-015-generate-template` (4 commits on top of master, rebased; no PR yet). Continue on that branch rather than
 starting over: `git fetch && git switch feat/T-015-generate-template && git rebase origin/master`.
