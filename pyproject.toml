@@ -16,6 +16,7 @@ dependencies = [
     "openai-agents",
     "jinja2",
     "pydantic",
+    "cssselect>=1.6.0",
 ]
 
 [dependency-groups]
