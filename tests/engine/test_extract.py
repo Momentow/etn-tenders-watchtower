@@ -2,8 +2,8 @@
 
 import pytest
 
-from watchtower.engine.basic_normalize import normalize_fields
 from watchtower.engine.extract import parse_html, parse_json, select, value
+from watchtower.engine.normalize import normalize_fields
 from watchtower.engine.template import Extract, Template
 
 PAGE = """<html><body>
