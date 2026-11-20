@@ -1,6 +1,7 @@
 # Test-portal registry
 
 Our own test set (see [requirements → Finding test portals](../spec/requirements.md#finding-test-portals)).
+Offline copies of these quirks, with mutated variants: [mock portals](../test-portals/mock-portals.md).
 Mark the portals held back for the final test `unseen`. Don't use them while developing.
 
 Machine-readable copy, with URL patterns and every quirk: [`testportals/portals.json`](https://github.com/Momentow/etn-tenders-watchtower/blob/master/testportals/portals.json).
