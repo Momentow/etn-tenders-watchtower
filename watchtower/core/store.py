@@ -265,16 +265,22 @@ class Store:
         return None if row is None else _run(row)
 
     async def request_run(
-        self, portal_id: str, job_kind: Literal["attach", "read", "investigate"], *, trigger: str
+        self,
+        portal_id: str,
+        job_kind: Literal["attach", "read", "investigate"],
+        *,
+        trigger: str,
+        run_kind: RunKind | None = None,
     ) -> tuple[Run, bool]:
         """Ask for work on a portal and get the run that will record it, atomically (ADR 0005).
 
         If the portal already has an unfinished run (read or repair), that run is returned with `created=False` and
         nothing is queued: one active attach/read/investigate per portal. Otherwise a run is started (`attach`/`read`
         → `read` run, `investigate` → `repair` run) and a job of `job_kind` is queued with `payload.run_id` set; the
-        worker that takes the job finishes that run.
+        worker that takes the job finishes that run. `run_kind` overrides the mapping: an audit is an `investigate`
+        job recorded as a `read` run (ADR 0002).
         """
-        run_kind: RunKind = "repair" if job_kind == "investigate" else "read"
+        run_kind = run_kind or ("repair" if job_kind == "investigate" else "read")
         now = utcnow()
         async with self._tx() as db:
             row = await _one(
@@ -303,6 +309,33 @@ class Store:
                 ),
             )
             return _run(await _one(db, "SELECT * FROM runs WHERE id = ?", run_id)), True
+
+    async def schedule_info(self) -> list[dict[str, Any]]:
+        """Per live portal: `portal_id`, `state`, `created_at`, `last_read_at` (newest finished read run),
+        `last_audit_at` (newest audit run start) and `busy` (has an unfinished run). For the scheduler's ticks."""
+        async with self._tx() as db:
+            rows = await _all(
+                db,
+                """
+                SELECT p.id AS portal_id, p.state, p.created_at,
+                    (SELECT MAX(finished_at) FROM runs r WHERE r.portal_id = p.id AND r.kind = 'read') AS last_read_at,
+                    (SELECT MAX(started_at) FROM runs r WHERE r.portal_id = p.id
+                        AND json_extract(r.details, '$.trigger') = 'audit') AS last_audit_at,
+                    EXISTS (SELECT 1 FROM runs r WHERE r.portal_id = p.id AND r.finished_at IS NULL) AS busy
+                FROM portals p WHERE p.deleted_at IS NULL ORDER BY p.created_at, p.id
+                """,
+            )
+        return [
+            {
+                "portal_id": r["portal_id"],
+                "state": r["state"],
+                "created_at": from_db(r["created_at"]),
+                "last_read_at": from_db(r["last_read_at"]),
+                "last_audit_at": from_db(r["last_audit_at"]),
+                "busy": bool(r["busy"]),
+            }
+            for r in rows
+        ]
 
     async def last_good_snapshot(self, portal_id: str) -> Any | None:
         """Snapshot from the newest `ok` run that stored one (fed to the repair diff tool)."""
