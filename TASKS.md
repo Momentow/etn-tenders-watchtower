@@ -23,7 +23,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-011 | Validators (`validate.check`) | notice | done | OrangeCanvas705 | feat/T-011-validators | T-009 | [0002](docs/decisions/0002-architecture.md) |
 | T-012 | Document downloader & `/files` store | documents | done | Lavrtajx | feat/T-012-document-downloader | T-004, T-007 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
 | T-013 | Mock portals + mutated variants | test-portals | done | OrangeCanvas705 | feat/T-013-mock-portals | T-003 | [requirements](docs/spec/requirements.md#finding-test-portals) |
-| T-014 | Agent runtime & tools | agent | review | Momentow | feat/T-014-agent-runtime | T-007, T-009 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
+| T-014 | Agent runtime & tools | agent | done | Momentow | feat/T-014-agent-runtime | T-007, T-009 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
 | T-015 | Scenario `generate_template` (Attach) | agent | todo | | | T-013, T-014 | [0002](docs/decisions/0002-architecture.md) |
 | T-016 | Scenario `investigate` (Notice → Repair) | repair | todo | | | T-011, T-013, T-014 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
 | T-017 | Read pipeline wiring (attach / read / heal flows) | core | done | OrangeCanvas705 | feat/T-017-read-pipeline | T-006, T-009, T-010, T-011, T-012 | [0002 read pipeline](docs/decisions/0002-architecture.md#read-pipeline-no-model-call) |
@@ -164,10 +164,10 @@ truth for engine/E2E tests. Use `selectolax.lexbor` (the old `selectolax.parser`
 
 ### T-014 — Agent runtime & tools
 **Acceptance:**
-- [ ] Agents SDK setup reading `OPENAI_API_KEY` / `WATCHTOWER_MODEL`; the only place model calls happen
-- [ ] Core tools: `fetch` (pruned outline), `render` (captured JSON/XHR summary), `try_template` (engine dry run), `submit_template`, `report_blocked`, `report_transient`
-- [ ] A tool registry that T-022 extends by adding tools, without editing scenario code
-- [ ] HTML pruning before content reaches the model; per-scenario budgets (turns, tokens, wall time)
+- [x] Agents SDK setup reading `OPENAI_API_KEY` / `WATCHTOWER_MODEL`; the only place model calls happen
+- [x] Core tools: `fetch` (pruned outline), `render` (captured JSON/XHR summary), `try_template` (engine dry run), `submit_template`, `report_blocked`, `report_transient`
+- [x] A tool registry that T-022 extends by adding tools, without editing scenario code
+- [x] HTML pruning before content reaches the model; per-scenario budgets (turns, tokens, wall time)
 **Refs:** [0002](docs/decisions/0002-architecture.md)
 
 ### T-015 — Scenario `generate_template`
