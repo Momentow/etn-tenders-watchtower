@@ -12,3 +12,4 @@ Never edit an accepted ADR; supersede it with a new one.
 | [0005](0005-run-requests.md) | Requesting work: runs are created when work is queued | accepted | 2026-11-20 |
 | [0006](0006-job-handlers-and-state-events.md) | Job handlers and state-machine events | accepted | 2026-11-20 |
 | [0007](0007-date-parsing.md) | Date parsing beyond the template's formats (amends 0003) | accepted | 2026-11-20 |
+| [0008](0008-read-validation.md) | Read validation: `PortalHistory` and the checks | accepted | 2026-11-20 |
