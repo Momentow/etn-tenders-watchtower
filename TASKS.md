@@ -12,7 +12,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-000 | Collaboration protocol & docs skeleton | docs-site | done | Momentow | docs/T-000-collab-protocol | — | [CLAUDE.md](CLAUDE.md) |
 | T-001 | Build test-portal registry | test-portals | done | OrangeCanvas705 | docs/T-001-test-portal-registry | T-000 | [registry](docs/portals/registry.md) |
 | T-002 | Tech stack & architecture ADRs | core | done | Momentow | docs/T-000-collab-protocol | T-000 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
-| T-003 | Project skeleton, Dockerfile, checks | infra | review | Momentow | chore/T-003-project-skeleton | T-002 | [0001](docs/decisions/0001-tech-stack.md) |
+| T-003 | Project skeleton, Dockerfile, checks | infra | done | Momentow | chore/T-003-project-skeleton | T-002 | [0001](docs/decisions/0001-tech-stack.md) |
 | T-004 | SQLite store & data models | core | review | Lavrtajx | feat/T-004-sqlite-store | T-003 | [0002](docs/decisions/0002-architecture.md), [api-contract](docs/spec/api-contract.md) |
 | T-005 | HTTP API per contract | api | todo | | | T-004 | [api-contract](docs/spec/api-contract.md) |
 | T-006 | Scheduler, job queue & state machine | core | todo | | | T-004 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
@@ -69,11 +69,11 @@ acquistinretepa.it were not fully verified, and the publicprocurement.be documen
 ### T-003 — Project skeleton, Dockerfile, checks
 **Goal:** An empty but runnable service that everyone builds on.
 **Acceptance:**
-- [ ] `pyproject.toml` + `uv.lock` with the ADR 0001 libraries pinned; package `watchtower/` with the ADR 0002 sub-packages (empty modules)
-- [ ] FastAPI app factory; `GET /` returns a placeholder page; app starts with `uv run …`
-- [ ] `ruff` and `pytest` configured, with one passing smoke test
-- [ ] `Dockerfile` on the Playwright Python base image; `docker build .` works on linux/amd64; the container serves `:8080`
-- [ ] CLAUDE.md "Commands" section filled in with the real commands
+- [x] `pyproject.toml` + `uv.lock` with the ADR 0001 libraries pinned; package `watchtower/` with the ADR 0002 sub-packages (empty modules)
+- [x] FastAPI app factory; `GET /` returns a placeholder page; app starts with `uv run …`
+- [x] `ruff` and `pytest` configured, with one passing smoke test
+- [x] `Dockerfile` on the Playwright Python base image; `docker build .` works on linux/amd64; the container serves `:8080`
+- [x] CLAUDE.md "Commands" section filled in with the real commands
 **Refs:** [0001](docs/decisions/0001-tech-stack.md)
 
 ### T-004 — SQLite store & data models
