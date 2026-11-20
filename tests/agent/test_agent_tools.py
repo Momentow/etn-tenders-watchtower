@@ -9,6 +9,7 @@ from scripted import ScriptedModel, call, say
 from mockportals.app import create_app
 from watchtower.agent.context import AgentContext
 from watchtower.agent.outcomes import Blocked, TemplateFound
+from watchtower.agent.pages import get_page
 from watchtower.agent.registry import ATTACH, tool, tools_for
 from watchtower.agent.runtime import Budget, run_scenario
 from watchtower.agent.tools import core
@@ -57,14 +58,14 @@ def test_registry_has_the_core_tools():
 
 async def test_fetch_outlines_html_summarizes_json_and_caches(make_ctx):
     ctx = make_ctx()
-    page = await core._get(ctx, f"{BASE}/ssr/ausschreibungen")
+    page = await get_page(ctx, f"{BASE}/ssr/ausschreibungen")
     out = core._describe(page, None)
     assert "table.tenders" in out and "… ×8 more tr" in out and "a[href=/ssr/ausschreibungen?seite=2 rel=next]" in out
     assert "focus 'table.tenders tbody tr': 10 match(es)" in core._describe(page, "table.tenders tbody tr")
-    assert await core._get(ctx, f"{BASE}/ssr/ausschreibungen") is page  # cached: no second request
-    api = core._describe(await core._get(ctx, f"{BASE}/js/api/consultations"), None)
+    assert await get_page(ctx, f"{BASE}/ssr/ausschreibungen") is page  # cached: no second request
+    api = core._describe(await get_page(ctx, f"{BASE}/js/api/consultations"), None)
     assert "$.resultats[*]" in api
-    doc = await core._get(ctx, f"{BASE}/files/ssr/VG-2026-001/Leistungsverzeichnis.pdf")
+    doc = await get_page(ctx, f"{BASE}/files/ssr/VG-2026-001/Leistungsverzeichnis.pdf")
     assert doc.text.startswith("[file: application/pdf")
 
 
