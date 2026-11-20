@@ -1,0 +1,2682 @@
+{
+  "portalKey": "gv.vergabeportal.at",
+  "baseUrl": "https://gv.vergabeportal.at",
+  "family": "vergabeportal-at",
+  "generatedAt": "2026-11-20T21:05:10+01:00",
+  "expectedTenders": [
+    {
+      "id": null,
+      "url": null,
+      "title": "Wood Vision Lab - Maler- und Beschichtungsarbeiten",
+      "buyerName": "Wood Vision Lab GmbH",
+      "publicationDate": "2026-10-21",
+      "submissionDeadline": "2026-11-03T13:00:00+02:00",
+      "status": "closed",
+      "documents": null,
+      "referenceNumber": "0000",
+      "description": "Beschreibung: Ziel dieses Vergabeverfahrens ist, die/den im Zuge des Vergabeverfahrens ermittelten Bestbieter:in mit der Erbringung von Bauleistungen für Maler- und Beschichtungsarbeien im Rahmen der Neuerrichtung Bürogebäude plus eines Technikums am Standort Franz-Pichler-Straße, A-8160 Weiz zu beauftragen.",
+      "procedureType": "other",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45442100"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "726660-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/726660-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258473",
+        "submissionDeadlineDate": "2026-11-03",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Neubau Volksschule Hart bei Graz - Projektsteuerung",
+      "buyerName": "Gemeinde Hart bei Graz",
+      "publicationDate": "2026-10-21",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "14102026",
+      "description": "Vergeben wird die Projektsteuerung und Bauherrenberatung mit Elementen der Projektleitung für die Planung und Errichtung für den Neubau der VS Hart bei Graz als Treuhandfunktion für den Bauherrn (AG). Die Leistungen sollen in sehr enger Abstimmung mit dem Projektteam des AG erfolgen. Die Leistungen haben in Abstimmung mit den beauftragten und zukünftigen Fachplanern sowie den ausführenden Unternehmen zu erfolgen.",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71000000",
+        "71541000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "727173-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/727173-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/257975",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Wood Vision Lab - Fliesenlegerarbeiten",
+      "buyerName": "Wood Vision Lab GmbH",
+      "publicationDate": "2026-10-21",
+      "submissionDeadline": "2026-11-03T13:00:00+02:00",
+      "status": "closed",
+      "documents": null,
+      "referenceNumber": "0000",
+      "description": "Beschreibung: Ziel dieses Vergabeverfahrens ist, die/den im Zuge des Vergabeverfahrens ermittelten Bestbieter:in mit der Erbringung von Bauleistungen für Fliesenlegerarbeiten im Rahmen der Neuerrichtung Bürogebäude plus eines Technikums am Standort Franz-Pichler-Straße, A-8160 Weiz zu beauftragen.",
+      "procedureType": "other",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45431000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "727699-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/727699-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258486",
+        "submissionDeadlineDate": "2026-11-03",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Austrian Green Planet Building",
+      "buyerName": "Bundesministerium für Wirtschaft, Energie und Tourismus",
+      "publicationDate": "2026-10-21",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "2026-0.871.897",
+      "description": "Betreuung und Weiterentwicklung des Programms „Austrian Green Planet Building“ für die Periode 2027-2030, mit Verlängerungsmöglichkeit um weitere drei Jahre.",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71000000",
+        "79416000",
+        "79952000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "729880-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/729880-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258433",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Beschaffungen für die Implementierung und den Betrieb einer österreichweiten LTE450-MHz-Sprachlösung in drei Losen",
+      "buyerName": "Österreichs E-Wirtschaft Service GmbH",
+      "publicationDate": "2026-10-22",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "261020",
+      "description": "Gegenstand des Vergabeverfahrens ist der Abschluss einer Rahmenvereinbarung pro Los für die Beschaffung von Leistungen zur Bereitstellung und Integration einer MCX-Lösung auf Basis eines LTE450-Mobilfunknetzes.",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "48000000",
+        "32524000",
+        "32250000",
+        "32000000",
+        "35700000",
+        "35710000",
+        "50330000",
+        "50334400",
+        "48200000",
+        "48730000",
+        "48700000",
+        "48780000",
+        "48781000",
+        "72260000",
+        "72263000",
+        "72268000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "1040",
+        "city": "Wien",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "732209-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/732209-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258573",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Beschaffung eines Dienstplanungstools",
+      "buyerName": "Flughafen Wien AG",
+      "publicationDate": "2026-10-22",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "Z_2026_092",
+      "description": "Beschaffung eines kommerziellen Dienstplanungstools inkl. Wartung für den Bereich der Flugabfertigung",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "48000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "732761-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/732761-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/257315",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Anschaffung von Parkscheinautomaten –Stadtgemeinde Salzburg",
+      "buyerName": "Stadt Salzburg",
+      "publicationDate": "2026-10-23",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Gegenstand dieser Ausschreibung sind die in der Leistungsbeschreibung definierten Leistungen zur Umsetzung des Leistungsgegenstandes: „Anschaffung von Parkscheinautomaten\"",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "34926000",
+        "34996300",
+        "98351110"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "733754-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/733754-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/257951",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "E90094/74/1-Dion7/2026, 8740 Zeltweg, Fliegerhorst 1, Fliegerhorst HINTERSTOISSER, Obj. 805, Generalsanierung Piste 08R/26L, Projektleiterunterstützung (PLU) und Kontrolle",
+      "buyerName": "BMLV/Direktion 7 - Infrastruktur",
+      "publicationDate": "2026-10-23",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "E90094/74/1-Dion7/2026",
+      "description": "E90094/74/1-Dion7/2026, 8740 Zeltweg, Fliegerhorst 1, Fliegerhorst HINTERSTOISSER, Obj. 805, Generalsanierung Piste 08R/26L, Ziviltechnikerleistungen: Projektleiterunterstützung (PLU) und Kontrolle",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71541000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "Zeltweg",
+        "city": "8740",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "734533-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/734533-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258691",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Rahmenvereinbarung Mietwäsche",
+      "buyerName": "Versicherungsanstalt öffentlich Bediensteter, Eisenbahnen und Bergbau (BVAEB)",
+      "publicationDate": "2026-10-23",
+      "submissionDeadline": "2026-11-23T12:00:00+02:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Gegenstand des Vergabeverfahrens ist der Abschluss einer Rahmenvereinbarung mit einem:einer Rahmenvereinbarungspartner:in über die österreichweite Mietwäscheversorgung der Bedarfsstellen der BVAEB (gemäß Teil F – Standortverzeichnis). Die Leistung erstreckt sich von der Anmietung von Berufsbekleidung und Flachwäsche über die Reinigung derselben inklusive der Zustellung, Abholung und Bereitstellung der hierfür erforderlichen Logistik. Weitere Informationen sind den Ausschreibungsunterlagen zu entnehmen.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "98310000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "737010-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/737010-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258381",
+        "submissionDeadlineDate": "2026-11-23",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PLATZGESTALTUNG DES HAUPTPLATZES DER STADTGEMEINDE SCHLADMING SAMT ERRICHTUNG EINES PAVILLIONS - PLANUNGSLEISTUNGEN",
+      "buyerName": "Stadtgemeinde Schladming",
+      "publicationDate": "2026-10-26",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "P_2026_17",
+      "description": "Der Auftrag ist ein Dienstleistungsauftrag gemäß § 7 BVergG 2018 und hat die Planungsleistungen im Zusammenhang mit der PLATZGESTALTUNG DES HAUPTPLATZES DER STADTGEMEINDE SCHLADMING SAMT ERRICHTUNG EINES PAVILLIONS zum Gegenstand. Der Auftrag umfasst die gesamte Einreich- und Detailplanung. Weiters sind folgende Planungsleistungen erforderlich: • Zusätzliche Abstimmungen / Öffentlichkeitsarbeit • Fachplanung Landschaftsarchitektur • Fachplanung Bauingenieurwesen Verkehr",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71320000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "737248-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/737248-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/256375",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Erweiterung Fuschlseebad - Schlosserarbeiten",
+      "buyerName": "Gemeinde Fuschl am See",
+      "publicationDate": "2026-10-26",
+      "submissionDeadline": "2026-11-23T10:00:00+02:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "19715",
+      "description": "Schlosserarbeiten in der Erweiterung des Fuschlseebads",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45262670"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "5330",
+        "city": "Fuschl am See",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "737498-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/737498-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258823",
+        "submissionDeadlineDate": "2026-11-23",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Heizwerke und Wärmenetze",
+      "buyerName": "Bund (Republik Österreich) vertreten durch Bundesministerium für Land- und Forstwirtschaft, Klima- und Umweltschutz, Regionen und Wasserwirtschaft vertreten durch Österreichische Energieagentur - Austrian Energy Agency",
+      "publicationDate": "2026-10-26",
+      "submissionDeadline": "2026-11-24T12:00:00+02:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "55/2026",
+      "description": "Rahmenvereinbarung mit einer Partei betreffend die Entwicklung und Umsetzung des klimaaktiv Programms „Heizwerke und Wärmenetze“",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71314000",
+        "71314310",
+        "71314300",
+        "71300000",
+        "71313000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "738164-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/738164-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/257594",
+        "submissionDeadlineDate": "2026-11-24",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Strategische Kommunikationsbegleitung",
+      "buyerName": "Schloß Schönbrunn Kultur- und Betriebsges.m.b.H.",
+      "publicationDate": "2026-10-26",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "SKB/081",
+      "description": "Zur Vergabe gelangt ein Dienstleistungsauftrag (§ 7 „Bundesgesetz über die Vergabe von Aufträgen“ [BGBl I 65/2018 idF BGBl I 8/2026; „BVergG 2018“]). Ausschreibungsgegenständlich sind Leistungen im Bereich der strategischen Kommunikationsbegleitung.",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "79416200",
+        "79416000",
+        "79410000",
+        "79413000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "1130",
+        "city": "Wien",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "740479-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/740479-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258741",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Dienstleistungskonzession zum Betrieb eines Nahversorgers für den BOKU Campus Türkenschanze",
+      "buyerName": "Universität für Bodenkultur Wien",
+      "publicationDate": "2026-10-27",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "1937/001",
+      "description": "Dienstleistungskonzession zum Betrieb eines Nahversorgers für den BOKU Campus Türkenschanze",
+      "procedureType": "other",
+      "contractNature": "services",
+      "cpvCodes": [
+        "55900000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "744106-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/744106-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258694",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Audit and Related Services for the Ukraine Energy Support Fund",
+      "buyerName": "Energy Community",
+      "publicationDate": "2026-10-27",
+      "submissionDeadline": "2026-11-27T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "PN36-2026",
+      "description": "Provision of independent external audit and assurance services for the Ukraine Energy Support Fund (UESF) administered by the Energy Community Secretariat.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "79212100"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "744498-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/744498-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258672",
+        "submissionDeadlineDate": "2026-11-27",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Beschaffung Rugged-Windows-Tablets inkl. Zubehör",
+      "buyerName": "Flughafen Wien AG",
+      "publicationDate": "2026-10-28",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "Z_2026_082",
+      "description": "Beschaffung Rugged-Windows-Tablets inkl. Zubehör",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "30213200"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "745241-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/745241-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258134",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "AS WorkHub",
+      "buyerName": "Österreichische Forschungsförderungsgesellschaft mbH",
+      "publicationDate": "2026-10-28",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Auftragsgegenstand ist ein Rahmenvertrag über die Einführung einer zentralen, sicheren WorkHub-Plattform, die die Leistungsbereiche Kommunikation, Wissens- und Dokumentenmanagement, E-Mail sowie Dateiablage integriert und die Anforderungen an Identität, Berechtigungen, Protokollierung, Schnittstellen, Sicherheit sowie EU- beziehungsweise On-Premises-Datenhaltung erfüllt.",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "747942-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/747942-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258139",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Röntgenaufnahmeplatz – BBU Traiskirchen",
+      "buyerName": "Bundesagentur für Betreuungs- und Unterstützungsleistungen Gesellschaft mit beschränkter Haftung",
+      "publicationDate": "2026-10-28",
+      "submissionDeadline": "2026-11-27T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "14",
+      "description": "Für die BBU GmbH soll in der Bundesbetreuungseinrichtung Traiskirchen eine digitale Röntgenanlage einschließlich lokalem Aufnahme-, Bedien- und Befundarbeitsplatz angeschafft werden.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "33111000",
+        "33111200",
+        "33111800",
+        "33111100",
+        "33124210",
+        "50421200"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "2514",
+        "city": "Traiskirchen",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "748429-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/748429-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258329",
+        "submissionDeadlineDate": "2026-11-27",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Arbeitsmedizinische Betreuung der Montanuniversität Leoben",
+      "buyerName": "Montanuniversität Leoben",
+      "publicationDate": "2026-10-29",
+      "submissionDeadline": "2026-11-30T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "RE_AMED_2027-2030",
+      "description": "Ziel dieses Vergabeverfahrens ist der Abschluss eines Dienstleistungsvertrages für die arbeitsmedizinischen Betreuung der Montanuniversität Leoben. Dieser wird für ein Jahr fix abgeschlossen, mit Möglichkeit zur optionalen Verlängerung (längstens bis 31.12.2030).",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "85147000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "749428-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/749428-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259087",
+        "submissionDeadlineDate": "2026-11-30",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Familienland Niederösterreich - HR-Tool",
+      "buyerName": "Familienland Niederösterreich GmbH",
+      "publicationDate": "2026-10-29",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "FamNöGmbH/HR-Tool",
+      "description": "Die Familienland Niederösterreich GmbH beabsichtigt die Beschaffung eines modernen, integrierten HR-System inklusive Zeitwirtschaft, Recruiting, Personaladministration, Reporting und Mitarbeiterportal – sowohl für die eigenen Mitarbeiterinnen und Mitarbeiter als auch jene der Tochtergesellschaft.",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72200000",
+        "72210000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "3109",
+        "city": "St. Pölten",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "749906-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/749906-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259207",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Vergabe eines Lieferauftrages der Gemeinde Serfaus zur Belieferung mit elektrischer Energie (Strom 2027, 2028 und 2029)",
+      "buyerName": "Gemeinde Serfaus",
+      "publicationDate": "2026-10-29",
+      "submissionDeadline": "2026-11-10T12:00:00+01:00",
+      "status": "closed",
+      "documents": null,
+      "referenceNumber": "GemSerf/Strom",
+      "description": "Vergabe eines Lieferauftrages der Gemeinde Serfaus zur Belieferung mit elektrischer Energie (Strom 2027, 2028 und 2029)",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "09310000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "6534",
+        "city": "Serfaus",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "749918-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/749918-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259006",
+        "submissionDeadlineDate": "2026-11-10",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Leistungen für einen Ladepark für batterieelektrische Busse (2)",
+      "buyerName": "Oberger Energie & Infrastruktur GmbH",
+      "publicationDate": "2026-10-29",
+      "submissionDeadline": "2026-11-27T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Die Auftraggeberin beabsichtigt, die Errichtung eines Ladeparks für batterieelektrische Busse zur Nutzung im eigenen Betrieb, die Beschaffung einer Ladesoftware für das Lade- und Lastenmanagement und die Vergabe von Instandhaltungs- und Instandsetzungsleistungen hinsichtlich des Ladeparks in einem transparenten Beschaffungsvorgang analog dem Bundesvergabegesetz in zwei Losen durchzuführen. Die Auftraggeberin ist kein Öffentlicher Auftraggeber und kein Sektorenauftraggeber. Der Vertrag unterliegt somit nicht dem Vergaberecht. Daher besteht kein vergaberechtlicher Rechtsschutz.",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "31000000",
+        "50100000",
+        "48100000",
+        "31170000",
+        "31200000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "751650-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/751650-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259150",
+        "submissionDeadlineDate": "2026-11-27",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Lieferung von Apple Produkten",
+      "buyerName": "Technische Universität Graz",
+      "publicationDate": "2026-10-29",
+      "submissionDeadline": "2026-11-10T10:00:00+01:00",
+      "status": "closed",
+      "documents": null,
+      "referenceNumber": "2",
+      "description": "Abschluss einer Rahmenvereinbarung zur Lieferung von Apple Produkten an vier (4) Universitäten",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "30210000",
+        "32250000",
+        "30213100",
+        "30213200",
+        "30200000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "752085-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/752085-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/254852",
+        "submissionDeadlineDate": "2026-11-10",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PEK KI, Bauphase 3 - HKS-Technik",
+      "buyerName": "Oberösterreichische Gesundheitsholding GmbH",
+      "publicationDate": "2026-10-30",
+      "submissionDeadline": "2026-11-30T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "HKS-Technik für das Phyrn-Eisenwurzen-Klinikum Kirchdorf, Umsetzung Masterplan III, Bauphase 3",
+      "procedureType": "negotiated",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45330000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "752850-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/752850-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259252",
+        "submissionDeadlineDate": "2026-11-30",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Bezirkskrankenhaus Kufstein - Neubau Bauteil-F / Fachbauaufsicht TGA-HT",
+      "buyerName": "Gemeindeverband Allgemein öffentliches Bezirkskrankenhaus Kufstein",
+      "publicationDate": "2026-10-30",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Leistungen der Fachbauaufsicht TGA-HT im Rahmen des Neubaus Bauteil F",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71320000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "6330",
+        "city": "Kufstein",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "754118-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/754118-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259197",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Generalübernehmerauftrag",
+      "buyerName": "Stadtgemeinde Bad Ischl",
+      "publicationDate": "2026-10-30",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "GdeBadIschl2/AusschrVS",
+      "description": "Vergabe eines Generalübernehmerauftrages zur Sanierung und zum Umbau der Volksschule Reiterndorf in Bad Ischl",
+      "procedureType": "negotiated",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45200000",
+        "71200000",
+        "71520000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "754337-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/754337-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259163",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Ionentherapiezentrum MedAustron – Generalunternehmer für den Zubau Protonentherapie",
+      "buyerName": "EBG MedAustron GmbH",
+      "publicationDate": "2026-10-30",
+      "submissionDeadline": "2026-11-16T12:00:00+01:00",
+      "status": "closed",
+      "documents": null,
+      "referenceNumber": "MA-2026-86",
+      "description": "Gegenstand dieses Vergabeverfahrens ist der Abschluss eines Generealunternehmervertrags zur Durchführung aller Planungs- und Ausführungsleistungen, die – aufbauend auf der Einreichplanung des Auftraggebers – zur Errichtung des an das Ionentherapiezentrum MedAustron anschließenden Zubaus für das Protonentherapiesystem erforderlich sind.",
+      "procedureType": "negotiated",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45210000",
+        "45215100"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "2700",
+        "city": "Wiener Neustadt",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "755094-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/755094-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258196",
+        "submissionDeadlineDate": "2026-11-16",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PEK KI, Bauphase 3 - Baumeisterarbeiten",
+      "buyerName": "Oberösterreichische Gesundheitsholding GmbH",
+      "publicationDate": "2026-10-30",
+      "submissionDeadline": "2026-11-30T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Baumeisterarbeiten für das Phyrn-Eisenwurzen Klinikum Kirchdorf, Umsetzung Masterplan III, Bauphase 3",
+      "procedureType": "negotiated",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "755250-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/755250-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258700",
+        "submissionDeadlineDate": "2026-11-30",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PEK KI, Bauphase 3 - Lüftung",
+      "buyerName": "Oberösterreichische Gesundheitsholding GmbH",
+      "publicationDate": "2026-10-30",
+      "submissionDeadline": "2026-11-30T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Lüftungsanlagen für das Phyrn-Eisenwurzen-Klinikum Kirchdorf, Umsetzung Masterplan III, Bauphase 3",
+      "procedureType": "negotiated",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45330000",
+        "45000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "755521-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/755521-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259247",
+        "submissionDeadlineDate": "2026-11-30",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Bezirkskrankenhaus Kufstein - Neubau Bauteil-F / Fachbauaufsicht TGA-ET",
+      "buyerName": "Gemeindeverband Allgemein öffentliches Bezirkskrankenhaus Kufstein",
+      "publicationDate": "2026-10-30",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Leistungen der Fachbauaufsicht TGA-ET im Rahmen des Neubaus Bauteil-F",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71320000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "6330",
+        "city": "Kufstein",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "755525-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/755525-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259213",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Organisationsberatung 2026",
+      "buyerName": "IT-Services der Sozialversicherung GmbH",
+      "publicationDate": "2026-10-30",
+      "submissionDeadline": "2026-12-07T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "ITSV/2026/OB 2026/oV",
+      "description": "Gegenstand dieser Rahmenvereinbarung sind die Erbringung von verschiedenen Dienstleistungen für Organisationsberatung in ganz Österreich für die ITSV und alle weiteren abrufberechtigten Stellen und beinhalten folgende Rollen: Executive Organisationsberater:in mit Schwerpunkt Gesundheitswesen Executive Organisationsberater:in mit Schwerpunkt IKT Senior Organisationsberater:innnen mit Schwerpunkt Gesundheitswesen Senior Organisationsberater:innen mit Schwerpunkt IKT Executive Berater:in mit Schwerpunkt Medical Advisor",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "79000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "1020",
+        "city": "Wien",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "755708-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/755708-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258921",
+        "submissionDeadlineDate": "2026-12-07",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Airborne Laser Scanning und digitale Höhenmodelle 2027",
+      "buyerName": "BEV - Bundesamt für Eich- und Vermessungswesen",
+      "publicationDate": "2026-10-30",
+      "submissionDeadline": "2026-11-30T14:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "GZ 2026-0.892.825",
+      "description": "Ziel dieses Vergabeverfahrens ist der Abschluss eines Vertrages über die Durchführung von Befliegungen zur Erfassung des gegenständlichen Projektgebietes mittels Airborne Laserscanning für die Herstellung von klassifizierten Punktwolken sowie von daraus abgeleiteten Gelände und Oberflächenmodellen entsprechend den Anforderungen der Auftraggeber gemäß den gegenständlichen Ausschreibungsunterlagen.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71300000",
+        "71353200",
+        "71351810"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "755771-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/755771-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259321",
+        "submissionDeadlineDate": "2026-11-30",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Tracking, Telemetrie und Telematik",
+      "buyerName": "Flughafen Wien AG",
+      "publicationDate": "2026-10-30",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "Z_2026_096",
+      "description": "Abschluss eines Rahmenvertrages über die Lieferung, Implementierung, Wartung, Instandhaltung, Anpassung und Weiterentwicklung von Hard- und Softwarelösungen für Tracking, Telemetrie und Telematik (TTT) zur Erfassung, Analyse, Visualisierung und Steuerung von Fahrzeugen, Geräten, Betriebsmitteln und sonstigen mobilen Assets der Flughafen Wien AG.",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "32441300"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "755795-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/755795-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259188",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Beschaffung Rugged-Windows-Tablets inkl. Zubehör",
+      "buyerName": "Flughafen Wien AG",
+      "publicationDate": "2026-10-30",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "Z_2026_082",
+      "description": "Beschaffung Rugged-Windows-Tablets inkl. Zubehör",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "30213200"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "755904-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/755904-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258134",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "VKS26 - Raumlizenzen mit Wartungs- und Entwicklungsleistung",
+      "buyerName": "REPUBLIK ÖSTERREICH (Bund) vertreten durch die Bundesministerin für Landesverteidigung",
+      "publicationDate": "2026-10-30",
+      "submissionDeadline": "2026-12-02T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "E90012/17/00-00-VER/2026",
+      "description": "VKS26 - Raumlizenzen mit Wartungs- und Entwicklungsleistung",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "755932-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/755932-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259077",
+        "submissionDeadlineDate": "2026-12-02",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PEK KI, Bauphase 3 - Elektroinstallationen",
+      "buyerName": "Oberösterreichische Gesundheitsholding GmbH",
+      "publicationDate": "2026-10-30",
+      "submissionDeadline": "2026-11-30T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Elektroinstallationsarbeiten für das Phyrn-Eisenwurzen-Klinikum Kirchdorf, Umsetzung Masterplan III, Bauphase 3",
+      "procedureType": "negotiated",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45300000",
+        "45000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "756087-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/756087-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258710",
+        "submissionDeadlineDate": "2026-11-30",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PR-Agenturleistungen für die Austrian Business Agency (ABA)",
+      "buyerName": "Austrian Business Agency GmbH",
+      "publicationDate": "2026-11-02",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "ABA/PR",
+      "description": "Die Austrian Business Agency GmbH (ABA) ist eine gemeinnützige, der Republik Österreich unterstehende Gesellschaft zur Förderung des Wirtschafts-, Arbeits- und Filmstandortes Österreich. In ihren drei Abteilungen „INVEST in AUSTRIA“, „WORK in AUSTRIA“ und „FILM in AUSTRIA“ bewirbt die ABA den Wirtschafts-, Arbeits- und Filmstandort international und unterstützt operativ internationale Unternehmen, Fachkräfte und Filmproduzenten. Gegenstand des Vergabeverfahrens ist die Beschaffung von PR-Agenturleistungen in Los 1 „PR in Österreich“, vorrangig für ABA Corporate und WORK in AUSTRIA und Los 2 „PR international“ für INVEST in AUSTRIA, insbesondere zu den Schlüsseltechnologien abgeleitet aus der Industriestrategie Österreich 2035 sowie für FILM in AUSTRIA. Zu diesem Zweck beabsichtigt die Auftraggeberin eine Rahmenvereinbarung mit bis zu 3 RV-Partner:innen in Los 1 und mit bis zu 5 RV-Partner:innen in Los 2 für jeweils vier Jahre abzuschließen. Die Rahmenvereinbarung kann von der Auftraggeberin einmal um ein weiteres Jahr verlängert werden (Verlängerungsoption). Insgesamt beträgt die Gesamtlaufzeit daher maximal fünf Jahre (4+1). Nähere Informationen siehe Teilnahmeunterlagen. // ENGLISH: The Austrian Business Agency GmbH (ABA) is a non-profit company under the authority of the Republic of Austria for the promotion of Austria as a business, work and film location. Through its three divisions \"INVEST in AUSTRIA\", \"WORK in AUSTRIA\" and \"FILM in AUSTRIA\", ABA promotes Austria internationally as a business, work and film location and provides operational support to international companies, skilled workers and film producers. The subject of the procurement procedure is the procurement of PR agency services in Lot 1 \"PR in Austria\", primarily for ABA Corporate and WORK in AUSTRIA, and Lot 2 \"PR international\" for INVEST in AUSTRIA, in particular on the key technologies derived from Austria's Industrial Strategy 2035, and for FILM in AUSTRIA. For this purpose, the Contracting Authority intends to conclude a framework agreement with up to 3 framework agreement partners (FA partners) in Lot 1 and up to 5 FA partners in Lot 2, each for a term of four years. The Contracting Authority may extend the framework agreement once by a further year (extension option). The total term is therefore a maximum of five years (4+1). For further information, see the participation documents.",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "79416000",
+        "79416100",
+        "79416200",
+        "79340000",
+        "79952000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "756598-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/756598-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259219",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Stromlieferung Messezentrum Salzburg",
+      "buyerName": "Messezentrum Salzburg GmbH",
+      "publicationDate": "2026-11-03",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Gegenstand des Vergabeverfahrens ist die Lieferung von Strom für die Versorgung des Messezentrums Salzburg ab dem Jahr 2028 bzw optional – je nach Festlegung des Auftraggebers – ab 2029. Mit der Ausschreibung soll nach Auslaufen des bestehenden Vertrages die kontinuierliche und wirtschaftliche Stromversorgung des Standortes sichergestellt werden.",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "09310000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "761181-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/761181-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259544",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Z_2026_097 Rahmenvereinbarung Lieferung von Luftfilter für lüftungstechnische Anlagen",
+      "buyerName": "Flughafen Wien AG",
+      "publicationDate": "2026-11-04",
+      "submissionDeadline": "2026-12-04T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "Z_2026_097",
+      "description": "Ziel des Vergabeverfahrens ist der Abschluss einer Rahmenvereinbarung mit einem Unternehmen mit einer maximalen Laufzeit von 3 Jahren (36 Monate) für die Lieferung fertig konfektionierter Luftfilter für die bestehenden Lüftungsanlagen in den Terminal- und Bürobereichen am Flughafen Wien für die Flughafen Wien AG (i.d.F. „FWAG“).",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "42514310"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "1300",
+        "city": "Wien-Flughafen",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "764352-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/764352-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259756",
+        "submissionDeadlineDate": "2026-12-04",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "DWH-Dienstleistungen 2026",
+      "buyerName": "IT-Services der Sozialversicherung GmbH",
+      "publicationDate": "2026-11-04",
+      "submissionDeadline": "2026-12-11T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "ITSV/2026/DWH-DL/oV",
+      "description": "Ziel dieses Vergabeverfahrens ist der Abschluss von Rahmenvereinbarungen (d.h. Vereinbarungen ohne Abnahmeverpflichtung und ohne Exklusivität für die Bieter) mit jeweils mehreren Auftragnehmern über die Erbringung von verschiedenen DWH IT-Dienstleistungen in ganz Österreich für die ITSV und alle weiteren abrufberechtigten Stellen und beinhalten folgende Rollen: Rolle 1 DWH Data Engineer:in (w/m/d) Rolle 2 DWH Data Engineer:in Senior (w/m/d) Rolle 3 DWH Business Analyst:in (w/m/d) Rolle 4 DWH BI",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "1020",
+        "city": "Wien",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "765114-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/765114-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259722",
+        "submissionDeadlineDate": "2026-12-11",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "SDR Hardware",
+      "buyerName": "AIT Austrian Institute of Technology GmbH",
+      "publicationDate": "2026-11-04",
+      "submissionDeadline": "2026-12-03T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "PL184/2026",
+      "description": "Lieferung von bis zu 10 Stück Software-Defined-Radio-(SDR-)Transceiver-Einheiten für ein Labor für verteilte Mehrfachatennensysteme und elektromagnetische Signalverarbeitung",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "32230000",
+        "32510000",
+        "32522000",
+        "32344210"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "765904-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/765904-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259642",
+        "submissionDeadlineDate": "2026-12-03",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Neubau Volksschule Hof - Sportstättenbau",
+      "buyerName": "Gemeinde Hof bei Salzburg",
+      "publicationDate": "2026-11-04",
+      "submissionDeadline": "2026-12-03T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "k19350",
+      "description": "Sportstättenbau im Neubau der Volksschule Hof",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45212200"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "5322",
+        "city": "Hof bei Salzburg",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "766128-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/766128-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259650",
+        "submissionDeadlineDate": "2026-12-03",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Development of the Energy Community Secretariat Data Toolbox",
+      "buyerName": "Energy Community",
+      "publicationDate": "2026-11-05",
+      "submissionDeadline": "2026-12-04T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "PN37-2026",
+      "description": "This consultancy represents the development phase of the ECS Data Toolbox and builds on the conceptual architecture, technical design, data mapping and implementation specifications prepared under the preceding Data Mapping project.",
+      "procedureType": "other",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72320000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "768035-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/768035-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259806",
+        "submissionDeadlineDate": "2026-12-04",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Vergabeverfahren „Sanierung und Erweiterung der Volksschule samt Landesmusikschule in Schlierbach als Totalübernehmer“",
+      "buyerName": "Gemeinde Schlierbach",
+      "publicationDate": "2026-11-05",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "GemSchlierbach01/26",
+      "description": "Vergabe eines Auftrages über die technische und kommerzielle Abwicklung des Bauvorhabens Sanierung und Erweiterung der Volksschule samt Landesmusikschule in Schlierbach als Totalübernehmer",
+      "procedureType": "negotiated",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45214210",
+        "71541000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "768222-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/768222-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259763",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Videoüberwachung IZ NÖ Süd",
+      "buyerName": "ecoplus. Niederösterreichs Wirtschaftsagentur GmbH",
+      "publicationDate": "2026-11-05",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "Ecoplus/Videoüberwachung",
+      "description": "Videoüberwachungssystem Industriezentrum NÖ Süd",
+      "procedureType": "restricted",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "32323500"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "2700",
+        "city": "Wiener Neustadt",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "769645-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/769645-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259878",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Austausch Kältemaschinen am Campus des ISTA",
+      "buyerName": "Institute of Science and Technology Austria",
+      "publicationDate": "2026-11-05",
+      "submissionDeadline": "2026-11-20T12:00:00+01:00",
+      "status": "closed",
+      "documents": null,
+      "referenceNumber": "2026-340",
+      "description": "Austausch der bestehenden Kältemaschinen in drei Gebäuden am Campus des ISTA in 3400 Klosterneuburg. Zum Auftrag gehören Anlieferung, ggf Zwischenlagerung durch den AN, Abladen & Einbringung, Zusammenbau, Aufstellung & Inbetriebnahme, Betriebsprüfung gemäß DGÜW-V, Probebetrieb, Test & Abnahme vor Ort sowie optional Wartung und Service der Systeme. Nicht zum Auftrag gehören Demontage der Altanlagen sowie Einbau, Installation und Anschluss der Anlagen am Aufstellungsort (werden gesonderten Los vergeben).",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "42510000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "3400",
+        "city": "Klosterneuburg",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "769857-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/769857-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259582",
+        "submissionDeadlineDate": "2026-11-20",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Lieferung von ICAO-Wolkenhöhenmesser (ICAO-WHM) und ICAO-Wolkenhöhenmesser mit erweiterten Funktionen (ICAO-WHM-EF) für die Austro Control GmbH",
+      "buyerName": "Austro Control Österreichische Gesellschaft für Zivilluftfahrt mit beschränkter Haftung",
+      "publicationDate": "2026-11-05",
+      "submissionDeadline": "2026-11-19T11:00:00+01:00",
+      "status": "closed",
+      "documents": null,
+      "referenceNumber": "2026_11",
+      "description": "Gegenstand der Ausschreibung ist der Vertragsabschluss mit jeweils einem Unternehmen pro Los über die Lieferung von WHM-Anlagen an den Flughafenstandorten Graz, Innsbruck, Klagenfurt, Linz, Salzburg und Wien inkl. der technischen Dokumentation und Schulungen für das technische Betreuungspersonal der ACG. Los 1: 18 Stück ICAO-Wolkenhöhenmesser (ICAO-WHM) Los 2: 8 Stück ICAO-Wolkenhöhenmesser mit erweiterten Funktionen (ICAO-WHM-EF) Es steht den Bietern frei, Angebote für eines oder mehrere Lose abzugeben; ein Bieter kann somit auch für beide Lose ein Angebot einreichen. Alle WHM Anlagen pro Los müssen vollkommen bau- und funktionsgleich sein. Dies bezieht sich u.a. auf den mechanischen Aufbau der Anlage, auf die optischen Elemente, die prozessorgestützte Elektronik zur Verarbeitung und Analyse der WHM-Daten und die in den Komponenten eingesetzte Software oder Firmware. Sämtliche Komponenten müssen zwischen den WHM-Anlagen ausgetauscht werden können. (ausgenommen standortspezifische Parametrierung). Die WHM-Anlage wird, entsprechend den Herstellervorgaben, auf einem bestehenden, beziehungsweise durch den AG adaptierten, Fundament errichtet. Das bestehende Fundament (statische Tragfähigkeit, Abmessung), die Datenversorgung und die elektrische Versorgung (Durchgängigkeit, Vollständigkeit und Anschlusswert) wird nach Vorgaben des AN vom AG bereitgestellt. Alle angebotenen Anlagen, Geräte und Komponenten, die gelieferten Daten und die errechneten Produkte müssen den internationalen Bestimmungen der WMO, der ICAO-Annex 3 und EASA 2017/373 entsprechen. Die Eigenschaften zur Minimierung von Wartungsintervallen, Wartungskosten, einhergehend mit einer Maximierung der Transparenz der Wartungsfreundlichkeit, der Wartungsbedingungen, sowie der Reparatur- und Serviceleistungen haben für den AG einen hohen Stellenwert. Dies ist Voraussetzung für die Abnahme des Systems. Die Lieferung und die Schulung der Anlagen, beginnt im ersten Lieferjahr mit den ersten Lieferungen ab April 2027 und muss im zweiten Lieferjahr mit den letzten Schulungen bzw. Langzeittests mit spätestens Ende September 2028 abgeschlossen sein. Diese Termine sind pönalisiert. Der Leistungsort sind die Flughafenstandorte in Graz, Innsbruck, Klagenfurt, Linz, Salzburg und Wien. Erfüllungszeitraum beginnt unmittelbar nach der Zuschlagserteilung. Optional sind Trainings des technischen Personals pro Los anzubieten. Eine Vergaberechtliche Option gem. § 365 BVergG 2018 ist pro Los vorgesehen und den Ausschreibungsunteralgen genau angeführt. Voraussetzung für ein gültiges Angebot ist die Vorlage eines Original-Vadiums pro Los in Papierform spätestens bis zum Zeitpunkt der Angebotsöffnung.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "38120000",
+        "38128000",
+        "80511000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "770234-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/770234-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/255514",
+        "submissionDeadlineDate": "2026-11-19",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Wood Vision Lab - Bodenlegerarbeiten",
+      "buyerName": "Wood Vision Lab GmbH",
+      "publicationDate": "2026-11-06",
+      "submissionDeadline": "2026-11-20T13:00:00+01:00",
+      "status": "closed",
+      "documents": null,
+      "referenceNumber": "000",
+      "description": "Ziel dieses Vergabeverfahrens ist, die/den im Zuge des Vergabeverfahrens ermittelten Bestbieter:in mit der Erbringung von Bauleistungen für Bodenlegerarbeiten im Rahmen der Neuerrichtung Bürogebäude plus eines Technikums am Standort Franz-Pichler-Straße, A-8160 Weiz zu beauftragen.",
+      "procedureType": "other",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45432100"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "771654-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/771654-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260083",
+        "submissionDeadlineDate": "2026-11-20",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Beschaffung Rugged-Windows-Tablets inkl. Zubehör",
+      "buyerName": "Flughafen Wien AG",
+      "publicationDate": "2026-11-06",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "Z_2026_082",
+      "description": "Beschaffung Rugged-Windows-Tablets inkl. Zubehör",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "30213200"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "772005-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/772005-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258134",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Klinikum Schärding, Masterplan 2025+ - Fenster-Sonnenschutz",
+      "buyerName": "Oberösterreichische Gesundheitsholding GmbH",
+      "publicationDate": "2026-11-06",
+      "submissionDeadline": "2026-12-07T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "001",
+      "description": "Klinikum Schärding, Masterplan 2025+ - Fenster-Sonnenschutz",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45210000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "4780",
+        "city": "Schärding",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "772104-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/772104-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259951",
+        "submissionDeadlineDate": "2026-12-07",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Leistungen für einen Ladepark für batterieelektrische Busse (2) - Ladeinfrastruktur",
+      "buyerName": "Oberger Energie & Infrastruktur GmbH",
+      "publicationDate": "2026-11-06",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Die Auftraggeberin beabsichtigt, die Errichtung eines Ladeparks für batterieelektrische Busse zur Nutzung im eigenen Betrieb, die Beschaffung einer Ladesoftware für das Lade- und Lastenmanagement und die Vergabe von Instandhaltungs- und Instandsetzungsleistungen hinsichtlich des Ladeparks in einem transparenten Beschaffungsvorgang analog dem Bundesvergabegesetz durchzuführen. Gegenstand dieses Verfahrens ist ausschließlich die Lieferung, Montage und Inbetriebnahme sowie Instandhaltung und -setzung der Ladeinfrastruktur inklusive Lade- und Lastenmanagementsystem.",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "31000000",
+        "50100000",
+        "48100000",
+        "31170000",
+        "31200000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "773977-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/773977-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259969",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Leistungen für einen Ladepark für batterieelektrische Busse (2) - Trafostation",
+      "buyerName": "Oberger Energie & Infrastruktur GmbH",
+      "publicationDate": "2026-11-06",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Die Auftraggeberin beabsichtigt, die Errichtung eines Ladeparks für batterieelektrische Busse zur Nutzung im eigenen Betrieb, die Beschaffung einer Ladesoftware für das Lade- und Lastenmanagement und die Vergabe von Instandhaltungs- und Instandsetzungsleistungen hinsichtlich des Ladeparks in einem transparenten Beschaffungsvorgang analog dem Bundesvergabegesetz durchzuführen. Gegenstand dieses Verfahrens ist ausschließlich die Lieferung, Montage und Inbetriebnahme sowie Instandhaltung und -setzung der Trafostation. Die Auftraggeberin ist kein Öffentlicher Auftraggeber und kein Sektorenauftraggeber. Der Vertrag unterliegt somit nicht dem Vergaberecht. Daher besteht kein vergaberechtlicher Rechtsschutz.",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "31000000",
+        "50100000",
+        "31170000",
+        "31200000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "774562-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/774562-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259150",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Airborne Laser Scanning und digitale Höhenmodelle 2027",
+      "buyerName": "BEV - Bundesamt für Eich- und Vermessungswesen",
+      "publicationDate": "2026-11-09",
+      "submissionDeadline": "2026-11-30T14:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "GZ 2026-0.892.825",
+      "description": "Ziel dieses Vergabeverfahrens ist der Abschluss eines Vertrages über die Durchführung von Befliegungen zur Erfassung des gegenständlichen Projektgebietes mittels Airborne Laserscanning für die Herstellung von klassifizierten Punktwolken sowie von daraus abgeleiteten Gelände und Oberflächenmodellen entsprechend den Anforderungen der Auftraggeber gemäß den gegenständlichen Ausschreibungsunterlagen.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71300000",
+        "71353200",
+        "71351810"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "775163-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/775163-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259321",
+        "submissionDeadlineDate": "2026-11-30",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "3950 Gmünd, Um-/ Zubau Palmenhaus - Dachdecker+Spengler",
+      "buyerName": "Stadtgemeinde Gmünd",
+      "publicationDate": "2026-11-09",
+      "submissionDeadline": "2026-12-09T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "NOELA2028ZUP",
+      "description": "Zu und Umbau Palmenhaus, NÖ-Landesausstellung 2028",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45261210",
+        "45261213"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "775579-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/775579-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260185",
+        "submissionDeadlineDate": "2026-12-09",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "HLF 3",
+      "buyerName": "Marktgemeinde Neusiedl an der Zaya",
+      "publicationDate": "2026-11-09",
+      "submissionDeadline": "2026-12-07T09:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2183",
+      "description": "HLF 3",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "34144212",
+        "34144210"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "776965-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/776965-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260151",
+        "submissionDeadlineDate": "2026-12-07",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Konzession: Gastronomie Museum der Moderne",
+      "buyerName": "Museum der Moderne – Rupertinum Betriebsgesellschaft mbH",
+      "publicationDate": "2026-11-09",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Vergabe der Konzession für den Gastronomiebetrieb im Bereich des Museums der Moderne, Salzburg",
+      "procedureType": "other",
+      "contractNature": "services",
+      "cpvCodes": [
+        "55300000",
+        "70200000",
+        "55330000",
+        "55310000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "5020",
+        "city": "Salzburg",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "778102-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/778102-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260113",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "GPS tracking devices for the Great and Little Bustard – LIFE EUROBUSTARD",
+      "buyerName": "Österreichische Gesellschaft Großtrappenschutz (ÖGG)",
+      "publicationDate": "2026-11-09",
+      "submissionDeadline": "2026-12-07T13:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "101215547",
+      "description": "The procurement covers supply, calibration, configuration, platform access, data connectivity and technical support for backpack-mounted GPS tracking devices for Great Bustard (Otis tarda) and Little Bustard (Tetrax tetrax).",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "38112100"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "86000",
+        "city": "Poitiers",
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "778211-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/778211-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260160",
+        "submissionDeadlineDate": "2026-12-07",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Abbruch und Neuerrichtung eines barrierefreien Holzstegs zur Unterwasserstation",
+      "buyerName": "Nationalpark Donau-Auen GmbH",
+      "publicationDate": "2026-11-09",
+      "submissionDeadline": "2026-11-13T12:00:00+01:00",
+      "status": "closed",
+      "documents": null,
+      "referenceNumber": "200647-6-2",
+      "description": "Abbruch und Entsorgung der Bestandsbrücke, Kommunikation mit den technischen Planern, sowie die Neuerrichtung eines barrierefreien Holzstegs zur Unterwasserstation samt Erstellung der Werks- und Montageplanung und aller sonst erforderlichen Leistungen, die zur Herstellung des gewünschten Ergebnisses erforderlich sind.",
+      "procedureType": "other",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45000000",
+        "45220000",
+        "45221113"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "779172-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/779172-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/257554",
+        "submissionDeadlineDate": "2026-11-13",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Environment Agency Austria / TRATOLOW II - Capacity Building for EU ETS, MRVA and carbon pricing 2027 – 2029",
+      "buyerName": "Umweltbundesamt Gesellschaft mit beschränkter Haftung (UBA-GmbH) / Environment Agency Austria",
+      "publicationDate": "2026-11-10",
+      "submissionDeadline": "2026-11-27T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "21727-C1/27-29",
+      "description": "Environment Agency Austria / TRATOLOW II - Capacity Building for EU ETS, MRVA and carbon pricing 2027 – 2029",
+      "procedureType": "other",
+      "contractNature": "services",
+      "cpvCodes": [
+        "80540000",
+        "80510000",
+        "90713000",
+        "79951000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "780356-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/780356-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259548",
+        "submissionDeadlineDate": "2026-11-27",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Lieferung eines Motorgraders für den Agrarbauhof des Landes Kärnten",
+      "buyerName": "Amt der Kärntner Landesregierung, Abteilung 10 - Land- und Forstwirtschaft, Ländlicher Raum",
+      "publicationDate": "2026-11-10",
+      "submissionDeadline": "2026-12-09T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "10-AT-ABH-134075/2026-1",
+      "description": "Das Land Kärnten, vertreten durch das Amt der Kärntner Landesregierung, Abteilung 10 (Land- und Forstwirtschaft, Ländlicher Raum) beabsichtigt die Beschaffung eines neuen Motorgraders mit einem Einsatzgewicht von 15.500 bis 17.000 kg samt Vollgarantie, Wartung gemäß Wartungsplan des Herstellers, Ersatzteilversorgung und Servicetechnikerleistungen.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "43210000",
+        "43220000",
+        "50530000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "780541-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/780541-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260000",
+        "submissionDeadlineDate": "2026-12-09",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Hochwasserschutz Alkoven Baulos 5, 2026-2029",
+      "buyerName": "Gemeinde Alkoven",
+      "publicationDate": "2026-11-10",
+      "submissionDeadline": "2026-12-11T09:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Hochwasserschutz Alkoven Baulos 5, 2026-2029",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "781420-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/781420-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260310",
+        "submissionDeadlineDate": "2026-12-11",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Anschaffung einer E-Learning Software",
+      "buyerName": "Bundesagentur für Betreuungs- und Unterstützungsleistungen Gesellschaft mit beschränkter Haftung",
+      "publicationDate": "2026-11-10",
+      "submissionDeadline": "2026-11-18T12:00:00+01:00",
+      "status": "closed",
+      "documents": null,
+      "referenceNumber": "15",
+      "description": "Gegenstand des Vergabeverfahrens ist die Anschaffung einer E-Learning Software um selbstständig unternehmensinterne Schulungen erstellen und Mitarbeiter*innen anbieten zu können.",
+      "procedureType": "other",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "48931000",
+        "48000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "782764-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/782764-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260289",
+        "submissionDeadlineDate": "2026-11-18",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Vergabe eines Lieferauftrages der Gemeinde Bad Häring zur Belieferung mit elektrischer Energie (Strom)",
+      "buyerName": "Gemeinde Bad Häring",
+      "publicationDate": "2026-11-11",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "BadHaering/Strom",
+      "description": "Vergabe eines Lieferauftrages der Gemeinde Bad Häring zur Belieferung mit elektrischer Energie (Strom)",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "09310000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "6323",
+        "city": "Bad Häring",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "783441-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/783441-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260182",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "GPS tracking devices for the Great and Little Bustard – LIFE EUROBUSTARD",
+      "buyerName": "Österreichische Gesellschaft Großtrappenschutz (ÖGG)",
+      "publicationDate": "2026-11-11",
+      "submissionDeadline": "2026-12-07T13:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "101215547",
+      "description": "The procurement covers supply, calibration, configuration, platform access, data connectivity and technical support for backpack-mounted GPS tracking devices for Great Bustard (Otis tarda) and Little Bustard (Tetrax tetrax).",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "38112100"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "86000",
+        "city": "Poitiers",
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "783753-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/783753-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260160",
+        "submissionDeadlineDate": "2026-12-07",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "VKS26 - Raumlizenzen mit Wartungs- und Entwicklungsleistung",
+      "buyerName": "REPUBLIK ÖSTERREICH (Bund) vertreten durch die Bundesministerin für Landesverteidigung",
+      "publicationDate": "2026-11-11",
+      "submissionDeadline": "2026-12-02T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "E90012/17/00-00-VER/2026",
+      "description": "VKS26 - Raumlizenzen mit Wartungs- und Entwicklungsleistung",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "783762-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/783762-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259077",
+        "submissionDeadlineDate": "2026-12-02",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "ZMKK - Laboreinrichtung",
+      "buyerName": "Akademie der bildenden Künste Wien",
+      "publicationDate": "2026-11-12",
+      "submissionDeadline": "2026-12-15T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "009",
+      "description": "Abschluss eines Leistungsvertrages mit einem Auftragnehmer über die Fertigung, Lieferung, Montage, den Anschluss an die bauseitige Haustechnik und die Inbetriebnahme einer Laboreinrichtung für das ZMKK einschließlich Einschulung und Dokumentation",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "39180000",
+        "39181000",
+        "39141500",
+        "45421153",
+        "45330000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "1030",
+        "city": "Wien",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "787609-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/787609-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260540",
+        "submissionDeadlineDate": "2026-12-15",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Beschaffung Software Tableau Lizenzen",
+      "buyerName": "Flughafen Wien AG",
+      "publicationDate": "2026-11-12",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "2026105",
+      "description": "Beschaffung von Tableau Lizenzen, zur Analyse und als Visualisierungstool zur Berichtserstellung",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "48000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "787753-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/787753-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260479",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Generalplaner + ÖBA",
+      "buyerName": "Wirtschaftskammer Oberösterreich",
+      "publicationDate": "2026-11-12",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Generalplanerleistungen für die Generalsanierung des ABC-Traktes im WIFI Linz",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71320000",
+        "71240000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "4020",
+        "city": "Linz",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "789125-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/789125-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260389",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Fertigteile/Modulmöbel für die Kasernenunterkünfte des Österreichischen Bundesheeres (Rahmenabrufvertrag) für 2027 bis 2029 (Option 2030 bzw. 2031)",
+      "buyerName": "REPUBLIK ÖSTERREICH (Bund) vertreten durch die Bundesministerin für Landesverteidigung",
+      "publicationDate": "2026-11-12",
+      "submissionDeadline": "2026-12-29T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "E90035/1/00-00-VER/2026",
+      "description": "Fertigteile/Modulmöbel für die Kasernenunterkünfte des Österreichischen Bundesheeres (Rahmenabrufvertrag) für 2027 bis 2029 (Option 2030 bzw. 2031)",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "39100000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "789333-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/789333-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260067",
+        "submissionDeadlineDate": "2026-12-29",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Beschaffungen für die Implementierung und den Betrieb einer österreichweiten LTE450-MHz-Sprachlösung in drei Losen",
+      "buyerName": "Österreichs E-Wirtschaft Service GmbH",
+      "publicationDate": "2026-11-13",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "261020",
+      "description": "Gegenstand des Vergabeverfahrens ist der Abschluss einer Rahmenvereinbarung pro Los für die Beschaffung von Leistungen zur Bereitstellung und Integration einer MCX-Lösung auf Basis eines LTE450-Mobilfunknetzes.",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "48000000",
+        "32524000",
+        "32250000",
+        "32000000",
+        "35700000",
+        "35710000",
+        "50330000",
+        "50334400",
+        "48200000",
+        "48730000",
+        "48700000",
+        "48780000",
+        "48781000",
+        "72260000",
+        "72263000",
+        "72268000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "1040",
+        "city": "Wien",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "790408-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/790408-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258573",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Unterstützungsleistungen First Level Support, Monitoring und IT-Support Manager",
+      "buyerName": "Oesterreichische Nationalbank",
+      "publicationDate": "2026-11-13",
+      "submissionDeadline": "2026-12-15T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026-2649",
+      "description": "Abschluss eines Rahmenvertrages zur laufenden Erbringung von Unterstützungsleistungen im Bereich First Level Support, IT-Support Management, Schulungen sowie IT-Monitoring und Alarmierung (Betriebsüberwachung). Die Leistungen sind in einer besonders sicherheitssensiblen IT-Umgebung mit anspruchsvollen Anforderungen an Verfügbarkeit, Stabilität, Prozesssicherheit und Reaktionsgeschwindigkeit zu erbringen.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72253000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "790718-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/790718-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260619",
+        "submissionDeadlineDate": "2026-12-15",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Röntgenaufnahmeplatz – BBU Traiskirchen",
+      "buyerName": "Bundesagentur für Betreuungs- und Unterstützungsleistungen Gesellschaft mit beschränkter Haftung",
+      "publicationDate": "2026-11-13",
+      "submissionDeadline": "2026-11-27T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "14",
+      "description": "Für die BBU GmbH soll in der Bundesbetreuungseinrichtung Traiskirchen eine digitale Röntgenanlage einschließlich lokalem Aufnahme-, Bedien- und Befundarbeitsplatz angeschafft werden.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "33111000",
+        "33111200",
+        "33111800",
+        "33111100",
+        "33124210",
+        "50421200"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "2514",
+        "city": "Traiskirchen",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "790728-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/790728-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258329",
+        "submissionDeadlineDate": "2026-11-27",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Wartungs-, Reparatur- und Servicedienstleistungen für Laborgeräte",
+      "buyerName": "AGES - Österreichische Agentur für Gesundheit und Ernährungssicherheit GmbH",
+      "publicationDate": "2026-11-13",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "AU 05/2026",
+      "description": "Wartungs-, Reparatur- und Servicedienstleistungen für Laborgeräte",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "50400000",
+        "50410000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "791592-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/791592-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260043",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "E90094/112/2-Dion7/2026, 6395 Hochfilzen, Schüttachstr. 1, TÜPl HOCHFILZEN, Obj. 059, Adaptierung/Erweiterung Soldatenheim, Statische Planung des BVH und Erstellen LV für Bau- u. Baunebenleistungen",
+      "buyerName": "BMLV/Direktion 7 - Infrastruktur",
+      "publicationDate": "2026-11-13",
+      "submissionDeadline": "2026-11-27T09:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "E90094/112/2-Dion7/2026",
+      "description": "E90094/112/2-Dion7/2026, 6395 Hochfilzen, Schüttachstr. 1, Truppenübungsplatz HOCHFILZEN, Obj. 059, Adaptierung/Erweiterung Soldatenheim, Statische Planung des BVH und Erstellen Leistungsverzeichnisse für Bau- und Baunebenleistungen (verkürztes Verfahren gem BVergG 2018 § 74 Zi 1)",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71327000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "792032-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/792032-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260704",
+        "submissionDeadlineDate": "2026-11-27",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Fördermanagementsystem – Kunst und Kultur",
+      "buyerName": "Republik Österreich (Bund), vertreten durch den Bundesminister für Wohnen, Kunst, Kultur, Medien und Sport",
+      "publicationDate": "2026-11-16",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "260436",
+      "description": "Fördermanagementsystem – Kunst und Kultur - VERHANDLUNGSVERFAHREN NACH VORHERIGER BEKANNTMACHUNG im Oberschwellenbereich gemäß § 31 Abs 5 iVm Abs 7 BVergG 2018 idgF zum Abschluss einer Rahmenvereinbarung mit einem Unternehmen",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72230000",
+        "72267000",
+        "72262000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "793575-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/793575-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260436",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Wartungsleistungen und Sofortmaßnahmen für Turn- und Sportgeräte (2027-2029) - Los 3",
+      "buyerName": "Magistrat der Stadt Wien - Magistratsabteilung 51",
+      "publicationDate": "2026-11-16",
+      "submissionDeadline": "2026-12-11T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "MA51-VER-WAR3",
+      "description": "Abschluss einer Rahmenvereinbarung mit einem (1) Rahmenvereinbarungspartner für Wartungsleistungen von Turn- und Sportgeräten - Los 3",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "50000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "795054-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/795054-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260608",
+        "submissionDeadlineDate": "2026-12-11",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Erweiterung Fuschlseebad - Innentüren aus Holz und Trennwandsysteme",
+      "buyerName": "Gemeinde Fuschl am See",
+      "publicationDate": "2026-11-16",
+      "submissionDeadline": "2026-12-14T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "19716",
+      "description": "Ausführung der Innentüren aus Holz und der Trennwandsysteme in der Erweiterung des Fuschlseebads.",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45421000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "5330",
+        "city": "Fuschl am See",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "795812-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/795812-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260838",
+        "submissionDeadlineDate": "2026-12-14",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Planungs- und Gestaltungsleistungen für Messeprojekte",
+      "buyerName": "Wirtschaftskammer Österreich",
+      "publicationDate": "2026-11-16",
+      "submissionDeadline": "2026-12-14T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "112026",
+      "description": "Gegenstand des Vergabeverfahrens ist der Abschluss einer Rahmenvereinbarung mit 15 Rahmenvereinbarungspartnern über die Erbringung von Planungs- und Gestaltungsleistungen im Zusammenhang mit der Konzeption, Planung sowie der Begleitung der Umsetzung internationaler Messestände der Außenwirtschaft Austria.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71240000",
+        "71220000",
+        "79932000",
+        "79930000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "796133-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/796133-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260675",
+        "submissionDeadlineDate": "2026-12-14",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Tracking, Telemetrie und Telematik",
+      "buyerName": "Flughafen Wien AG",
+      "publicationDate": "2026-11-17",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "Z_2026_096",
+      "description": "Abschluss eines Rahmenvertrages über die Lieferung, Implementierung, Wartung, Instandhaltung, Anpassung und Weiterentwicklung von Hard- und Softwarelösungen für Tracking, Telemetrie und Telematik (TTT) zur Erfassung, Analyse, Visualisierung und Steuerung von Fahrzeugen, Geräten, Betriebsmitteln und sonstigen mobilen Assets der Flughafen Wien AG.",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "32441300"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "797575-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/797575-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259188",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Neuplanung der Salztorbrücke in Wien",
+      "buyerName": "Stadt Wien - Abteilung Architektur und Stadtgestaltung",
+      "publicationDate": "2026-11-17",
+      "submissionDeadline": "2027-02-17T17:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "M19924314-2026",
+      "description": "Planung für den Neubau der Salztorbrücke über den Donaukanal vom 1. zum 2. Wiener Gemeindebezirk für Fußgänger*innen, Radfahrer*innen und motorisierten Individualverkehr",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71000000",
+        "71300000",
+        "71200000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "798656-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/798656-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260521",
+        "submissionDeadlineDate": "2027-02-17",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Freizeitzentrum Schwechat / Hallenbad-Neubau / Teil-Generalunternehmerleistungen BAU",
+      "buyerName": "Stadtgemeinde Schwechat",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "BAU-1",
+      "description": "Teil-Generalunternehmerleistungen für Bauleistungen \"Bauwerk-Rohbau\" und \"Bauwerk-Ausbau\" für die Neuerrichtung eines Hallenbades am Areal des Freizeitzentrums der Stadtgemeinde Schwechat",
+      "procedureType": "negotiated",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45000000",
+        "45212212"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "2320",
+        "city": "Schwechat",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "804068-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/804068-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260915",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Freizeitzentrum Schwechat / Hallenbad-Neubau / Generalunternehmerleistungen HKLS",
+      "buyerName": "Stadtgemeinde Schwechat",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "BAU-2",
+      "description": "Generalunternehmerleistungen für Bauleistungen \"HKLS\" für die Neuerrichtung eines Hallenbades am Areal des Freizeitzentrums der Stadtgemeinde Schwechat",
+      "procedureType": "negotiated",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45000000",
+        "45330000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "2320",
+        "city": "Schwechat",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "804606-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/804606-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260942",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Verhandlungsverfahren mit vorheriger Bekanntmachung zum Abschluss einer Rahmenvereinbarung über die Betreuung zentraler Kommunikationskanäle",
+      "buyerName": "Holzbau Austria",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Abschluss einer Rahmenvereinbarung mit einem (1) Unternehmen/Unternehmenszusammenschluss über die Erbringung unterschiedlicher Betreuungsleistungen für die zentralen Kommunikationskanäle (Magazin, Website, Newsletter und Social Media) des Bundesverbandes der Holzbaubetriebe",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "79340000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "805234-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/805234-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260988",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Strategische Kommunikationsbegleitung",
+      "buyerName": "Schloß Schönbrunn Kultur- und Betriebsges.m.b.H.",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "SKB/081",
+      "description": "Zur Vergabe gelangt ein Dienstleistungsauftrag (§ 7 „Bundesgesetz über die Vergabe von Aufträgen“ [BGBl I 65/2018 idF BGBl I 8/2026; „BVergG 2018“]). Ausschreibungsgegenständlich sind Leistungen im Bereich der strategischen Kommunikationsbegleitung.",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "79416200",
+        "79416000",
+        "79410000",
+        "79413000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "1130",
+        "city": "Wien",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "805497-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/805497-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258741",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Freizeitzentrum Schwechat / Hallenbad-Neubau / Generalunternehmerleistungen ELEKTRO",
+      "buyerName": "Stadtgemeinde Schwechat",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "BAU-3",
+      "description": "Generalunternehmerleistungen für Bauleistungen \"ELEKTRO\" für die Neuerrichtung eines Hallenbades am Areal des Freizeitzentrums der Stadtgemeinde Schwechat",
+      "procedureType": "negotiated",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45000000",
+        "45310000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "2320",
+        "city": "Schwechat",
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "806520-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/806520-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/260948",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Rahmenvereinbarung Mietwäsche",
+      "buyerName": "Versicherungsanstalt öffentlich Bediensteter, Eisenbahnen und Bergbau (BVAEB)",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-11-30T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Gegenstand des Vergabeverfahrens ist der Abschluss einer Rahmenvereinbarung mit einem:einer Rahmenvereinbarungspartner:in über die österreichweite Mietwäscheversorgung der Bedarfsstellen der BVAEB (gemäß Teil F – Standortverzeichnis). Die Leistung erstreckt sich von der Anmietung von Berufsbekleidung und Flachwäsche über die Reinigung derselben inklusive der Zustellung, Abholung und Bereitstellung der hierfür erforderlichen Logistik. Weitere Informationen sind den Ausschreibungsunterlagen zu entnehmen.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "98310000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "806733-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/806733-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/258381",
+        "submissionDeadlineDate": "2026-11-30",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "EU-weit offener, einstufiger, anonymer Realisierungswettbewerb Wohnbebauung Eichhof Innsbruck - Baustufe 4",
+      "buyerName": "IIG - Innsbrucker Immobilien GmbH & Co KG",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2027-02-24T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "w153",
+      "description": "Gegenstand des Wettbewerbs zur Umsetzung der Baustufe 4 im Projekt Neustrukturierung und Verdichtung der Südtiroler Siedlung „Eichhof“, ist die Erlangung von baukünstlerischen Vorentwurfskonzepten für die Errichtung von einem oder mehreren Wohngebäuden entlang der Lindenstraße im Stadtteil Pradl in Innsbruck.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71200000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "807581-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/807581-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/261276",
+        "submissionDeadlineDate": "2027-02-24",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Amstetten-Sanierung Eis- und Mehrzweckhalle-Generalplanersuche",
+      "buyerName": "Stadtgemeinde Amstetten",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "1",
+      "description": "Generalplanungsleistungen für die Sanierung der Eis- und Mehrzweckhalle in Amstetten",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71300000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "809940-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/809940-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/261265",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "SDR Hardware",
+      "buyerName": "AIT Austrian Institute of Technology GmbH",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-03T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "PL184/2026",
+      "description": "Lieferung von bis zu 10 Stück Software-Defined-Radio-(SDR-)Transceiver-Einheiten für ein Labor für verteilte Mehrfachatennensysteme und elektromagnetische Signalverarbeitung",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "32230000",
+        "32510000",
+        "32522000",
+        "32344210"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "AT"
+      },
+      "_match": {
+        "tedPublicationNumber": "810439-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/810439-2026",
+        "documentUrl": "https://gv.vergabeportal.at/Detail/259642",
+        "submissionDeadlineDate": "2026-12-03",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    }
+  ]
+}

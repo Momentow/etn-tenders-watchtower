@@ -1,0 +1,1746 @@
+{
+  "portalKey": "acquistinretepa.it",
+  "baseUrl": "https://www.acquistinretepa.it",
+  "family": "acquistinretepa",
+  "generatedAt": "2026-11-20T21:05:10+01:00",
+  "expectedTenders": [
+    {
+      "id": null,
+      "url": null,
+      "title": "PROCEDURA APERTA PER AFFIDAMENTO DI PROGETTO DI FATTIBILITA TECNICO ECONOMICA, PROGETTAZIONE ESECUTIVA, COORDINAMENTO IN FASE DI PROGETTAZIONE E DI ESECUZIONE PROGETTO DI AMPLIAMENTO SEDE DI PUTIGNANO",
+      "buyerName": "ISTITUTO ZOOPROFILATTICO SPERIMENTALE DELLA PUGLIA E DELLA BASILICATA R",
+      "publicationDate": "2026-11-02",
+      "submissionDeadline": "2026-12-04T20:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6628491",
+      "description": "AFFIDAMENTO DI PROGETTO DI FATTIBILITA’ TECNICO ECONOMICA, PROGETTAZIONE ESECUTIVA, COORDINAMENTO IN FASE DI PROGETTAZIONE E DI ESECUZIONE PROGETTO DI AMPLIAMENTO SEDE DI PUTIGNANO",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71221000",
+        "71240000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "757402-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/757402-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/cf66c27f91db0094",
+        "submissionDeadlineDate": "2026-12-04",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Sottoscrizioni e servizi Redis per Sogei - ID 3047",
+      "buyerName": "CONSIP SPA",
+      "publicationDate": "2026-11-02",
+      "submissionDeadline": "2026-12-03T16:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6674084 - ID SIGEF 3047",
+      "description": "Gara europea a procedura aperta per l'affidamento di un Accordo Quadro avente ad oggetto la fornitura di sottoscrizioni software redis enterprise edition e servizi di supporto specialistico per Sogei (ID 3047)",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "48000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "760365-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/760365-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-delega/bca853bebb883644",
+        "submissionDeadlineDate": "2026-12-03",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "ERP 503: Lavori di demolizione e ricostruzione di edificio di residenza pubblica di proprietà mista ATER Teramo e privati.",
+      "buyerName": "UFFICIO SPECIALE PER LA RICOSTRUZIONE POST SISMA 2016 REGIONE ABRUZZO",
+      "publicationDate": "2026-11-03",
+      "submissionDeadline": "2026-12-07T23:59:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6701087",
+      "description": "Procedura ad evidenza pubblica per l’aggiudicazione dei lavori di demolizione e ricostruzione di edificio di residenza pubblica di proprietà mista ATER Teramo e privati, denominato ERP 503 in frazione Colleatterrato, via Giovanni XXIII nn.79 – 81 a Teramo",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45210000",
+        "45000000"
+      ],
+      "placeOfPerformance": {
+        "city": "TERAMO",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "760455-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/760455-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/eb09c76dfd9350ba",
+        "submissionDeadlineDate": "2026-12-07",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PROCEDURA APERTA PER LA FORNITURA CHIAVI IN MANO DI ATTREZZATURE A NOLEGGIO PER ANNI CINQUE PER LA UOC DI GASTROENTEROLOGIA",
+      "buyerName": "GRANDE OSPEDALE METROPOLITANO - BIANCHI MELACRINO MORELLI - DI REGGIO CALABRIA",
+      "publicationDate": "2026-11-03",
+      "submissionDeadline": "2026-12-04T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6710075",
+      "description": "PROCEDURA APERTA PER LA FORNITURA CHIAVI IN MANO DI ATTREZZATURE A NOLEGGIO PER ANNI CINQUE PER LA UOC DI GASTROENTEROLOGIA",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "33100000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "89128",
+        "city": "CALABRIA",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "760790-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/760790-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/7e2d6ec739eba741",
+        "submissionDeadlineDate": "2026-12-04",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Servizio accoglienza richiedenti protezione internazionale in centri collettivi",
+      "buyerName": "UFFICIO TERRITORIALE DEL GOVERNO (UTG EX PREFETTURA) DI ASTI",
+      "publicationDate": "2026-11-03",
+      "submissionDeadline": "2026-12-11T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6709065",
+      "description": "gara europea a procedura aperta per la conlusione di un accordo quadro per l'affidamento dei servizi di gestione dei centri collettivi con capienza massima di 50 posti",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "85310000",
+        "85311000"
+      ],
+      "placeOfPerformance": {
+        "city": "ASTI",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "762492-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/762492-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/b69d43514b84fd92",
+        "submissionDeadlineDate": "2026-12-11",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "SERVIZIO CUSTODE ACQUIRENTE PROVINCIA DI PERUGIA",
+      "buyerName": "AGENZIA DEL DEMANIO - DIREZIONE REGIONALE TOSCANA E UMBRIA",
+      "publicationDate": "2026-11-03",
+      "submissionDeadline": "2027-01-20T16:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6691532",
+      "description": "Affidamento, per l’ambito territoriale della provincia di PERUGIA, del servizio di recupero, custodia e acquisto dei veicoli oggetto dei provvedimenti di sequestro amministrativo, fermo o confisca ai sensi dell’articolo 214 bis del D. Lgs. n. 285/92 e s.m.i.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "50118100"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "763267-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/763267-2026",
+        "documentUrl": "https://www.acquistinretepa.it",
+        "submissionDeadlineDate": "2027-01-20",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "FASC 288 Abbonamento annuale licenza applicativo software Foreflight Military Flight Bag Performance e licenza per impiego cartografia elettronica aeronautica Jeppesen",
+      "buyerName": "MARISTAER GROTTAGLIE",
+      "publicationDate": "2026-11-04",
+      "submissionDeadline": "2026-11-09T12:00:00+01:00",
+      "status": "closed",
+      "documents": null,
+      "referenceNumber": "6713632",
+      "description": "FASC 288 Abbonamento annuale licenza applicativo software Foreflight Military Flight Bag Performance e licenza per impiego cartografia elettronica aeronautica Jeppesen",
+      "procedureType": "other",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "48000000",
+        "48218000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "764303-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/764303-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/negoziata/gara-asp/40a6e40bb70e3eb7",
+        "submissionDeadlineDate": "2026-11-09",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura sopra soglia comunitaria per l'affidamento del servizio di ricezione ed elaborazione delle ricette con l'acquisizione ottica delle immagini, registrazione, gestione contabile, obliterazione, archiviazione e smaltimento delle ricette farmaceutiche, comprendente un sistema informatico web integrato e servizi specialistici.",
+      "buyerName": "AZIENDA SANITARIA PROVINCIALE DI AGRIGENTO",
+      "publicationDate": "2026-11-04",
+      "submissionDeadline": "2026-12-10T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6583298",
+      "description": "Servizio di ricezione ed elaborazione delle ricette con l'acquisizione ottica delle immagini, registrazione, gestione contabile, obliterazione, archiviazione e smaltimento delle ricette farmaceutiche, comprendente un sistema informatico web integrato e servizi specialistici.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72310000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "765436-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/765436-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/d7f65956e5a5457b",
+        "submissionDeadlineDate": "2026-12-10",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Acquisizione sistemi robotici unmanned e autonomi prototipali nell'ambito della Campagna di sperimentazione su Robotics & Autonomous System (RAS) e Artificial Intelligence (AI)",
+      "buyerName": "COMANDO GENIO",
+      "publicationDate": "2026-11-04",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "6499565",
+      "description": "Procedura aperta, ai sensi dell'art. 71, del D.Lgs. n. 36/2023, in modalità Application Service Provider (ASP) di Consip S.p.A., per l'acquisizione di sistemi robotici unmanned e autonomi prototipali nell'ambito della Campagna di sperimentazione su Robotics & Autonomous System (RAS) e Artificial Intelligence (AI).",
+      "procedureType": "restricted",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "35120000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "00143",
+        "city": "Roma",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "765598-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/765598-2026",
+        "documentUrl": "https://www.acquistinretepa.it",
+        "submissionDeadlineDate": null,
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PROCEDURA APERTA SOPRA SOGLIA PER LA CONCLUSIONE DI UN ACCORDO QUADRO CON UN UNICO OPERATORE ECONOMICO AI SENSI ART. 59 COMMA 3 DEL D.LGS N 36 2023 PER AFFIDAMENTO DEI SERVIZI DI ASSISTENZA SPECIALISTICA A SUPPORTO DELLE ATTIVITA DI UNIONCAMERE",
+      "buyerName": "UNIONCAMERE NAZIONALE",
+      "publicationDate": "2026-11-05",
+      "submissionDeadline": "2026-12-11T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6677132",
+      "description": "PROCEDURA APERTA SOPRA SOGLIA PER LA CONCLUSIONE DI UN ACCORDO QUADRO CON UN UNICO OPERATORE ECONOMICO AI SENSI ART. 59 COMMA 3 DEL D.LGS N 36 2023 PER AFFIDAMENTO DEI SERVIZI DI ASSISTENZA SPECIALISTICA A SUPPORTO DELLE ATTIVITA DI UNIONCAMERE",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "79400000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "767706-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/767706-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/0825673698e201c0",
+        "submissionDeadlineDate": "2026-12-11",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "AFFIDAMENTO SERVIZIO DI GESTIONE DEI CENTRI COMUNALI DI RACCOLTA RIFIUTI",
+      "buyerName": "UTILYA SRL",
+      "publicationDate": "2026-11-05",
+      "submissionDeadline": "2026-12-09T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6677876",
+      "description": "LA GARA HA PER OGGETTO IL SERVIZIO DI GESTIONE DEI CENTRI DI RACCOLTA DEI RIFIUTI (ECOCENTRI) AL SERVIZIO DEI COMUNI SOCI DI UTILYA SRL",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "90500000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "769030-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/769030-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/6b68a71ccb71b55a",
+        "submissionDeadlineDate": "2026-12-09",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "ID 05 C 2026 Procedura aperta, ex art. 71 D.lgs. n. 36 del 2023 per la conclusione di accordo quadro, con un unico operatore economico, ex art. 59, co. 3 del Codice dei contratti Pubblici avente ad oggetto affidamento del servizio di gestione Asilo Nido Aeroplanino dei Sogni, ubicato nel compendio demaniale Aeroporto Militare di Grosseto, Villaggio Azzurro, EE.FF. 2026 2030.",
+      "buyerName": "UFFICIO GENERALE DEL CENTRO DI RESPONSABILITA' AMMINISTRATIVA AERONAUTICA MILITARE",
+      "publicationDate": "2026-11-05",
+      "submissionDeadline": "2026-12-06T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6718240",
+      "description": "(ID 05-C-2026) Procedura aperta, ai sensi dell’art. 71 D.lgs. n. 36/2023 per la conclusione di accordo quadro, con un unico operatore economico, ai sensi dell’art. 59, co. 3 del Codice dei contratti Pubblici avente ad oggetto l’affidamento del servizio di gestione dell’Asilo Nido “Aeroplanino dei Sogni”, ubicato nel compendio demaniale “Aeroporto Militare di Grosseto – Villaggio Azzurro” – EE.FF. 2026 / 2030.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "80110000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "769068-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/769068-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/947065aafb319352",
+        "submissionDeadlineDate": "2026-12-06",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura aperta ex art. 71 del D.lgs. 36/2023 per la fornitura di materiali a favore della Kenya Navy a seguito di procedura andata deserta (pezzi di ricambio Propulsion and Engine Management Modules).",
+      "buyerName": "AGENZIA INDUSTRIE DIFESA",
+      "publicationDate": "2026-11-05",
+      "submissionDeadline": "2026-12-10T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6715865",
+      "description": "Procedura aperta ex art. 71 del D.lgs. 36/2023 per la fornitura di materiali a favore della Kenya Navy a seguito di procedura andata deserta (pezzi di ricambio Propulsion and Engine Management Modules).",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "34300000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "770434-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/770434-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/9ab4ba9b1c4e6463",
+        "submissionDeadlineDate": "2026-12-10",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "AMMODERNAMENTO DI N. 2 MAGAZZINI, PRESSO IL CENTRO RIFORNIMENTI DI COMMISSARIATO DI ROMA, MEDIANTE LA FORNITURA E POSA IN OPERA DI ATTREZZATURE UTILI ALLA MECCANIZZAZIONE DEI MOVIMENTI DELLE MERCI CON SISTEMI AUTOMATIZZATI, ABBINATA AL RICONOSCIMENTO DELLE STESSE TRAMITE TECNOLOGIA RADIO FREQUENCY IDENTIFICATION, NELL’AMBITO DELLE ATTIVITÀ VOLTE AL MANTENIMENTO IN CONDIZIONI OPERATIVE DELLE PRINCI",
+      "buyerName": "COMANDO LOGISTICO DELL'ESERCITO - DIREZIONE DI INTENDENZA",
+      "publicationDate": "2026-11-05",
+      "submissionDeadline": "2026-11-27T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6579712",
+      "description": "AMMODERNAMENTO DI N. 2 MAGAZZINI, PRESSO IL CENTRO RIFORNIMENTI DI COMMISSARIATO DI ROMA, MEDIANTE LA FORNITURA E POSA IN OPERA DI ATTREZZATURE UTILI ALLA MECCANIZZAZIONE DEI MOVIMENTI DELLE MERCI CON SISTEMI AUTOMATIZZATI, ABBINATA AL RICONOSCIMENTO DELLE STESSE TRAMITE TECNOLOGIA RADIO FREQUENCY IDENTIFICATION, NELL’AMBITO DELLE ATTIVITÀ VOLTE AL MANTENIMENTO IN CONDIZIONI OPERATIVE DELLE PRINCIPALI LINEE OPERATIVE DELLA DIFESA, PROGRAMMA MCO E.I.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "42965100"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "770450-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/770450-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/c5694b40797a4391",
+        "submissionDeadlineDate": "2026-11-27",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "ID 04 C 2026_Accordo Quadro per affidamento del servizio di gestione asilo nido aziendale ubicato nel sedime aeroportuale di Pratica di Mare _ 00071 Pomezia RM _ EE.FF. 2027 2030. Importo massimo presunto € 1.620.000,00 al netto di IVA al 5 per cento se dovuta e quota incentivi alle funzioni tecniche di cui art. 45 del D.lgs. n. 36 del 2023.",
+      "buyerName": "UFFICIO GENERALE DEL CENTRO DI RESPONSABILITA' AMMINISTRATIVA AERONAUTICA MILITARE",
+      "publicationDate": "2026-11-05",
+      "submissionDeadline": "2026-12-05T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6713471",
+      "description": "(ID 04-C-2026) Accordo Quadro per l’affidamento del servizio di gestione dell'asilo nido aziendale ubicato nel sedime dell'Aeroporto di Pratica di Mare in via di Pratica di Mare, 45 — 00071 Pomezia (RM)— EE.FF. 2027-2030. Importo massimo presunto € 1.620.000,00 al netto dell’IVA al 5%, se dovuta, e quota incentivi alle funzioni tecniche di cui all’art. 45 del d.lgs. n. 36/2023 (totale presunto comprensivo di IVA e incentivi ex art. 45 d.lgs. 36/2023 € 1.733.400,00).",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "80110000"
+      ],
+      "placeOfPerformance": {
+        "city": "Aeroporto militare di Pratica di Mare",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "770554-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/770554-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/3c4c566cea7bcaf8",
+        "submissionDeadlineDate": "2026-12-05",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Concessione MUSAM Vigna di Valle - gestione e valorizzazione del compendio museale",
+      "buyerName": "Difesa Servizi S.p.A.",
+      "publicationDate": "2026-11-06",
+      "submissionDeadline": "2027-01-20T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "description": "Affidamento in concessione della gestione economica e della valorizzazione degli immobili e delle attività di business museum del compendio museale dell'Aeronautica Militare di Vigna di Valle, incluso il patrimonio storico-culturale inalienabile ivi custodito. Comprende la gestione dei servizi museali e delle attività economiche connesse, secondo disciplinare e allegati. Il concessionario assume il rischio operativo della gestione. Lotto unico.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "92521000",
+        "55330000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "771777-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/771777-2026",
+        "documentUrl": "https://www.acquistinretepa.it",
+        "submissionDeadlineDate": "2027-01-20",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura aperta telematica indetta ai sensi art. 71 del D.lgs. n. 36 2023, per affidamento dei servizi di architettura e ingegneria di importo pari o superiore alle soglie di rilevanza europea di cui articolo 14 del decreto legislativo 31 marzo 2023, n. 36, per affidamento dei Servizi di Ingegneria e Architettura per rilievi, indagini, modellazione informativa BIM e verifiche di vulnerabilita",
+      "buyerName": "DIREZIONE CENTRALE ACQUISTI E APPALTI",
+      "publicationDate": "2026-11-06",
+      "submissionDeadline": "2026-12-15T16:30:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6724944",
+      "description": "Procedura aperta telematica indetta ai sensi art. 71 del D.lgs. n. 36 2023, per affidamento dei servizi di architettura e ingegneria di importo pari o superiore alle soglie di rilevanza europea di cui articolo 14 del decreto legislativo 31 marzo 2023, n. 36, per affidamento dei Servizi di Ingegneria e Architettura per rilievi, indagini, modellazione informativa BIM e verifiche di vulnerabilita sismica",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71300000",
+        "71250000",
+        "71340000",
+        "71631300"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "772800-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/772800-2026",
+        "documentUrl": "https://www.acquistinretepa.it/opencms/opencms/",
+        "submissionDeadlineDate": "2026-12-15",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "FORNITURA DI STRUMENTAZIONE DA INTEGRARE AL ROV (REMOTELY OPERATED VEHICLE) AEGIR 250 DA UTILIZZARE A BORDO DELLA N/R GAIA BLU SUDDIVISO IN 8 LOTTI FUNZIONALI",
+      "buyerName": "DIPARTIMENTO SCIENZE DEL SISTEMA TERRA E TECNOLOGIE PER L'AMBIENTE",
+      "publicationDate": "2026-11-06",
+      "submissionDeadline": "2026-12-09T18:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6718176",
+      "description": "FORNITURA DI STRUMENTAZIONE DA INTEGRARE AL ROV (REMOTELY OPERATED VEHICLE) AEGIR 250 DA UTILIZZARE A BORDO DELLA N/R GAIA BLU SUDDIVISO IN 8 LOTTI FUNZIONALI",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "38290000",
+        "38113000",
+        "32333200",
+        "42141400"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "80133",
+        "city": "Napoli",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "774224-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/774224-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/dba5e082bd996010",
+        "submissionDeadlineDate": "2026-12-09",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "ALD0009 - Casale Monferrato - CASA del Carabiniere - Progettazione e verifica - Procedura aperta in 2 lotti",
+      "buyerName": "AGENZIA DEL DEMANIO",
+      "publicationDate": "2026-11-06",
+      "submissionDeadline": "2026-12-17T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6699099",
+      "description": "ALD0009 - Casale Monferrato - CASA del Carabiniere - Progettazione e verifica - Procedura aperta in 2 lotti",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71000000",
+        "71251000",
+        "77313000",
+        "77340000",
+        "45111000",
+        "90500000",
+        "98342000",
+        "90900000",
+        "90700000",
+        "71351914",
+        "71351220",
+        "90740000",
+        "71317100",
+        "71313200",
+        "71317210",
+        "71248000"
+      ],
+      "placeOfPerformance": {
+        "city": "Casale Monferrato",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "774544-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/774544-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/5a43ad79c3d08713",
+        "submissionDeadlineDate": "2026-12-17",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Veicoli blindati in acquisto (ID 3042)",
+      "buyerName": "CONSIP SPA",
+      "publicationDate": "2026-11-06",
+      "submissionDeadline": "2027-01-22T16:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6697215 - ID 3042",
+      "description": "Gara europea a procedura aperta per l’affidamento di un Accordo Quadro per ogni lotto ai sensi dell’art. 59, comma 3 del d.lgs.n. 36/2023, avente ad oggetto la fornitura di veicoli blindati in acquisto - ID 3042",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "34114000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "774806-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/774806-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-accordo-quadro/4d6524e9443d63e3",
+        "submissionDeadlineDate": "2027-01-22",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Fornitura di un rivelatore gamma HPGe segmentato a quattro cristalli, in configurazione Clover-quadrifoglo o tecnicamente equivalente, raffreddato ad azoto liquido.",
+      "buyerName": "UNIVERSITA' DEGLI STUDI DI NAPOLI FEDERICO II",
+      "publicationDate": "2026-11-09",
+      "submissionDeadline": "2026-12-14T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6729654",
+      "description": "Fornitura di un rivelatore gamma HPGe segmentato a quattro cristalli, in configurazione “Clover”-\"Quadrifoglio\" o tecnicamente equivalente, raffreddato ad azoto liquido.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "38341000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "80126",
+        "city": "napoli",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "776067-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/776067-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/da0f985d2501ddb2",
+        "submissionDeadlineDate": "2026-12-14",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Servizio di conduzione e manutenzione degli impianti termici a servizio della Caserma G. CUCCI della Caserma M. RONGA e della Caserma P. CAPONE site nel comprensorio militare di Persano (SA)",
+      "buyerName": "BRIGATA BERSAGLIERI GARIBALDI",
+      "publicationDate": "2026-11-10",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "6685106",
+      "description": "Procedura ristretta, ex art. 72 del D. Lgs. n. 36/2023 e ss. mm. e ii., per la conclusione di un accordo quadro, con un unico operatore economico, ai sensi dell’art. 59, comma 3 del D. Lgs. n. 36/2023 e ss. mm. e ii., di durata pari a 36 mesi, per l’affidamento del “Servizio di conduzione e manutenzione degli impianti termici a servizio della Caserma G. CUCCI della Caserma M. RONGA e della Caserma P. CAPONE site nel comprensorio militare di Persano (SA)”.",
+      "procedureType": "restricted",
+      "contractNature": "services",
+      "cpvCodes": [
+        "98390000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "84023",
+        "city": "Persano",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "779493-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/779493-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/6b753cd48eaa9e27",
+        "submissionDeadlineDate": null,
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Servizi di copertura assicurativa di Sogei S.p.A. - ID 3005",
+      "buyerName": "CONSIP SPA",
+      "publicationDate": "2026-11-10",
+      "submissionDeadline": "2026-11-23T16:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6592016 - ID 3005",
+      "description": "Procedura aperta per l'appalto di servizi di copertura assicurativa di Sogei S.p.A. - ID 3005",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "66510000",
+        "66515200",
+        "66516500",
+        "66516400",
+        "66513100",
+        "66512100",
+        "66512000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "782287-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/782287-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-delega/266d9ec86d497f9f",
+        "submissionDeadlineDate": "2026-11-23",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "CAS1 Gara europea a procedura aperta per la conclusione di un accordo quadro triennale per affidamento dei servizi di gestione di centri di accoglienza costituiti da singole unita abitative con servizi in rete fino a 50 posti. Periodo 1 aprile 2027 31 marzo 2030",
+      "buyerName": "UFFICIO TERRITORIALE DEL GOVERNO (UTG EX PREFETTURA) DI PIACENZA",
+      "publicationDate": "2026-11-11",
+      "submissionDeadline": "2026-12-28T18:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6735455",
+      "description": "CAS1 Gara europea a procedura aperta per la conclusione di un accordo quadro triennale per affidamento dei servizi di gestione di centri di accoglienza costituiti da singole unita abitative con servizi in rete fino a 50 posti. Periodo 1 aprile 2027 31 marzo 2030",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "85311000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "783283-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/783283-2026",
+        "documentUrl": "https://www.acquistinretepa.it",
+        "submissionDeadlineDate": "2026-12-28",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura sopra soglia comunitaria per l'affidamento del servizio di ricezione ed elaborazione delle ricette con l'acquisizione ottica delle immagini, registrazione, gestione contabile, obliterazione, archiviazione e smaltimento delle ricette farmaceutiche, comprendente un sistema informatico web integrato e servizi specialistici.",
+      "buyerName": "Azienda Sanitaria Provinciale di Agrigento",
+      "publicationDate": "2026-11-11",
+      "submissionDeadline": "2026-12-15T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6736486",
+      "description": "Servizio di ricezione ed elaborazione delle ricette con l'acquisizione ottica delle immagini, registrazione, gestione contabile, obliterazione, archiviazione e smaltimento delle ricette farmaceutiche, comprendente un sistema informatico web integrato e servizi specialistici.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72310000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "92100",
+        "city": "Agrigento",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "784397-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/784397-2026",
+        "documentUrl": "https://www.acquistinretepa.it",
+        "submissionDeadlineDate": "2026-12-15",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "FORNITURA IN SOMMINISTRAZIONE PER ANNI QUATTRO DI DISPOSITIVI COMPATIBILI CON SISTEMA STRYKER NEPTUNE 3 PER LA UOSD BLOCCO OPERATORIO DEL GOM",
+      "buyerName": "GRANDE OSPEDALE METROPOLITANO - BIANCHI MELACRINO MORELLI - DI REGGIO CALABRIA",
+      "publicationDate": "2026-11-11",
+      "submissionDeadline": "2027-01-14T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6606025",
+      "description": "dispositivi per neptune 3",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "33190000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "785711-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/785711-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/99e475e99f259d8e",
+        "submissionDeadlineDate": "2027-01-14",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Gara europea a procedura aperta accelerata per l' affidamento dell' appalto dei servizi di gestione e funzionamento del Centro di permanenza per i Rimpatri sito in Contrada Pian del Lago Caltanissetta",
+      "buyerName": "UFFICIO TERRITORIALE DEL GOVERNO (UTG EX PREFETTURA) DI CALTANISSETTA",
+      "publicationDate": "2026-11-12",
+      "submissionDeadline": "2026-11-26T23:59:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6734113",
+      "description": "Gara europea a procedura aperta accelerata per l’affidamento dell’appalto dei servizi di gestione e funzionamento del Centro di permanenza per i Rimpatri di cui all’art. 14 del decreto legislativo 25 luglio 1998 n. 286 con capienza fino a 92 posti",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "85311000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "93100",
+        "city": "CALTANISSETTA",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "786427-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/786427-2026",
+        "documentUrl": "https://www.acquistinretepa.it",
+        "submissionDeadlineDate": "2026-11-26",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PROCEDURA APERTA ART. 71 CCP LAVORI RISTRUTTURAZIONE EX MANIFATTURA TABACCHI VENEZIA",
+      "buyerName": "AGENZIA DEL DEMANIO - DIREZIONE REGIONALE VENETO",
+      "publicationDate": "2026-11-12",
+      "submissionDeadline": "2027-02-02T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6739772",
+      "description": "PROCEDURA APERTA TELEMATICA, AI SENSI DELL’ART. 71 DEL D.LGS. 31 MARZO 2023, N. 36 E SS.MM.II., PER L’AFFIDAMENTO DEI LAVORI DI RISTRUTTURAZIONE DEI COMPENDI DENOMINATI “EX MANIFATTURA TABACCHI” E “PALAZZO GRITTI” IN VENEZIA, RIO TERÀ DEI PENSIERI E FONDAMENTA DELLE BURCHIELLE (SCHEDE: VED0154)",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45454000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "30135",
+        "city": "Venezia",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "786501-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/786501-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/c7ce1fb7d424e2fc",
+        "submissionDeadlineDate": "2027-02-02",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "AFFIDAMENTO FORNITURA DI ARREDI DIDATTICI INNOVATIVI",
+      "buyerName": "comune parete",
+      "publicationDate": "2026-11-12",
+      "submissionDeadline": "2026-11-26T14:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6734188",
+      "description": "AFFIDAMENTO FORNITURA DI ARREDI DIDATTICI INNOVATIVI",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "39161000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "81030",
+        "city": "PARETE",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "787136-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/787136-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/51dac7169004f643",
+        "submissionDeadlineDate": "2026-11-26",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura aperta ex art. 71 D.Lgs. 36/2023, di rilevanza comunitaria, interamente telematica, avente ad oggetto la fornitura di dispositivi medici per la U.O.C. di Gastroenterologia del Grande Ospedale Metropolitano di Reggio Calabria.",
+      "buyerName": "GRANDE OSPEDALE METROPOLITANO - BIANCHI MELACRINO MORELLI - DI REGGIO CALABRIA",
+      "publicationDate": "2026-11-12",
+      "submissionDeadline": "2026-12-11T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6684470",
+      "description": "Procedura aperta ex art. 71 D.Lgs. 36/2023, di rilevanza comunitaria, interamente telematica, avente ad oggetto la fornitura di dispositivi medici per la U.O.C. di Gastroenterologia del Grande Ospedale Metropolitano “Bianchi – Melacrino - Morelli” (G.O.M.) di Reggio Calabria.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "33140000",
+        "33190000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "89128",
+        "city": "CALABRIA",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "787377-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/787377-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/c0bea4747c52c78d",
+        "submissionDeadlineDate": "2026-12-11",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "ID 41-2026 Acquisizione del servizio di Supporto Logistico Integrato Industriale per la linea velivoli VC 319 dell'AM EF 2026-2031. Procedura Ristretta ai sensi del dlgs 208/2011",
+      "buyerName": "UFFICIO GENERALE DEL CENTRO DI RESPONSABILITA' AMMINISTRATIVA AERONAUTICA MILITARE",
+      "publicationDate": "2026-11-12",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "6685794",
+      "description": "Come da documentazione di gara.",
+      "procedureType": "restricted",
+      "contractNature": "services",
+      "cpvCodes": [
+        "50210000"
+      ],
+      "_match": {
+        "tedPublicationNumber": "788963-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/788963-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/5cefad99ca732cd4",
+        "submissionDeadlineDate": null,
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "FS03-2026 Accordo quadro interforze per erogazione di un servizio di assistenza sanitaria complementare integrativa.",
+      "buyerName": "Ufficio Attività Contrattuali per l’Armamento, il Vestiario, l’Equipaggiamento, i Materiali Speciali, il Casermaggio e le esigenze del Dipartimento",
+      "publicationDate": "2026-11-12",
+      "submissionDeadline": "2026-11-23T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6602186",
+      "description": "Accordo quadro interforze per erogazione di un servizio di assistenza sanitaria complementare integrativa, a favore del personale della Polizia di Stato, della Guardia di Finanza e della Polizia Penitenziaria e relativi familiari Piano di Assistenza Sanitaria della durata di 12 mesi.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "66510000",
+        "66512000"
+      ],
+      "_match": {
+        "tedPublicationNumber": "788979-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/788979-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/641b4f3525ee8f7d",
+        "submissionDeadlineDate": "2026-11-23",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "fornitura in conto deposito, per anni tre, di dispositivi impiantabili per la resincronizzazione cardiaca CRT, Pacemaker Leadless con relativi introduttori per UOC Cardiologia",
+      "buyerName": "GRANDE OSPEDALE METROPOLITANO - BIANCHI MELACRINO MORELLI - DI REGGIO CALABRIA",
+      "publicationDate": "2026-11-13",
+      "submissionDeadline": "2027-01-04T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6747858",
+      "description": "PACEMAKER E RELATIVI INTRODUTTORI",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "33182210"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "790631-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/790631-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/e48aa6c4c0f40563",
+        "submissionDeadlineDate": "2027-01-04",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Lotto 1",
+      "buyerName": "UNIVERSITA' DEGLI STUDI DI NAPOLI FEDERICO II",
+      "publicationDate": "2026-11-13",
+      "submissionDeadline": "2026-11-30T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "ASP 6641596",
+      "description": "Fornitura di attrezzature scientifiche ad alto contenuto tecnologico per la realizzazione di un’infrastruttura integrata di calcolo ad alte prestazioni per intelligenza artificiale e simulazioni di calcolo quantistico, comprensiva di sistema principale GPU, apparati di rete, server rack di supporto, componenti accessori, licenze software, servizi di installazione, configurazione, integrazione, collaudo, formazione, garanzia, assistenza tecnica e manutenzione",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "48820000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "80126",
+        "city": "napoli",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "791320-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/791320-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/5b2e138d4d1f71bc",
+        "submissionDeadlineDate": "2026-11-30",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "CE 138724 - PROCEDURA RISTRETTA - BRINDISI - BASE NAVALE - SERVIZIO DI VERIFICA PFTE E PE E SUPPORTO AL RUP - PROGRAMMA BASI BLU",
+      "buyerName": "MINISTERO DELLA DIFESA - DIREZIONE GENERALE DEI LAVORI",
+      "publicationDate": "2026-11-13",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "6748386",
+      "description": "GARA TELEMATICA EUROPEA CON PROCEDURA RISTRETTA EX ART. 17 DEL D.LGS. 208/2011 PER L’AFFIDAMENTO DEL SERVIZIO DI INGEGNERIA PER LA VERIFICA DELLA PROGETTAZIONE ESECUTIVA DEI LAVORI DEL “PROGRAMMA BASI BLU – ADEGUAMENTO E AMMODERNAMENTO DELLE CAPACITÀ DI SUPPORTO LOGISTICO DELLA BASE NAVALE DI BRINDISI” OLTRE ALL’ATTIVITÀ DI SUPPORTO AL RUP",
+      "procedureType": "restricted",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71248000",
+        "71356300"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "791559-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/791559-2026",
+        "documentUrl": "https://www.acquistinretepa.it",
+        "submissionDeadlineDate": null,
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PROCEDURA APERTA PER L AFFIDAMENTO DEL SERVIZIO DI RECUPERO CUSTODIA E ACQUISTO DEI VEICOLI OGGETTO DEI PROVVEDIMENTI DI SEQUESTRO AMMINISTRATIVO FERMO O CONFISCA AI SENSI DELL ARTICOLO 214 BIS DEL D LGS N 285 92 AMBITO TERRITORIALE PROVINCIALE DI MESSINA",
+      "buyerName": "AGENZIA DEL DEMANIO - DIREZIONE REGIONALE SICILIA",
+      "publicationDate": "2026-11-13",
+      "submissionDeadline": "2026-12-18T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6715459",
+      "description": "PROCEDURA APERTA PER L’AFFIDAMENTO DEL SERVIZIO DI RECUPERO, CUSTODIA E ACQUISTO DEI VEICOLI OGGETTO DEI PROVVEDIMENTI DI SEQUESTRO AMMINISTRATIVO, FERMO O CONFISCA AI SENSI DELL’ARTICOLO 214 BIS DEL D. LGS. N. 285/92 – AMBITO TERRITORIALE PROVINCIALE DI MESSINA",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "90700000",
+        "50118100"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "792564-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/792564-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/395e6b6addb54203",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Fornitura di n. 2 Tomografi a Risonanza Magnetica",
+      "buyerName": "AZIENDA SANITARIA PROVINCIALE DI REGGIO CALABRIA",
+      "publicationDate": "2026-11-16",
+      "submissionDeadline": "2026-12-20T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6748723",
+      "description": "Fornitura di n. 2 Tomografi a Risonanza Magnetica dettagli come da documentazione di gara",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "33113000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "89044",
+        "city": "Locri",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "793189-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/793189-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/45faf79976b00fa5",
+        "submissionDeadlineDate": "2026-12-20",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "45/2026 - Progetto SMARTWING - Fornitura hardware, servizi di assistenza e formazione per una capacità di CROSS DOMAIN SOLUTION (CDS)",
+      "buyerName": "UFFICIO GENERALE DEL CENTRO DI RESPONSABILITA' AMMINISTRATIVA AERONAUTICA MILITARE",
+      "publicationDate": "2026-11-16",
+      "submissionDeadline": "2026-12-17T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6753146",
+      "description": "45/2026 - Progetto SMARTWING - Fornitura hardware, servizi di assistenza e formazione per una capacità di CROSS DOMAIN SOLUTION (CDS)",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "32420000",
+        "48730000",
+        "48219100",
+        "72263000",
+        "72253200",
+        "50312610",
+        "80533100"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "796135-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/796135-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/5450ed6a5df3c8f0",
+        "submissionDeadlineDate": "2026-12-17",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Fornitura di un rivelatore gamma HPGe segmentato a quattro cristalli, in configurazione Clover-quadrifoglo o tecnicamente equivalente, raffreddato ad azoto liquido",
+      "buyerName": "UNIVERSITA' DEGLI STUDI DI NAPOLI FEDERICO II",
+      "publicationDate": "2026-11-16",
+      "submissionDeadline": "2026-12-21T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6751042",
+      "description": "Fornitura di un rivelatore gamma HPGe segmentato a quattro cristalli, in configurazione “Clover”-\"Quadrifoglio\" o tecnicamente equivalente, raffreddato ad azoto liquido.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "38341000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "796335-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/796335-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/ee05afc04c641cbe",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PROCEDURA APERTA TELEMATICA PER L AFFIDAMENTO DELLA POLIZZA DI RESPONSABILITA CIVILE VERSO TERZI E PRESTATORI D OPERA DELLA ASL 1 AVEZZANO SULMONA L AQUILA",
+      "buyerName": "ASL 1 AVEZZANO-SULMONA-L'AQUILA",
+      "publicationDate": "2026-11-16",
+      "submissionDeadline": "2026-12-03T18:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6750597",
+      "description": "PROCEDURA APERTA TELEMATICA PER L’AFFIDAMENTO DELLA POLIZZA DI RESPONSABILITÀ CIVILE VERSO TERZI E PRESTATORI D’OPERA DELLA ASL 1 - AVEZZANO SULMONA L’AQUILA PER LA DURATA DI ANNI UNO RINNOVABILE PER UN ULTERIORE ANNO",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "66516000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "67100",
+        "city": "L'AQUILA",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "796520-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/796520-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/87670423e930664c",
+        "submissionDeadlineDate": "2026-12-03",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "ACCORDO QUADRO CON UN UNICO OPERATORE ECONOMICO PER AFFIDAMENTO CONGIUNTO DELLA PROGETTAZIONE ESECUTIVA ED ESECUZIONE DEI LAVORI IN APPALTO INTEGRATO DELLE OPERE DI RIGENERAZIONE URBANA DEL QUARTIERE VIA ROCCO E DEL WATERFRONT",
+      "buyerName": "COMUNE DI TORRE ANNUNZIATA",
+      "publicationDate": "2026-11-17",
+      "submissionDeadline": "2026-12-18T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6753491",
+      "description": "PROCEDURA APERTA PER LA CONCLUSIONE DI UN ACCORDO QUADRO CON UN UNICO OPERATORE ECONOMICO PER L’AFFIDAMENTO CONGIUNTO DELLA PROGETTAZIONE ESECUTIVA E DELL’ESECUZIONE DEI LAVORI (APPALTO INTEGRATO) DELLE OPERE DI RIGENERAZIONE URBANA DEL QUARTIERE VIA V. ROCCO E DEL WATERFRONT",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "80058",
+        "city": "Rampa Nunziante - Torre Annunziata",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "796895-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/796895-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/930a19137aa349b9",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PROCEDURA APERTA EX ARTICOLO 71 DEL DECRETO LEGISLATIVO 31 MARZO 2023 N 36 PER L AFFIDAMENTO DEI SERVIZI DI RISCOSSIONE TRIBUTI CON MODALITA ELETTRONICHE PER LE SEDI DEGLI UFFICI DELL AGENZIA DELLE ENTRATE",
+      "buyerName": "AGENZIA DELLE ENTRATE",
+      "publicationDate": "2026-11-17",
+      "submissionDeadline": "2026-12-18T17:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6357325",
+      "description": "PROCEDURA APERTA EX ARTICOLO 71 DEL DECRETO LEGISLATIVO 31 MARZO 2023 N 36 PER L AFFIDAMENTO DEI SERVIZI DI RISCOSSIONE TRIBUTI CON MODALITA ELETTRONICHE PER LE SEDI DEGLI UFFICI DELL AGENZIA DELLE ENTRATE",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "66110000",
+        "66000000"
+      ],
+      "_match": {
+        "tedPublicationNumber": "797860-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/797860-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/f077dcea2376b80f",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "FORNITURA DI MATERIALE VARIO DI CONVIVENZA",
+      "buyerName": "AZIENDA SANITARIA TERRITORIALE DI MACERATA",
+      "publicationDate": "2026-11-17",
+      "submissionDeadline": "2026-12-21T13:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6724285",
+      "description": "Fornitura di materiale vario di convivenza per le necessità dell’AST Macerata",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "39222110",
+        "33760000",
+        "44617100",
+        "39224340"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "62100",
+        "city": "macerata",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "797957-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/797957-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/e4de0c29179bafce",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PROCEDURA APERTA MULTILOTTO AI SENSI DELL'ART. 71 DEL D.LGS. N. 36/2023 SS.MM.II., PER L'AFFIDAMENTO BIENNALE DEI SERVIZI DI MANUTENZIONE IMPIANTISTICA E DI PRONTO INTERVENTO SUGLI IMPIANTI ELETTRICI, ELETTRONICI, TERMOIDRAULICI E DI CONDIZIONAMENTO DEGLI IMMOBILI IN USO ALL'ASP DI REGGIO CALABRIA.",
+      "buyerName": "AZIENDA SANITARIA PROVINCIALE DI REGGIO CALABRIA",
+      "publicationDate": "2026-11-17",
+      "submissionDeadline": "2026-12-18T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6753573",
+      "description": "PROCEDURA APERTA MULTILOTTO AI SENSI DELL'ART. 71 DEL D.LGS. N. 36/2023 SS.MM.II., PER L'AFFIDAMENTO BIENNALE DEI SERVIZI DI MANUTENZIONE IMPIANTISTICA E DI PRONTO INTERVENTO SUGLI IMPIANTI ELETTRICI, ELETTRONICI, TERMOIDRAULICI E DI CONDIZIONAMENTO DEGLI IMMOBILI IN USO ALL'ASP DI REGGIO CALABRIA.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "50700000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "799953-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/799953-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/d52d177ad57d53df",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "AMMODERNAMENTO DI N. 2 MAGAZZINI, PRESSO IL CENTRO RIFORNIMENTI DI COMMISSARIATO DI ROMA, MEDIANTE LA FORNITURA E POSA IN OPERA DI ATTREZZATURE UTILI ALLA MECCANIZZAZIONE DEI MOVIMENTI DELLE MERCI CON SISTEMI AUTOMATIZZATI, ABBINATA AL RICONOSCIMENTO DELLE STESSE TRAMITE TECNOLOGIA RADIO FREQUENCY IDENTIFICATION, NELL’AMBITO DELLE ATTIVITÀ VOLTE AL MANTENIMENTO IN CONDIZIONI OPERATIVE DELLE PRINCI",
+      "buyerName": "COMANDO LOGISTICO DELL'ESERCITO - DIREZIONE DI INTENDENZA",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-04T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6579712",
+      "description": "AMMODERNAMENTO DI N. 2 MAGAZZINI, PRESSO IL CENTRO RIFORNIMENTI DI COMMISSARIATO DI ROMA, MEDIANTE LA FORNITURA E POSA IN OPERA DI ATTREZZATURE UTILI ALLA MECCANIZZAZIONE DEI MOVIMENTI DELLE MERCI CON SISTEMI AUTOMATIZZATI, ABBINATA AL RICONOSCIMENTO DELLE STESSE TRAMITE TECNOLOGIA RADIO FREQUENCY IDENTIFICATION, NELL’AMBITO DELLE ATTIVITÀ VOLTE AL MANTENIMENTO IN CONDIZIONI OPERATIVE DELLE PRINCIPALI LINEE OPERATIVE DELLA DIFESA, PROGRAMMA MCO E.I.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "42965100"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "801204-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801204-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/c5694b40797a4391",
+        "submissionDeadlineDate": "2026-12-04",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Anfiteatro Flavio di Pozzuoli: servizi di architettura e ingegneria relativi alla redazione della progettazione di fattibilità tecnico-economica e progettazione esecutiva, comprensiva del coordinamento della sicurezza in fase di progettazione oltre opzione di affidamento di direzione operativa e coordinamento della sicurezza in fase di esecuzione",
+      "buyerName": "PARCO ARCHEOLOGICO DEI CAMPI FLEGREI",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-02T09:30:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6629141",
+      "description": "Anfiteatro Flavio di Pozzuoli: servizi di architettura e ingegneria relativi alla redazione della progettazione di fattibilità tecnico-economica e progettazione esecutiva, comprensiva del coordinamento della sicurezza in fase di progettazione oltre opzione di affidamento di direzione operativa e coordinamento della sicurezza in fase di esecuzione. CUP F19D25001370007, finanziato a valere sul PN Cultura 2021–2027, Azione 2.4.1.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71240000"
+      ],
+      "placeOfPerformance": {
+        "city": "Napoli",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "801515-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801515-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/fbae02e0f8d5f395",
+        "submissionDeadlineDate": "2026-12-02",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "GARA APERTA SERVIZIO DI ACCOGLIENZA MINORI STRANIERI NON ACCOMPAGNATI PROVINCIA DI VICENZA",
+      "buyerName": "UFFICIO TERRITORIALE DEL GOVERNO (UTG EX PREFETTURA) DI VICENZA",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-07T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6687243",
+      "description": "GARA APERTA SERVIZIO DI ACCOGLIENZA MINORI STRANIERI NON ACCOMPAGNATI NEL TERRITORIO DELLA PROVINCIA DI VICENZA",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "85311000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "801880-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801880-2026",
+        "documentUrl": "https://www.acquistinretepa.it",
+        "submissionDeadlineDate": "2026-12-07",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Gara per l'affidamento del servizio di decontaminazione da composti poli e perfluoroalchilici degli automezzi del CNVVF impiegati nell'ambito del servizio di Soccorso Aeroportuale nella Regione Veneto",
+      "buyerName": "DIREZIONE REGIONALE DEI VIGILI DEL FUOCO DEL VENETO E TRENTINO ALTO ADIGE",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-18T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6606584",
+      "description": "L’elenco degli automezzi oggetto di decontaminazione, completo della indicazione di sede di assegnazione, modello, targa, parti che hanno evidenziato positività a seguito di caratterizzazione analitica, è riportato in allegato B1.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "90743200"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "802680-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/802680-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/92103dd529599d22",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura aperta ai sensi dell'art.71 del D.lgs.n.36/2023 per la fornitura quadriennale in somministrazione di materiale da Laboratorio per la UOC di Farmacia",
+      "buyerName": "TAR",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-18T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6614575",
+      "description": "Procedura aperta ai sensi dell'art.71 del D.Lgs.n.36/2023 per la fornitura quadriennale in somministrazione di materiale da laboratorio per la UOC di Farmacia",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "33141000",
+        "33192500",
+        "38436150"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "89124 Reggio Calabria",
+        "city": "Reggio Calabria",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "802875-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/802875-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/1ab50915ba04d826",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "AFFIDAMENTO DEL SERVIZIO EDUCATIVO TERRITORIALE COMUNALE",
+      "buyerName": "COMUNE DI OLBIA",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-18T14:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6749698",
+      "description": "L’Appalto ha per oggetto la gestione del Servizio Educativo Territoriale Comunale, così come definito dalle Linee Guida approvate con Deliberazione della Giunta Regionale n. 29 dicembre 2000 n. 55/68 e successive integrazioni e modifiche.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "85300000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "07026",
+        "city": "Olbia",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "804171-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/804171-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/4efe73919384a051",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Fornitura dii Arredi dell'asilo di Via Chinnici e del Polo dell'infanzia di Via Perrotta",
+      "buyerName": "COMUNE DI SUCCIVO",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-07T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6753635",
+      "description": "Fornitura dii Arredi dell'asilo di Via Chinnici e del Polo dell'infanzia di Via Perrotta",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "39161000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "804920-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/804920-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/2e7fee8711ce61cb",
+        "submissionDeadlineDate": "2026-12-07",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "4103-26 Arsenale Militare Marittimo di Taranto - S.N.M.P. ID 1110 - Manutenzione, potenziamento, fornitura e posa in opera di sistemi di controllo accesso e adeguamento delle infrastrutture per la difesa passiva presso la Porta Levante e la zona Gran Guardia.",
+      "buyerName": "MARINARSEN TA",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-11-30T13:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6633035",
+      "description": "Manutenzione, potenziamento, fornitura e posa in opera di sistemi di controllo accesso e adeguamento delle infrastrutture per la difesa passiva presso la Porta Levante e la zona Gran Guardia",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "50000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "804921-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/804921-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/a530ca21516f9e39",
+        "submissionDeadlineDate": "2026-11-30",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura aperta per il servizio di cassa e servizi ad esso connessi dell'Alma Mater Studiorum Università di Bologna",
+      "buyerName": "Alma Mater Studiorum Università di Bologna",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2027-01-19T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "Procedura aperta per il servizio di cassa e servizi ad esso connessi dell'Alma Mater Studiorum Università di Bologna",
+      "description": "Procedura aperta per il servizio di cassa e servizi ad esso connessi dell'Alma Mater Studiorum Università di Bologna",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "66600000"
+      ],
+      "placeOfPerformance": {
+        "city": "Bologna",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "805776-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/805776-2026",
+        "documentUrl": "https://www.acquistinretepa.it/opencms/opencms/vetrina_bandi_priv.html?filter=AB",
+        "submissionDeadlineDate": "2027-01-19",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Servizi di copertura assicurativa di Sogei S.p.A. - ID 3005",
+      "buyerName": "CONSIP SPA",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-03T16:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6592016 - ID 3005",
+      "description": "Procedura aperta per l'appalto di servizi di copertura assicurativa di Sogei S.p.A. - ID 3005",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "66510000",
+        "66515200",
+        "66516500",
+        "66516400",
+        "66513100",
+        "66512100",
+        "66512000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "806049-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/806049-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-delega/266d9ec86d497f9f",
+        "submissionDeadlineDate": "2026-12-03",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "GARA EUROPEA PROCEDURA APERTA affidamento TRIENNALE dei SERVIZI DI RACCOLTA, TRASPORTO, TRATTAMENTO, RECUPERO DEI RIFIUTI E GESTIONE CENTRO DI RACCOLTA COMUNALE DI SAN MAURO LA BRUCA (SA)",
+      "buyerName": "COMUNITA' MONTANA BUSSENTO - LAMBRO E MINGARDO",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-21T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6926312",
+      "description": "GARA EUROPEA PROCEDURA APERTA affidamento TRIENNALE dei SERVIZI DI RACCOLTA, TRASPORTO, TRATTAMENTO, RECUPERO DEI RIFIUTI E GESTIONE CENTRO DI RACCOLTA COMUNALE DI SAN MAURO LA BRUCA (SA)",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "90511100"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "806187-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/806187-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/6da82ad66595d36c",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PROCEDURA APERTA PER L AFFIDAMENTO DEL SERVIZIO PER IL TRATTAMENTO LA CURA E LA RIABILITAZIONE DEI PAZIENTI AFFETTI DA DIPENDENZE PATOLOGICHE PRESSO IL CENTRO DIURNO TERAPEUTICO AREA L AQUILA - ASL 1 AVEZZANO SULMONA L AQUILA",
+      "buyerName": "ASL 1 AVEZZANO-SULMONA-L'AQUILA",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-21T18:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6925513",
+      "description": "PROCEDURA APERTA PER L’AFFIDAMENTO DEL SERVIZIO PER IL TRATTAMENTO, LA CURA E LA RIABILITAZIONE DEI PAZIENTI AFFETTI DA DIPENDENZE PATOLOGICHE PRESSO IL CENTRO DIURNO TERAPEUTICO AREA L’AQUILA - ASL 1 AVEZZANO SULMONA L’AQUILA",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "85312500"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "67100",
+        "city": "L'AQUILA",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "806319-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/806319-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/084f9ab613af6e15",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura aperta per l'affidamento del servizio di manutenzione e controllo periodico dei dispositivi attivi e passivi antincendio ubicati negli immobili di proprietà o in uso a pubbliche amministrazioni ed enti non sanitari del territorio della Regione Lombardia, in collaborazione con la Provincia di Brescia, in qualità di Soggetti Aggregatori, mediante convenzione ex art. 26 l. n.488/1999",
+      "buyerName": "CITTA' METROPOLITANA DI MILANO",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-09T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6555623",
+      "description": "Procedura aperta per l'affidamento del servizio di manutenzione e controllo periodico dei dispositivi attivi e passivi antincendio ubicati negli immobili di proprietà o in uso a pubbliche amministrazioni ed enti non sanitari del territorio della Regione Lombardia, in collaborazione con la Provincia di Brescia, in qualità di Soggetti Aggregatori, mediante convenzione ex art. 26 l. n.488/1999, suddivisa in lotti.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "50413200"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "808147-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/808147-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/82062cccc2428fbd",
+        "submissionDeadlineDate": "2026-12-09",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PROCEDURA APERTA PER L AFFIDAMENTO DEL SERVIZIO DI RECUPERO CUSTODIA E ACQUISTO DEI VEICOLI OGGETTO DEI PROVVEDIMENTI DI SEQUESTRO AMMINISTRATIVO FERMO O CONFISCA AI SENSI DELL ARTICOLO 214 BIS DEL D LGS N 285 92 AMBITO TERRITORIALE PROVINCIALE DI SIRACUSA",
+      "buyerName": "AGENZIA DEL DEMANIO - DIREZIONE REGIONALE SICILIA",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-29T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6935224",
+      "description": "PROCEDURA APERTA PER L’AFFIDAMENTO DEL SERVIZIO DI RECUPERO, CUSTODIA E ACQUISTO DEI VEICOLI OGGETTO DEI PROVVEDIMENTI DI SEQUESTRO AMMINISTRATIVO, FERMO O CONFISCA AI SENSI DELL’ARTICOLO 214 BIS DEL D. LGS. N. 285/92 – AMBITO TERRITORIALE PROVINCIALE DI SIRACUSA",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "50118100"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "810243-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/810243-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/a5c49e7ea3acd735",
+        "submissionDeadlineDate": "2026-12-29",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PROCEDURA APERTA PER AFFIDAMENTO DI FORNITURA DI SISTEMA DA LABORATORIO PER SPATIAL ATOMIC LAYER DEPOSITION",
+      "buyerName": "Alma Mater Studiorum - Università di Bologna",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-11-23T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6584946",
+      "description": "Fornitura di un sistema di deposizione di materiali tramite Spatial Atomic Layer Deposition (Spatial ALD/sALD), integrato in glovebox e comprensivo di sorgente plasma per processi plasma-enhanced ALD.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "38000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "810464-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/810464-2026",
+        "documentUrl": "https://www.acquistinretepa.it/bandi/aperta/gara-asp/f8cbd9c3f13f2537",
+        "submissionDeadlineDate": "2026-11-23",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    }
+  ]
+}

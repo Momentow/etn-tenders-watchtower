@@ -1,0 +1,257 @@
+{
+  "verifiedAt": "2026-11-20",
+  "method": "Live polite probe: >= 1.1 s between requests per host, browser User-Agent, no login, no captcha. One document per tender streamed (first 1 MB) to confirm a real file. Open counts come from TED notices (fixtures/), published 2026-10-21 to 2026-11-20.",
+  "portals": [
+    {
+      "key": "dtvp.de",
+      "baseUrl": "https://www.dtvp.de",
+      "country": "DE",
+      "software": "vmp-satellite (cosinex)",
+      "kind": "multi-step",
+      "access": "open",
+      "use": "dev",
+      "openTendersTed": 89,
+      "docsVerified": "6/6",
+      "listUrl": "https://www.dtvp.de/Center/common/project/search.do?method=showExtendedSearch&fromExternal=true",
+      "tenderUrlPattern": "https://www.dtvp.de/Satellite/public/company/project/{id}/de/overview",
+      "documentUrlPattern": "https://www.dtvp.de/Satellite/public/company/project/{id}/de/documents/archive/Vergabeunterlagen_{id}.zip",
+      "quirks": [
+        "Tender list is filled by JS: POST /Center/api/v2/project/search needs an X-JWT token that the search page only issues once a session cookie exists",
+        "TED link /Satellite/notice/{id}/documents redirects through /documents -> /overview?N; a session cookie is needed before the documents tab renders",
+        "Wicket page versions (?1, ?2 ...) and ;jsessionid in URLs: strip them for a stable url; the id CX... is stable",
+        "Per-tender access varies: some tenders have the Vergabeunterlagen tab disabled (documents only for registered companies)",
+        "Whole-tender ZIP at documents/archive/...; ZIPs of 30 MB+ seen",
+        "Deadline shown as 'dd.mm.yyyy HH:MM Ortszeit' (Europe/Berlin)",
+        "Pages are ISO-8859-1"
+      ]
+    },
+    {
+      "key": "evergabe.nrw.de",
+      "baseUrl": "https://www.evergabe.nrw.de",
+      "country": "DE",
+      "software": "vmp-satellite (cosinex)",
+      "kind": "multi-step",
+      "access": "open",
+      "use": "dev",
+      "openTendersTed": 33,
+      "docsVerified": "4/6",
+      "tenderUrlPattern": "https://www.evergabe.nrw.de/VMPSatellite/public/company/project/{id}/de/overview",
+      "documentUrlPattern": "https://www.evergabe.nrw.de/VMPSatellite/public/company/project/{id}/de/documents/archive/{zipName}",
+      "quirks": [
+        "Same software as dtvp.de under /VMPSatellite/ instead of /Satellite/: a template reuse test",
+        "2 of 6 sampled tenders keep the documents tab disabled (land on /overview)"
+      ]
+    },
+    {
+      "key": "marches-publics.gouv.fr",
+      "baseUrl": "https://www.marches-publics.gouv.fr",
+      "country": "FR",
+      "software": "atexo-mpe (PLACE)",
+      "kind": "multi-step",
+      "access": "open",
+      "use": "dev",
+      "openTendersTed": 134,
+      "openTendersPortal": 1639,
+      "docsVerified": "4/6",
+      "listUrl": "https://www.marches-publics.gouv.fr/?page=Entreprise.EntrepriseAdvancedSearch&AllCons",
+      "tenderUrlPattern": "https://www.marches-publics.gouv.fr/app.php/entreprise/consultation/{id}?orgAcronyme={org}",
+      "documentUrlPattern": "/index.php?page=Entreprise.EntrepriseDownloadReglement&id={base64(id)}&orgAcronyme={org}",
+      "quirks": [
+        "Summary-page trap: TED links of the form ?page=Entreprise.EntrepriseAdvancedSearch&AllCons&id=... land on the search page",
+        "TED consultation ids can answer 'L'acces a cette consultation n'est pas autorise': use the ids from the public list",
+        "Public list has 1639 results, 10 per page, ASP-like (Prado) pagination",
+        "Reglement (RC) or DCE ZIP downloads directly; the full DCE goes through EntrepriseDemandeTelechargementDce with an 'anonymous download' radio option",
+        "Slow server: first byte of a document can take > 40 s (use long read timeouts)",
+        "Deadline shown as 'dd/mm/yyyy HH:MM (heure de Paris)'"
+      ]
+    },
+    {
+      "key": "achatpublic.com",
+      "baseUrl": "https://www.achatpublic.com",
+      "country": "FR",
+      "software": "achatpublic (La salle des marches)",
+      "kind": "multi-step",
+      "access": "captcha-bypassable",
+      "use": "dev",
+      "openTendersTed": 87,
+      "docsVerified": "4/5",
+      "tenderUrlPattern": "https://www.achatpublic.com/sdm/ent2/gen/ficheCsl.action?PCSLID={id}",
+      "documentUrlPattern": "POST /sdm/ent2/gen/telechargerDCE.action?PCSLID={id}&cycNum=0 with dceId from submitFormeDownload('{dceId}')",
+      "quirks": [
+        "Captcha and login form on every page, but 'telecharger les pieces de maniere anonyme' works without them (the trap named in the brief)",
+        "TED links use the old /sdm/ent/gen/ent_detail.do path, which redirects to /sdm/ent2/gen/ficheCsl.action",
+        "Large DCE: a 627 MB ZIP seen (over the 250 MB limit, may be skipped)",
+        "TED deadlines for this portal carry +02:00 in November: do not trust TED offsets, use Europe/Paris"
+      ]
+    },
+    {
+      "key": "tenderned.nl",
+      "baseUrl": "https://www.tenderned.nl",
+      "country": "NL",
+      "software": "tenderned",
+      "kind": "js-api",
+      "access": "open",
+      "use": "dev",
+      "openTendersTed": 571,
+      "openTendersPortal": 2582,
+      "docsVerified": "pending",
+      "listUrl": "https://www.tenderned.nl/papi/tenderned-rs-tns/v2/publicaties?page=0&size=50&publicatieDatumPreset=AF30",
+      "tenderUrlPattern": "https://www.tenderned.nl/aankondigingen/overzicht/{publicatieId}",
+      "detailApi": "https://www.tenderned.nl/papi/tenderned-rs-tns/v2/publicaties/{publicatieId}",
+      "quirks": [
+        "Angular micro-frontend: the HTML shell is empty and loads ~60 JS chunks, so rendering it at 1 req/s takes > 1 min; read the public JSON API instead",
+        "List JSON is Spring-paged (content, totalElements, totalPages); the list mixes notice types (typePublicatie) including award and early-termination notices",
+        "Detail JSON: aanbestedingNaam, opdrachtgeverNaam, sluitingsDatum (local time, no offset, Europe/Amsterdam), procedureCode, typeOpdrachtCode, cpvCodes[].code, referentieNummer",
+        "Notice PDF at /papi/tenderned-rs-tns/v2/publicaties/{id}/pdf"
+      ]
+    },
+    {
+      "key": "publicprocurement.be",
+      "baseUrl": "https://www.publicprocurement.be",
+      "country": "BE",
+      "software": "e-procurement-be (BOSA)",
+      "kind": "js-api",
+      "access": "open",
+      "use": "dev",
+      "openTendersTed": 412,
+      "docsVerified": "pending",
+      "tenderUrlPattern": "https://www.publicprocurement.be/publication-workspaces/{uuid}/documents",
+      "quirks": [
+        "Vue app; the shell says 'doesn't work properly without JavaScript'",
+        "The app first fetches an anonymous token: POST /auth/realms/supplier/protocol/openid-connect/token with grant_type=client_credentials"
+      ]
+    },
+    {
+      "key": "contractaciopublica.cat",
+      "baseUrl": "https://contractaciopublica.cat",
+      "country": "ES",
+      "software": "contractaciopublica.cat (Generalitat de Catalunya)",
+      "kind": "js-api",
+      "access": "open",
+      "use": "dev",
+      "openTendersTed": 168,
+      "docsVerified": "pending",
+      "quirks": [
+        "Angular app (base href /ca/), lazy chunks",
+        "Summary-page trap: TED document links point to the buyer profile (/ca/perfils-contractant/detall/{id}), not the tender"
+      ]
+    },
+    {
+      "key": "provia.at",
+      "baseUrl": "https://www.provia.at",
+      "country": "AT",
+      "software": "provia bieterportal (ASFINAG/OeBB)",
+      "kind": "ssr",
+      "access": "login",
+      "use": "blocked",
+      "openTendersTed": 75,
+      "docsVerified": "0/6",
+      "tenderUrlPattern": "https://www.provia.at/bieterportal/VeroeffentlichteElemente/Verfahren/{id}",
+      "expectedState": "failed",
+      "expectedReason": "documents need a login",
+      "quirks": [
+        "Tender pages are public and server-rendered, but every File/Download?fileGuid=... redirects to /bieterportal/Login",
+        "'Interesse bekunden' leads to bidder registration"
+      ]
+    },
+    {
+      "key": "cloud.3p.eu",
+      "baseUrl": "https://cloud.3p.eu",
+      "country": "BE",
+      "software": "3P",
+      "kind": "multi-step",
+      "access": "captcha",
+      "use": "blocked",
+      "openTendersTed": 212,
+      "docsVerified": "0/6",
+      "tenderUrlPattern": "https://cloud.3p.eu/Downloads/{n}/{buyer}/{ref}/{year}",
+      "expectedState": "failed",
+      "expectedReason": "invisible bot check (captcha) before documents",
+      "quirks": [
+        "Step 1: ASP.NET postback country selection (Country.aspx)",
+        "Step 2: Information.aspx offers an anonymous option ('Ik wens mij niet te identificeren'), but submitting fails with 'De verificatie tegen robots is mislukt' (invisible captcha)"
+      ]
+    },
+    {
+      "key": "marches-publics.info",
+      "baseUrl": "https://www.marches-publics.info",
+      "country": "FR",
+      "software": "AWS (Avenue Web Systemes)",
+      "kind": "multi-step",
+      "access": "captcha",
+      "use": "blocked",
+      "openTendersTed": 255,
+      "docsVerified": "not tested",
+      "expectedState": "failed",
+      "expectedReason": "image captcha before the anonymous DCE download",
+      "quirks": [
+        "Both the identified and the anonymous DCE download (fuseaction=dce.cnxAnonyme) show an image captcha ('Texte de l'image')",
+        "Not tested whether the captcha is enforced: if it is not, this portal is captcha-bypassable instead. Check by hand in a browser",
+        "ColdFusion CFID/CFTOKEN session tokens in URLs: strip them for a stable url"
+      ]
+    },
+    {
+      "key": "s2c.mercell.com",
+      "baseUrl": "https://s2c.mercell.com",
+      "country": "BE",
+      "software": "mercell",
+      "kind": "js-api",
+      "access": "unknown",
+      "use": "unverified",
+      "openTendersTed": 180,
+      "quirks": [
+        "Earlier probe with a bot User-Agent got 403; with a browser User-Agent the Angular shell answers 200 ('Loading...'). Document access not checked"
+      ]
+    },
+    {
+      "key": "acquistinretepa.it",
+      "baseUrl": "https://www.acquistinretepa.it",
+      "country": "IT",
+      "software": "acquistinretepa (Consip)",
+      "kind": "js-api",
+      "access": "unknown",
+      "use": "unverified",
+      "openTendersTed": 54,
+      "quirks": [
+        "TED links /bandi/aperta/gara-asp/{id} redirect to /opencms/opencms/scheda_altri_bandi.html?idBando={id} or end in HTTP 500 after 3 redirects",
+        "Detail page is an AngularJS template; document links are {{ obj.urlDocumento }}. Document access not checked"
+      ]
+    },
+    {
+      "key": "gv.vergabeportal.at",
+      "baseUrl": "https://gv.vergabeportal.at",
+      "country": "AT",
+      "software": "vergabeportal-at",
+      "use": "unseen",
+      "openTendersTed": 41,
+      "docsVerified": "not confirmed by a generic check"
+    },
+    {
+      "key": "vergabe.autobahn.de",
+      "baseUrl": "https://vergabe.autobahn.de",
+      "country": "DE",
+      "software": "netserver (Administration Intelligence)",
+      "use": "unseen",
+      "openTendersTed": 17,
+      "docsVerified": "not confirmed by a generic check"
+    },
+    {
+      "key": "marches.megalis.bretagne.bzh",
+      "baseUrl": "https://marches.megalis.bretagne.bzh",
+      "country": "FR",
+      "software": "atexo-mpe",
+      "use": "unseen",
+      "openTendersTed": 14,
+      "docsVerified": "1/1 (zip)"
+    },
+    {
+      "key": "fcc.tuttogare.it",
+      "baseUrl": "https://fcc.tuttogare.it",
+      "country": "IT",
+      "software": "tuttogare",
+      "use": "unseen",
+      "openTendersTed": 6,
+      "docsVerified": "1/1"
+    }
+  ]
+}

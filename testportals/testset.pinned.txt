@@ -1,0 +1,18 @@
+# Pinned Watchtower test set. `build` uses this instead of auto-selection
+# (pass --no-pin to ignore it). Format: portalKey [working|blocked|holdout]  # note
+
+# --- working: should deliver tenders + documents without login ---
+dtvp.de                  working  # DE vmp-satellite, server-rendered, multi-step documents
+evergabe.nrw.de          working  # DE vmp-satellite, 2nd host of the same software (/VMPSatellite/ path)
+provia.at                working  # AT server-rendered, file list with sizes + hashes
+tenderned.nl             working  # NL JS app
+publicprocurement.be     working  # BE JS app
+contractaciopublica.cat  working  # ES JS app
+cloud.3p.eu              working  # BE multi-step (country-selection redirect)
+marches-publics.info     working  # FR captcha shown, but anonymous DCE download offered
+marches-publics.gouv.fr  working  # FR PLACE/Atexo, TED link lands on homepage (summary-page trap)
+achatpublic.com          working  # FR public tender page; captcha + login form near documents, verify by hand
+
+# --- blocked: system must report `failed` with a reason ---
+s2c.mercell.com          blocked  # 403 on every request
+acquistinretepa.it       blocked  # tender pages redirect to SSO login
