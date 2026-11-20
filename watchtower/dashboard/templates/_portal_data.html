@@ -1,0 +1,67 @@
+{% set p = d.row.portal %}
+<h2>Template versions</h2>
+<div class="card">
+{% if not d.templates %}
+  <div class="empty">No template yet. The agent writes one when it attaches the portal.</div>
+{% else %}
+  <table>
+    <thead><tr><th>Version</th><th>Status</th><th>Created</th><th>Promoted</th><th>Notes</th><th></th></tr></thead>
+    <tbody>
+    {% for t in d.templates %}
+      <tr>
+        <td><strong>v{{ t.version }}</strong></td>
+        <td>
+          {% if t.version == p.current_template_version %}<span class="badge serving">current</span>
+          {% elif t.promoted_at %}<span class="badge closed">retired</span>
+          {% else %}<span class="badge closed">not promoted</span>{% endif %}
+        </td>
+        <td><span title="{{ t.created_at|iso }}">{{ t.created_at|ago }}</span></td>
+        <td>{% if t.promoted_at %}<span title="{{ t.promoted_at|iso }}">{{ t.promoted_at|ago }}</span>{% else %}—{% endif %}</td>
+        <td>{{ t.notes or "—" }}</td>
+        <td><a href="/dashboard/portals/{{ p.id }}/templates/{{ t.version }}.json" target="_blank">JSON</a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+</div>
+
+<h2>Tenders <span class="muted small">{{ d.open_tenders }} open · {{ d.tenders|length }} total · {{ d.document_count }} documents</span></h2>
+<div class="card">
+{% if not d.tenders %}
+  <div class="empty">No tenders delivered yet.</div>
+{% else %}
+  <table>
+    <thead>
+      <tr><th>Status</th><th>Tender</th><th>Buyer</th><th>Published</th><th>Deadline</th><th>Documents</th><th>Last changed</th></tr>
+    </thead>
+    <tbody>
+    {% for t in d.tenders %}
+      {% set href = t.data.get("url")|safe_href %}
+      <tr>
+        <td><span class="badge {{ t.status }}">{{ t.status }}</span></td>
+        <td>
+          {% if href %}<a href="{{ href }}" target="_blank" rel="noopener noreferrer">{{ t.data.get("title") or t.tender_id }}</a>
+          {% else %}{{ t.data.get("title") or t.tender_id }}{% endif %}
+          <div class="muted small mono">{{ t.tender_id }}{% if t.data.get("referenceNumber") %} · {{ t.data.get("referenceNumber") }}{% endif %}</div>
+        </td>
+        <td>{{ t.data.get("buyerName") or "—" }}</td>
+        <td class="mono">{{ t.data.get("publicationDate") or "—" }}</td>
+        <td class="mono">{{ t.data.get("submissionDeadline") or "—" }}</td>
+        <td>
+          {% if t.documents %}
+          <details>
+            <summary>{{ t.documents|length }} file{{ "s" if t.documents|length != 1 }}</summary>
+            <ul class="problems small">
+            {% for doc in t.documents %}<li><a href="{{ doc.path }}">{{ doc.file_name }}</a> <span class="muted">{{ doc.size_bytes|filesize }}</span></li>{% endfor %}
+            </ul>
+          </details>
+          {% else %}<span class="muted">none</span>{% endif %}
+        </td>
+        <td><span title="{{ t.last_changed_at|iso }}">{{ t.last_changed_at|ago }}</span></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+</div>

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ d.row.portal.url }} · Watchtower{% endblock %}
+{% block content %}
+<p class="small"><a href="/">← All portals</a></p>
+<div id="live" hx-get="/dashboard/partials/portals/{{ d.row.portal.id }}/live" hx-trigger="every 5s" hx-swap="innerHTML">
+  {% include "_portal_live.html" %}
+</div>
+<div id="data" hx-get="/dashboard/partials/portals/{{ d.row.portal.id }}/data" hx-trigger="every 30s" hx-swap="innerHTML">
+  {% include "_portal_data.html" %}
+</div>
+{% endblock %}
