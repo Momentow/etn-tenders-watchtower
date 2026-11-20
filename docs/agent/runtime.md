@@ -1,6 +1,6 @@
 # Agent runtime and tools
 
-`watchtower.agent` is the **only package that calls a model** ([ADR 0002](../decisions/0002-architecture.md)). It
+`watchtower.agent` is the **only package that calls a model** ([ADR 0002](../decisions/0002-architecture.md), [ADR 0010](../decisions/0010-agent-runtime-and-tools.md)). It
 learns how to read a portal and writes a [template](../decisions/0003-template-format.md); it never writes code and never
 touches the database or portal state. Scenarios (`generate_template`, T-015; `investigate`, T-016) are built on the
 runtime described here.
@@ -19,7 +19,7 @@ from watchtower.agent.runtime import Budget, run_scenario
 
 ctx = AgentContext(portal_url, client, browser)            # PoliteClient / BrowserPool from net
 run = await run_scenario("attach", SCENARIO_PROMPT, f"Portal URL: {portal_url}", ctx, budget=Budget())
-run.outcome      # TemplateFound | Blocked | Unreadable | Transient | … (outcomes.py), or None
+run.outcome      # an ADR 0009 outcome (TemplateFound, Blocked, Unreadable, Transient, …) or None
 run.stop_reason  # outcome | turns | tokens | time | no_outcome
 run.requests, run.input_tokens, run.cached_tokens, run.output_tokens, run.seconds
 ```
