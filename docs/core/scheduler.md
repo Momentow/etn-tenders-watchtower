@@ -33,7 +33,7 @@ Raise to fail the attempt: the scheduler retries, then gives up safely (closes t
 | Workers (4) | Continuously; only job kinds with a registered handler are taken |
 | Tick | Every 15 s: cancel jobs of deleted portals, request due reads, start up to one due audit |
 | Periodic read | `serving` portal, last finished read older than 1 h |
-| Audit (`proactive`) | Every `WATCHTOWER_HEALTHCHECK_INTERVAL_HOURS` per `serving` portal, staggered |
+| Audit (`proactive`) | Every `WATCHTOWER_HEALTHCHECK_INTERVAL_HOURS` per `serving` portal, staggered ([health checks](../notice/health-checks.md)). `Scheduler.audit_schedule()` gives each portal's last and next audit (dashboard) |
 
 Environment: `WATCHTOWER_HEALTHCHECK_MODE` (`reactive` / `proactive`, default `proactive`) and
 `WATCHTOWER_HEALTHCHECK_INTERVAL_HOURS` (default 24). A bad value stops start-up with a clear error.
