@@ -533,6 +533,21 @@ class Store:
             )
         return _document(row)
 
+    async def remove_documents(self, portal_id: str, tender_id: str, *, keep_source_urls: Iterable[str]) -> int:
+        """Drop a tender's document rows except those from `keep_source_urls`.
+
+        The files stay on disk: other tenders may share them.
+        """
+        keep = list(dict.fromkeys(keep_source_urls))
+        sql = "DELETE FROM documents WHERE portal_id = ? AND tender_id = ?"
+        params: tuple = (portal_id, tender_id)
+        if keep:
+            sql += f" AND source_url NOT IN ({','.join('?' * len(keep))})"
+            params += tuple(keep)
+        async with self._tx() as db:
+            cur = await db.execute(sql, params)
+            return cur.rowcount
+
     async def get_file(self, sha256: str) -> DocumentFile | None:
         """Look up a stored file by its id in `/files/{fileId}` (the sha256). Any row with that content will do."""
         async with self._tx() as db:

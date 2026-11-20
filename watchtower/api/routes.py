@@ -4,10 +4,8 @@ Work is requested with `Store.request_run` (ADR 0005); the scheduler's workers (
 """
 
 import mimetypes
-import os
 import re
 from datetime import datetime
-from pathlib import Path
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
@@ -17,6 +15,7 @@ from pydantic import BaseModel
 from watchtower.api.serialize import portal_entry, run_entry, tender_entry
 from watchtower.core.models import Portal
 from watchtower.core.store import Store
+from watchtower.documents.storage import files_dir
 
 router = APIRouter()
 
@@ -104,11 +103,6 @@ async def get_file(file_id: str, store: StoreDep) -> FileResponse:
         raise HTTPException(status_code=404, detail=f"No file with id {file_id!r}.")
     media_type = mimetypes.guess_type(record.file_name)[0] or "application/octet-stream"
     return FileResponse(path, media_type=media_type, filename=record.file_name)
-
-
-def files_dir() -> Path:
-    """Where the documents module stores files by sha256 (ADR 0002)."""
-    return Path(os.environ.get("DATA_DIR", "/data")) / "files"
 
 
 def _parse_since(raw: str) -> datetime:
