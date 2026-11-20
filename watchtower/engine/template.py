@@ -72,7 +72,8 @@ class FieldRule(Extract):
 
 
 class DateRule(FieldRule):
-    """A date or date-time. `formats`: strptime patterns tried in order (e.g. `%d.%m.%Y %H:%M`); empty = ISO 8601.
+    """A date or date-time. `formats`: strptime patterns tried in order (e.g. `%d.%m.%Y %H:%M`); local month names work
+    with %B/%b. Without formats, or when none fits, ISO 8601 and common day-first European forms are read (ADR 0007).
 
     Times without an offset are read in the template's `timezone`.
     """

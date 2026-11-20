@@ -54,17 +54,10 @@ Fetch failures (HTTP ≥ 400, timeouts, invalid JSON) and navigation failures be
 Silent problems (changed markup that yields zero items, a pager that moved so only page 1 is read) produce **no**
 error: they are found by `validate.check` (T-011), which compares the result with the portal's history.
 
-## Normalisation (placeholder until T-010)
+## Normalisation
 
-`engine/basic_normalize.py` holds a minimal version behind one entry point, `normalize_fields(raw, template)`, which
-T-010 replaces:
-
-- dates: `formats` (strptime) or ISO 8601; times without an offset are read in the template's `timezone`
-  (DST-aware). `publicationDate` becomes a date. A `submissionDeadline` with no time of day becomes `null`
-  (we can't state the time truthfully);
-- `cpvCodes`: 8-digit codes, check digit stripped, duplicates removed;
-- `procedureType` / `contractNature`: only contract values survive (use `map` in the template);
-- `countryCode`: two letters, upper-cased; `;jsessionid=…` is removed from tender URLs.
+The executor calls one entry point, `engine/normalize.py::normalize_fields(raw, template)`, to turn raw strings into
+contract values. The rules are on the [normalisers page](normalize.md).
 
 ## Snapshot
 

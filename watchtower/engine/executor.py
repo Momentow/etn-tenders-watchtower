@@ -17,7 +17,7 @@ from urllib.parse import parse_qsl, quote, urlencode, urljoin, urlsplit, urlunsp
 
 import httpx
 
-from watchtower.engine import basic_normalize
+from watchtower.engine import normalize
 from watchtower.engine.extract import (
     ExtractError,
     HtmlScope,
@@ -292,7 +292,7 @@ class _Run:
                 elif any(re.search(rx, label, re.I) for rx in self.t.status.closed):
                     status = "closed"
 
-        fields = basic_normalize.normalize_fields(raw, self.t)
+        fields = normalize.normalize_fields(raw, self.t)
         fields["id"] = tid
         return TenderRecord(**fields, status=status, documents=documents, complete=complete)
 
