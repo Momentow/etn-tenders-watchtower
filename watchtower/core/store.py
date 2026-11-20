@@ -13,7 +13,7 @@ from collections.abc import AsyncIterator, Iterable, Sequence
 from contextlib import asynccontextmanager
 from datetime import datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 import aiosqlite
 
@@ -160,6 +160,13 @@ class Store:
             )
             if cur.rowcount == 0:
                 return False
+            # Runs reserved by queued jobs (request_run) would otherwise stay unfinished forever.
+            await db.execute(
+                "UPDATE runs SET finished_at = ?, result = 'failed', details = json_set(details, '$.cancelled',"
+                " 'portal deleted') WHERE id IN (SELECT run_id FROM jobs WHERE portal_id = ? AND status = 'queued'"
+                " AND run_id IS NOT NULL)",
+                (now, portal_id),
+            )
             await db.execute(
                 "UPDATE jobs SET status = 'cancelled', finished_at = ?, error = 'portal deleted'"
                 " WHERE portal_id = ? AND status = 'queued'",
@@ -256,6 +263,46 @@ class Store:
         async with self._tx() as db:
             row = await _one(db, sql, *params)
         return None if row is None else _run(row)
+
+    async def request_run(
+        self, portal_id: str, job_kind: Literal["attach", "read", "investigate"], *, trigger: str
+    ) -> tuple[Run, bool]:
+        """Ask for work on a portal and get the run that will record it, atomically (ADR 0005).
+
+        If the portal already has an unfinished run (read or repair), that run is returned with `created=False` and
+        nothing is queued: one active attach/read/investigate per portal. Otherwise a run is started (`attach`/`read`
+        → `read` run, `investigate` → `repair` run) and a job of `job_kind` is queued with `payload.run_id` set; the
+        worker that takes the job finishes that run.
+        """
+        run_kind: RunKind = "repair" if job_kind == "investigate" else "read"
+        now = utcnow()
+        async with self._tx() as db:
+            row = await _one(
+                db,
+                "SELECT * FROM runs WHERE portal_id = ? AND finished_at IS NULL ORDER BY started_at DESC, rowid DESC"
+                " LIMIT 1",
+                portal_id,
+            )
+            if row is not None:
+                return _run(row), False
+            run_id = uuid.uuid4().hex
+            await db.execute(
+                "INSERT INTO runs (id, portal_id, kind, started_at, details) VALUES (?, ?, ?, ?, ?)",
+                (run_id, portal_id, run_kind, to_db(now), json.dumps({"trigger": trigger})),
+            )
+            await db.execute(
+                "INSERT INTO jobs (kind, portal_id, payload, status, run_after, created_at, run_id)"
+                " VALUES (?, ?, ?, 'queued', ?, ?, ?)",
+                (
+                    job_kind,
+                    portal_id,
+                    json.dumps({"run_id": run_id, "trigger": trigger}),
+                    to_db(now),
+                    to_db(now),
+                    run_id,
+                ),
+            )
+            return _run(await _one(db, "SELECT * FROM runs WHERE id = ?", run_id)), True
 
     async def last_good_snapshot(self, portal_id: str) -> Any | None:
         """Snapshot from the newest `ok` run that stored one (fed to the repair diff tool)."""

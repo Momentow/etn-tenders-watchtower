@@ -7,6 +7,7 @@ from pathlib import Path
 
 from fastapi import FastAPI
 
+from watchtower.api.routes import router as api_router
 from watchtower.core.store import Store
 from watchtower.dashboard.routes import router as dashboard_router
 
@@ -27,6 +28,8 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
 
 def create_app() -> FastAPI:
-    app = FastAPI(title="Watchtower", lifespan=lifespan)
+    # /docs is the project docs site (T-019), so FastAPI's own Swagger/ReDoc pages are switched off.
+    app = FastAPI(title="Watchtower", lifespan=lifespan, docs_url=None, redoc_url=None)
+    app.include_router(api_router)
     app.include_router(dashboard_router)
     return app
