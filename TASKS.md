@@ -25,7 +25,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-013 | Mock portals + mutated variants | test-portals | done | OrangeCanvas705 | feat/T-013-mock-portals | T-003 | [requirements](docs/spec/requirements.md#finding-test-portals) |
 | T-014 | Agent runtime & tools | agent | done | Momentow | feat/T-014-agent-runtime | T-007, T-009 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
 | T-015 | Scenario `generate_template` (Attach) | agent | in-progress | OrangeCanvas705 | feat/T-015-generate-template | T-013, T-014 | [0002](docs/decisions/0002-architecture.md) |
-| T-016 | Scenario `investigate` (Notice → Repair) | repair | in-progress | Lavrtajx | feat/T-016-investigate | T-011, T-013, T-014 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
+| T-016 | Scenario `investigate` (Notice → Repair) | repair | review | Lavrtajx | feat/T-016-investigate | T-011, T-013, T-014 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
 | T-017 | Read pipeline wiring (attach / read / heal flows) | core | done | OrangeCanvas705 | feat/T-017-read-pipeline | T-006, T-009, T-010, T-011, T-012 | [0002 read pipeline](docs/decisions/0002-architecture.md#read-pipeline-no-model-call) |
 | T-018 | Dashboard | dashboard | done | Lavrtajx | feat/T-018-dashboard | T-005 | [requirements](docs/spec/requirements.md) |
 | T-019 | Docs site at `/docs` | docs-site | done | OrangeCanvas705 | docs/T-019-docs-site | T-003 | [0001](docs/decisions/0001-tech-stack.md) |
