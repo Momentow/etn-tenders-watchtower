@@ -14,5 +14,6 @@ Watchtower attaches to public-procurement portals on its own, watches over them,
 - [Network layer](net/network.md): politeness, HTTP client, browser, block detection
 - [Engine executor](engine/executor.md): how a template is run, errors, normalisation, snapshots
 - [Normalisers](engine/normalize.md): dates by locale, CPV, enums, countries, content hash
+- [Document downloader](documents/downloader.md): streaming, ZIPs, the 250 MB rule, the download job
 - [Test-portal registry](portals/registry.md) · [Mock portals](test-portals/mock-portals.md)
 - [Model usage & cost](cost/model-usage.md)
