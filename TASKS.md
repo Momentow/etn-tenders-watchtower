@@ -19,7 +19,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-007 | Polite network layer (`PoliteClient`, `BrowserPool`) | net | done | Lavrtajx | feat/T-007-polite-network-layer | T-003 | [0002](docs/decisions/0002-architecture.md) |
 | T-008 | Template format (ADR 0003 + pydantic schema) | engine | done | Lavrtajx | feat/T-008-template-format | T-003 | [0002](docs/decisions/0002-architecture.md) |
 | T-009 | Engine executor (`run_template`) | engine | done | OrangeCanvas705 | feat/T-009-engine-executor | T-007, T-008 | [0002](docs/decisions/0002-architecture.md) |
-| T-010 | Normalizers & tender content hash | engine | in-progress | Lavrtajx | feat/T-010-normalizers | T-003 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
+| T-010 | Normalizers & tender content hash | engine | review | Lavrtajx | feat/T-010-normalizers | T-003 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
 | T-011 | Validators (`validate.check`) | notice | todo | | | T-009 | [0002](docs/decisions/0002-architecture.md) |
 | T-012 | Document downloader & `/files` store | documents | todo | | | T-004, T-007 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
 | T-013 | Mock portals + mutated variants | test-portals | done | OrangeCanvas705 | feat/T-013-mock-portals | T-003 | [requirements](docs/spec/requirements.md#finding-test-portals) |
