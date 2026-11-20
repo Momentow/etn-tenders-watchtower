@@ -50,11 +50,14 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 ### T-001 — Build test-portal registry
 **Goal:** Our own test set, as the brief asks for.
 **Acceptance:**
-- [ ] Each portal: a public tender list, ≥ 5 open tenders with documents downloadable without login
-- [ ] ≥ 4 countries, ≥ 3 portal software packages
-- [ ] Mix of `ssr`, `js-api` and `multi-step`; 1–2 `login`/`captcha` portals
-- [ ] A few marked `unseen` (held back for the final test)
+- [x] Each portal: a public tender list, ≥ 5 open tenders with documents downloadable without login
+- [x] ≥ 4 countries, ≥ 3 portal software packages
+- [x] Mix of `ssr`, `js-api` and `multi-step`; 1–2 `login`/`captcha` portals
+- [x] A few marked `unseen` (held back for the final test)
 **Refs:** [registry](docs/portals/registry.md), [requirements](docs/spec/requirements.md#finding-test-portals)
+**Notes:** Machine-readable set in `testportals/` (portals.json, TED fixtures, pinned list, `ted_portals.py`). Per-tender access
+varies on vmp-satellite and PLACE (4–6 of 6 sampled tenders had anonymous documents). marches-publics.info, s2c.mercell.com and
+acquistinretepa.it were not fully verified, and the publicprocurement.be document download is not yet confirmed (we don't submit captchas); see the registry.
 
 ### T-002 — Tech stack & architecture ADRs
 **Acceptance:**

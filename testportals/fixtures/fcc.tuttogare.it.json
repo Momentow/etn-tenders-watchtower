@@ -1,0 +1,181 @@
+{
+  "portalKey": "fcc.tuttogare.it",
+  "baseUrl": "https://fcc.tuttogare.it",
+  "family": "tuttogare",
+  "generatedAt": "2026-11-20T21:05:10+01:00",
+  "expectedTenders": [
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura aperta per la conclusione di un accordo quadro con 4 operatori economici dei lavori di manutenzione e pronto intervento su alloggi di propriet&#224; e/o gestiti dall&#8217;ATER di Treviso - CUP J91C26000310005.",
+      "buyerName": "Federazione dei Comuni del Camposampierese",
+      "publicationDate": "2026-11-06",
+      "submissionDeadline": "2026-12-10T12:00:00+02:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6d0f931e-d70c-4b05-93c9-a1a58ab801a5@143-G-2527",
+      "description": "vedi disciplinare/documento di gara",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45210000"
+      ],
+      "placeOfPerformance": {
+        "city": "Territorio della Provincia di Treviso",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "771781-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/771781-2026",
+        "documentUrl": "https://fcc.tuttogare.it/gare/dettaglio.php?codice=2527",
+        "submissionDeadlineDate": "2026-12-10",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura aperta affidamento servizio gestione, accertamento, liquidazione e riscossione canone patrimoniale, pubblicitario, mercatale e servizio pubbliche affissioni, per conto del Comune di Limena (PD)",
+      "buyerName": "Federazione dei Comuni del Camposampierese",
+      "publicationDate": "2026-11-10",
+      "submissionDeadline": "2026-12-09T12:00:00+02:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "46a214eb-aa98-4aed-9b74-f651ec5d597f@143-G-2535",
+      "description": "vedi DISCIPLINARE di gara (chiamato in GUUE anche Documento di Gara)",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "79940000"
+      ],
+      "placeOfPerformance": {
+        "city": "LIMENA",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "782241-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/782241-2026",
+        "documentUrl": "https://fcc.tuttogare.it/gare/dettaglio.php?codice=2535",
+        "submissionDeadlineDate": "2026-12-09",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura aperta per l&#8217;affidamento del servizio di pulizia e servizi ausiliari degli edifici comunali con fornitura di materiali e prodotti di consumo per conto del Comune di Villa Bartolomea (VR)",
+      "buyerName": "Federazione dei Comuni del Camposampierese",
+      "publicationDate": "2026-11-10",
+      "submissionDeadline": "2026-12-10T12:00:00+02:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "3630dd41-75ac-487c-bd47-f2f397b6b3ad@143-G-2532",
+      "description": "Procedura aperta per l&#8217;affidamento del servizio di pulizia e servizi ausiliari degli edifici comunali con fornitura di materiali e prodotti di consumo per conto del Comune di Villa Bartolomea (VR)",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "90910000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "782881-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/782881-2026",
+        "documentUrl": "https://fcc.tuttogare.it/gare/dettaglio.php?codice=2532",
+        "submissionDeadlineDate": "2026-12-10",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura aperta, con carattere d&#8217;urgenza, per l&#8217;affidamento dei servizi cimiteriali, per conto del Comune di Campodarsego (PD)",
+      "buyerName": "Federazione dei Comuni del Camposampierese",
+      "publicationDate": "2026-11-16",
+      "submissionDeadline": "2026-12-14T12:00:00+02:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "dc3d4d08-9fce-4b52-8be8-5c3facea64c9@143-G-2546",
+      "description": "Vedi disciplinare di gara (qui in GUUE chiamato anche Documento di gara)",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "98371110"
+      ],
+      "placeOfPerformance": {
+        "city": "Campodarsego",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "794196-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/794196-2026",
+        "documentUrl": "https://fcc.tuttogare.it/gare/dettaglio.php?codice=2546",
+        "submissionDeadlineDate": "2026-12-14",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura aperta per l&#8217;affidamento della fornitura di prodotti farmaceutici per la farmacia comunale di Chies d'Alpago (BL).",
+      "buyerName": "Federazione dei Comuni del Camposampierese",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-14T12:00:00+02:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "e4277c16-10fb-49cc-aef3-ce211f9112b0@143-G-2538",
+      "description": "Vedi disciplinare di gara (qui in GUUE chiamato anche \"Documento di gara\")",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "33690000"
+      ],
+      "placeOfPerformance": {
+        "city": "Chies d'Alpago",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "800364-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/800364-2026",
+        "documentUrl": "https://fcc.tuttogare.it/gare/dettaglio.php?codice=2538",
+        "submissionDeadlineDate": "2026-12-14",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Procedura aperta affidamento servizi tecnici di progettazione per intervento &#171;lavori per la ristrutturazione e la riqualificazione ex scuola elementare N. Sauro di San Giacomo di Veglia con inserimento farmacia comunale e sede di ambulatori medici - CUP G18I25002190005&#187;",
+      "buyerName": "Federazione dei Comuni del Camposampierese",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-18T12:00:00+02:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "6797b4a1-8bdf-4603-bbda-38cca64b5f44@143-G-2555",
+      "description": "Vedi disciplinare di gara qui in GUUE chiamato anche \"Documento di gara\"",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71356000"
+      ],
+      "placeOfPerformance": {
+        "city": "Vittorio Veneto",
+        "countryCode": "IT"
+      },
+      "_match": {
+        "tedPublicationNumber": "801138-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801138-2026",
+        "documentUrl": "https://fcc.tuttogare.it/gare/dettaglio.php?codice=2555",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "ita",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    }
+  ]
+}

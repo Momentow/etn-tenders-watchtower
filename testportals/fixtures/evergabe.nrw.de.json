@@ -1,0 +1,1141 @@
+{
+  "portalKey": "evergabe.nrw.de",
+  "baseUrl": "https://www.evergabe.nrw.de",
+  "family": "vmp-satellite",
+  "generatedAt": "2026-11-20T21:05:10+01:00",
+  "expectedTenders": [
+    {
+      "id": null,
+      "url": null,
+      "title": "Facility Management in der Zentralen Unterbringungseinrichtung Viersen",
+      "buyerName": "Bezirksregierung Düsseldorf",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2027-01-14T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "V044/26",
+      "description": "Gegenstand des Verfahrens ist die Vergabe der Dienstleistungen des Facility-Managements in einer Zentralen Unterbringungseinrichtungen für Flüchtlinge des Landes Nordrhein-Westfalen in Viersen (ZUE Viersen). Nähere Informationen dazu enthalten die Vergabeunterlagen.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "98341140"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "41747",
+        "city": "Viersen",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "801290-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801290-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YYRDYH2ULW1G/documents",
+        "submissionDeadlineDate": "2027-01-14",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "CT Photonen Counting",
+      "buyerName": "Universitätsklinikum Essen, AöR",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-03T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026 Dez03 - 017",
+      "description": "Für die zukünftige Versorgung komplexer struktureller Herzerkrankungen sowie Aorteneingriffe nimmt die CT-Diagnostik, auch im Notfall, eine immer größer werdende Rolle ein. Daher soll im Rahmen der Umgestaltung des Hybrid-Saals die Ausstattung mit einem Computer Tomographen für kardiovaskuläre Diagnostik beschafft werden, welcher die Untersuchung von kritisch erkrankten, ggf. narkotisierten Patienten ohne Umlagerung ermöglicht",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "38000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "45147",
+        "city": "Essen",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "801299-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801299-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YDGDYR7Y5A1N/documents",
+        "submissionDeadlineDate": "2026-12-03",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Beschaffung und Ausstattung eines Fahrzeugs zum Einsatz als Mobiler Tele-Arbeitsplatz (MoTA)",
+      "buyerName": "Universitätsklinikum Aachen AöR",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-08T14:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026-0559-CL",
+      "description": "Die Uniklinik RWTH Aachen hat im Förderaufruf \"Demonstration und Erprobung innovativer Lösungen für die zivile Sicherheit\" vom Bundesministerium für Forschung, Technologie und Raumfahrt Fördergelder für den Ausbau eines Fahrzeuges erhalten. Das Fahrzeug, auch \"Mobiler Tele-Arbeitsplatz\" ist ein Kastenfahrzeug oder Kofferaufbau, der ähnlich einem Einsatzleitwagen 1,5 mit zwei Arbeitsplätzen und einem Besprechungsbereich ausgestattet sein soll. Das Fahrzeug soll neben der technischen Ausstattung für Telemedizin, Telepflege und Tele-experten-gestützte Anwendungen mit Demonstratoren vorangegangener Forschungsprojekte ausgestattet werden. Damit soll es in zukünftigen Studien zum Einsatz kommen und eine Infrastruktur für technische Anwendungen, bspw. Telemedizin bieten. Die Ausschreibung umfasst die Beschaffung des Fahrgestells inkl. Ausbau als Kastenwagen oder Kofferaufbau mit einem Antennenmast und einer dachmontierten Drohne.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "34114000",
+        "34144200"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "52074",
+        "city": "Aachen",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "801710-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801710-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YYJDYYVQZ3V8/documents",
+        "submissionDeadlineDate": "2026-12-08",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "182 - Anlage zur Herstellung von zylindrischen LIB-Zellen",
+      "buyerName": "RWTH Aachen University",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2027-01-22T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "10043333",
+      "description": "Lieferung einer Anlage zur Herstellung von zylindrischen LIB-Zellen",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "42900000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "52074",
+        "city": "Aachen",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "801795-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801795-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YD8DY5B62VG8/documents",
+        "submissionDeadlineDate": "2027-01-22",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Generalplanungsleistung Forschungsbau \"SEED\"",
+      "buyerName": "Universität Duisburg-Essen",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-11-26T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "82-26 SF PR",
+      "description": "Generalplaner \"91B-FORSCHUNGSBAU N03 AM CAMPUS DUISBURG DER UNIVERSITÄT DUISBURG-ESSEN\"",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71300000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "801842-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801842-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YEQDY6GUXNK2/documents",
+        "submissionDeadlineDate": "2026-11-26",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Hybrid-Saal monoplane Angiographieanlage",
+      "buyerName": "Universitätsklinikum Essen, AöR",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-03T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026 Dez03 - 018",
+      "description": "Beschafft werden soll ein multiaxiales boden-montiertes robotisches Einebenen-C-Bogen-System zur Einrichtung eines interdisziplinär nutzbaren Hybrid-OPs für die Interventionelle Radiologie als \"Interventions-suite\"",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "38000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "45147",
+        "city": "Essen",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "801931-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801931-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YDGDYR7YXXLU/documents",
+        "submissionDeadlineDate": "2026-12-03",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "L260 Ersatzneubau Hülsbrücke; Schadstoffgutachten",
+      "buyerName": "Landesbetrieb Straßenbau NRW - Regionalniederlassung Ville-Eifel",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2027-01-12T10:30:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "44-26-5088",
+      "description": "L260 Ersatzneubau Hülsbrücke",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71000000",
+        "71300000",
+        "71319000"
+      ],
+      "placeOfPerformance": {
+        "city": "L260 in Aachen",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "802055-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/802055-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7Y51DY5AK41KM/documents",
+        "submissionDeadlineDate": "2027-01-12",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Rahmenvereinbarung über x86-Serverhardware",
+      "buyerName": "Landesbetrieb Information und Technik NRW",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-18T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "26-T200226013",
+      "description": "Rahmenvereinbarung über x86-Serverhardware. Die Landesverwaltung soll für notwendige Bedarfe unkompliziert und schnell Hardwareserver beschaffen können. Zu diesem Zweck soll ein Rahmenvertrag geschlossen werden.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "48820000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "40476",
+        "city": "Düsseldorf",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "802657-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/802657-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YYJDY52C81U5/documents",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Untersuchungs- und OP-leuchten - Neubau Haut- und Augenklinik",
+      "buyerName": "Universitätsklinikum Düsseldorf",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-18T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "AUG-068",
+      "description": "Das Universitätsklinikum Düsseldorf(abgekürzt UKD) errichtet auf dem Campus den Neubau eines Klinikgebäudes zur Aufnahme der Haut- und Augenklinik. Weiterhin werden in dem neuen Gebäude eine Klinik für Knochenmarktransplantationen (stationär und ambulant) sowie eine geriatrische Abteilung untergebracht. Das Baugrundstück liegt im Inneren des Campusgeländes und ist weitgehend eben, mit geringen Geländehöhendifferenzen durch Aufschüttungen von bis zu 3 Meter. Der 5-geschossige Neubau in Stahlbetonbauweise mit einem Untergeschoss und Technikgeschoss hat oberirdisch keinen Anschluss an angrenzende Gebäude. Unterirdisch wird das Bauwerk an die automatische Warentransportanlage (AWT) sowie an diverse Medien über Kanäle angeschlossen. Gebäudedaten: Nutzfläche 12.152 m² Bruttogrundfläche 29.439 m² Bruttorauminhalt 119.869 m³ Die OK FFB +/- 0,00 m des Neubaus beträgt 38,80 m ü",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "31524110"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "40225",
+        "city": "Düsseldorf",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "802834-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/802834-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXPNYBBDWF0/documents",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "EPU-Saal monoplane Angiographieanlage",
+      "buyerName": "Universitätsklinikum Essen, AöR",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-03T09:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026 Dez03 - 021",
+      "description": "Beschafft werden soll ein bodenmontiertes Einebenen-C-Bogen-System für die interventionelle Kardiologie (HKL). Interventionelle Kardiologie. Elektrophysiologie (EPU). Strukturelle Herzkrankheit. moderne therapeutische vaskuläre und nicht-vaskuläre Interventionsverfahren.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "33111710"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "45147",
+        "city": "Essen",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "803027-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/803027-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YDGDY56V90JM/documents",
+        "submissionDeadlineDate": "2026-12-03",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Angiologischer Saal-Angiographiesystem",
+      "buyerName": "Universitätsklinikum Essen, AöR",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-03T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026 Dez03 - 022",
+      "description": "Beschafft werden soll ein bodenmontiertes Einebenen-C-Bogen-System für die interventionelle Kardiologie (HKL). Interventionelle Kardiologie. Elektrophysiologie (EPU). Strukturelle Herzkrankheit. moderne therapeutische vaskuläre und nicht-vaskuläre Interventionsverfahren.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "33111710",
+        "33111720"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "45147",
+        "city": "Essen",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "803089-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/803089-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YDGDY56186GK/documents",
+        "submissionDeadlineDate": "2026-12-03",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Grün- und Außenanlagenpflege an der Universität Paderborn",
+      "buyerName": "Universität Paderborn",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-18T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "200/39/26/1",
+      "description": "Die Universität Paderborn beabsichtigt, die Grün- und Außenanlagenpflege auf ihrem Campus und an ihren Außenstandorten im offenen Verfahren zu vergeben. Es handelt sich um Garten- und Landschaftspflege (Unterhaltungspflege) auf dem Hauptcampus einschließlich Sportcampus und Teilbereich Mersinweg sowie am Außenstandort Startup Campus.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "77310000",
+        "77340000"
+      ],
+      "placeOfPerformance": {
+        "city": "Paderborn",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "803377-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/803377-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YYPDY5J1PJNP/documents",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Beratungs- und Prüfleistungen des Kompetenzzentrums Barrierefreiheit",
+      "buyerName": "Landesamt für Zentrale Polizeiliche Dienste Nordrhein-Westfalen",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-11-24T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "ZA 4.2/1002005885",
+      "description": "Das Landesamt für Zentrale Polizeiliche Dienste NRW (LZPD) beabsichtigt mit einem Wirtschaftsteilnehmer einen EVB-IT Dienstleistungsvertrag je Los als Rahmenvertrag für Beratungs- und Prüfleistungen des Kompetenzzentrums für Barrierefreiheit abzuschließen.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "47059",
+        "city": "Duisburg",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "803392-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/803392-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YY5YTWJW5UB9/documents",
+        "submissionDeadlineDate": "2026-11-24",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Softwareentwicklung für das Projekt Genesis",
+      "buyerName": "Landesbetrieb Information und Technik NRW",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-18T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "26-F710000088",
+      "description": "Die im Rahmen dieser Ausschreibung zu erbringenden Leistungen konzentrieren sich auf die Teilprojekte Wartung, Pflege und Weiterentwicklung des bestehenden Verfahrens sowie die Entwicklung eines neuen Clients. Hierzu zählen insbeson-dere die Modernisierung, die Umsetzung neuer fachlicher und technischer Anforde-rungen, die Behebung von Fehlern sowie die Entwicklung und Integration neuer Funktionalitäten im Rahmen der Client-Neuentwicklung. Zur Verstärkung des bestehenden Projektteams wird externe Unterstützung in der Softwareentwicklung benötigt. Die Leistungen sind in enger Abstimmung mit dem Projektteam des Verbundprojekts sowie unter Berücksichtigung der etablierten Ent-wicklungs- und Qualitätssicherungsprozesse zu erbringen. Das Projekt wird als Konsortialprojekt mehrerer Landesbehörden im Statistischen Verbund durchgeführt. Die Gesamtkoordination sowie die technische Steuerung des Verbundprojekts erfolgen durch das Bundesamt. Die beteiligten Landesbehörden wirken als Konsortialpartner an der fachlichen und technischen Weiterentwicklung der Software mit. Der Auftragnehmer unterstützt das Projektteam bei der Entwicklung, Weiterentwick-lung und Qualitätssicherung der Softwarelösung. Ziel ist insbesondere - Umsetzung fachlicher Anforderungen - Entwicklung neuer Funktionen - Fehleranalyse und Fehlerbehebung - Unterstützung bei Architektur- und Designentscheidungen - Sicherstellung einer wartbaren Softwarequalität - Wissenstransfer an das Projektteam 4. Leistungsumfang Der Auftragnehmer übernimmt insbesondere folgende Leistungen: 4.1 Softwareentwicklung - Implementierung neuer Funktionen - Weiterentwicklung bestehender Komponenten - Refactoring bestehender Software - Umsetzung technischer Anforderungen - Umsetzung fachlicher Anforderungen Projekttechnologien: - Programmiersprache(n): Java - Frameworks: React, TypeScript, Hibernate - Datenbanken: MySQL, MariaDB, PostgreSQL - Schnittstellen: REST - Versionsverwaltung: Git 4.2 Qualitätssicherung Der Auftragnehmer unterstützt bei - Der Erstellung und Pflege automatisierter Tests - Der Entwicklung und Durchführung von Unit-, Integrations- und System-Tests - Code Reviews - Fehleranalyse und Fehlerbehebung - Performanceoptimierung - der Sicherstellung einer hohen Softwarequalität 4.3 Dokumentation Zu dokumentieren sind mindestens - Quellcode - technische Konzepte - Architekturentscheidungen - Schnittstellen - Betriebsdokumentation - Entwicklerdokumentation ________________________________________ 4.4 Zusammenarbeit Die Zusammenarbeit erfolgt innerhalb eines bestehenden verbundweiten Projekt-teams unter Leitung des Statistischen Bundesamtes. Typische Aufgaben: - Teilnahme an Sprint Planning - Daily Stand-up - Sprint Review - Retrospektive - Abstimmungen mit Fachbereich und Architektur - Aufwandsschätzungen - Ticketbearbeitung Projektmanagementwerkzeuge: - Jira - Confluence - GitLab",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "40476",
+        "city": "Düsseldorf",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "803639-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/803639-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YYJDY56P8QFV/documents",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Rahmenvereinbarung über die Lieferung von verschiedenen Kraftfahrzeugen für den Landesbetrieb Wald und Holz Nordrhein-Westfalen für das Jahr 2027",
+      "buyerName": "Wald und Holz NRW",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2027-01-06T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026/17/006",
+      "description": "Rahmenvereinbarung über die Lieferung von verschiedenen Kraftfahrzeugen für den Landesbetrieb Wald und Holz Nordrhein-Westfalen für das Jahr 2027",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "34100000",
+        "34113000",
+        "34113200",
+        "34113300",
+        "34115200",
+        "34144000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "48147",
+        "city": "Münster",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "804123-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/804123-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YY3DY5PJP59A/documents",
+        "submissionDeadlineDate": "2027-01-06",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Ausschreibung einer Werkleistung für die Durchführung von Identifizierungsverfahren für Kunden",
+      "buyerName": "NRW.BANK AöR",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-21T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "859-09579-101-30520",
+      "description": "Werkvertrag für die Durchführung von Identifizierungsverfahren für Kunden",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "66000000",
+        "66110000",
+        "72250000",
+        "79900000",
+        "79996000",
+        "64000000",
+        "32000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "40213",
+        "city": "Düsseldorf",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "804447-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/804447-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXPNYH5DWFY/documents",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Belieferung der Justizvollzugsanstalten in NRW mit Spielen und Freizeitartikeln",
+      "buyerName": "JVA Castrop-Rauxel Zentralstelle für das Beschaffungswesen im Justizvollzug",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-21T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "546/63 E - Z 28. 6",
+      "description": "Belieferung der Justizvollzugsanstalten in NRW mit Spielen und Freizeitartikeln",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "37000000"
+      ],
+      "_match": {
+        "tedPublicationNumber": "804665-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/804665-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YDGDY5UYCCNT/documents",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "RV Bau / Rückbau / Sanierung und Regenerierung von Grundwassemessstellen",
+      "buyerName": "Landesamt für Natur, Umwelt und Klima NRW",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2027-01-12T09:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "52;1002073327;EU",
+      "description": "Gegenstand des Vorhabens sind Baumaßnahmen (Bau / Rückbau / Sanierung) von Grundwassergüte- und Grundwasserstandsmessstellen in Locker- und Festgesteinsgebieten Nordrhein-Westfalens und die Durchführung von Reparaturen und Regenerierungsmaßnahmen einschließlich einer zugehörigen Erfolgskontrolle (Funktionsprüfungen und Dokumentation) der Maßnahmen an Grundwassermessstellen. Grundlage sind jeweils vom Auftraggeber (AG) vorgegebene messstellen- bzw. standortspezifische Leistungsverzeichnisse. Bei allen Arbeiten sind die Vorgaben gemäß Leistungsbeschreibung zu beachten. Für den Bau von Messstellen sind darüber hinaus das Merkblatt \"Bau von Grundwassermessstellen\" und für den Rückbau sind das Merkblatt \"Rückbau von Grundwassermessstellen\" des AK Grundwasserbeobachtung (2012) und die einschlägigen DVGW-Arbeitsblätter (insbesondere DVGW W 121, weitere: s. Liste der relevanten Fachliteratur in der Leistungsbeschreibung) zu beachten. Letzteres gilt auch für alle durchzuführenden Bohrarbeiten, geophysikalischen Messungen im Bohrloch, Klarpumpen, Pumpversuche und Erstbeprobungen. Für die ebenfalls durchzuführenden Sanierungs- und Regenerierungsmaßnahmen sowie zur Effizienzkontrolle der Regenerierungsmaßnahmen (Funktionsprüfungen) sind die zu erbringenden Leistungen und fachlichen Vorgaben ebenfalls der Leistungsbeschreibung zu entnehmen; auch für diese Maßnahmen sind die DVGW-Arbeitsblätter grundlegend. Alle Arbeiten haben den nationalen und europäischen Vorschriften sowie technischen Normen und im Übrigen dem Stand der Technik zu entsprechen. Es werden daher nur entsprechend zertifizierte Unternehmen (DVGW W 120-1 oder vergleichbares Zertifikat) bei der Vergabe berücksichtigt.",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45000000",
+        "45120000",
+        "45453100"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "805031-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/805031-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YY7DYH2FT8AF/documents",
+        "submissionDeadlineDate": "2027-01-12",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Zentraler IT Einkauf Convertibles",
+      "buyerName": "Landesbetrieb Information und Technik NRW",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-15T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "26-T600426032",
+      "description": "Bei dieser Ausschreibung handelt es sich um Convertibles.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "30000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "40476",
+        "city": "Düsseldorf",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "805055-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/805055-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YYJDY5XZBHC5/documents",
+        "submissionDeadlineDate": "2026-12-15",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Münster, Sanierung Offiziersmesse, York-Kaserne Münster; Dachdeckerarbeiten",
+      "buyerName": "NRW.URBAN Kommunale Entwicklung GmbH",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-09T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "ZV26-129",
+      "description": "Die NRW.URBAN Kommunale Entwicklung GmbH ist Träger für die Konversionsprojekte der Kasernen Oxford und York als Treuhänder der Stadt Münster. Der Auftrag wird erteilt im Namen der NRW.URBAN Kommunale Entwicklung GmbH und auf Rechnung der Stadt Münster. Die NRW.URBAN Kommunale Entwicklung GmbH beabsichtigt - treuhänderisch für die Stadt Münster - den Umbau und die Umnutzung des ehemaligen Offiziers-Kasinos zum Begegnungs- und Demokratieort im York-Quartier in Münster Gremmendorf. Das Gebäude dient zukünftig als offener Demokratieort für alle Bevölkerungsgruppen. Eine energetische Ertüchtigung des Gebäudes ist im Rahmen des denkmalschutzrechtlich möglichen und sinnvollen geplant. Das Bestandgebäude befindet sich im York-Quartier in Münster Gremmendorf.",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45000000",
+        "45111100",
+        "45260000",
+        "45261210",
+        "45261300"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "48167",
+        "city": "Münster",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "805127-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/805127-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YM3DY51GH34X/documents",
+        "submissionDeadlineDate": "2026-12-09",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Durchführung von hoch- und teilmechanisierter Holzernte mit Zufällen sowie Holzbringung ohne Aufarbeitung im Regionalforstamt Kurkölnisches Sauerland",
+      "buyerName": "Wald und Holz NRW",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2027-01-05T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026/07/009",
+      "description": "Durchführung von hoch- und teilmechanisierter Holzernte mit Zufällen sowie Holzbringung ohne Aufarbeitung im Regionalforstamt Kurkölnisches Sauerland, Forstbetriebsbezirke Beckerhof, Ebbetal, Einsiedelei, Lieberhausen u. Eckenhagen-Wiehltalsperre",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "77210000",
+        "03400000",
+        "03410000",
+        "03440000",
+        "77200000",
+        "77211000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "805316-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/805316-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YY3DY52VBT39/documents",
+        "submissionDeadlineDate": "2027-01-05",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Wach- und Sicherheitsdienstleistungen",
+      "buyerName": "Fachhochschule Südwestfalen - Vergabestelle",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-11-30T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "VG-Nr. 2026 / 0505",
+      "description": "Wach- und Sicherheitsleistungen an allen Standorten der Fachhochschule Südwestfalen.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "79710000",
+        "79711000",
+        "79713000",
+        "79715000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "58644",
+        "city": "Iserlohn",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "805427-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/805427-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXTKYYDDYYVGW9LL/documents",
+        "submissionDeadlineDate": "2026-11-30",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Rahmenvereinbarung Generalunternehmer",
+      "buyerName": "Bezirksregierung Münster",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "VA26-039",
+      "description": "Rahmenvereinbarung über Leistungen zur Errichtung von Unterbringungseinrichtungen für Geflüchtete des Landes Nordrhein-Westfalen: Zur Organisation der Kapazitäten im Landesunterbringungssystem für Geflüchtete des Landes Nordrhein-Westfalen werden kurzfristig neue Einrichtungen benötigt. Die Planungen umfassen die Errichtung neuer Unterbringungseinrichtungen in Containerbauweise an verschiedenen Standorten in allen Regierungsbezirken Nordrhein-Westfalens. Übergeordnete Zielsetzung ist die möglichst zügige und wirtschaftliche Umsetzung der neuen Unterkunftskapazitäten. Für die Errichtung der neuen Unterbringungsplätze in Containerbauweise soll eine Rahmenvereinbarung über die erforderlichen Generalunternehmerleistungen mit mehreren Auftragnehmern abgeschlossen werden.",
+      "procedureType": "negotiated",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45200000",
+        "44211100",
+        "45211350",
+        "71320000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "48143",
+        "city": "Münster",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "805548-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/805548-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YDVDY519G2CG/documents",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Messengerlösung",
+      "buyerName": "Ministerium des Innern des Landes NRW",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-28T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "ZVSt-2026-124",
+      "description": "Leistungsgegenstand ist eine Messengerlösung für das Ministerium des Innern NRW und seinem Geschäftsbereich.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "48000000",
+        "48100000",
+        "48210000",
+        "48219700",
+        "48500000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "805629-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/805629-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YYBDY6ERZRB3/documents",
+        "submissionDeadlineDate": "2026-12-28",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "PDMS - Patientendatenmanagementsystem inkl. Anästhesieplanungs-/- dokumentationssystem",
+      "buyerName": "Universitätsklinikum Düsseldorf",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "067/26",
+      "description": "Ziel der Ausschreibung ist es, vergleichbare Angebote als Entscheidungsgrundlage für die Beschaffung und Einführung eines PDMS (Patientendatenmanagementsystem) und eines Anästhesieplanungs- / -dokumentationssystems zu erhalten.",
+      "procedureType": "negotiated",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "48180000",
+        "72260000",
+        "48000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "40225",
+        "city": "Düsseldorf",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "806207-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/806207-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXPNYBBDWM6/documents",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Lieferung, Installation, Inbetriebnahme einer technischen Stickmaschine für die Entwicklung von Smart Textiles (Los 1) und einer 1-Kopf-Stickmaschine mit Instant-Garnfärbeeinheit für die On-Demand-Veredlung konfektionierter Textilien (Los 2)",
+      "buyerName": "Hochschule Niederrhein",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-21T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026/EU10052920",
+      "description": "Lieferung, Installation, Inbetriebnahme einer Recycling- und Sortierstation mit NIR-Technik, bestehend aus: Los 1: Sortierstation mit NIR-Technik (Los 2: Schneidanlage, Guillotine Cutter, bereits beauftragt und nicht Teil dieser Ausschreibung) Los 3: Mechanische Recyclinganlage (Los 4: Verrohung und Verkabelung der Recyclinganlag, Vergabe erfolgt separat zu einem späteren Zeitpunkt und ist nicht Teil dieser Ausschreibung) ?",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "44211100"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "41238",
+        "city": "Mönchengladbach",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "806290-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/806290-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXVHYR9DY5Z6MX51/documents",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "3.0T MRT-System mit Lieferung einer HF-Kabine, Injektor sowie Vollservicevertrag",
+      "buyerName": "Universitätsklinikum Aachen AöR",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-21T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026-0531-AJ",
+      "description": "MRT-System 3.0T Ersatzbeschaffung mit HF-Raum und Magnetfeldabschirmung sowie ein Vollservicevertrag über 8 Jahre",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "33113100",
+        "45421152",
+        "50400000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "52074",
+        "city": "Aachen",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "807299-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/807299-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YYJYTGETLDXR/documents",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Rahmenvertrag Dienstleistung für die Qualitätssicherung im Projekt AuRegis",
+      "buyerName": "Landesbetrieb Information und Technik NRW",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-21T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "26-D303926496",
+      "description": "Rahmenvertrag Dienstleistung für die Qualitätssicherung im Projekt AuRegis",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72000000"
+      ],
+      "placeOfPerformance": {
+        "city": "Düsseldorf",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "807708-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/807708-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YYJDY5P3E1CA/documents",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Betrieb und Weiterentwicklung des nordrhein-westfälischen Kompetenzzentrums für Cybersicherheit in der Wirtschaft \"DIGITAL.SICHER.NRW\"",
+      "buyerName": "Ministerium für Wirtschaft, Industrie, Klimaschutz und Energie des Landes Nordrhein-Westfalen",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-22T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026-018",
+      "description": "Die fortschreitende Digitalisierung und Vernetzung von Wirtschaft und Gesellschaft eröffnet erhebliche Chancen, erhöht zugleich jedoch die Abhängigkeit von funktionsfähigen und sicheren digitalen Strukturen. Cyberangriffe und insbesondere Ransomware können zu erheblichen wirtschaftlichen Schäden, Betriebsunterbrechungen, Datenabflüssen und Reputationsverlusten führen. Technologische Entwicklungen wie KI-gestützte Angriffsmethoden sowie geopolitisch motivierte und staatlich gesteuerte Aktivitäten verschärfen die Bedrohungslage zusätzlich. Dies betrifft insbesondere Unternehmen in technologieintensiven, sicherheitsrelevanten und versorgungskritischen Wertschöpfungs- und Lieferketten. Cybersicherheit und Resilienz dienen daher auch dem Erhalt der Funktions-, Produktions- und Lieferfähigkeit der Wirtschaft in Nordrhein-Westfalen. Insbesondere kleine und mittlere Unternehmen (KMU) stehen dabei vor besonderen Herausforderungen. Ihnen fehlen häufig personelle und finanzielle Ressourcen, spezialisierte Fachkräfte und etablierte Sicherheitsprozesse. Gleichzeitig nehmen sie als spezialisierte Anbieter und Zulieferer vielfach eine wichtige Rolle innerhalb regionaler und überregionaler Wertschöpfungsstrukturen ein. Unter teils hohem Kosten- und Wettbewerbsdruck werden Investitionen in Cybersicherheit dennoch häufig zu spät oder nicht ausreichend priorisiert. Dabei können bereits grundlegende organisatorische und technische Maßnahmen die Widerstandsfähigkeit eines Unternehmens deutlich erhöhen. Hinzu kommt, dass staatliche oder technisch geprägte Informationsangebote von KMU teilweise als zu abstrakt, zu komplex oder zu wenig auf ihre betriebliche Praxis zugeschnitten wahrgenommen werden. Das Land Nordrhein-Westfalen unterstützt Unternehmen daher mit DIGITAL.SICHER.NRW, einem etablierten Kompetenzzentrum für Cybersicherheit in der Wirtschaft. Ziel ist es, Unternehmen - insbesondere KMU - praxisnah dazu zu befähigen, Cyberrisiken zu erkennen, angemessen zu priorisieren und durch umsetzbare Maßnahmen wirksam zu reduzieren. Das Kompetenzzentrum verfolgt dabei den Grundsatz der \"Hilfe zur Selbsthilfe\" und ist eine neutrale, vertrauenswürdige und regional wirksame Schnittstelle zwischen vorhandenem Sicherheitswissen und der betrieblichen Praxis. Es ergänzt bestehende Strukturen und Angebote des Bundes und des Landes, indem es Informationen verständlich aufbereitet, konkrete Umsetzungsimpulse vermittelt, regionale Zugänge schafft und wirtschaftsnahe Multiplikatoren einbindet. Über die unmittelbare Unterstützung von Unternehmen hinaus verfolgt das Kompetenzzentrum das Ziel, relevante Akteure im Themenfeld Cybersicherheit in Nordrhein-Westfalen zu vernetzen und den Wissenstransfer aus Wissenschaft und Forschung in die wirtschaftliche Praxis zu fördern. DIGITAL.SICHER.NRW besteht seit 2021. Der Vertrag mit dem bisherigen Dienstleister endet am 31.12.2026. Im Rahmen des Offenen Verfahrens wird ein Auftragnehmer gesucht, der die Arbeit des Kompetenzzentrums für Cybersicherheit in der Wirtschaft in den kommenden Jahren fortführt und weiterentwickelt. Inhaltliche Schwerpunkte der kommenden Vertragslaufzeit bilden insbesondere die Prävention und Bewältigung von Ransomware-Angriffen, die praxisnahe Aufbereitung aktueller und sich wandelnder Bedrohungen sowie die Berücksichtigung besonderer Bedarfe von KMU in technologieintensiven, sicherheitsrelevanten und versorgungskritischen Wertschöpfungs- und Lieferketten. Die grundlegende Ausrichtung des Kompetenzzentrums auf präventive, leicht zugängliche Unterstützung, die Stärkung der Resilienz und die Befähigung zur Selbsthilfe bleibt hiervon unberührt.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "79410000",
+        "79416000",
+        "79421000",
+        "79956000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "808165-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/808165-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YYFDY51QPGMR/documents",
+        "submissionDeadlineDate": "2026-12-22",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "IPA-Management",
+      "buyerName": "Universitätsklinikum Aachen AöR",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "2026-0680-AJ - 1",
+      "description": "Zur Unterstützung bei der Umsetzung des Erweiterungsgebäudes für OP-Säle (EOP) des Universitätsklinikums Aachen AöR wird externes IPA-Management gesucht. Der Auftragnehmer übernimmt die Etablierung und operative Umsetzung projektspezifischer Methoden und Prozesse mit einem besonderen Schwerpunkt auf den Prinzipien des Lean Managements sowie die Koordination und Steuerung der Projektabwicklung mit Fokus auf Termin-, Kosten- und Risikomanagement nach den Prinzipien der Integrierten Projektabwicklung (IPA).",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "79000000",
+        "79400000"
+      ],
+      "placeOfPerformance": {
+        "city": "Aachen",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "808278-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/808278-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YYJDY5120NTY/documents",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Beschaffung von stationären und mobilen Schleppsystemen an Pegeln",
+      "buyerName": "Landesamt für Natur, Umwelt und Klima NRW",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-22T09:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "51;1002083310;EU",
+      "description": "Das Landesamt für Natur, Umwelt und Klima in Nordrhein-Westfalen (LANUK) betreibt zur Erfüllung seiner gewässerkundlichen Aufgaben gemäß § 89 Landeswassergesetz Nordrhein Westfalen (LWG NRW) Pegelmessstellen, die teilweise mit Seilkrananlagen zur Durchführung gewässerkundlicher Messungen ausgestattet sind. Aufgrund des Alters der vorhandenen Seilkrananlagen sowie der damit verbundenen wirtschaftlichen und betrieblichen Rahmenbedingungen ist vorgesehen, diese Anlagen schrittweise zurückzubauen und durch Schleppsysteme zu ersetzen. Die Schleppsysteme dienen dem Einsatz an Pegelmessstellen zur Durchführung gewässerkundlicher Messungen und sollen einen zuverlässigen und bedarfsgerechten Betrieb gewährleisten. Die Beschaffung wird in zwei getrennten Losen durchgeführt: - Los 1 - Stationäre Schleppsysteme: Lieferung von fünf Schleppsystemen für den dauerhaften bzw. stationären Einsatz an Pegelmessstellen. Aufgrund der vorgesehenen Einsatzbedingungen können die Systeme eine höhere Eigenmasse aufweisen. - Los 2 - Mobile Schleppsysteme: Lieferung von fünf mobilen Schleppsystemen, die für einen flexiblen Einsatz an unterschiedlichen Pegelmessstellen vorgesehen sind. Aufgrund der erforderlichen Transportfähigkeit und Handhabung ist bei diesen Systemen ein geringeres Eigengewicht erforderlich.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "38420000",
+        "38421000",
+        "42410000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "808931-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/808931-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YY7DY5Z9PBN0/documents",
+        "submissionDeadlineDate": "2026-12-22",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Schulungen zum IT-Grundschutz-Praktiker",
+      "buyerName": "Ministerium für Heimat, Kommunales, Bau und Digitalisierung des Landes Nordrhein-Westfalen",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-21T13:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "MHKBD",
+      "description": "Das Land Nordrhein-Westfalen, vertreten durch das Ministerium für Heimat, Kommunales, Bau und Digitalisierung des Landes Nordrhein-Westfalen (MHKBD), beabsichtigt, die Informationssicherheit auf Landesebene sowie auf kommunaler Ebene zu stärken. Um dieses Ziel zu erreichen, möchte das MHKBD im Rahmen des Projekts \"Durchführung von IT-Grundschutz-Praktiker Schulungen NRW\" den Landesbehörden sowie allen nordrhein-westfälischen Kommunen und von diesen beherrschten IT-Dienstleistern eine Möglichkeit anbieten, wirtschaftlich, einfach und effizient ihre Informationssicherheitskenntnisse durch gezielte Schulungen der Informationssicherheitsbeauftragten/-verantwortlichen und gegebenenfalls zusätzlich des IT-Betriebspersonals zum IT-Grundschutz-Praktiker auszubauen. Der Auftragnehmer muss die IT-Grundschutz-Praktiker Schulungen nach den Vorgaben des BSI durchführen. Darüber hinaus sollen die Teilnehmer der Schulungen untereinander vernetzt werden, um so den fachlichen (Erfahrungs-)Austausch im Bereich Informationssicherheit zu stärken.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "72000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "809141-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/809141-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXPNY6CD2MY/documents",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Ausbau B 61 Herford, Vergabe von Ausführungsplanung und Ausschreibungsleistungen von Verkehrsanlagen",
+      "buyerName": "Landesbetrieb Straßenbau NRW - Regionalniederlassung Ostwestfalen-Lippe",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "01-24-5033",
+      "description": "Vergabe von Ausführungsplanung und Ausschreibungsleistungen von Verkehrsanlagen im Zuge der B 61, Nordring in Herford",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71322500",
+        "71311220"
+      ],
+      "placeOfPerformance": {
+        "city": "Herford",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "809153-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/809153-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7Y51DYR25CYJJ/documents",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Beschaffung und Ausstattung eines Fahrzeugs zum Einsatz als Mobiler Tele-Arbeitsplatz (MoTA)",
+      "buyerName": "Universitätsklinikum Aachen AöR",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-08T14:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026-0559-CL",
+      "description": "Die Uniklinik RWTH Aachen hat im Förderaufruf \"Demonstration und Erprobung innovativer Lösungen für die zivile Sicherheit\" vom Bundesministerium für Forschung, Technologie und Raumfahrt Fördergelder für den Ausbau eines Fahrzeuges erhalten. Das Fahrzeug, auch \"Mobiler Tele-Arbeitsplatz\" ist ein Kastenfahrzeug oder Kofferaufbau, der ähnlich einem Einsatzleitwagen 1,5 mit zwei Arbeitsplätzen und einem Besprechungsbereich ausgestattet sein soll. Das Fahrzeug soll neben der technischen Ausstattung für Telemedizin, Telepflege und Tele-experten-gestützte Anwendungen mit Demonstratoren vorangegangener Forschungsprojekte ausgestattet werden. Damit soll es in zukünftigen Studien zum Einsatz kommen und eine Infrastruktur für technische Anwendungen, bspw. Telemedizin bieten. Die Ausschreibung umfasst die Beschaffung des Fahrgestells inkl. Ausbau als Kastenwagen oder Kofferaufbau mit einem Antennenmast und einer dachmontierten Drohne.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "34114000",
+        "34144200"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "52074",
+        "city": "Aachen",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "810202-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/810202-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YYJDYYVQZ3V8/documents",
+        "submissionDeadlineDate": "2026-12-08",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Raummodulanlage",
+      "buyerName": "RWTH Aachen University",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-21T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "30001202",
+      "description": "Raummodulanlage",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45223820"
+      ],
+      "placeOfPerformance": {
+        "city": "Aldenhoven",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "810274-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/810274-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YD8DYH0CH3C8/documents",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "GPU Serversystem",
+      "buyerName": "Hochschule Rhein-Waal",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-21T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "222242 Case86131001",
+      "description": "GPU Serversystem",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "48822000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "47475",
+        "city": "Kamp-Lintfort",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "810281-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/810281-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS0YRADY5PG9B4R/documents",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "RV ANÜ Testmanagement",
+      "buyerName": "Landesbetrieb Information und Technik NRW",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-01T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "26-D200100014",
+      "description": "RV ANÜ Testmanagement",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "79620000"
+      ],
+      "placeOfPerformance": {
+        "city": "Düsseldorf",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "810712-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/810712-2026",
+        "documentUrl": "https://www.evergabe.nrw.de/VMPSatellite/notice/CXS7YYJYT1AVGJN9/documents",
+        "submissionDeadlineDate": "2026-12-01",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    }
+  ]
+}

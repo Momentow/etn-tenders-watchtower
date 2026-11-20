@@ -1,0 +1,566 @@
+{
+  "portalKey": "vergabe.autobahn.de",
+  "baseUrl": "https://vergabe.autobahn.de",
+  "family": "netserver-54321",
+  "generatedAt": "2026-11-20T21:05:10+01:00",
+  "expectedTenders": [
+    {
+      "id": null,
+      "url": null,
+      "title": "Verkehrssicherung Ersatzneubau BW 404a",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Nordbayern",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-18T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "A023860026500",
+      "description": "Verkehrssicherung Ersatzneubau BW 404a",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45233110"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "91161",
+        "city": "BAB A9, AS Allersberg - AS Hilpoltstein, Bau-km 403+800 bis 404+450",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "801076-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801076-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1cf7c7286-60511b9804a85d6",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Abbruch DB-BW_Widerlager West",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Westfalen",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-18T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "232-26-0067",
+      "description": "A43 AS Bochum/Riemke (o) - AK Herne, Abbruch DB-BW_Widerlager West",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45000000",
+        "45110000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "44629",
+        "city": "Herne",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "801266-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801266-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1ca0386ae-11f3a56dae0be12e",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "A1 - Vorerkundung von Ausbaustoffen auf der Tank- u. Rastanlage Wildeshausen",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Nordwest",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-17T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "NOW-2026-0469",
+      "description": "A1 - Vorerkundung von Ausbaustoffen auf der Tank- u. Rastanlage Wildeshausen",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "37581",
+        "city": "Bad Gandersheim",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "801580-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801580-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a182e81f64-400664837a9901e1",
+        "submissionDeadlineDate": "2026-12-17",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "RV Anmietung von Brückenbesichtigungsgeräten 2027-2028",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL West",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-17T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "260-26-3033",
+      "description": "RV Anmietung von Brückenbesichtigungsgeräten 2027-2028",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71631450",
+        "71350000",
+        "45500000"
+      ],
+      "_match": {
+        "tedPublicationNumber": "802129-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/802129-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a19c8c4909-10a8fcdc2b528648",
+        "submissionDeadlineDate": "2026-12-17",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "A4_138,8-147,3_Bauüberwachung",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Ost",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-18T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "A1030100108",
+      "description": "Bauüberwachung für die Erhaltungsmaßnahme A4, km 138,8 - 147,3 beider Richtungsfahrbahnen (RF)",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71521000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "07545",
+        "city": "Gera",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "803142-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/803142-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1a6225596-76215a99f52e04b6",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "A38, FBE zw. AS Lützen und AS Leipzig-Südost, Teilabschnitt 2, km 193,6-201,3, RF Dresden, Los 1 Erd- und Oberbau",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Ost",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-01T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "A1028700203",
+      "description": "A38, FBE zw. AS Lützen und AS Leipzig-Südost, Teilabschnitt 2, km 193,6-201,3, RF Dresden, Los 1 Erd- und Oberbau",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45112000",
+        "45233110",
+        "45233252"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "04109",
+        "city": "Leipzig",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "803318-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/803318-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a10bf8b51a-6c554b28e852cb56",
+        "submissionDeadlineDate": "2026-12-01",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Los 1 - Verkehrssicherung AS IL-Ost -AS Oberhof; VS",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Ost",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-22T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "A1036700201",
+      "description": "Verkehrssicherung von Baustellen kürzerer und längerer Dauer auf der BAB A71",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45233110"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "98559",
+        "city": "AS Ilmenau-Ost - AS Oberhof",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "804936-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/804936-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1aa434751-48b31dc7a6a1107",
+        "submissionDeadlineDate": "2026-12-22",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "A7, Ersatzneubau der Bauwerke BW24007, BW24008 und BW24009",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Nord",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "VV-LG-A0759010204",
+      "description": "Gegenstand dieser funktionalen Ausschreibung ist der Ersatzneubau von drei Brücken einschl. einer Lärmschutzwand, zwei Verkehrszeichenkragarmen sowie einer Verkehrszeichenbrücke auf der BAB 7 zwischen den AS Ramelsloh und AS Thieshope.",
+      "procedureType": "negotiated",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45000000",
+        "45233124"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "21220",
+        "city": "Seevetal",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "805442-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/805442-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a0e83b45af-5a68c682131e3235",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Inspektion Kanalsystem A 81 Dettensee AM RW 2027",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Südwest",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-22T10:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "SUW-2026-0042",
+      "description": "Inspektion Entwässerung A 81 Dettensee AM EN - 2027",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "90000000"
+      ],
+      "_match": {
+        "tedPublicationNumber": "805617-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/805617-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1c0df0d9b-331b0512a0f3dd17",
+        "submissionDeadlineDate": "2026-12-22",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "A6 Ost 6-streifiger Ausbau (A6-4), SVGeo Bauwerke",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Südwest",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-22T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "A.03000.50.016",
+      "description": "Sachverständiger Geotechnik Aufstellung Erkundungskonzept Erstellung Ausschreibungsunterlagen Bohrleistungen Geotechnische Fachbauleitung Erarbeitung Geotechnischer Berichte und Entwurfsberichte Erstellung Hydrogeologisches Gutachten Erstellung BIM-Baugrundmodelle",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71332000",
+        "71300000"
+      ],
+      "_match": {
+        "tedPublicationNumber": "805937-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/805937-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1d445941e-7c45f2b57c1b8804",
+        "submissionDeadlineDate": "2026-12-22",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "A81/A6 Umbau AK Weinsberg - Erhebung Fauna und Flora (BTK)",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Südwest",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-22T09:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "A.03771.00.003",
+      "description": "Für die bauliche Sanierung in Form der erforderlichen Brückenersatzneubauten des Autobahnkreuzes (AK) Weinsberg plant die Autobahn GmbH des Bundes, Niederlassung Südwest im Bereich des AK Weinsberg (A6/A81) aufgrund des fortgeschrittenen Planungsstandes Untersuchungen der Fauna und Flora (Biotoptypenkartierung - BTK).",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "70329",
+        "city": "Stuttgart",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "806749-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/806749-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1ceb6b2d3-4bc6b66639813b9b",
+        "submissionDeadlineDate": "2026-12-22",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "A 7, Grubenleerung auf unbewirtschafteten Rastanlagen",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Nord",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2026-12-18T08:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "OV-RD-B4009103",
+      "description": "Lerrung abflussloser Sammelgruben und Abtransport des Schmutzwassers zur Behandlung in einer zentralen Kläranlage",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "90470000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "24850",
+        "city": "Schleswig",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "807255-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/807255-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1e96bf51b-2da0228771a0bee2",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "A9_163,9-167,5_Los 1 Verkehrssicherung",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Ost",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-22T10:30:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "A1016800201",
+      "description": "A009_163,9-170,9_ERH_bRF_AS21a-22_E2_B, A9_163-167_Los 1 Verkehrssicherung",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45233110"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "07607",
+        "city": "Eisenberg",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "807427-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/807427-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1af929686-75e1c862c8dee4c7",
+        "submissionDeadlineDate": "2026-12-22",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "A10, km 34 bis 49 beide RF, 2.BA - Kontrollvermessung",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Nordost",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-21T09:30:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "NOO-2026-0331",
+      "description": "A10, km 34 bis 49 beide RF, 2.BA - Kontrollvermessung",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71000000",
+        "71355000"
+      ],
+      "_match": {
+        "tedPublicationNumber": "808058-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/808058-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1abe453d4-4632b8e961ed0c13",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Landschaftspflegerischer Begleitplan (LBP) + Besondere Leistung + Fauna",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Nordbayern",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-21T09:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "A021930026150_",
+      "description": "Grundleistungen Landschaftspflegerischer Begleitplan (LBP) gem. HOAI inkl. besondere Leistungen für das genannte Vorhaben.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "90712000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": ".",
+        "city": "Nürnberg",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "808240-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/808240-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1caabb1e9-67e7025cc8250059",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Planung, Errichtung und Betrieb von öffentlich zugänglicher Schnellladeinfrastruktur für E-Lkw auf bewirtschafteten Rastanlagen an den Bundesautobahnen in der Bundesrepublik Deutschland",
+      "buyerName": "Die Autobahn GmbH des Bundes",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "2026_10185",
+      "description": "Gegenstand dieses Vergabeverfahrens ist die Planung, die Errichtung und der Betrieb eines Schnellladenetzes für E-Lkw auf bewirtschafteten Rastanlagen entlang der Bundesautobahnen. Die Auftragsvergabe erfolgt durch die Autobahn GmbH des Bundes (in Vertretung für den Bund) im Rahmen einer Ausschreibung mit fünf Losen und betrifft die Planung, die Errichtung und den Betrieb einer verbindlichen Anzahl von MCS- und CCS- Ladepunkten auf insgesamt 227 Standorten. Jedem Los werden im Vergabeverfahren Standorte/Rastanlagen mit einer Anzahl an Ladepunkten zugeordnet. Es ist zudem möglich, dass die Anzahl der Ladepunkte auf einzelnen Rastanlagen während der Vertragslaufzeit steigt oder dass zusätzliche Rastanlagen hinzukommen; dies gilt insbesondere, wenn der Bedarf an Ladeinfrastruktur gegenüber der aktuellen Planung weiter steigen sollte und dieser Bedarf nicht durch den eigenwirtschaftlichen Aufbau ohne staatliche Förderung gedeckt wird. Für Ladepunkte zum Zwischenladen sind Nennladeleistungen von jeweils mindestens 400 kW (CCS-Ladepunkt) und 1 MW (MCS-Ladepunkt) vorgesehen. Die Ladeleistung kann durch die gemeinsame Nutzung von Leistungseinheiten mehrerer Ladepunkte sichergestellt werden. Für MCS-Ladepunkte muss in diesem Fall die an einem Ladepunkt vorgehaltene Leistung unter Berücksichtigung mehrerer zeitgleicher Ladevorgänge an denselben Leistungseinheiten zugeordneten Ladepunkten mindestens 800 kW (Mindestladeleistung) betragen; an CCS-Ladepunkten zum Übernachtladen beträgt dieser Wert mindestens 150 kW (Mindestladeleistung). Die Herstellung der dafür erforderlichen Netzanschlüsse beantragt die Autobahn GmbH des Bundes bei dem jeweils zuständigen Netzbetreiber.",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "63712600"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "10557",
+        "city": "Berlin",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "809005-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/809005-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1cef59ff3-75456bec3e3235f3",
+        "submissionDeadlineDate": null,
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Landschaftspflegerische Begleitplanung und faunist. Erhebungen",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL West",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-15T11:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "265-26-1229",
+      "description": "Landschaftspflegerische Begleitplanung und faunist. Erhebungen",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "66539",
+        "city": "Neunkirchen",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "809052-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/809052-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1abeadf1e-438393830b930d7f",
+        "submissionDeadlineDate": "2026-12-15",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Rahmenvereinbarung für ext. Bauüberwachung",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Rheinland",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-08T09:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "02-26-5502",
+      "description": "Rahmenvereinbarung für ext. Bauüberwachung für div. Bauprojekte des AG",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "45149",
+        "city": "Essen",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "810462-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/810462-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a13b18eeb5-7c5e80c525f29fae",
+        "submissionDeadlineDate": "2026-12-08",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "A45 | Bauüberwachung Dortmund",
+      "buyerName": "Die Autobahn GmbH des Bundes - NL Westfalen",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-21T08:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "233-26-3044",
+      "description": "Es wird ein Bauüberwacher für alle Arbeiten, die im Zusammenhang mit dem Ersatzneubau des Brückenbauwerks A45/A448 im Autobahnkreuz Dortmund-Witten stehen, benötigt",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71000000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "44379",
+        "city": "Dortmund",
+        "countryCode": "DE"
+      },
+      "_match": {
+        "tedPublicationNumber": "810912-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/810912-2026",
+        "documentUrl": "https://vergabe.autobahn.de/NetServer/TenderingProcedureDetails?function=_Details&TenderOID=54321-Tender-1a1d47ea73e-73ca93a100995f14",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "deu",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    }
+  ]
+}

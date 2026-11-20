@@ -1,0 +1,467 @@
+{
+  "portalKey": "marches.megalis.bretagne.bzh",
+  "baseUrl": "https://marches.megalis.bretagne.bzh",
+  "family": "atexo-mpe",
+  "generatedAt": "2026-11-20T21:05:10+01:00",
+  "expectedTenders": [
+    {
+      "id": null,
+      "url": null,
+      "title": "Travaux de rénovation, réhabilitation et aménagement des bâtiments communaux de la Ville de Lorient.",
+      "buyerName": "VILLE DE LORIENT",
+      "publicationDate": "2026-11-16",
+      "submissionDeadline": "2026-12-14T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "26238-26251 - 26266",
+      "description": "Travaux de rénovation, réhabilitation et aménagement des bâtiments communaux de la Ville de Lorient.",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45262660",
+        "45262522",
+        "45261210",
+        "45261420",
+        "45421000",
+        "45442100",
+        "45421152",
+        "45421146",
+        "45432100",
+        "45310000",
+        "45330000",
+        "45000000",
+        "45111100",
+        "45223220"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "56100",
+        "city": "LORIENT",
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "793706-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/793706-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh/",
+        "submissionDeadlineDate": "2026-12-14",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Fourniture de carburants",
+      "buyerName": "SAINT-MALO AGGLOMERATION",
+      "publicationDate": "2026-11-16",
+      "submissionDeadline": "2026-12-09T15:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026_26",
+      "description": "Les contrats concernent la fourniture de carburants et de prestations annexes pour plusieurs acheteurs groupés.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "09130000",
+        "30163100",
+        "31224500",
+        "09300000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "795850-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/795850-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh/entreprise/consultation/240567?orgAcronyme=a9o",
+        "submissionDeadlineDate": "2026-12-09",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Suivi-animation dans la cadre du PACTE-Programme d’Intérêt général de Lannion-Trégor Communauté",
+      "buyerName": "Lannion Trégor Communauté",
+      "publicationDate": "2026-11-16",
+      "submissionDeadline": "2026-12-15T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026080",
+      "description": "Suivi-animation dans la cadre du PACTE-Programme d’Intérêt général de Lannion-Trégor Communauté",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71300000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "796534-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/796534-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh/entreprise",
+        "submissionDeadlineDate": "2026-12-15",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "MISSIONS D'URBANISME TACTIQUE SUR LE TERRITOIRE DE BREST MÉTROPOLE",
+      "buyerName": "Brest Métropole",
+      "publicationDate": "2026-11-17",
+      "submissionDeadline": "2026-12-18T12:00:00+02:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "Brest-M-DCP-2026-5146",
+      "description": "La consultation a pour objet de conclure un accord-cadre mixte mono-attributaire s'exécutant par l'émission de bons de commande et par marchés subséquents concernant les missions d'urbanisme tactique sur le territoire de la métropole de Brest.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71410000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "29200",
+        "city": "Brest",
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "797416-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/797416-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh/?page=Entreprise.EntrepriseAdvancedSearch&AllCons&id=243635&orgAcronyme=a1e",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Accord-cadre à bons de commande de maîtrise d'œuvre de travaux de renouvellement, d'extension et de modification du réseau de distribution d'eau potable 2028-2032",
+      "buyerName": "Collectivité Eau du Bassin Rennais",
+      "publicationDate": "2026-11-17",
+      "submissionDeadline": null,
+      "status": null,
+      "documents": null,
+      "referenceNumber": "CEBR26-035",
+      "description": "Accord-cadre à bons de commande de maîtrise d'œuvre de travaux de renouvellement, d'extension et de modification du réseau de distribution d'eau potable 2028-2032 : - Lot n°1 - Secteur Nord Est : 2 500 000 € HT - Lot n°2 - Secteur Sud : 2 000 000 € HT - Lot n°3 - Secteur Nord-Ouest : 1 000 000 € HT",
+      "procedureType": "negotiated",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71300000",
+        "71310000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "798061-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/798061-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh/entreprise/consultation/244392?orgAcronyme=g9d",
+        "submissionDeadlineDate": null,
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Contrôle CVC",
+      "buyerName": "SAINT-MALO AGGLOMERATION",
+      "publicationDate": "2026-11-17",
+      "submissionDeadline": "2026-12-02T15:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026_28",
+      "description": "Contrôle CVC",
+      "procedureType": "other",
+      "contractNature": "services",
+      "cpvCodes": [
+        "50700000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "798737-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/798737-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh/entreprise/consultation/244395?orgAcronyme=a9o",
+        "submissionDeadlineDate": "2026-12-02",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Nettoyage des locaux, vitreries et mobilier urbain",
+      "buyerName": "Roche aux Fées Communauté",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-21T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "M26-004 NETTOYAGE LOCAUX",
+      "description": "Nettoyage des locaux, vitreries et mobilier urbain de Roche aux Fées Communauté",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "90911200",
+        "90911300"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "35240",
+        "city": "Retiers",
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "800440-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/800440-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh/entreprise",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Missions d'études et de maîtrise d'œuvre pour l'extension, la requalification et la densification des parcs d'activités",
+      "buyerName": "COMMUNAUTE DE COMMUNES ARC SUD BRETAGNE",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-21T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026-ADT-MOE-ETUDES-PAE",
+      "description": "Missions d'études et de maîtrise d'œuvre pour l'extension, la requalification et la densification des parcs d'activités",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "71000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "800925-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/800925-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh/,",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "FOURNITURE D'UN LOGICIEL DE GESTION DES SUBVENTIONS ET PRESTATIONS ASSOCIEES AU DEPARTEMENT D'ILLE-ET-VILAINE",
+      "buyerName": "Conseil Départemental d'Ille et Vilaine",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-24T16:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026-TIC-DSN-0147",
+      "description": "L'accord-cadre sera exécuté par l'émission de bons de commande. Les prestations sont réglées par des prix unitaires",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "48900000"
+      ],
+      "placeOfPerformance": {
+        "postalCode": "35042",
+        "city": "Rennes Cedex",
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "801610-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/801610-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh",
+        "submissionDeadlineDate": "2026-12-24",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Reconstruction sur site du collège La Gautrais à Plouasne - relance lots 4 et 7",
+      "buyerName": "Département des Côtes d'Armor",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-21T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "CD22-2026-COLL8-EC",
+      "description": "Reconstruction sur site du collège La Gautrais à Plouasne - relance lots 4 et 7",
+      "procedureType": "open",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45262500",
+        "45261410",
+        "45261420"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "802432-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/802432-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Fourniture de carburants",
+      "buyerName": "SAINT-MALO AGGLOMERATION",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-16T15:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026_26",
+      "description": "Les contrats concernent la fourniture de carburants et de prestations annexes pour plusieurs acheteurs groupés.",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "09130000",
+        "30163100",
+        "31224500",
+        "09300000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "802561-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/802561-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh/entreprise/consultation/240567?orgAcronyme=a9o",
+        "submissionDeadlineDate": "2026-12-16",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Fourniture et livraison de vêtements de travail, chaussures et d’équipements de protection individuelle",
+      "buyerName": "Ville de Quimper",
+      "publicationDate": "2026-11-18",
+      "submissionDeadline": "2026-12-18T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "0B26086",
+      "description": "Fourniture et livraison de vêtements de travail, chaussures et d’équipements de protection individuelle",
+      "procedureType": "open",
+      "contractNature": "supplies",
+      "cpvCodes": [
+        "18110000",
+        "18830000",
+        "18143000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "803636-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/803636-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh/entreprise/consultation/240222?orgAcronyme=a1h",
+        "submissionDeadlineDate": "2026-12-18",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "RECONSTRUCTION DE L'ECOLE MATERNELLE DU GROUPE SCOLAIRE JEAN FERRAT",
+      "buyerName": "Mairie de Trélivan",
+      "publicationDate": "2026-11-19",
+      "submissionDeadline": "2027-01-08T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "202606",
+      "description": "Le présent marché a pour objet l'exécution des travaux de démolition, curage, désamiantage et reconstruction de l'école maternelle du groupe scolaire « Jean Ferrat » à Trélivan (22100), bâtiment de plain-pied à haute performance environnementale et réemploi.",
+      "procedureType": "other",
+      "contractNature": "works",
+      "cpvCodes": [
+        "45214200",
+        "45421000",
+        "45000000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "806124-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/806124-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh/entreprise/consultation/244528?orgAcronyme=c1n",
+        "submissionDeadlineDate": "2027-01-08",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Traitement des plâtres collectés en bennes dans les déchèteries de Quimper Bretagne Occidentale",
+      "buyerName": "Quimper Bretagne Occidentale",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-21T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "5E26086",
+      "description": "La présente consultation a pour objet le traitement des plâtres collectés dans les déchèteries de l'agglomération.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "90500000",
+        "90513000",
+        "44613700"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "808045-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/808045-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh/entreprise/consultation/243461?orgAcronyme=f9g",
+        "submissionDeadlineDate": "2026-12-21",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    },
+    {
+      "id": null,
+      "url": null,
+      "title": "Réalisation, impression et distribution du magazine de Saint-Brieuc Armor Agglomération",
+      "buyerName": "Saint-Brieuc Armor Agglomération",
+      "publicationDate": "2026-11-20",
+      "submissionDeadline": "2026-12-24T12:00:00+01:00",
+      "status": "open",
+      "documents": null,
+      "referenceNumber": "2026059",
+      "description": "Les prestations concernent la réalisation, l’impression et la distribution du magazine trimestriel de Saint-Brieuc Armor Agglomération, comportant 36 pages, imprimé et distribué à environ 88 000 exemplaires. De manière exceptionnelle, le magazine pourra comporter plus ou moins de pages et des hors-séries envisagés ; le nombre d’exemplaires imprimés et distribués pourra varier en fonction de l’évolution notamment démographique du territoire. Le marché comporte 3 lots.",
+      "procedureType": "open",
+      "contractNature": "services",
+      "cpvCodes": [
+        "79824000",
+        "79822500",
+        "79820000"
+      ],
+      "placeOfPerformance": {
+        "countryCode": "FR"
+      },
+      "_match": {
+        "tedPublicationNumber": "810482-2026",
+        "tedUrl": "https://ted.europa.eu/en/notice/-/detail/810482-2026",
+        "documentUrl": "https://marches.megalis.bretagne.bzh/entreprise/consultation/244285?orgAcronyme=f9t",
+        "submissionDeadlineDate": "2026-12-24",
+        "titleLang": "fra",
+        "note": "Values come from the TED notice, not from the portal. Match a portal tender by documentUrl/referenceNumber/title; wording and lot-level dates may differ."
+      }
+    }
+  ]
+}
