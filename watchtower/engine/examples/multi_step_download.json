@@ -1,0 +1,37 @@
+{
+  "timezone": "Europe/Madrid",
+  "country": "ES",
+  "software": "mock-multi-step",
+  "list": {
+    "kind": "html",
+    "request": {"url": "http://localhost:8081/multistep/licitaciones"},
+    "items": {"by": "css", "expr": "div.licitacion"},
+    "pagination": {"kind": "param", "name": "pagina", "start": 1, "step": 1}
+  },
+  "detail": {
+    "link": {"by": "css", "expr": "a.anuncio", "attr": "href"},
+    "resolve": [
+      {"action": "follow", "link": {"by": "css", "expr": "a.ver-licitacion", "attr": "href"}}
+    ]
+  },
+  "fields": {
+    "id": {"by": "css", "expr": "span.expediente"},
+    "title": {"by": "css", "expr": "h3"},
+    "buyerName": {"by": "css", "expr": "span.organo"},
+    "publicationDate": {"by": "css", "expr": "span.publicado", "formats": ["%d/%m/%Y"]},
+    "submissionDeadline": {"by": "css", "expr": "td.plazo", "on": "detail", "formats": ["%d/%m/%Y %H:%M"]},
+    "referenceNumber": {"by": "css", "expr": "span.expediente"},
+    "cpvCodes": {"by": "css", "expr": "td.cpv", "on": "detail", "many": true, "pattern": "(\\d{8})"}
+  },
+  "documents": {
+    "on": "detail",
+    "links": {"by": "css", "expr": "a.pliego", "attr": "href", "many": true},
+    "names": {"by": "css", "expr": "a.pliego", "many": true},
+    "bundle": {"by": "css", "expr": "a.descargar-todo", "attr": "href"},
+    "exclude": "(?i)\\.html?$",
+    "per_link": [
+      {"action": "follow", "link": {"by": "css", "expr": "a.descarga-directa", "attr": "href"}}
+    ]
+  },
+  "notes": "List links go to a notice summary (the trap), which links on to the real tender page. Each document link opens a download page with the actual file link; a 'download all' ZIP is preferred when present."
+}

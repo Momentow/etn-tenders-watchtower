@@ -1,0 +1,56 @@
+{
+  "timezone": "Europe/Paris",
+  "country": "FR",
+  "software": "mock-js-api",
+  "list": {
+    "kind": "json",
+    "request": {
+      "url": "http://localhost:8081/js/api/consultations",
+      "params": {"etat": "en_cours", "taille": "50"},
+      "headers": {"Accept": "application/json"}
+    },
+    "items": {"by": "jsonpath", "expr": "$.resultats[*]"},
+    "pagination": {"kind": "param", "name": "page", "start": 0, "step": 1}
+  },
+  "detail": {
+    "url_template": "http://localhost:8081/js/api/consultations/{id}",
+    "format": "json"
+  },
+  "fields": {
+    "id": {"by": "jsonpath", "expr": "$.id"},
+    "url": {"by": "jsonpath", "expr": "$.lienPublic"},
+    "title": {"by": "jsonpath", "expr": "$.objet"},
+    "buyerName": {"by": "jsonpath", "expr": "$.acheteur.nom"},
+    "publicationDate": {"by": "jsonpath", "expr": "$.datePublication"},
+    "submissionDeadline": {"by": "jsonpath", "expr": "$.dateLimiteRemise", "formats": ["%d/%m/%Y %H:%M"]},
+    "referenceNumber": {"by": "jsonpath", "expr": "$.reference"},
+    "description": {"by": "jsonpath", "expr": "$.description", "on": "detail"},
+    "procedureType": {
+      "by": "jsonpath",
+      "expr": "$.procedure",
+      "map": {"AOO": "open", "AOR": "restricted", "PN": "negotiated", "MAPA": "other"}
+    },
+    "contractNature": {
+      "by": "jsonpath",
+      "expr": "$.categorie",
+      "map": {"TRAVAUX": "works", "SERVICES": "services", "FOURNITURES": "supplies"}
+    },
+    "cpvCodes": {"by": "jsonpath", "expr": "$.cpv[*]", "many": true, "on": "detail"},
+    "placeOfPerformance": {
+      "postalCode": {"by": "jsonpath", "expr": "$.lieuExecution.codePostal", "on": "detail"},
+      "city": {"by": "jsonpath", "expr": "$.lieuExecution.ville", "on": "detail"},
+      "countryCode": {"by": "const", "expr": "FR"}
+    }
+  },
+  "documents": {
+    "on": "detail",
+    "links": {"by": "jsonpath", "expr": "$.dce[*].url", "many": true},
+    "names": {"by": "jsonpath", "expr": "$.dce[*].nomFichier", "many": true}
+  },
+  "status": {
+    "value": {"by": "jsonpath", "expr": "$.statut"},
+    "withdrawn": ["^ANNULEE$"],
+    "closed": ["^CLOTUREE$"]
+  },
+  "notes": "JS app; its list and detail come from a JSON API found in the browser's captured XHR, so no browser is needed for reads. Publication date is ISO 8601; the deadline is local Paris time."
+}

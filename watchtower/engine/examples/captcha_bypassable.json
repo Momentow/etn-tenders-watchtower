@@ -1,0 +1,31 @@
+{
+  "timezone": "Europe/Amsterdam",
+  "country": "NL",
+  "software": "mock-captcha",
+  "list": {
+    "kind": "html",
+    "request": {"url": "http://localhost:8081/captcha/aanbestedingen"},
+    "steps": [
+      {"action": "submit", "form": "form#zoeken", "values": {"q": ""}}
+    ],
+    "items": {"by": "css", "expr": "article.aanbesteding"},
+    "render": true
+  },
+  "detail": {
+    "link": {"by": "css", "expr": "h2 a", "attr": "href"},
+    "render": true
+  },
+  "fields": {
+    "id": {"by": "css", "expr": "article.aanbesteding", "attr": "data-id"},
+    "title": {"by": "css", "expr": "h2 a"},
+    "buyerName": {"by": "css", "expr": ".aanbestedende-dienst"},
+    "publicationDate": {"by": "css", "expr": "time.publicatie", "attr": "datetime"},
+    "submissionDeadline": {"by": "css", "expr": "time.sluiting", "attr": "datetime", "on": "detail"}
+  },
+  "documents": {
+    "on": "detail",
+    "links": {"by": "css", "expr": "a[download]", "attr": "href", "many": true},
+    "include": "(?i)\\.(pdf|zip|docx?|xlsx?)(\\?|$)"
+  },
+  "notes": "The page shows a captcha widget, but the list renders and the documents download without solving it, so the portal is readable (not Blocked). Needs the browser: the list is built by JS. The search form is submitted empty to list everything."
+}

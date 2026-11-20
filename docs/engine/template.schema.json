@@ -1,0 +1,1076 @@
+{
+  "$defs": {
+    "CursorPagination": {
+      "additionalProperties": false,
+      "description": "JSON APIs that return a cursor/token for the next page; it's sent back in parameter `name`.",
+      "properties": {
+        "kind": {
+          "const": "cursor",
+          "title": "Kind",
+          "type": "string"
+        },
+        "cursor": {
+          "$ref": "#/$defs/Extract"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "location": {
+          "default": "query",
+          "enum": [
+            "query",
+            "form",
+            "json"
+          ],
+          "title": "Location",
+          "type": "string"
+        },
+        "max_pages": {
+          "default": 50,
+          "maximum": 500,
+          "minimum": 1,
+          "title": "Max Pages",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "cursor",
+        "name"
+      ],
+      "title": "CursorPagination",
+      "type": "object"
+    },
+    "DateRule": {
+      "additionalProperties": false,
+      "description": "A date or date-time. `formats`: strptime patterns tried in order (e.g. `%d.%m.%Y %H:%M`); empty = ISO 8601.\n\nTimes without an offset are read in the template's `timezone`.",
+      "properties": {
+        "by": {
+          "enum": [
+            "css",
+            "xpath",
+            "jsonpath",
+            "regex",
+            "const"
+          ],
+          "title": "By",
+          "type": "string"
+        },
+        "expr": {
+          "title": "Expr",
+          "type": "string"
+        },
+        "attr": {
+          "default": "text",
+          "title": "Attr",
+          "type": "string"
+        },
+        "many": {
+          "default": false,
+          "title": "Many",
+          "type": "boolean"
+        },
+        "pattern": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pattern"
+        },
+        "map": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Map"
+        },
+        "join": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Join"
+        },
+        "on": {
+          "default": "item",
+          "enum": [
+            "item",
+            "detail"
+          ],
+          "title": "On",
+          "type": "string"
+        },
+        "formats": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Formats",
+          "type": "array"
+        }
+      },
+      "required": [
+        "by",
+        "expr"
+      ],
+      "title": "DateRule",
+      "type": "object"
+    },
+    "Detail": {
+      "additionalProperties": false,
+      "description": "One page per tender.\n\nIts URL comes from `link` (on the list item) or `url_template` (from item fields, e.g.\n`https://portal.example/api/tenders/{id}`). `resolve` hops from a summary/notice page to the real tender page.",
+      "properties": {
+        "link": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Extract"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "url_template": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url Template"
+        },
+        "format": {
+          "default": "html",
+          "enum": [
+            "html",
+            "json"
+          ],
+          "title": "Format",
+          "type": "string"
+        },
+        "render": {
+          "default": false,
+          "title": "Render",
+          "type": "boolean"
+        },
+        "resolve": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/FollowStep"
+          },
+          "title": "Resolve",
+          "type": "array"
+        }
+      },
+      "title": "Detail",
+      "type": "object"
+    },
+    "Documents": {
+      "additionalProperties": false,
+      "description": "Where a tender's documents are.\n\n`links` (`many: true`) gives the document URLs; `names`, if given, gives file names in the same order.\n`bundle`, if it finds a link (\"download all as ZIP\"), is used instead of `links`.\n`include` / `exclude` are regexes on the URL or name. `per_link` hops from each link through intermediate\npages (a download page, a disclaimer) to the file itself.",
+      "properties": {
+        "on": {
+          "default": "detail",
+          "enum": [
+            "item",
+            "detail"
+          ],
+          "title": "On",
+          "type": "string"
+        },
+        "links": {
+          "$ref": "#/$defs/Extract"
+        },
+        "names": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Extract"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "bundle": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Extract"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "include": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Include"
+        },
+        "exclude": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exclude"
+        },
+        "per_link": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/FollowStep"
+          },
+          "title": "Per Link",
+          "type": "array"
+        }
+      },
+      "required": [
+        "links"
+      ],
+      "title": "Documents",
+      "type": "object"
+    },
+    "Extract": {
+      "additionalProperties": false,
+      "description": "Pull a value out of a scope (an HTML element/page or a JSON value).\n\n- `css` / `xpath`: relative to the scope element. `attr` picks what to read: `text` (default, whitespace collapsed),\n  `html`, or an attribute name such as `href`. URLs from `href`/`src` are made absolute by the engine.\n- `jsonpath`: relative to the scope JSON value, e.g. `$.title` or `$.lots[*].cpv`.\n- `regex`: searched in the scope's text (HTML) or serialised JSON; group 1 if the pattern has a group.\n- `const`: `expr` is the value itself.\n\nThen, in order: `pattern` (regex on each value, group 1 if present, no match → dropped), `map` (exact label → value,\nunmapped → dropped), and for `many` results `join` (into one string). A single-value extract takes the first match.",
+      "properties": {
+        "by": {
+          "enum": [
+            "css",
+            "xpath",
+            "jsonpath",
+            "regex",
+            "const"
+          ],
+          "title": "By",
+          "type": "string"
+        },
+        "expr": {
+          "title": "Expr",
+          "type": "string"
+        },
+        "attr": {
+          "default": "text",
+          "title": "Attr",
+          "type": "string"
+        },
+        "many": {
+          "default": false,
+          "title": "Many",
+          "type": "boolean"
+        },
+        "pattern": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pattern"
+        },
+        "map": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Map"
+        },
+        "join": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Join"
+        }
+      },
+      "required": [
+        "by",
+        "expr"
+      ],
+      "title": "Extract",
+      "type": "object"
+    },
+    "FieldRule": {
+      "additionalProperties": false,
+      "description": "An `Extract` plus where it runs: the list item (default) or the tender's detail page.",
+      "properties": {
+        "by": {
+          "enum": [
+            "css",
+            "xpath",
+            "jsonpath",
+            "regex",
+            "const"
+          ],
+          "title": "By",
+          "type": "string"
+        },
+        "expr": {
+          "title": "Expr",
+          "type": "string"
+        },
+        "attr": {
+          "default": "text",
+          "title": "Attr",
+          "type": "string"
+        },
+        "many": {
+          "default": false,
+          "title": "Many",
+          "type": "boolean"
+        },
+        "pattern": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pattern"
+        },
+        "map": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Map"
+        },
+        "join": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Join"
+        },
+        "on": {
+          "default": "item",
+          "enum": [
+            "item",
+            "detail"
+          ],
+          "title": "On",
+          "type": "string"
+        }
+      },
+      "required": [
+        "by",
+        "expr"
+      ],
+      "title": "FieldRule",
+      "type": "object"
+    },
+    "Fields": {
+      "additionalProperties": false,
+      "description": "Contract tender fields (names as in the API contract). Leave out what the portal doesn't show.",
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/FieldRule"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "title": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "buyerName": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "publicationDate": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DateRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "submissionDeadline": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DateRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "referenceNumber": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "description": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "procedureType": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "contractNature": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "cpvCodes": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "placeOfPerformance": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PlaceRules"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "Fields",
+      "type": "object"
+    },
+    "FollowStep": {
+      "additionalProperties": false,
+      "description": "Go to the URL a link on the current page points to.",
+      "properties": {
+        "action": {
+          "const": "follow",
+          "title": "Action",
+          "type": "string"
+        },
+        "link": {
+          "$ref": "#/$defs/Extract"
+        }
+      },
+      "required": [
+        "action",
+        "link"
+      ],
+      "title": "FollowStep",
+      "type": "object"
+    },
+    "HtmlList": {
+      "additionalProperties": false,
+      "description": "Tender list in HTML. `items` selects one element per tender; item fields are relative to it.",
+      "properties": {
+        "kind": {
+          "const": "html",
+          "title": "Kind",
+          "type": "string"
+        },
+        "request": {
+          "$ref": "#/$defs/Request"
+        },
+        "steps": {
+          "default": [],
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "follow": "#/$defs/FollowStep",
+                "submit": "#/$defs/SubmitStep"
+              },
+              "propertyName": "action"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/FollowStep"
+              },
+              {
+                "$ref": "#/$defs/SubmitStep"
+              }
+            ]
+          },
+          "title": "Steps",
+          "type": "array"
+        },
+        "items": {
+          "$ref": "#/$defs/Extract"
+        },
+        "pagination": {
+          "default": {
+            "kind": "none"
+          },
+          "discriminator": {
+            "mapping": {
+              "cursor": "#/$defs/CursorPagination",
+              "next_link": "#/$defs/NextLinkPagination",
+              "none": "#/$defs/NoPagination",
+              "param": "#/$defs/ParamPagination"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/NoPagination"
+            },
+            {
+              "$ref": "#/$defs/NextLinkPagination"
+            },
+            {
+              "$ref": "#/$defs/ParamPagination"
+            },
+            {
+              "$ref": "#/$defs/CursorPagination"
+            }
+          ],
+          "title": "Pagination"
+        },
+        "render": {
+          "default": false,
+          "title": "Render",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "kind",
+        "request",
+        "items"
+      ],
+      "title": "HtmlList",
+      "type": "object"
+    },
+    "JsonList": {
+      "additionalProperties": false,
+      "description": "Tender list from a JSON API (often found through the browser's captured XHR). Fetched directly, no browser.",
+      "properties": {
+        "kind": {
+          "const": "json",
+          "title": "Kind",
+          "type": "string"
+        },
+        "request": {
+          "$ref": "#/$defs/Request"
+        },
+        "items": {
+          "$ref": "#/$defs/Extract"
+        },
+        "pagination": {
+          "default": {
+            "kind": "none"
+          },
+          "discriminator": {
+            "mapping": {
+              "cursor": "#/$defs/CursorPagination",
+              "next_link": "#/$defs/NextLinkPagination",
+              "none": "#/$defs/NoPagination",
+              "param": "#/$defs/ParamPagination"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/NoPagination"
+            },
+            {
+              "$ref": "#/$defs/NextLinkPagination"
+            },
+            {
+              "$ref": "#/$defs/ParamPagination"
+            },
+            {
+              "$ref": "#/$defs/CursorPagination"
+            }
+          ],
+          "title": "Pagination"
+        }
+      },
+      "required": [
+        "kind",
+        "request",
+        "items"
+      ],
+      "title": "JsonList",
+      "type": "object"
+    },
+    "NextLinkPagination": {
+      "additionalProperties": false,
+      "description": "Follow a \"next page\" link (HTML) or a next-page URL in the response (JSON) until there is none.",
+      "properties": {
+        "kind": {
+          "const": "next_link",
+          "title": "Kind",
+          "type": "string"
+        },
+        "link": {
+          "$ref": "#/$defs/Extract"
+        },
+        "max_pages": {
+          "default": 50,
+          "maximum": 500,
+          "minimum": 1,
+          "title": "Max Pages",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "link"
+      ],
+      "title": "NextLinkPagination",
+      "type": "object"
+    },
+    "NoPagination": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "none",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "title": "NoPagination",
+      "type": "object"
+    },
+    "ParamPagination": {
+      "additionalProperties": false,
+      "description": "Count a parameter up: page numbers (`start: 1, step: 1`) or offsets (`start: 0, step: 50`).\n\n`location` says where it goes: the query string, the form body, or a top-level key of the JSON body.\nStops at the first page with no items, or with no item ids that weren't seen already.",
+      "properties": {
+        "kind": {
+          "const": "param",
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "location": {
+          "default": "query",
+          "enum": [
+            "query",
+            "form",
+            "json"
+          ],
+          "title": "Location",
+          "type": "string"
+        },
+        "start": {
+          "default": 1,
+          "title": "Start",
+          "type": "integer"
+        },
+        "step": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Step",
+          "type": "integer"
+        },
+        "max_pages": {
+          "default": 50,
+          "maximum": 500,
+          "minimum": 1,
+          "title": "Max Pages",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "name"
+      ],
+      "title": "ParamPagination",
+      "type": "object"
+    },
+    "PlaceRules": {
+      "additionalProperties": false,
+      "properties": {
+        "postalCode": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "city": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "countryCode": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRule"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "PlaceRules",
+      "type": "object"
+    },
+    "Request": {
+      "additionalProperties": false,
+      "description": "An HTTP request. No credentials: login-protected portals are `Blocked`, not read.",
+      "properties": {
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "method": {
+          "default": "GET",
+          "enum": [
+            "GET",
+            "POST"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {},
+          "title": "Params",
+          "type": "object"
+        },
+        "headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {},
+          "title": "Headers",
+          "type": "object"
+        },
+        "form": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Form"
+        },
+        "json_body": {
+          "anyOf": [
+            {},
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Json Body"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "title": "Request",
+      "type": "object"
+    },
+    "StatusRule": {
+      "additionalProperties": false,
+      "description": "How the portal marks a tender's status. `value` reads the label; `withdrawn` / `closed` are case-insensitive\nregexes on it. No match → `open` (the pipeline still closes tenders past their deadline or no longer listed).",
+      "properties": {
+        "value": {
+          "$ref": "#/$defs/FieldRule"
+        },
+        "withdrawn": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Withdrawn",
+          "type": "array"
+        },
+        "closed": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Closed",
+          "type": "array"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "StatusRule",
+      "type": "object"
+    },
+    "SubmitStep": {
+      "additionalProperties": false,
+      "description": "Submit a form on the current page: the engine keeps its hidden inputs (e.g. ASP.NET __VIEWSTATE), applies\n`values`, and sends it to the form's action with its method.",
+      "properties": {
+        "action": {
+          "const": "submit",
+          "title": "Action",
+          "type": "string"
+        },
+        "form": {
+          "title": "Form",
+          "type": "string"
+        },
+        "values": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {},
+          "title": "Values",
+          "type": "object"
+        }
+      },
+      "required": [
+        "action",
+        "form"
+      ],
+      "title": "SubmitStep",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "format_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Format Version",
+      "type": "integer"
+    },
+    "timezone": {
+      "title": "Timezone",
+      "type": "string"
+    },
+    "country": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Country"
+    },
+    "software": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Software"
+    },
+    "list": {
+      "discriminator": {
+        "mapping": {
+          "html": "#/$defs/HtmlList",
+          "json": "#/$defs/JsonList"
+        },
+        "propertyName": "kind"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/HtmlList"
+        },
+        {
+          "$ref": "#/$defs/JsonList"
+        }
+      ],
+      "title": "List"
+    },
+    "detail": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Detail"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "fields": {
+      "$ref": "#/$defs/Fields"
+    },
+    "documents": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Documents"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "status": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/StatusRule"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "notes": {
+      "default": "",
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "timezone",
+    "list",
+    "fields"
+  ],
+  "title": "Template",
+  "type": "object"
+}
