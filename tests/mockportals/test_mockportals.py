@@ -17,6 +17,7 @@ from selectolax.lexbor import LexborHTMLParser as HTMLParser
 
 from mockportals import ENTRY, EXPECTED_STATE, VARIANTS, create_app, expected_tenders
 from mockportals.files import LARGE_SIZE
+from watchtower.engine.examples import EXAMPLES, load_example
 
 
 @pytest.fixture
@@ -337,3 +338,11 @@ def test_serve_runs_a_real_server():
         assert httpx.get(s.url + "/ssr/ausschreibungen").status_code == 200
         s.app.state.variants["ssr"] = "gone"
         assert httpx.get(s.url + "/ssr/ausschreibungen").status_code == 410
+
+
+@pytest.mark.parametrize("name", EXAMPLES)
+def test_every_example_template_list_request_answers(client, name):
+    """Guards against drift between watchtower/engine/examples/*.json (T-008) and the mocks."""
+    req = load_example(name).list.request
+    r = client.request(req.method or "GET", str(req.url), params=req.params or None, data=req.form or None)
+    assert r.status_code == 200
