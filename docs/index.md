@@ -11,5 +11,6 @@ Watchtower attaches to public-procurement portals on its own, watches over them,
 - [HTTP API](api/http-api.md): implementation notes on the contract
 - [Store](core/store.md): the database layer
 - [Network layer](net/network.md): politeness, HTTP client, browser, block detection
+- [Engine executor](engine/executor.md): how a template is run, errors, normalisation, snapshots
 - [Test-portal registry](portals/registry.md) · [Mock portals](test-portals/mock-portals.md)
 - [Model usage & cost](cost/model-usage.md)
