@@ -24,7 +24,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-012 | Document downloader & `/files` store | documents | done | Lavrtajx | feat/T-012-document-downloader | T-004, T-007 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
 | T-013 | Mock portals + mutated variants | test-portals | done | OrangeCanvas705 | feat/T-013-mock-portals | T-003 | [requirements](docs/spec/requirements.md#finding-test-portals) |
 | T-014 | Agent runtime & tools | agent | done | Momentow | feat/T-014-agent-runtime | T-007, T-009 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
-| T-015 | Scenario `generate_template` (Attach) | agent | in-progress | OrangeCanvas705 | feat/T-015-generate-template | T-013, T-014 | [0002](docs/decisions/0002-architecture.md) |
+| T-015 | Scenario `generate_template` (Attach) | agent | todo | | feat/T-015-generate-template | T-013, T-014 | [0002](docs/decisions/0002-architecture.md) |
 | T-016 | Scenario `investigate` (Notice → Repair) | repair | review | Lavrtajx | feat/T-016-investigate | T-011, T-013, T-014 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
 | T-017 | Read pipeline wiring (attach / read / heal flows) | core | done | OrangeCanvas705 | feat/T-017-read-pipeline | T-006, T-009, T-010, T-011, T-012 | [0002 read pipeline](docs/decisions/0002-architecture.md#read-pipeline-no-model-call) |
 | T-018 | Dashboard | dashboard | done | Lavrtajx | feat/T-018-dashboard | T-005 | [requirements](docs/spec/requirements.md) |
@@ -176,6 +176,41 @@ truth for engine/E2E tests. Use `selectolax.lexbor` (the old `selectolax.parser`
 - [ ] Doesn't report `Blocked` when a captcha is shown but the list and documents still download without it (try first, then decide)
 - [ ] Produces a validated template for every mock portal kind
 **Refs:** [0002](docs/decisions/0002-architecture.md)
+**Notes (handover, 2026-11-21):** released by OrangeCanvas705; Momentow finishes it. The work so far is on the pushed branch
+`feat/T-015-generate-template` (4 commits on top of master, rebased; no PR yet). Continue on that branch rather than
+starting over: `git fetch && git switch feat/T-015-generate-template && git rebase origin/master`.
+- **Done on the branch:**
+  - `watchtower/agent/attach.py`: `ATTACH_PROMPT` (find the real list first, `detail.resolve` for summary pages, a
+    `status` rule when the portal lists everything, try first then decide on captchas), `ATTACH_BUDGET` (30 calls / 400k
+    tokens / 900 s), `run_attach(url, client, browser, *, budget, model) -> AttachRun(outcome, run)` and
+    `make_generate_template(client, browser)`, which returns the `GenerateTemplate` callable the pipeline takes.
+  - Outcome mapping: accepted template → `TemplateFound`; `report_blocked` → `Blocked`, **except** when a template in
+    `ctx.tried` already had a GOOD dry run (documents included) → `TemplateFound` with that template (deterministic
+    try-first override; notes say the model reported a block); `report_transient` → `Unreadable("the portal could not be
+    read right now (…)")`; `report_unreadable` → `Unreadable`; budget/no closing call → `Unreadable` naming the limit;
+    missing `OPENAI_API_KEY` → `Unreadable("the agent is not configured (…)")`, never a crash.
+  - `app.py` (own commit): `pipeline.configure(..., scenarios=Scenarios(generate_template=make_generate_template(http,
+    browser)))`; `investigate` stays `stubs.investigate` until T-016 swaps it in the same call.
+  - `watchtower/agent/probe.py` now runs `run_attach` (the draft prompt is gone) and prints the raw run and the mapped outcome.
+  - Tests: `tests/agent/test_attach.py` (8, scripted model, mock portals, incl. a full `attach` job through the pipeline
+    → `serving`, 20 tenders). Full suite 462 passed, ruff clean, zensical build clean.
+  - Docs: new `docs/agent/attach.md` (+ nav, docs home); `docs/core/pipeline.md` and `docs/agent/runtime.md` updated.
+- **Acceptance status:**
+  - Item 1: `AttachOutcome` mapping is done and tested. Summary-page handling and login detection rely on the prompt and
+    the T-014 tools (`try_template`'s document check flags login/captcha pages); **not yet seen working with a real model**.
+  - Item 2: the deterministic override is tested with the `ssr` template (scripted). It was **not** tested on the
+    `captcha` mock, because `captcha_bypassable` needs `render: true` (a real browser on a real socket:
+    `mockportals.testing.serve()` + `BrowserPool`), which the in-process ASGI tests can't do.
+  - Item 3: **open. No live run was made**: there was no `OPENAI_API_KEY` in OrangeCanvas705's environment.
+- **Next steps:**
+  1. Live runs with a key in `.env`: `uv run --env-file .env python -m watchtower.agent.probe --mock <kind>` for
+     `ssr js multistep form captcha` (expect `TemplateFound`) and `login robot` (expect `Blocked`). Up to 400k tokens each.
+  2. Tune `ATTACH_PROMPT` from what fails. If something can be computed, make it a T-022 tool instead of more prompt.
+  3. Optional: an opt-in browser test of the `captcha` kind with `serve()` + `BrowserPool` (Chromium is in the image).
+  4. Tick the boxes, open the PR (title `T-015: Scenario generate_template (Attach)`), set this task to `review`.
+- **Open points:** `Transient` during attach maps to `Unreadable`, so the portal goes `failed` and isn't retried on its
+  own (raising instead would use the scheduler's retries, but the final reason would read "the attach crashed").
+  Template reuse by software fingerprint is T-022 (`find_template_for_software`), not wired here.
 
 ### T-016 — Scenario `investigate`
 **Acceptance:**
