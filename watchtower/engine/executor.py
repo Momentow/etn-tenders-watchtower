@@ -108,6 +108,18 @@ async def run_template(
     return await _Run(template, client, browser).run(limit)
 
 
+async def first_list_page(template: Template, client: PoliteClient, browser: BrowserPool | None) -> Page:
+    """The first list page exactly as `run_template` reaches it (request + navigation steps), unparsed.
+
+    For the agent's tools: shows the results of a search form or a rendered page. Raises `ReadError`.
+    """
+    lst = template.list
+    render = lst.kind == "html" and lst.render
+    run = _Run(template, client, browser)
+    req = await run._navigate(Req.of(lst.request), getattr(lst, "steps", []), render)
+    return await run.fetch(req, render=render)
+
+
 class _Run:
     def __init__(self, template: Template, client: PoliteClient, browser: BrowserPool | None):
         self.t = template
