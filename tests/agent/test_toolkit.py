@@ -2,6 +2,7 @@
 as the model would call it."""
 
 import json
+import re
 
 import httpx
 import pytest
@@ -106,10 +107,12 @@ async def test_summarize_json_gives_key_statistics(ctx):
 
 async def test_map_field_labels_builds_detail_rules(ctx):
     out = await call(ctx(), "map_field_labels", url=f"{B}/ssr/ausschreibung/VG-2026-002")
-    assert (
-        "submissionDeadline ← 'Angebotsfrist' = '06.12.2026 11:00' | "
-        '{"by": "xpath", "expr": "//dt[normalize-space()=\'Angebotsfrist\']/following-sibling::dd[1]"}'
-    ) in out
+    # Mock dates move with today's date, so match the mapping and the rule, not the value.
+    assert re.search(
+        r"submissionDeadline ← 'Angebotsfrist' = '\d\d\.\d\d\.\d{4} \d\d:\d\d' \| "
+        + re.escape('{"by": "xpath", "expr": "//dt[normalize-space()=\'Angebotsfrist\']/following-sibling::dd[1]"}'),
+        out,
+    )
     out = await call(ctx(), "map_field_labels", url=f"{B}/form/przetarg/ZP.271.001")
     assert '"pattern": "Zamawiający:?\\\\s*(.+)"' in out
 
