@@ -50,6 +50,7 @@ nav:
       - API contract: spec/api-contract.md
   - Modules:
       - HTTP API: api/http-api.md
+      - Dashboard: dashboard/dashboard.md
       - Store: core/store.md
       - Scheduler and state machine: core/scheduler.md
       - Read pipeline: core/pipeline.md
