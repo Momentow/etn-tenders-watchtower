@@ -27,6 +27,8 @@ MAX_DEPTH = 40
 _DROP = frozenset(
     {"script", "style", "noscript", "svg", "template", "link", "meta", "head", "iframe", "canvas", "path"}
 )
+# Siblings that each mean something different even when they look alike (columns of a row): never collapsed.
+_NEVER_COLLAPSE = frozenset({"td", "th", "dt", "dd", "option"})
 _INLINE = frozenset({"span", "b", "strong", "em", "i", "small", "font", "u", "abbr", "sup", "sub", "br", "wbr", "mark"})
 _KEEP_ATTRS = ("href", "action", "method", "name", "type", "value", "rel", "role", "for", "src", "datetime", "title")
 _HIDDEN_VALUE_CHARS = 20
@@ -106,8 +108,8 @@ def _walk(el: Any, depth: int, lines: list[str]) -> None:
     i = 0
     while i < len(kids):
         sig = _signature(kids[i])
-        j = i
-        while j < len(kids) and _signature(kids[j]) == sig:
+        j = i + 1
+        while j < len(kids) and _signature(kids[j]) == sig and kids[i].tag not in _NEVER_COLLAPSE:
             j += 1
         run = j - i
         for k in kids[i : i + (run if run <= KEEP_REPEATS + 1 else KEEP_REPEATS)]:

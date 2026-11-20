@@ -62,7 +62,7 @@ class BudgetExceeded(Exception):
 
 async def run_agent(
     agent: Agent[Any],
-    input: str,
+    input: str | list[Any],
     *,
     max_turns: int,
     settings: AgentSettings | None = None,
@@ -83,17 +83,31 @@ async def run_agent(
 
 
 class _BudgetHooks(RunHooks[AgentContext]):
-    """Enforces the token budget after each model call, logs tool calls, and keeps the run's usage (it survives an
-    aborted run)."""
+    """Enforces the token budget after each model call and logs tool calls. Usage is summed over every `Runner.run`
+    of the scenario (a nudge starts a new one) and survives an aborted run."""
 
     def __init__(self, max_tokens: int):
         self.max_tokens = max_tokens
-        self.usage: Any = None
+        self.done: list[Any] = []  # usage of finished runs
+        self.current: Any = None
+
+    def total(self, field: str) -> int:
+        runs = [*self.done, self.current] if self.current is not None else self.done
+        return sum(getattr(u, field, 0) for u in runs)
+
+    def cached(self) -> int:
+        runs = [*self.done, self.current] if self.current is not None else self.done
+        return sum(_cached(u) for u in runs)
+
+    def next_run(self) -> None:
+        if self.current is not None:
+            self.done.append(self.current)
+            self.current = None
 
     async def on_llm_end(self, context: RunContextWrapper[AgentContext], agent: Agent[Any], response: ModelResponse):
-        self.usage = context.usage
-        used = context.usage.total_tokens
-        log.info("model call %d: %d tokens so far", context.usage.requests, used)
+        self.current = context.usage
+        used = self.total("total_tokens")
+        log.info("model call %d: %d tokens so far", self.total("requests"), used)
         if used > self.max_tokens:
             raise BudgetExceeded(f"{used} tokens used, budget {self.max_tokens}")
 
@@ -104,6 +118,13 @@ class _BudgetHooks(RunHooks[AgentContext]):
 def _stop_when_outcome(ctx: RunContextWrapper[AgentContext], results: list[Any]) -> ToolsToFinalOutputResult:
     done = ctx.context.outcome is not None
     return ToolsToFinalOutputResult(is_final_output=done, final_output="done" if done else None)
+
+
+NUDGE = (
+    "You stopped without ending the run. Continue the task and end it by calling exactly one of the tools that "
+    "submit a template or report an outcome."
+)
+MAX_NUDGES = 2
 
 
 async def run_scenario(
@@ -117,7 +138,10 @@ async def run_scenario(
     reasoning: str | None = "low",
     model: Model | None = None,
 ) -> ScenarioRun:
-    """Run a scenario's agent until a tool records an outcome or the budget runs out. Never raises on budget limits."""
+    """Run a scenario's agent until a tool records an outcome or the budget runs out. Never raises on budget limits.
+
+    A model that answers with text instead of a closing tool call is reminded (up to `MAX_NUDGES` times).
+    """
     agent = Agent[AgentContext](
         name=scenario,
         instructions=instructions(scenario_prompt),
@@ -129,12 +153,23 @@ async def run_scenario(
     started = time.monotonic()
     stop = "no_outcome"
     final_text = ""
+    run_input: str | list[Any] = task
     try:
         async with asyncio.timeout(budget.wall_seconds):
-            result = await run_agent(
-                agent, task, max_turns=budget.max_turns, settings=settings, context=ctx, hooks=hooks, model=model
-            )
-        final_text = str(result.final_output or "")
+            for attempt in range(MAX_NUDGES + 1):
+                turns_left = budget.max_turns - hooks.total("requests")
+                if turns_left <= 0:
+                    stop = "turns"
+                    break
+                hooks.next_run()
+                result = await run_agent(
+                    agent, run_input, max_turns=turns_left, settings=settings, context=ctx, hooks=hooks, model=model
+                )
+                final_text = str(result.final_output or "")
+                if ctx.outcome is not None:
+                    break
+                log.info("no outcome after run %d; nudging: %s", attempt + 1, final_text[:200])
+                run_input = [*result.to_input_list(), {"role": "user", "content": NUDGE}]
     except MaxTurnsExceeded:
         stop = "turns"
     except BudgetExceeded:
@@ -143,14 +178,13 @@ async def run_scenario(
         stop = "time"
     if ctx.outcome is not None:
         stop = "outcome"
-    usage = hooks.usage
     return ScenarioRun(
         outcome=ctx.outcome,
         stop_reason=stop,
-        requests=getattr(usage, "requests", 0),
-        input_tokens=getattr(usage, "input_tokens", 0),
-        cached_tokens=_cached(usage),
-        output_tokens=getattr(usage, "output_tokens", 0),
+        requests=hooks.total("requests"),
+        input_tokens=hooks.total("input_tokens"),
+        cached_tokens=hooks.cached(),
+        output_tokens=hooks.total("output_tokens"),
         seconds=time.monotonic() - started,
         final_text=final_text,
     )

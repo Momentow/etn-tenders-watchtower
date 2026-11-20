@@ -15,10 +15,12 @@ from agents import RunContextWrapper
 from pydantic import ValidationError
 
 from watchtower.agent.context import AgentContext, Fetched
+from watchtower.agent.hints import pagination_hints
 from watchtower.agent.outcomes import Blocked, TemplateFound, Transient, Unreadable
 from watchtower.agent.prune import outline, summarize_json
 from watchtower.agent.registry import tool
 from watchtower.engine import ReadResult, run_template
+from watchtower.engine.executor import first_list_page
 from watchtower.engine.template import Template
 from watchtower.net import detect_block
 from watchtower.validate import check
@@ -186,14 +188,16 @@ async def _dry_run(c: AgentContext, raw: str, sample: int) -> tuple[str, Templat
         return parsed, None
     t = parsed
     lines: list[str] = []
-    problems: list[str] = []
+    problems: list[str] = []  # block submission
+    warnings: list[str] = []  # likely incomplete; fix or rule out before submitting
 
     list_only = _list_only(t)
+    listed = None
     if list_only is not None:
         lr = await run_template(list_only, c.client, c.browser)
-        n = len(lr.tenders)
+        listed = len(lr.tenders)
         lines.append(
-            f"LIST: {n} tenders on {lr.stats.list_pages} list page(s)"
+            f"LIST: {listed} tenders on {lr.stats.list_pages} list page(s)"
             + (" (stopped at the check's page cap; more pages may follow)" if lr.stats.hit_max_pages else "")
             + (f", {lr.stats.duplicate_ids} duplicate ids" if lr.stats.duplicate_ids else "")
             + (f", {lr.stats.skipped_items} items without id" if lr.stats.skipped_items else "")
@@ -201,10 +205,13 @@ async def _dry_run(c: AgentContext, raw: str, sample: int) -> tuple[str, Templat
         if lr.tenders:
             lines.append("  first ids: " + ", ".join(x.id for x in lr.tenders[:5]))
         problems += [f"list: {e}" for e in lr.errors]
-        if n == 0:
+        if listed == 0:
             problems.append("the list reads no tenders")
-        if lr.stats.duplicate_ids and lr.stats.duplicate_ids >= n:
+        if lr.stats.duplicate_ids and lr.stats.duplicate_ids >= listed:
             problems.append("pagination repeats the same items")
+
+    if listed == 0 or t.list.pagination.kind == "none":
+        lines += await _first_page_checks(c, t, listed, warnings)
 
     rr = await run_template(t, c.client, c.browser, limit=sample)
     lines.append(f"SAMPLE: {len(rr.tenders)} tender(s) read with details ({rr.stats.requests} requests)")
@@ -218,11 +225,56 @@ async def _dry_run(c: AgentContext, raw: str, sample: int) -> tuple[str, Templat
     missing_title = [x.id for x in rr.tenders if not x.title]
     if missing_title:
         problems.append(f"no title for {', '.join(missing_title[:3])}")
+    if rr.tenders:
+        warnings += _completeness_warnings(t, rr)
 
     good = not problems
     c.tried[_canonical(t)] = good
-    lines.append("VERDICT: GOOD — ready to submit" if good else "VERDICT: NOT GOOD\n- " + "\n- ".join(problems[:10]))
+    if warnings:
+        lines.append("WARNINGS (fix each, or be sure it doesn't apply to this portal):\n- " + "\n- ".join(warnings))
+    lines.append("VERDICT: GOOD" if good else "VERDICT: NOT GOOD\n- " + "\n- ".join(problems[:10]))
     return "\n".join(lines), t
+
+
+async def _first_page_checks(c: AgentContext, t: Template, listed: int | None, warnings: list[str]) -> list[str]:
+    """Look at the first list page as the engine reaches it: show it when nothing was read, find missed pagination."""
+    try:
+        page = await first_list_page(t, c.client, c.browser)
+    except Exception as e:  # ReadError, or a missing browser
+        return [f"  (could not load the first list page: {_short_err(e)})"]
+    out = []
+    if listed == 0:
+        if "json" in page.headers.get("content-type", "") or page.text.lstrip()[:1] in ("{", "["):
+            out.append("  first list page (JSON) as the engine sees it:\n" + _describe(_as_fetched(page), None, 2500))
+        else:
+            out.append("  first list page as the engine sees it:\n" + outline(page.text, page.url, max_chars=2500))
+    if t.list.pagination.kind == "none":
+        hints = pagination_hints(page.text, page.url, listed)
+        if hints:
+            warnings.append(
+                "the list page shows more pages but the template has no pagination, so later pages are missed: "
+                + "; ".join(hints)
+            )
+    return out
+
+
+def _as_fetched(page: Any) -> Fetched:
+    return Fetched(page.url, page.status, page.headers.get("content-type", ""), page.text)
+
+
+def _completeness_warnings(t: Template, r: ReadResult) -> list[str]:
+    out = []
+    n = len(r.tenders)
+    if not any(x.documents for x in r.tenders):
+        where = "the detail page" if t.detail else "the list row"
+        out.append(
+            f"no documents on any of the {n} sampled tenders: look for document links (or a page that lists them) on "
+            f"{where}; leave `documents` out only if the portal publishes none"
+        )
+    for f in ("buyerName", "publicationDate", "submissionDeadline"):
+        if all(getattr(x, f) is None for x in r.tenders):
+            out.append(f"`{f}` is empty on every sampled tender: add a rule if the portal shows it anywhere")
+    return out
 
 
 def _parse_template(raw: str) -> Template | str:

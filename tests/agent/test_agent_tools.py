@@ -127,3 +127,31 @@ async def test_budgets_stop_the_run(make_ctx, budget, reason):
     turns = [[call("fetch", url=f"{BASE}/ssr/")] for _ in range(10)]
     run = await run_scenario("attach", "Attach.", "go", make_ctx(), model=ScriptedModel(turns), budget=budget)
     assert run.outcome is None and run.stop_reason == reason
+
+
+async def test_a_text_answer_is_nudged_until_the_run_ends_with_a_tool(make_ctx):
+    model = ScriptedModel(
+        [
+            [say("I think the portal is fine.")],
+            [call("report_unreadable", reason="No tender list on the site.")],
+        ]
+    )
+    run = await run_scenario("attach", "Attach.", "go", make_ctx(), model=model)
+    assert run.stop_reason == "outcome" and run.requests == 2 and run.input_tokens == 200
+
+
+async def test_nudges_are_limited(make_ctx):
+    model = ScriptedModel([[say("done")] for _ in range(10)])
+    run = await run_scenario("attach", "Attach.", "go", make_ctx(), model=model)
+    assert run.outcome is None and run.stop_reason == "no_outcome" and run.requests == 3
+
+
+async def test_dry_run_warns_about_missed_pagination_documents_and_fields(make_ctx):
+    t = json.loads(example("search_form"))
+    t["list"]["pagination"] = {"kind": "none"}
+    del t["documents"], t["fields"]["publicationDate"]
+    report, _ = await core._dry_run(make_ctx(), json.dumps(t), 2)
+    assert "VERDICT: GOOD" in report  # warnings don't block, they steer
+    assert "numbered page control <button> '2' name=\"strona\"" in report
+    assert "no documents on any of the 2 sampled tenders" in report
+    assert "`publicationDate` is empty on every sampled tender" in report
