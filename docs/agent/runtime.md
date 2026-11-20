@@ -57,7 +57,7 @@ attributes (`href`, `name`, `value`, `rel`, `data-*`…; hidden input values cut
 same-shaped siblings to the first two plus `… ×N more tr.row`. Table cells, `dt`/`dd` and options are never collapsed:
 each column means something different. Output is capped (9,000 characters by default) with a hint to use `focus`.
 
-## Adding tools (T-022)
+## Adding tools
 
 ```python
 # watchtower/agent/tools/pagination.py: any module in this package is loaded automatically
