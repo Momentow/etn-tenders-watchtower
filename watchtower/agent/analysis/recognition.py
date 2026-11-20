@@ -240,7 +240,7 @@ def labelled_values(scope: HtmlScope, limit: int = 40) -> list[LabelledValue]:
         if not label or not value or len(label) > _LABEL_CHARS or label in seen:
             return
         seen.add(label)
-        pattern = re.escape(label) + r":?\s*(.+)" if label_in_text else None
+        pattern = re.escape(label).replace("\\ ", " ") + r":?\s*(.+)" if label_in_text else None
         out.append(LabelledValue(label, value[:120], field_for_label(label), xpath, pattern))
 
     root = scope.el

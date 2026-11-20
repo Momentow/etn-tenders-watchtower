@@ -167,7 +167,10 @@ def classify_links(scope: HtmlScope) -> list[LinkGroup]:
 def _kind_of(a: Any, url: str) -> str:
     text = collapse(a.text_content())
     parts = urlsplit(url)
-    if a.get("download") is not None or _DOC_EXT.search(parts.path) or _DOC_WORDS.search(parts.path + " " + text):
+    if a.get("download") is not None or _DOC_EXT.search(parts.path):
+        return "document"
+    # Words alone ("Descarga", "Downloads") also name menu entries: only count them in the page's content.
+    if _DOC_WORDS.search(parts.path + " " + text) and parts.path.strip("/") and not _in_chrome(a):
         return "document"
     params = {k.lower() for k, _ in parse_qsl(parts.query)}
     if (a.get("rel") or "").lower() == "next" or (params & _PAGE_PARAMS and (text.isdigit() or len(text) <= 12)):
