@@ -30,7 +30,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-018 | Dashboard | dashboard | done | Lavrtajx | feat/T-018-dashboard | T-005 | [requirements](docs/spec/requirements.md) |
 | T-019 | Docs site at `/docs` | docs-site | done | OrangeCanvas705 | docs/T-019-docs-site | T-003 | [0001](docs/decisions/0001-tech-stack.md) |
 | T-022 | Deterministic agent toolkit | agent | in-progress | Momentow | feat/T-022-agent-toolkit | T-007, T-009, T-010 | [0002 toolkit](docs/decisions/0002-architecture.md#agent-toolkit-deterministic-first) |
-| T-023 | Health-check modes (reactive / proactive audit) | notice | in-progress | Lavrtajx | feat/T-023-health-check-modes | T-006, T-016, T-017 | [0002 health checks](docs/decisions/0002-architecture.md#health-check-modes) |
+| T-023 | Health-check modes (reactive / proactive audit) | notice | review | Lavrtajx | feat/T-023-health-check-modes | T-006, T-016, T-017 | [0002 health checks](docs/decisions/0002-architecture.md#health-check-modes) |
 | T-020 | End-to-end tests & real-portal smoke run | test-portals | todo | | | T-001, T-015, T-016, T-017, T-023 | [requirements → Judging](docs/spec/requirements.md#judging) |
 | T-021 | README & demo video script | docs-site | todo | | | T-020 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
 | T-099 | LLM usage metering & cost per portal (last MVP task) | cost | todo | | | T-020 | [model-usage](docs/cost/model-usage.md) |
