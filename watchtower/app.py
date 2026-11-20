@@ -13,6 +13,7 @@ from watchtower.core.handlers import HANDLERS
 from watchtower.core.scheduler import HealthcheckSettings, Scheduler
 from watchtower.core.store import Store
 from watchtower.dashboard.routes import router as dashboard_router
+from watchtower.docs_site import mount_docs
 from watchtower.documents import handler as documents_handler  # registers the download job handler
 from watchtower.net import BrowserPool, HostRateLimiter, PoliteClient
 
@@ -55,4 +56,5 @@ def create_app(*, run_scheduler: bool = True) -> FastAPI:
     app.state.run_scheduler = run_scheduler
     app.include_router(api_router)
     app.include_router(dashboard_router)
+    mount_docs(app)
     return app

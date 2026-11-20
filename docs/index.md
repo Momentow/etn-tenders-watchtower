@@ -21,3 +21,4 @@ Watchtower attaches to public-procurement portals on its own, watches over them,
 - [Agent runtime and tools](agent/runtime.md): model calls, budgets, the tool registry, pruned pages, dry runs
 - [Test-portal registry](portals/registry.md) · [Mock portals](test-portals/mock-portals.md)
 - [Model usage & cost](cost/model-usage.md)
+- [Docs site](docs-site/docs-site.md): how this site is built and served, and how to add a page

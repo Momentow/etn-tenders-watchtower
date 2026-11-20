@@ -1,0 +1,79 @@
+# Docs site (T-019): built with Zensical (`uv run --group docs zensical build`) into site/, served by the app at /docs.
+site_name: Watchtower
+site_description: Attaches to procurement portals, notices when they break, and repairs itself.
+site_url: http://localhost:8080/docs/
+docs_dir: docs
+site_dir: site
+use_directory_urls: true
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.details
+
+nav:
+  - Home: index.md
+  - Specification:
+      - Requirements: spec/requirements.md
+      - API contract: spec/api-contract.md
+  - Modules:
+      - HTTP API: api/http-api.md
+      - Dashboard: dashboard/dashboard.md
+      - Store: core/store.md
+      - Scheduler and state machine: core/scheduler.md
+      - Read pipeline: core/pipeline.md
+      - Network layer: net/network.md
+      - Engine executor: engine/executor.md
+      - Normalisers: engine/normalize.md
+      - Read validation: validate/checks.md
+      - Document downloader: documents/downloader.md
+  - Test portals:
+      - Registry: portals/registry.md
+      - Mock portals: test-portals/mock-portals.md
+  - Cost:
+      - Model usage: cost/model-usage.md
+  - Docs site: docs-site/docs-site.md
+  - Decisions:
+      - decisions/README.md
+      - "0000 Template": decisions/0000-template.md
+      - "0001 Tech stack": decisions/0001-tech-stack.md
+      - "0002 Architecture": decisions/0002-architecture.md
+      - "0003 Template format": decisions/0003-template-format.md
+      - "0004 Storage": decisions/0004-storage.md
+      - "0005 Run requests": decisions/0005-run-requests.md
+      - "0006 Job handlers": decisions/0006-job-handlers-and-state-events.md
+      - "0007 Date parsing": decisions/0007-date-parsing.md
+      - "0008 Read validation": decisions/0008-read-validation.md
+      - "0009 Pipeline outcomes": decisions/0009-pipeline-and-agent-outcomes.md
