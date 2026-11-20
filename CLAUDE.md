@@ -108,6 +108,7 @@ merges PRs on the GitHub web UI.** Remote: `git@github.com:Momentow/etn-tenders-
   | `docs/spec/api-contract.md` | Exact HTTP API, portal states, tender fields |
   | `docs/decisions/` | ADRs: cross-module and architecture decisions |
   | `docs/portals/registry.md` | Our test-portal set and each portal's quirks |
+  | `docs/test-portals/mock-portals.md` | Mock portals, their variants and how to use them in tests |
   | `docs/cost/model-usage.md` | LLM usage and cost per portal |
   | `docs/<area>/` | How each module works (added along with the module) |
 
@@ -159,6 +160,7 @@ Install `uv` (https://docs.astral.sh/uv/). Python 3.12 is pinned in `.python-ver
 ```
 uv sync                                         # install deps (incl. dev group)
 uv run python -m watchtower                     # start the service on :8080
+uv run python -m mockportals                    # mock portals on :8081 (docs/test-portals/mock-portals.md)
 uv run pytest                                   # all tests
 uv run pytest tests/test_smoke.py::test_index_serves_placeholder_page   # single test
 uv run ruff check . && uv run ruff format .     # lint + format

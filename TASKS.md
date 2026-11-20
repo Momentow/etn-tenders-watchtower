@@ -153,11 +153,13 @@ acquistinretepa.it were not fully verified, and the publicprocurement.be documen
 
 ### T-013 — Mock portals + mutated variants
 **Acceptance:**
-- [ ] Locally served portals: SSR list + detail pages, a JS app with a JSON API, a multi-step download, a captcha/login variant
-- [ ] Mutated variants (changed markup, renamed JSON keys, moved pagination) for Notice and Repair tests
-- [ ] A "silent" variant: still parses, but tenders are missed or a field moves (for proactive audit tests)
-- [ ] Usable from pytest and runnable for the demo
-**Refs:** [requirements](docs/spec/requirements.md#finding-test-portals)
+- [x] Locally served portals: SSR list + detail pages, a JS app with a JSON API, a multi-step download, a captcha/login variant
+- [x] Mutated variants (changed markup, renamed JSON keys, moved pagination) for Notice and Repair tests
+- [x] A "silent" variant: still parses, but tenders are missed or a field moves (for proactive audit tests)
+- [x] Usable from pytest and runnable for the demo
+**Refs:** [requirements](docs/spec/requirements.md#finding-test-portals), [mock portals](docs/test-portals/mock-portals.md)
+**Notes:** `uv run python -m mockportals` (:8081). Matches the T-008 example templates; `expected_tenders()` is the ground
+truth for engine/E2E tests. Use `selectolax.lexbor` (the old `selectolax.parser` backend raises ImportError in 1.x).
 
 ### T-014 — Agent runtime & tools
 **Acceptance:**
