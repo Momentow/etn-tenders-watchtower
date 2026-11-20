@@ -24,12 +24,12 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-012 | Document downloader & `/files` store | documents | done | Lavrtajx | feat/T-012-document-downloader | T-004, T-007 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
 | T-013 | Mock portals + mutated variants | test-portals | done | OrangeCanvas705 | feat/T-013-mock-portals | T-003 | [requirements](docs/spec/requirements.md#finding-test-portals) |
 | T-014 | Agent runtime & tools | agent | done | Momentow | feat/T-014-agent-runtime | T-007, T-009 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
-| T-015 | Scenario `generate_template` (Attach) | agent | review | Momentow | feat/T-015-generate-template | T-013, T-014 | [0002](docs/decisions/0002-architecture.md) |
+| T-015 | Scenario `generate_template` (Attach) | agent | done | Momentow | feat/T-015-generate-template | T-013, T-014 | [0002](docs/decisions/0002-architecture.md) |
 | T-016 | Scenario `investigate` (Notice → Repair) | repair | done | Lavrtajx | feat/T-016-investigate | T-011, T-013, T-014 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
 | T-017 | Read pipeline wiring (attach / read / heal flows) | core | done | OrangeCanvas705 | feat/T-017-read-pipeline | T-006, T-009, T-010, T-011, T-012 | [0002 read pipeline](docs/decisions/0002-architecture.md#read-pipeline-no-model-call) |
 | T-018 | Dashboard | dashboard | done | Lavrtajx | feat/T-018-dashboard | T-005 | [requirements](docs/spec/requirements.md) |
 | T-019 | Docs site at `/docs` | docs-site | done | OrangeCanvas705 | docs/T-019-docs-site | T-003 | [0001](docs/decisions/0001-tech-stack.md) |
-| T-022 | Deterministic agent toolkit | agent | review | Momentow | feat/T-022-agent-toolkit | T-007, T-009, T-010 | [0002 toolkit](docs/decisions/0002-architecture.md#agent-toolkit-deterministic-first) |
+| T-022 | Deterministic agent toolkit | agent | done | Momentow | feat/T-022-agent-toolkit | T-007, T-009, T-010 | [0002 toolkit](docs/decisions/0002-architecture.md#agent-toolkit-deterministic-first) |
 | T-023 | Health-check modes (reactive / proactive audit) | notice | review | Lavrtajx | feat/T-023-health-check-modes | T-006, T-016, T-017 | [0002 health checks](docs/decisions/0002-architecture.md#health-check-modes) |
 | T-020 | End-to-end tests & real-portal smoke run | test-portals | todo | | | T-001, T-015, T-016, T-017, T-023 | [requirements → Judging](docs/spec/requirements.md#judging) |
 | T-021 | README & demo video script | docs-site | todo | | | T-020 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
@@ -244,22 +244,22 @@ starting over: `git fetch && git switch feat/T-015-generate-template && git reba
 **Goal:** Shorter, faster, more stable agent runs: the model judges, tools compute. Each tool is registered in the T-014
 registry, returns a compact structured summary, goes through `net`, and has unit tests on the mock portals.
 **Acceptance:**
-- [ ] Discovery:
+- [x] Discovery:
   - `find_repeating_blocks` (candidate tender-list containers + item count + sample)
   - `find_pagination`
   - `classify_links` (detail pages vs documents; multilingual keywords such as Vergabeunterlagen, DCE, pliegos, dokumentacja)
   - `resolve_tender_page` (summary/notice page → the real tender page)
   - `summarize_json` (keys, types, array lengths of a captured endpoint)
-- [ ] Recognition:
+- [x] Recognition:
   - `fingerprint_software` (URL path, footer, `meta generator`) + `find_template_for_software` (reuse a template from another portal with the same fingerprint)
   - `map_field_labels` (multilingual synonym dictionary → contract fields)
   - `probe_dates` (format + time zone from sample strings and the country)
   - `detect_block` (login/captcha; also checks whether the documents download anyway)
-- [ ] Verification:
+- [x] Verification:
   - `test_selector` (CSS/XPath/JSONPath/regex on a sample)
   - `try_template` with field-coverage stats
   - `probe_document` (content type, size, filename, HTML-instead-of-file)
-- [ ] Repair:
+- [x] Repair:
   - `diff_structure` (live page vs the last good snapshot)
   - `diff_outputs` (template version A vs B)
 **Refs:** [0002 toolkit](docs/decisions/0002-architecture.md#agent-toolkit-deterministic-first)
