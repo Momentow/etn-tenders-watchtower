@@ -1,0 +1,11 @@
+{% set now = ov.generated_at if ov is defined else none %}
+{% if r.last_audit %}
+  {% set a = r.last_audit %}
+  <span class="badge {{ 'ok' if a.result == 'ok' else 'failed' }}">{{ "healthy" if a.result == "ok" else "found a problem" }}</span>
+  <div class="muted small" title="{{ a.finished_at|iso }}">{{ a.finished_at|ago(now) }}</div>
+{% else %}
+  <span class="muted">none yet</span>
+{% endif %}
+{% if r.next_audit_at and r.portal.state == "serving" %}
+  <div class="muted small" title="{{ r.next_audit_at|iso }}">next audit {{ r.next_audit_at|due(now) }}</div>
+{% endif %}

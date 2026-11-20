@@ -6,6 +6,7 @@
   <div class="tile"><div class="n">{{ ov.total_tenders }}</div><div class="l">Tenders served</div></div>
 </div>
 
+{% if ov.health %}<p class="muted small">{{ ov.health.summary }}</p>{% endif %}
 <div class="card">
 {% if not ov.rows %}
   <div class="empty">
@@ -21,6 +22,7 @@
         <th class="num">Tenders</th>
         <th>Last success</th>
         <th>Last activity</th>
+        <th>Last audit</th>
       </tr>
     </thead>
     <tbody>
@@ -46,6 +48,7 @@
             {% endif %}
           {% endif %}
         </td>
+        <td>{% include "_audit_cell.html" %}</td>
       </tr>
     {% endfor %}
     </tbody>

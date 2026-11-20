@@ -28,7 +28,10 @@ TRIGGER_LABELS: dict[str, str] = {
 }
 
 # Detail keys shown in their own way; anything else is listed as key/value.
-_KNOWN_DETAIL_KEYS = {"trigger", "problems", "error", "cancelled", "diagnosis"}
+_KNOWN_DETAIL_KEYS = {
+    "trigger", "problems", "error", "cancelled", "diagnosis", "diagnosis_reason", "audit", "audit_finding", "stats",
+    "template_version", "tenders",
+}  # fmt: skip
 _RECENT_RUNS = 20
 
 
@@ -71,6 +74,23 @@ class PortalRow:
     running: RunView | None
     last_repair: RunView | None
     activity: str  # what the system did / is doing, in words
+    last_audit: RunView | None = None
+    next_audit_at: datetime | None = None  # None: reactive mode, or not known
+
+
+@dataclass
+class HealthChecks:
+    """The health-check mode (ADR 0002 → Health-check modes), for the page header."""
+
+    mode: str  # "reactive" | "proactive"
+    interval_hours: float
+
+    @property
+    def summary(self) -> str:
+        if self.mode == "proactive":
+            hours = f"{self.interval_hours:g} h"
+            return f"Proactive health checks: failed reads are repaired, and every portal is audited every {hours}."
+        return "Reactive health checks: failed reads are repaired; no scheduled audits."
 
 
 @dataclass
@@ -79,6 +99,7 @@ class Overview:
     counts: dict[str, int]
     total_tenders: int
     generated_at: datetime
+    health: HealthChecks | None = None
 
 
 @dataclass
@@ -89,13 +110,14 @@ class PortalDetail:
     tenders: list[StoredTender]
     open_tenders: int
     document_count: int
+    health: HealthChecks | None = None
 
 
 def run_view(run: Run) -> RunView:
     details = run.details or {}
     trigger = details.get("trigger")
     if run.kind == "repair":
-        label = "Repair"
+        label = "Repair after audit" if trigger == "audit_finding" else "Repair"
     elif trigger in TRIGGER_LABELS:
         label = TRIGGER_LABELS[trigger]
     else:
@@ -107,6 +129,10 @@ def run_view(run: Run) -> RunView:
     if error is None and details.get("cancelled"):
         error = f"Cancelled: {details['cancelled']}"
     extra = [(k, _short(v)) for k, v in details.items() if k not in _KNOWN_DETAIL_KEYS and v not in (None, "", [], {})]
+    if isinstance(changes := details.get("tenders"), dict):
+        parts = [f"{changes[k]} {k}" for k in ("new", "changed", "closed") if changes.get(k)]
+        extra.insert(0, ("tenders", ", ".join(parts) or "no changes"))
+    version = run.template_version or details.get("template_version")
     return RunView(
         id=run.id,
         kind=run.kind,
@@ -116,17 +142,19 @@ def run_view(run: Run) -> RunView:
         finished_at=run.finished_at,
         result=run.result,
         tender_count=run.tender_count,
-        template_version=run.template_version,
+        template_version=version if isinstance(version, int) else None,
         problems=[str(p) for p in problems],
         error=None if error is None else str(error),
-        diagnosis=_diagnosis(details.get("diagnosis")),
+        diagnosis=_diagnosis(details.get("diagnosis"), details.get("diagnosis_reason")),
         extra=extra,
     )
 
 
-def _diagnosis(value: Any) -> str | None:
+def _diagnosis(value: Any, reason: Any = None) -> str | None:
     if value in (None, "", {}):
         return None
+    if isinstance(value, str) and reason:
+        return f"{value.capitalize()}: {reason}"
     if isinstance(value, dict):
         kind = value.get("kind") or value.get("type")
         why = value.get("reason") or value.get("notes")
@@ -160,7 +188,9 @@ def activity(portal: Portal, last_run: RunView | None, running: RunView | None, 
     return f"{last_run.label} failed"
 
 
-async def _portal_row(store: Store, portal: Portal, runs: list[Run] | None = None) -> tuple[PortalRow, list[RunView]]:
+async def _portal_row(
+    store: Store, portal: Portal, runs: list[Run] | None = None, audits: dict[str, dict] | None = None
+) -> tuple[PortalRow, list[RunView]]:
     views = [run_view(r) for r in (runs if runs is not None else await store.list_runs(portal.id, limit=_RECENT_RUNS))]
     running = next((v for v in views if v.running), None)
     last_run = next((v for v in views if not v.running), None)
@@ -171,13 +201,24 @@ async def _portal_row(store: Store, portal: Portal, runs: list[Run] | None = Non
         running=running,
         last_repair=last_repair,
         activity=activity(portal, last_run, running, last_repair),
+        last_audit=next((v for v in views if v.trigger == "audit" and not v.running), None),
+        next_audit_at=(audits or {}).get(portal.id, {}).get("next_audit_at"),
     )
     return row, views
 
 
-async def overview(store: Store) -> Overview:
+async def _health(scheduler: Any) -> tuple[HealthChecks | None, dict[str, dict]]:
+    if scheduler is None:
+        return None, {}
+    hc = scheduler.healthcheck
+    health = HealthChecks(mode=hc.mode, interval_hours=hc.interval.total_seconds() / 3600)
+    return health, await scheduler.audit_schedule()
+
+
+async def overview(store: Store, scheduler: Any = None) -> Overview:
+    health, audits = await _health(scheduler)
     portals = await store.list_portals()
-    rows = [(await _portal_row(store, p))[0] for p in portals]
+    rows = [(await _portal_row(store, p, audits=audits))[0] for p in portals]
     # Problems first: failed, healing, integrating, then serving; newest first inside a state.
     order = {"failed": 0, "healing": 1, "integrating": 2, "serving": 3}
     rows.sort(key=lambda r: (order.get(r.portal.state, 9), -r.portal.created_at.timestamp()))
@@ -189,14 +230,18 @@ async def overview(store: Store) -> Overview:
         counts=counts,
         total_tenders=sum(r.portal.tender_count for r in rows),
         generated_at=utcnow(),
+        health=health,
     )
 
 
-async def portal_detail(store: Store, portal_id: str, *, with_tenders: bool = True) -> PortalDetail | None:
+async def portal_detail(
+    store: Store, portal_id: str, *, with_tenders: bool = True, scheduler: Any = None
+) -> PortalDetail | None:
     portal = await store.get_portal(portal_id)
     if portal is None:
         return None
-    row, runs = await _portal_row(store, portal, await store.list_runs(portal.id, limit=200))
+    health, audits = await _health(scheduler)
+    row, runs = await _portal_row(store, portal, await store.list_runs(portal.id, limit=200), audits)
     tenders = await store.list_tenders(portal.id) if with_tenders else []
     tenders.sort(key=lambda t: t.last_changed_at, reverse=True)
     return PortalDetail(
@@ -206,6 +251,7 @@ async def portal_detail(store: Store, portal_id: str, *, with_tenders: bool = Tr
         tenders=tenders,
         open_tenders=sum(1 for t in tenders if t.status == "open"),
         document_count=sum(len(t.documents) for t in tenders),
+        health=health,
     )
 
 
@@ -221,6 +267,14 @@ def ago(value: datetime | None, now: datetime | None = None) -> str:
     if seconds < 10:
         return "just now"
     return _span(seconds) + " ago"
+
+
+def due(value: datetime | None, now: datetime | None = None) -> str:
+    """When a scheduled audit is due: "in 5 h", or "due now" once the time has passed."""
+    if value is None:
+        return "—"
+    seconds = int((value - (now or utcnow())).total_seconds())
+    return "due now" if seconds <= 0 else "in " + _span(seconds)
 
 
 def _span(seconds: int) -> str:

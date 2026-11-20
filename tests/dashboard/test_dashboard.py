@@ -161,8 +161,25 @@ def test_run_view_labels_and_details():
             result=result, template_version=None, tender_count=None, details=details, snapshot=None,
         )  # fmt: skip
 
-    audit = views.run_view(run("read", {"trigger": "audit", "stats": {"coverage": 0.9}}))
-    assert audit.label == "Health audit" and audit.extra == [("stats", '{"coverage": 0.9}')]
+    audit = views.run_view(
+        run(
+            "read",
+            {
+                "trigger": "audit",
+                "audit": True,
+                "stats": {"requests": 9},
+                "promoted": 3,
+                "diagnosis": "healthy",
+                "diagnosis_reason": "all 10 tender links were delivered",
+                "tenders": {"new": 2, "changed": 0, "closed": 1},
+                "template_version": 2,
+            },
+        )
+    )
+    assert audit.label == "Health audit" and audit.template_version == 2
+    assert audit.extra == [("tenders", "2 new, 1 closed"), ("promoted", "3")]
+    assert audit.diagnosis == "Healthy: all 10 tender links were delivered"
+    assert views.run_view(run("repair", {"trigger": "audit_finding"})).label == "Repair after audit"
     assert views.duration(audit.duration_seconds) == "1 min 15 s"
     cancelled = views.run_view(run("read", {"trigger": "refresh", "cancelled": "portal deleted"}, "failed"))
     assert cancelled.error == "Cancelled: portal deleted" and cancelled.status == "failed"
@@ -177,3 +194,23 @@ def test_formatters():
     assert views.ago(now - timedelta(days=2), now) == "2 d ago"
     assert views.safe_href("https://a.b") == "https://a.b" and views.safe_href("javascript:x") is None
     assert views.filesize(2048) == "2.0 KB" and views.filesize(12) == "12 B"
+
+
+async def test_health_checks_and_audits_are_shown(client, store, app):
+    pid = await serving_portal(store)
+    r = await client.get("/")
+    assert "Proactive health checks" in r.text and "every 24 h" in r.text
+    assert "none yet" in r.text and "next audit in" in r.text  # first audit staggered into the future
+
+    run, _ = await store.request_run(pid, "investigate", trigger="audit", run_kind="read")
+    await store.finish_run(
+        run.id, "ok", tender_count=2,
+        details={"audit": True, "diagnosis": "healthy", "diagnosis_reason": "all 2 tender links were delivered"},
+    )  # fmt: skip
+    detail = await client.get(f"/dashboard/portals/{pid}")
+    assert "Health audit" in detail.text and "Healthy: all 2 tender links were delivered" in detail.text
+    assert 'class="badge ok">healthy' in detail.text
+
+    app.state.scheduler.healthcheck.mode = "reactive"
+    r = await client.get("/")
+    assert "Reactive health checks" in r.text and "next audit" not in r.text
