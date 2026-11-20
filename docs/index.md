@@ -19,6 +19,7 @@ Watchtower attaches to public-procurement portals on its own, watches over them,
 - [Document downloader](documents/downloader.md): streaming, ZIPs, the 250 MB rule, the download job
 - [Dashboard](dashboard/dashboard.md): the operator pages at `/`, run timeline, live refresh
 - [Agent runtime and tools](agent/runtime.md): model calls, budgets, the tool registry, pruned pages, dry runs
+- [Attach scenario](agent/attach.md): how a new portal is learned, and what each outcome means
 - [Investigate](repair/investigate.md): diagnosing failed reads, audits, repairs; deterministic checks first
 - [Test-portal registry](portals/registry.md) · [Mock portals](test-portals/mock-portals.md)
 - [Model usage & cost](cost/model-usage.md)

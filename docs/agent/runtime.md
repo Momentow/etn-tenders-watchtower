@@ -77,10 +77,10 @@ async def find_pagination(ctx: RunContextWrapper[AgentContext], url: str) -> str
 
 ```bash
 uv run --env-file .env python -m watchtower.agent.smoke              # key, model, tool call, structured output
-uv run --env-file .env python -m watchtower.agent.probe --mock form  # draft attach run on a mock portal
+uv run --env-file .env python -m watchtower.agent.probe --mock form  # attach run on a mock portal
 uv run --env-file .env python -m watchtower.agent.probe https://portal.example/   # any URL
 ```
 
-`probe` prints the outcome, the template or reason, model calls, tokens (and how many were cached) and time. It uses a
-draft attach prompt until the `generate_template` scenario (T-015) exists. Offline tests use a scripted model
+`probe` runs the [attach scenario](attach.md) and prints the outcome, the template or reason, model calls, tokens (and
+how many were cached) and time. Offline tests use a scripted model
 (`tests/agent/scripted.py`) and the mock portals; no key needed.
