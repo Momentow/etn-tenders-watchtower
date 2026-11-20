@@ -12,7 +12,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-000 | Collaboration protocol & docs skeleton | docs-site | done | Momentow | docs/T-000-collab-protocol | — | [CLAUDE.md](CLAUDE.md) |
 | T-001 | Build test-portal registry | test-portals | todo | | | T-000 | [registry](docs/portals/registry.md) |
 | T-002 | Tech stack & architecture ADRs | core | done | Momentow | docs/T-000-collab-protocol | T-000 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
-| T-003 | Project skeleton, Dockerfile, checks | infra | in-progress | Momentow | chore/T-003-project-skeleton | T-002 | [0001](docs/decisions/0001-tech-stack.md) |
+| T-003 | Project skeleton, Dockerfile, checks | infra | review | Momentow | chore/T-003-project-skeleton | T-002 | [0001](docs/decisions/0001-tech-stack.md) |
 | T-004 | SQLite store & data models | core | todo | | | T-003 | [0002](docs/decisions/0002-architecture.md), [api-contract](docs/spec/api-contract.md) |
 | T-005 | HTTP API per contract | api | todo | | | T-004 | [api-contract](docs/spec/api-contract.md) |
 | T-006 | Scheduler, job queue & state machine | core | todo | | | T-004 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
