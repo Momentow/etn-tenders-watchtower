@@ -23,7 +23,7 @@ point to the portal.
 | 3 | [marches-publics.gouv.fr](https://www.marches-publics.gouv.fr) | FR | atexo-mpe (PLACE) | multi-step | open | 134 (portal: 1639) | 4/6 | dev |
 | 4 | [achatpublic.com](https://www.achatpublic.com) | FR | achatpublic | multi-step | captcha-bypassable | 87 | 4/5 | dev |
 | 5 | [tenderned.nl](https://www.tenderned.nl) | NL | tenderned | js-api | open | 571 (portal: 2582) | 5/5 | dev |
-| 6 | [publicprocurement.be](https://www.publicprocurement.be) | BE | e-procurement-be (BOSA) | js-api | open | 412 | _pending_ | dev |
+| 6 | [publicprocurement.be](https://www.publicprocurement.be) | BE | e-procurement-be (BOSA) | js-api | open | 412 | 8 files listed; download not confirmed | dev |
 | 7 | [contractaciopublica.cat](https://contractaciopublica.cat) | ES | Generalitat de Catalunya | js-api | open | 168 | 1/1 (browser) | dev |
 | 8 | [provia.at](https://www.provia.at) | AT | provia bieterportal | ssr | login | 75 | 0/6 | blocked |
 | 9 | [cloud.3p.eu](https://cloud.3p.eu) | BE | 3P | multi-step | captcha | 212 | 0/6 | blocked |

@@ -117,7 +117,7 @@
       "access": "open",
       "use": "dev",
       "openTendersTed": 412,
-      "docsVerified": "pending",
+      "docsVerified": "files listed anonymously (8 with sha256); download not confirmed",
       "tenderUrlPattern": "https://www.publicprocurement.be/publication-workspaces/{uuid}/documents",
       "quirks": [
         "Vue app; the shell says 'doesn't work properly without JavaScript'",

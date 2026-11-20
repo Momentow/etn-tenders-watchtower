@@ -57,7 +57,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 **Refs:** [registry](docs/portals/registry.md), [requirements](docs/spec/requirements.md#finding-test-portals)
 **Notes:** Machine-readable set in `testportals/` (portals.json, TED fixtures, pinned list, `ted_portals.py`). Per-tender access
 varies on vmp-satellite and PLACE (4–6 of 6 sampled tenders had anonymous documents). marches-publics.info, s2c.mercell.com and
-acquistinretepa.it were not fully verified (we don't submit captchas); see the registry.
+acquistinretepa.it were not fully verified, and the publicprocurement.be document download is not yet confirmed (we don't submit captchas); see the registry.
 
 ### T-002 — Tech stack & architecture ADRs
 **Acceptance:**
