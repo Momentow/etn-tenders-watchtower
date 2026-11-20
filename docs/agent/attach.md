@@ -36,7 +36,7 @@ included) and time.
 
 ## Wiring
 `app.py` passes `make_generate_template(client, browser)` to `pipeline.configure`, so the scenario shares the process's
-polite client and browser. `investigate` stays a stub until T-016.
+polite client and browser, next to `make_investigate` (T-016).
 
 ## Trying it
 ```bash
