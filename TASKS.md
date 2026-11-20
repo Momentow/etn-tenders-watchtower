@@ -16,8 +16,8 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-004 | SQLite store & data models | core | done | Lavrtajx | feat/T-004-sqlite-store | T-003 | [0002](docs/decisions/0002-architecture.md), [api-contract](docs/spec/api-contract.md) |
 | T-005 | HTTP API per contract | api | todo | | | T-004 | [api-contract](docs/spec/api-contract.md) |
 | T-006 | Scheduler, job queue & state machine | core | todo | | | T-004 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
-| T-007 | Polite network layer (`PoliteClient`, `BrowserPool`) | net | review | Lavrtajx | feat/T-007-polite-network-layer | T-003 | [0002](docs/decisions/0002-architecture.md) |
-| T-008 | Template format (ADR 0003 + pydantic schema) | engine | review | Lavrtajx | feat/T-008-template-format | T-003 | [0002](docs/decisions/0002-architecture.md) |
+| T-007 | Polite network layer (`PoliteClient`, `BrowserPool`) | net | done | Lavrtajx | feat/T-007-polite-network-layer | T-003 | [0002](docs/decisions/0002-architecture.md) |
+| T-008 | Template format (ADR 0003 + pydantic schema) | engine | done | Lavrtajx | feat/T-008-template-format | T-003 | [0002](docs/decisions/0002-architecture.md) |
 | T-009 | Engine executor (`run_template`) | engine | todo | | | T-007, T-008 | [0002](docs/decisions/0002-architecture.md) |
 | T-010 | Normalizers & tender content hash | engine | todo | | | T-003 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
 | T-011 | Validators (`validate.check`) | notice | todo | | | T-009 | [0002](docs/decisions/0002-architecture.md) |
