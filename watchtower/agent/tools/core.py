@@ -10,13 +10,13 @@ import json
 import logging
 from typing import Any
 
-import httpx
 from agents import RunContextWrapper
 from pydantic import ValidationError
 
 from watchtower.agent.context import AgentContext, Fetched
 from watchtower.agent.hints import pagination_hints
 from watchtower.agent.outcomes import Blocked, TemplateFound, Transient, Unreadable
+from watchtower.agent.pages import get_page, probe_document
 from watchtower.agent.prune import outline, summarize_json
 from watchtower.agent.registry import tool
 from watchtower.engine import ReadResult, run_template
@@ -27,13 +27,10 @@ from watchtower.validate import check
 
 log = logging.getLogger(__name__)
 
-MAX_BODY_BYTES = 3_000_000
 LIST_CHECK_PAGES = 3
 DEFAULT_SAMPLE = 3
 MAX_SAMPLE = 10
 DOC_PROBES = 2
-DOC_PROBE_BYTES = 16_384
-_TEXT_TYPES = ("html", "json", "xml", "text", "javascript")
 CHECKED_FIELDS = (
     "url",
     "title",
@@ -63,7 +60,7 @@ async def fetch(ctx: Ctx, url: str, focus: str | None = None) -> str:
     `focus`: a CSS selector (HTML) or JSONPath (JSON); shows only its matches and their count. Use it to zoom in and to
     check a selector before using it in a template. Repeated calls for the same URL are free (cached).
     """
-    page = await _get(ctx.context, url)
+    page = await get_page(ctx.context, url)
     if isinstance(page, str):
         return page
     return _describe(page, focus)
@@ -75,18 +72,9 @@ async def render(ctx: Ctx, url: str, focus: str | None = None) -> str:
     it loaded. Use it when `fetch` shows an empty shell; a JSON API found here is best read directly with a `json`
     list template (no browser needed). Slower than `fetch`: use only when needed. `focus` as in `fetch` (CSS).
     """
-    c = ctx.context
-    if c.browser is None:
-        return "No browser is available in this run; work with `fetch`."
-    key = "render:" + url
-    page = c.pages.get(key)
-    if page is None:
-        try:
-            r = await c.browser.render(url)
-        except Exception as e:  # Playwright raises its own error types
-            return f"Rendering {url} failed: {_short_err(e)}"
-        page = Fetched(r.url, r.status, "text/html", r.html, r.json_responses())
-        c.pages[key] = page
+    page = await get_page(ctx.context, url, rendered=True)
+    if isinstance(page, str):
+        return page
     out = [_describe(page, focus, max_chars=5000)]
     seen: set[str] = set()
     apis = []
@@ -107,32 +95,6 @@ async def render(ctx: Ctx, url: str, focus: str | None = None) -> str:
     out.append(f"JSON responses captured: {len(apis)}" + ("" if apis else " (none)"))
     out.extend(apis[:5])
     return "\n".join(out)
-
-
-async def _get(c: AgentContext, url: str) -> Fetched | str:
-    if not url.startswith(("http://", "https://")):
-        return f"Not an absolute http(s) URL: {url!r}"
-    if (page := c.pages.get(url)) is not None:
-        return page
-    try:
-        async with c.client.stream("GET", url) as resp:
-            ctype = resp.headers.get("content-type", "")
-            if any(t in ctype for t in _TEXT_TYPES) or not ctype:
-                body = bytearray()
-                async for chunk in resp.aiter_bytes():
-                    body.extend(chunk)
-                    if len(body) > MAX_BODY_BYTES:
-                        break
-                text = bytes(body[:MAX_BODY_BYTES]).decode(resp.encoding or "utf-8", errors="replace")
-            else:
-                size = resp.headers.get("content-length", "unknown")
-                disp = resp.headers.get("content-disposition", "")
-                text = f"[file: {ctype or 'unknown type'}, {size} bytes" + (f", {disp}" if disp else "") + "]"
-            page = Fetched(str(resp.url), resp.status_code, ctype, text)
-    except httpx.HTTPError as e:
-        return f"GET {url} failed: {_short_err(e)}"
-    c.pages[url] = page
-    return page
 
 
 def _describe(page: Fetched, focus: str | None, max_chars: int = 9000) -> str:
@@ -275,40 +237,23 @@ async def _probe_documents(c: AgentContext, r: ReadResult) -> tuple[list[str], l
         return [], [], []
     lines, problems, warnings = ["DOCUMENT CHECK:"], [], []
     for ref in refs:
-        name = ref.fileName or ref.url.rsplit("/", 1)[-1]
-        try:
-            async with c.client.stream("GET", ref.url) as resp:
-                ctype = resp.headers.get("content-type", "")
-                size = resp.headers.get("content-length")
-                head = bytearray()
-                async for chunk in resp.aiter_bytes():
-                    head.extend(chunk)
-                    if len(head) >= DOC_PROBE_BYTES:
-                        break
-                final, status = str(resp.url), resp.status_code
-        except httpx.HTTPError as e:
-            problems.append(f"document {name!r} failed to download: {_short_err(e)}")
-            continue
-        moved = f" (ended at {final})" if final != ref.url else ""
-        if status >= 400:
-            problems.append(f"document {name!r} returned HTTP {status}{moved}")
-            continue
-        if "html" in ctype or bytes(head[:200]).lstrip().lower().startswith((b"<!doctype html", b"<html")):
-            text = bytes(head).decode("utf-8", errors="replace")
-            signals = detect_block(text, url=final, status=status)
-            if signals:
-                what = " / ".join(f"{s.kind} ({'; '.join(s.evidence[:2])})" for s in signals)
-                problems.append(
-                    f"document {name!r} leads to a {what} page instead of a file{moved}. If no other route to the "
-                    "documents works without it, the portal is blocked: call report_blocked"
-                )
-            else:
-                warnings.append(
-                    f"document {name!r} is an HTML page, not a file{moved}: if it is a download page, add `per_link` "
-                    "steps to reach the file; otherwise exclude such links"
-                )
-            continue
-        lines.append(f"  {name}: {ctype or 'unknown type'}, {size or '?'} bytes — OK")
+        probe = await probe_document(c, ref.url)
+        if probe.file_name is None and ref.fileName:
+            probe.file_name = ref.fileName
+        if probe.is_file:
+            lines.append("  " + probe.sentence())
+        elif probe.blocks:
+            problems.append(
+                "document " + probe.sentence() + ". If no other route to the documents works without it, the portal "
+                "is blocked: call report_blocked"
+            )
+        elif probe.error or (probe.status or 0) >= 400:
+            problems.append("document " + probe.sentence())
+        else:
+            warnings.append(
+                "document " + probe.sentence() + ": if it is a download page, add `per_link` steps to reach the "
+                "file; otherwise exclude such links"
+            )
     return lines, problems, warnings
 
 

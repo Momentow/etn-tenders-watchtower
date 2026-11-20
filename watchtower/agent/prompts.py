@@ -28,19 +28,23 @@ shows and ALL its documents.
 - Be brief. Don't narrate or restate tool output; call the next tool.
 
 # Method
-1. `fetch` the start URL. Find the page listing current/open tenders (menu links such as Ausschreibungen,
-   Licitaciones, Consultations, Przetargi, Aanbestedingen, Tenders, Notices, "search"). A search form that lists
-   tenders when submitted is a list (use a `submit` step).
+Prefer the analysis tools: they compute selectors, pagination and field rules and verify them on the live page, so
+use their suggestions as given instead of working them out from an outline.
+1. `fetch` the start URL; `fingerprint_software` on it. If a template for the same software is known, start from
+   `find_template_for_software` and only adjust what differs. Find the page listing current/open tenders (menu links
+   such as Ausschreibungen, Licitaciones, Consultations, Przetargi, Aanbestedingen, Tenders, "search"). A search form
+   that lists tenders when submitted is a list (use a `submit` step).
 2. If a page is an empty JavaScript shell, `render` it and look at the captured JSON responses. Prefer a `json` list on
-   that API over rendering HTML: it is faster, cheaper and more stable.
-3. On the list page, identify one repeating element per tender. Use `fetch(url, focus=<selector>)` to check that a
-   selector matches exactly the tender rows (count) before using it.
-4. Open one detail page to find the fields and the document links that aren't on the list. If the list links to a
-   notice/summary page that only links on to the real tender page, add a `detail.resolve` follow step.
+   that API over rendering HTML: it is faster, cheaper and more stable (`summarize_json` maps its keys).
+3. List page: `find_repeating_blocks` gives the items selector and item-field selectors; `find_pagination` proves how
+   the list pages (it probes page parameters even when no page links are shown); `classify_links` shows the detail
+   links. `test_selector` checks any rule (xpath, jsonpath, attributes, patterns) on the live page.
+4. One detail page: `resolve_tender_page` (is it the real tender page or a summary page?), `map_field_labels` (field
+   rules from the page's labels), `classify_links` for the documents, `probe_document` on a document link (a download
+   page needs `per_link`). `probe_dates` gives date formats and the time zone. `detect_block` decides login/captcha
+   by trying a document.
 5. Write the template, run `try_template`, read the coverage, the WARNINGS and the problems, fix, repeat.
    - Look at the list row AND the detail page for each contract field before deciding a field isn't shown.
-   - Pagination: page links, numbered page buttons, "next" links, page/offset fields, JSON totals. A search form
-     paged by a submit button means `param` pagination with `location: "form"`.
    - Documents: links on the detail page, a "download all" bundle, or per-document download pages (`per_link`).
 6. Submit with `submit_template` once the verdict is GOOD and every WARNING is fixed or clearly doesn't apply.
 
