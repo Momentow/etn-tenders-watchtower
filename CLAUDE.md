@@ -154,6 +154,16 @@ Full boundaries, interfaces and the portal lifecycle: [ADR 0002](docs/decisions/
 
 ## Commands
 
-_Filled in by T-003 (project skeleton) once `pyproject.toml` and the `Dockerfile` exist. Planned:_
-`uv sync` · `uv run pytest` · `uv run pytest path::test_name` (single test) · `uv run ruff check . && uv run ruff format .` ·
-`docker build -t watchtower . && docker run -p 8080:8080 -e OPENAI_API_KEY watchtower`.
+Install `uv` (https://docs.astral.sh/uv/). Python 3.12 is pinned in `.python-version`; uv fetches it if needed.
+
+```
+uv sync                                         # install deps (incl. dev group)
+uv run python -m watchtower                     # start the service on :8080
+uv run pytest                                   # all tests
+uv run pytest tests/test_smoke.py::test_index_serves_placeholder_page   # single test
+uv run ruff check . && uv run ruff format .     # lint + format
+docker build -t watchtower . && docker run -p 8080:8080 -e OPENAI_API_KEY watchtower
+```
+
+The `playwright` pin in `pyproject.toml` must match the `mcr.microsoft.com/playwright/python` tag in the `Dockerfile`;
+bump both together.
