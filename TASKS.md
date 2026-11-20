@@ -22,7 +22,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-010 | Normalizers & tender content hash | engine | todo | | | T-003 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
 | T-011 | Validators (`validate.check`) | notice | todo | | | T-009 | [0002](docs/decisions/0002-architecture.md) |
 | T-012 | Document downloader & `/files` store | documents | todo | | | T-004, T-007 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
-| T-013 | Mock portals + mutated variants | test-portals | in-progress | OrangeCanvas705 | feat/T-013-mock-portals | T-003 | [requirements](docs/spec/requirements.md#finding-test-portals) |
+| T-013 | Mock portals + mutated variants | test-portals | review | OrangeCanvas705 | feat/T-013-mock-portals | T-003 | [requirements](docs/spec/requirements.md#finding-test-portals) |
 | T-014 | Agent runtime & tools | agent | todo | | | T-007, T-009 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
 | T-015 | Scenario `generate_template` (Attach) | agent | todo | | | T-013, T-014 | [0002](docs/decisions/0002-architecture.md) |
 | T-016 | Scenario `investigate` (Notice → Repair) | repair | todo | | | T-011, T-013, T-014 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
