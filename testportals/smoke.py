@@ -7,6 +7,7 @@ reports again (documents keep downloading after a portal reaches `serving`).
     uv run python -m mockportals                                        # for the `mock` set, on :8081
     DATA_DIR=./data uv run --env-file .env python -m watchtower         # the service, dashboard on :8080
     uv run python testportals/smoke.py mock                             # or dev, blocked, unverified, unseen
+    uv run python testportals/smoke.py dev blocked unverified --stagger 5  # the demo: 12 real portals
     uv run python testportals/smoke.py dev --out smoke-dev.json
 
 Exit code 0 when every portal settled (`serving` or `failed`) and, for mock portals, matched what the mock expects.
@@ -154,16 +155,18 @@ def report(api: httpx.Client, t: Target, r: Report) -> None:
 
 
 def run(args: argparse.Namespace) -> int:
-    chosen = targets(args.set, args.mock_base.rstrip("/"))
+    chosen = [t for name in args.sets for t in targets(name, args.mock_base.rstrip("/"))]
     if args.only:
         chosen = [t for t in chosen if t.name in args.only]
     if not chosen:
-        print(f"no portals in set {args.set!r}", file=sys.stderr)
+        print(f"no portals in {args.sets}", file=sys.stderr)
         return 2
     api = httpx.Client(base_url=args.api.rstrip("/"), timeout=30)
     reports = {t.name: Report(t.name, t.url, expected_state=t.expect_state) for t in chosen}
     start = time.monotonic()
-    for t in chosen:
+    for i, t in enumerate(chosen):
+        if i and args.stagger:
+            time.sleep(args.stagger)
         res = api.post("/portals", json={"url": t.url})
         res.raise_for_status()
         reports[t.name].id = res.json()["id"]
@@ -198,7 +201,7 @@ def run(args: argparse.Namespace) -> int:
         report(api, t, reports[t.name])
     print_table(list(reports.values()))
     if args.out:
-        out = {"set": args.set, "at": datetime.now().astimezone().isoformat(timespec="seconds"),
+        out = {"sets": args.sets, "at": datetime.now().astimezone().isoformat(timespec="seconds"),
                "portals": [asdict(r) for r in reports.values()]}  # fmt: skip
         Path(args.out).write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"\nwrote {args.out}")
@@ -218,7 +221,9 @@ def print_table(rows: list[Report]) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("set", choices=["mock", "dev", "blocked", "unverified", "unseen"])
+    ap.add_argument("sets", nargs="+", choices=["mock", "dev", "blocked", "unverified", "unseen"], metavar="SET",
+                    help="one or more of: mock, dev, blocked, unverified, unseen")  # fmt: skip
+    ap.add_argument("--stagger", type=float, default=0, help="seconds between adding two portals (for a demo)")
     ap.add_argument(
         "--only", nargs="+", metavar="NAME", help="only these portals of the set (mock kind or registry key)"
     )

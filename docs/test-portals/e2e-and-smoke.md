@@ -42,4 +42,20 @@ uv run python testportals/smoke.py dev --only tenderned.nl --out smoke-dev.json
   Documents keep downloading after a portal reaches `serving`, so a later report can show more files.
 - The script calls only our own API. All portal traffic goes through Watchtower, at most 1 request per second per portal.
 
+## Demo scenario (live, real portals)
+
+The run we record for the demo video, and our realistic test of the whole system:
+
+1. Start the service on an empty data directory and open the dashboard at `http://localhost:8080/`: no portals yet.
+2. Add 12 real portals a few seconds apart: the 7 `dev` portals, the 3 `blocked` ones (they must end `failed` with a
+   reason) and the 2 `unverified` ones. The `unseen` portals stay held back for the final test.
+
+   ```bash
+   DATA_DIR=$(mktemp -d) uv run --env-file .env python -m watchtower
+   uv run python testportals/smoke.py dev blocked unverified --stagger 5 --timeout 120
+   ```
+
+3. Watch the dashboard: each portal goes `integrating` → `serving` or `failed`, with the reason in words and its runs in
+   the timeline. The terminal prints the same state changes and ends with the results table.
+
 Results are recorded in the [registry](../portals/registry.md#smoke-runs).
