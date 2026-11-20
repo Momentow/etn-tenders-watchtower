@@ -286,3 +286,26 @@ async def test_running_jobs_resume_after_restart(tmp_path):
         assert job.kind == "read" and job.attempts == 2
     finally:
         await s.close()
+
+
+# ---------------------------------------------------------------- request_run (ADR 0005)
+
+
+async def test_request_run_creates_run_and_job_atomically(store, portal):
+    import asyncio
+
+    results = await asyncio.gather(*(store.request_run(portal.id, "read", trigger="refresh") for _ in range(5)))
+    runs = {run.id for run, _ in results}
+    assert len(runs) == 1 and sum(created for _, created in results) == 1
+    [job] = await store.active_jobs(portal.id)
+    assert job.kind == "read" and job.run_id in runs and job.payload["run_id"] in runs
+
+
+async def test_request_run_kinds_and_reuse_after_finish(store, portal):
+    run, created = await store.request_run(portal.id, "investigate", trigger="failure")
+    assert created and run.kind == "repair" and run.details == {"trigger": "failure"}
+    again, created = await store.request_run(portal.id, "read", trigger="refresh")
+    assert not created and again.id == run.id  # a running repair blocks a new read
+    await store.finish_run(run.id, "ok")
+    fresh, created = await store.request_run(portal.id, "attach", trigger="refresh")
+    assert created and fresh.kind == "read" and fresh.id != run.id
