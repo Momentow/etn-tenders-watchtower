@@ -28,7 +28,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-016 | Scenario `investigate` (Notice → Repair) | repair | todo | | | T-011, T-013, T-014 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
 | T-017 | Read pipeline wiring (attach / read / heal flows) | core | done | OrangeCanvas705 | feat/T-017-read-pipeline | T-006, T-009, T-010, T-011, T-012 | [0002 read pipeline](docs/decisions/0002-architecture.md#read-pipeline-no-model-call) |
 | T-018 | Dashboard | dashboard | done | Lavrtajx | feat/T-018-dashboard | T-005 | [requirements](docs/spec/requirements.md) |
-| T-019 | Docs site at `/docs` | docs-site | in-progress | OrangeCanvas705 | docs/T-019-docs-site | T-003 | [0001](docs/decisions/0001-tech-stack.md) |
+| T-019 | Docs site at `/docs` | docs-site | review | OrangeCanvas705 | docs/T-019-docs-site | T-003 | [0001](docs/decisions/0001-tech-stack.md) |
 | T-022 | Deterministic agent toolkit | agent | todo | | | T-007, T-009, T-010 | [0002 toolkit](docs/decisions/0002-architecture.md#agent-toolkit-deterministic-first) |
 | T-023 | Health-check modes (reactive / proactive audit) | notice | todo | | | T-006, T-016, T-017 | [0002 health checks](docs/decisions/0002-architecture.md#health-check-modes) |
 | T-020 | End-to-end tests & real-portal smoke run | test-portals | todo | | | T-001, T-015, T-016, T-017, T-023 | [requirements → Judging](docs/spec/requirements.md#judging) |
