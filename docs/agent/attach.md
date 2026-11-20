@@ -47,3 +47,18 @@ uv run --env-file .env python -m watchtower.agent.probe https://portal.example/
 `probe` prints the raw run (stop reason, model calls, tokens, time) and the outcome the pipeline would get. Offline
 tests (`tests/agent/test_attach.py`) drive the scenario with a scripted model on the mock portals, including a full
 `attach` job through the pipeline.
+
+## Live runs on the mock portals
+Measured on 2026-11-20 with the default model (`uv run --env-file .env python -m watchtower.agent.probe --mock <kind>`):
+
+| Kind | Outcome | Model calls | Tokens in (cached) / out | Time | What the template does |
+|---|---|---|---|---|---|
+| `ssr` | `TemplateFound` | 6 | 27 415 (21 245) / 1 515 | 27 s | HTML list, `next_link` pagination, detail fields |
+| `js` | `TemplateFound` | 5 | 23 084 (16 942) / 1 478 | 29 s | JS-rendered list |
+| `multistep` | `TemplateFound` | 11 | 62 802 (54 270) / 1 991 | 54 s | `detail.resolve` follows the summary page to the real tender |
+| `form` | `TemplateFound` | 11 | 56 551 (48 725) / 2 037 | 46 s | search-form list |
+| `captcha` | `TemplateFound` | 10 | 49 262 (42 454) / 1 381 | 31 s | `render: true`; the list and documents load without solving the captcha |
+| `login` | `Blocked` | 8 | 38 641 (26 686) / 606 | 25 s | documents redirect to a login page |
+| `robot` | `Blocked` | 6 | 28 594 (22 486) / 809 | 25 s | document links redirect to a reCAPTCHA form |
+
+Every run stayed far below `ATTACH_BUDGET` (at most 11 of 30 calls and 65k of 400k tokens).
