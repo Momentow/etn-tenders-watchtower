@@ -88,6 +88,43 @@ appear nowhere in `dev`. megalis runs the same software as PLACE, so it tests te
 - mercell: an earlier probe with a bot User-Agent got 403; with a browser User-Agent the Angular shell answers 200. Document access not checked.
 - acquistinretepa.it: TED links redirect to `/opencms/opencms/scheda_altri_bandi.html?idBando={id}`, or fail with HTTP 500 after 3 redirects. The detail page is an AngularJS template.
 
+## Smoke runs
+
+How to run one: [E2E and smoke runs](../test-portals/e2e-and-smoke.md). **Verdict** compares what Watchtower reported with
+what we know about the portal: ✓ right, ⚠ right state but a gap, ✗ wrong state.
+
+### 2026-11-21: the 12 `dev`, `blocked` and `unverified` portals (first live run)
+
+Real model, fresh database, portals added 5 s apart. All 12 settled within 10 minutes; **1 serving, 11 failed**.
+
+| Portal | Use | Reported | Time | Verdict |
+|---|---|---|---|---|
+| evergabe.nrw.de | dev | `serving`, 20 tenders | 2m35s | ⚠ First list page only (about 33 open). 14 of 20 deadlines `null`: tenders live on other vmp-satellite hosts (vergabe-westfalen.de and others) the detail rules don't fit. `referenceNumber` always `null`. `url` keeps the Wicket page version (`/overview?4`). Deadlines that were read carry the right offset |
+| dtvp.de | dev | `failed`: detail/document links redirect to a Keycloak login | 1m15s | ✗ False block. Documents download anonymously (6/6 in the probe) once a session cookie exists; some tenders are registered-only |
+| marches-publics.gouv.fr | dev | `failed`: document download redirects to a login | 1m15s | ✗ False block. The RC downloads directly; the full DCE has an anonymous-download option |
+| achatpublic.com | dev | `failed`: no readable list, search is client-side | 2m25s | ⚠ Truthful, but the list was never found |
+| tenderned.nl | dev | `failed` (temporary): Angular shell times out while rendering | 4m45s | ✗ The render can't finish: ~60 JS chunks at 1 req/s exceed the 45 s render timeout. The public JSON API (`/papi/tenderned-rs-tns/v2/publicaties`) needs no browser |
+| publicprocurement.be | dev | `failed` (temporary): JS shell times out in the browser | 4m35s | ✗ Same cause; the JSON API needs an anonymous `client_credentials` token |
+| contractaciopublica.cat | dev | `failed`: only a 5-item latest-publications widget found | 9m15s | ✗ The full search/list API wasn't found |
+| provia.at | blocked | `failed`: details and documents need a login | 4m15s | ✓ |
+| cloud.3p.eu | blocked | `failed`: base URL shows only the 3P logo, a tenant URL is needed | 4m35s | ✓ State; the reason is true for the URL given (we expected the captcha) |
+| marches-publics.info | blocked | `failed`: each tender is split over two sibling rows, no item selector fits | 5m35s | ⚠ State right, but it stopped at a template-format limit, before reaching the captcha |
+| s2c.mercell.com | unverified | `failed` (temporary): HTTP 403 from an Azure Application Gateway on every path | 5m25s | ✓ State; a constant 403 is better reported as a block than as temporary. Move to `blocked` |
+| acquistinretepa.it | unverified | `failed` (temporary): JS app times out while rendering | 6m55s | ✗ Same render-timeout cause as tenderned.nl |
+
+**Findings, by how many portals each one costs:**
+
+1. **Heavy JS apps can't render at 1 req/s (3 portals: tenderned.nl, publicprocurement.be, acquistinretepa.it).** The browser
+   spaces every script request through the per-host limiter, but a render times out after 45 s, so an app with more
+   scripts than that never finishes and its API calls are never captured.
+2. **One login redirect ends the attach (2 portals: dtvp.de, marches-publics.gouv.fr).** The agent reports `Blocked` after a
+   document link of one tender redirects to a login, without trying other tenders, a session cookie from the list page,
+   or the portal's anonymous-download route. A `failed` portal that could deliver is a Notice error.
+3. **List not found (2 portals: achatpublic.com, contractaciopublica.cat).**
+4. **Template format: one tender over several sibling rows (1 portal: marches-publics.info).**
+5. **Partial reads are served without a warning (evergabe.nrw.de):** one page of the list, and detail rules that fit only some
+   of the hosts a portal links to.
+
 ## How to rebuild
 
 See [`testportals/README.md`](https://github.com/Momentow/etn-tenders-watchtower/blob/master/testportals/README.md):
