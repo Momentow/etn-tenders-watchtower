@@ -29,11 +29,14 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-017 | Read pipeline wiring (attach / read / heal flows) | core | todo | | | T-006, T-009, T-010, T-011, T-012 | [0002 read pipeline](docs/decisions/0002-architecture.md#read-pipeline-no-model-call) |
 | T-018 | Dashboard | dashboard | todo | | | T-005 | [requirements](docs/spec/requirements.md) |
 | T-019 | Docs site at `/docs` | docs-site | todo | | | T-003 | [0001](docs/decisions/0001-tech-stack.md) |
-| T-020 | End-to-end tests & real-portal smoke run | test-portals | todo | | | T-001, T-015, T-016, T-017 | [requirements → Judging](docs/spec/requirements.md#judging) |
+| T-022 | Deterministic agent toolkit | agent | todo | | | T-007, T-009, T-010 | [0002 toolkit](docs/decisions/0002-architecture.md#agent-toolkit-deterministic-first) |
+| T-023 | Health-check modes (reactive / proactive audit) | notice | todo | | | T-006, T-016, T-017 | [0002 health checks](docs/decisions/0002-architecture.md#health-check-modes) |
+| T-020 | End-to-end tests & real-portal smoke run | test-portals | todo | | | T-001, T-015, T-016, T-017, T-023 | [requirements → Judging](docs/spec/requirements.md#judging) |
 | T-021 | README & demo video script | docs-site | todo | | | T-020 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
 | T-099 | LLM usage metering & cost per portal (last MVP task) | cost | todo | | | T-020 | [model-usage](docs/cost/model-usage.md) |
 
-**Critical path:** T-003 → T-007/T-008 → T-009 → T-014 → T-015/T-016 → T-017 → T-020 → T-099.
+**Critical path:** T-003 → T-007/T-008 → T-009 → T-014 → T-015/T-016 → T-017 → T-023 → T-020 → T-099.
+**T-022 runs alongside T-014–T-016:** the scenarios adopt toolkit tools as they're merged; they don't wait for all of them.
 **Can start in parallel right after T-003:** T-004, T-007, T-008, T-010, T-013, T-019. T-001 can start now (no code needed).
 
 ---
@@ -91,6 +94,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 - [ ] At most one active attach/read/investigate per portal; periodic reads of `serving` portals
 - [ ] The state machine is the only writer of `state`/`reason`, and implements the ADR 0002 lifecycle table
 - [ ] Deleted portals: no requests within a minute
+- [ ] Reads `WATCHTOWER_HEALTHCHECK_MODE` / `WATCHTOWER_HEALTHCHECK_INTERVAL_HOURS` from the environment and exposes due-audit scheduling for T-023 (staggered, one job per portal at a time)
 **Refs:** [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle)
 
 ### T-007 — Polite network layer
@@ -120,6 +124,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 **Acceptance:**
 - [ ] `run_template` returns a `ReadResult` exactly per ADR 0002, with no DB access and no LLM call
 - [ ] Works on the mock portals with their example templates; `limit` supports dry runs
+- [ ] Returns a structural snapshot of the list page (DOM outline or JSON key shape) to be stored with each good read (used by the repair diff tool)
 **Refs:** [0002](docs/decisions/0002-architecture.md)
 
 ### T-010 — Normalizers & content hash
@@ -147,13 +152,15 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 **Acceptance:**
 - [ ] Locally served portals: SSR list + detail pages, a JS app with a JSON API, a multi-step download, a captcha/login variant
 - [ ] Mutated variants (changed markup, renamed JSON keys, moved pagination) for Notice and Repair tests
+- [ ] A "silent" variant: still parses, but tenders are missed or a field moves (for proactive audit tests)
 - [ ] Usable from pytest and runnable for the demo
 **Refs:** [requirements](docs/spec/requirements.md#finding-test-portals)
 
 ### T-014 — Agent runtime & tools
 **Acceptance:**
 - [ ] Agents SDK setup reading `OPENAI_API_KEY` / `WATCHTOWER_MODEL`; the only place model calls happen
-- [ ] Tools: `fetch`, `render`, `try_template` (engine dry run), `submit_template`, `report_blocked`, `report_transient`
+- [ ] Core tools: `fetch` (pruned outline), `render` (captured JSON/XHR summary), `try_template` (engine dry run), `submit_template`, `report_blocked`, `report_transient`
+- [ ] A tool registry that T-022 extends by adding tools, without editing scenario code
 - [ ] HTML pruning before content reaches the model; per-scenario budgets (turns, tokens, wall time)
 **Refs:** [0002](docs/decisions/0002-architecture.md)
 
@@ -168,6 +175,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 **Acceptance:**
 - [ ] Returns a `Diagnosis`; repairs every mutated mock variant (`Changed` with a validated template)
 - [ ] Separates transient errors from blocked, gone and unrepairable portals
+- [ ] Supports `trigger="failure"` (exact issue report) and `trigger="audit"` (compares engine output with the live portal → `Healthy` or a repair)
 **Refs:** [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle)
 
 ### T-017 — Read pipeline wiring
@@ -189,6 +197,38 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 - [ ] `mkdocs.yml` covering all of `docs/`; built with Zensical during `docker build` (fall back to pinned mkdocs-material if Zensical fails)
 - [ ] Served statically at `/docs` by the app; clean, minimal look with search
 **Refs:** [0001](docs/decisions/0001-tech-stack.md)
+
+### T-022 — Deterministic agent toolkit
+**Goal:** Shorter, faster, more stable agent runs: the model judges, tools compute. Each tool is registered in the T-014
+registry, returns a compact structured summary, goes through `net`, and has unit tests on the mock portals.
+**Acceptance:**
+- [ ] Discovery:
+  - `find_repeating_blocks` (candidate tender-list containers + item count + sample)
+  - `find_pagination`
+  - `classify_links` (detail pages vs documents; multilingual keywords such as Vergabeunterlagen, DCE, pliegos, dokumentacja)
+  - `resolve_tender_page` (summary/notice page → the real tender page)
+  - `summarize_json` (keys, types, array lengths of a captured endpoint)
+- [ ] Recognition:
+  - `fingerprint_software` (URL path, footer, `meta generator`) + `find_template_for_software` (reuse a template from another portal with the same fingerprint)
+  - `map_field_labels` (multilingual synonym dictionary → contract fields)
+  - `probe_dates` (format + time zone from sample strings and the country)
+  - `detect_block` (login/captcha; also checks whether the documents download anyway)
+- [ ] Verification:
+  - `test_selector` (CSS/XPath/JSONPath/regex on a sample)
+  - `try_template` with field-coverage stats
+  - `probe_document` (content type, size, filename, HTML-instead-of-file)
+- [ ] Repair:
+  - `diff_structure` (live page vs the last good snapshot)
+  - `diff_outputs` (template version A vs B)
+**Refs:** [0002 toolkit](docs/decisions/0002-architecture.md#agent-toolkit-deterministic-first)
+
+### T-023 — Health-check modes
+**Acceptance:**
+- [ ] `reactive`: an exception or failed validation during a read → `healing` → `investigate(trigger="failure")` → repair or `failed` with an exact reason
+- [ ] `proactive` (default): `reactive` behaviour, **plus** a staggered audit of every `serving` portal every `WATCHTOWER_HEALTHCHECK_INTERVAL_HOURS` (default 24) via `investigate(trigger="audit")`
+- [ ] Audits recorded as `read` runs; audit details shown on the dashboard; a silent problem the audit finds leads to `healing` and a `repair` run
+- [ ] Tests: both modes on mock portals, including a "silent" mutation (markup still parses, but tenders are missed) that only the audit catches
+**Refs:** [0002 health checks](docs/decisions/0002-architecture.md#health-check-modes)
 
 ### T-020 — End-to-end tests & real-portal smoke run
 **Acceptance:**

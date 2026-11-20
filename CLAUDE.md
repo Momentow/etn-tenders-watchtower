@@ -127,7 +127,9 @@ Python 3.12+, asyncio throughout · FastAPI + uvicorn · httpx · selectolax / l
 SQLite via aiosqlite · OpenAI Agents SDK · Jinja2 + htmx dashboard · Zensical docs site · uv · ruff · pytest.
 Rationale and rejected options: [ADR 0001](docs/decisions/0001-tech-stack.md).
 
-Env vars: `OPENAI_API_KEY` (required), `WATCHTOWER_MODEL`, `DATA_DIR` (default `/data`).
+Env vars (full table in ADR 0001): `OPENAI_API_KEY` (required), `WATCHTOWER_MODEL`, `DATA_DIR` (default `/data`),
+`WATCHTOWER_HEALTHCHECK_MODE` (`reactive` | `proactive`, default `proactive`), `WATCHTOWER_HEALTHCHECK_INTERVAL_HOURS` (default `24`).
+A new env var is added to the ADR 0001 table and the README in the same PR.
 
 ## Architecture
 
@@ -143,6 +145,10 @@ Full boundaries, interfaces and the portal lifecycle: [ADR 0002](docs/decisions/
   - all DB access → `core.store`.
 - Read pipeline: engine run → `validate.check` → upsert tenders and `lastChangedAt` → enqueue document downloads → record
   the run → state transition. A failed validation moves the portal to `healing` and enqueues `investigate`, while the last correct tenders keep being served.
+- **Health checks:** `reactive` investigates when a read fails. `proactive` does that too, and also audits every serving
+  portal every N hours ([ADR 0002 → Health-check modes](docs/decisions/0002-architecture.md#health-check-modes)).
+- **Deterministic first.** If the agent needs something that can be computed (list detection, pagination, date formats,
+  software fingerprint, selector tests…), add or extend a tool in the agent toolkit rather than prompting the model to work it out.
 - Everything runs in one process: API, dashboard, `/docs`, scheduler and workers. Jobs are persisted in SQLite. Files are streamed to `$DATA_DIR/files/<sha256>`.
 - `mockportals/` holds local fake portals plus mutated variants. Use them to test Attach, Notice and Repair offline.
 

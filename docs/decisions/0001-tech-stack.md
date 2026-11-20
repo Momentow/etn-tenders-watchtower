@@ -27,7 +27,15 @@ workload is I/O-bound: politeness caps throughput long before CPU does. The team
 | Lint/format | `ruff` | One tool, fast |
 | Tests | `pytest` + `pytest-asyncio`, local mock portals | Offline, deterministic Notice/Repair tests |
 
-**Environment variables:** `OPENAI_API_KEY` (required), `WATCHTOWER_MODEL` (model name), `DATA_DIR` (default `/data`).
+**Environment variables:**
+
+| Variable | Default | Meaning |
+|---|---|---|
+| `OPENAI_API_KEY` | — (required) | Model key |
+| `WATCHTOWER_MODEL` | set in T-014 | Model name used by the agent |
+| `DATA_DIR` | `/data` | SQLite database and stored files |
+| `WATCHTOWER_HEALTHCHECK_MODE` | `proactive` | `reactive` or `proactive`; see [ADR 0002](0002-architecture.md#health-check-modes) |
+| `WATCHTOWER_HEALTHCHECK_INTERVAL_HOURS` | `24` | Interval of the scheduled audit (proactive mode only) |
 Exact library versions are pinned in `uv.lock` by T-003.
 
 ## Rejected
