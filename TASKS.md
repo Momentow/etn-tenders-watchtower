@@ -18,12 +18,12 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-006 | Scheduler, job queue & state machine | core | done | Lavrtajx | feat/T-006-scheduler-state-machine | T-004 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
 | T-007 | Polite network layer (`PoliteClient`, `BrowserPool`) | net | done | Lavrtajx | feat/T-007-polite-network-layer | T-003 | [0002](docs/decisions/0002-architecture.md) |
 | T-008 | Template format (ADR 0003 + pydantic schema) | engine | done | Lavrtajx | feat/T-008-template-format | T-003 | [0002](docs/decisions/0002-architecture.md) |
-| T-009 | Engine executor (`run_template`) | engine | review | OrangeCanvas705 | feat/T-009-engine-executor | T-007, T-008 | [0002](docs/decisions/0002-architecture.md) |
+| T-009 | Engine executor (`run_template`) | engine | done | OrangeCanvas705 | feat/T-009-engine-executor | T-007, T-008 | [0002](docs/decisions/0002-architecture.md) |
 | T-010 | Normalizers & tender content hash | engine | in-progress | Lavrtajx | feat/T-010-normalizers | T-003 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
 | T-011 | Validators (`validate.check`) | notice | todo | | | T-009 | [0002](docs/decisions/0002-architecture.md) |
 | T-012 | Document downloader & `/files` store | documents | todo | | | T-004, T-007 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
 | T-013 | Mock portals + mutated variants | test-portals | done | OrangeCanvas705 | feat/T-013-mock-portals | T-003 | [requirements](docs/spec/requirements.md#finding-test-portals) |
-| T-014 | Agent runtime & tools | agent | todo | | | T-007, T-009 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
+| T-014 | Agent runtime & tools | agent | in-progress | OrangeCanvas705 | feat/T-014-agent-runtime | T-007, T-009 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
 | T-015 | Scenario `generate_template` (Attach) | agent | todo | | | T-013, T-014 | [0002](docs/decisions/0002-architecture.md) |
 | T-016 | Scenario `investigate` (Notice → Repair) | repair | todo | | | T-011, T-013, T-014 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
 | T-017 | Read pipeline wiring (attach / read / heal flows) | core | todo | | | T-006, T-009, T-010, T-011, T-012 | [0002 read pipeline](docs/decisions/0002-architecture.md#read-pipeline-no-model-call) |
