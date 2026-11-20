@@ -68,6 +68,12 @@ diffed by repair (T-022 `diff_structure`):
   collapse to one line such as `tr ×10`;
 - JSON: `{"kind": "json", "url", "shape"}`: the key/type shape, arrays reduced to their first element.
 
+## First list page (for the agent)
+
+`first_list_page(template, client, browser)` returns the first list page exactly as `run_template` reaches it (the list
+request plus its navigation steps, e.g. a submitted search form), unparsed. The agent's dry run uses it to show the
+page when a template reads nothing and to find pagination controls the template ignores. Raises `ReadError`.
+
 ## Tests
 
 `tests/engine/test_executor.py` runs every example template against its mock portal and compares the result with

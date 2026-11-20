@@ -31,6 +31,8 @@ MAX_BODY_BYTES = 3_000_000
 LIST_CHECK_PAGES = 3
 DEFAULT_SAMPLE = 3
 MAX_SAMPLE = 10
+DOC_PROBES = 2
+DOC_PROBE_BYTES = 16_384
 _TEXT_TYPES = ("html", "json", "xml", "text", "javascript")
 CHECKED_FIELDS = (
     "url",
@@ -227,6 +229,10 @@ async def _dry_run(c: AgentContext, raw: str, sample: int) -> tuple[str, Templat
         problems.append(f"no title for {', '.join(missing_title[:3])}")
     if rr.tenders:
         warnings += _completeness_warnings(t, rr)
+        doc_lines, doc_problems, doc_warnings = await _probe_documents(c, rr)
+        lines += doc_lines
+        problems += doc_problems
+        warnings += doc_warnings
 
     good = not problems
     c.tried[_canonical(t)] = good
@@ -260,6 +266,50 @@ async def _first_page_checks(c: AgentContext, t: Template, listed: int | None, w
 
 def _as_fetched(page: Any) -> Fetched:
     return Fetched(page.url, page.status, page.headers.get("content-type", ""), page.text)
+
+
+async def _probe_documents(c: AgentContext, r: ReadResult) -> tuple[list[str], list[str], list[str]]:
+    """Download the start of a few sampled document links: a file must come back, not a login, captcha or error page."""
+    refs = [d for x in r.tenders for d in x.documents][:DOC_PROBES]
+    if not refs:
+        return [], [], []
+    lines, problems, warnings = ["DOCUMENT CHECK:"], [], []
+    for ref in refs:
+        name = ref.fileName or ref.url.rsplit("/", 1)[-1]
+        try:
+            async with c.client.stream("GET", ref.url) as resp:
+                ctype = resp.headers.get("content-type", "")
+                size = resp.headers.get("content-length")
+                head = bytearray()
+                async for chunk in resp.aiter_bytes():
+                    head.extend(chunk)
+                    if len(head) >= DOC_PROBE_BYTES:
+                        break
+                final, status = str(resp.url), resp.status_code
+        except httpx.HTTPError as e:
+            problems.append(f"document {name!r} failed to download: {_short_err(e)}")
+            continue
+        moved = f" (ended at {final})" if final != ref.url else ""
+        if status >= 400:
+            problems.append(f"document {name!r} returned HTTP {status}{moved}")
+            continue
+        if "html" in ctype or bytes(head[:200]).lstrip().lower().startswith((b"<!doctype html", b"<html")):
+            text = bytes(head).decode("utf-8", errors="replace")
+            signals = detect_block(text, url=final, status=status)
+            if signals:
+                what = " / ".join(f"{s.kind} ({'; '.join(s.evidence[:2])})" for s in signals)
+                problems.append(
+                    f"document {name!r} leads to a {what} page instead of a file{moved}. If no other route to the "
+                    "documents works without it, the portal is blocked: call report_blocked"
+                )
+            else:
+                warnings.append(
+                    f"document {name!r} is an HTML page, not a file{moved}: if it is a download page, add `per_link` "
+                    "steps to reach the file; otherwise exclude such links"
+                )
+            continue
+        lines.append(f"  {name}: {ctype or 'unknown type'}, {size or '?'} bytes — OK")
+    return lines, problems, warnings
 
 
 def _completeness_warnings(t: Template, r: ReadResult) -> list[str]:

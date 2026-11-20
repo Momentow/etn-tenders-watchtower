@@ -18,5 +18,6 @@ Watchtower attaches to public-procurement portals on its own, watches over them,
 - [Normalisers](engine/normalize.md): dates by locale, CPV, enums, countries, content hash
 - [Document downloader](documents/downloader.md): streaming, ZIPs, the 250 MB rule, the download job
 - [Dashboard](dashboard/dashboard.md): the operator pages at `/`, run timeline, live refresh
+- [Agent runtime and tools](agent/runtime.md): model calls, budgets, the tool registry, pruned pages, dry runs
 - [Test-portal registry](portals/registry.md) · [Mock portals](test-portals/mock-portals.md)
 - [Model usage & cost](cost/model-usage.md)

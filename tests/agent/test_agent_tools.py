@@ -155,3 +155,19 @@ async def test_dry_run_warns_about_missed_pagination_documents_and_fields(make_c
     assert "numbered page control <button> '2' name=\"strona\"" in report
     assert "no documents on any of the 2 sampled tenders" in report
     assert "`publicationDate` is empty on every sampled tender" in report
+
+
+async def test_dry_run_flags_documents_behind_a_login(make_ctx):
+    t = {
+        "timezone": "Europe/Vienna",
+        "list": {
+            "kind": "html",
+            "request": {"url": f"{BASE}/login/ausschreibungen"},
+            "items": {"by": "css", "expr": "table.verfahren tbody tr"},
+        },
+        "detail": {"link": {"by": "css", "expr": "td a", "attr": "href"}},
+        "fields": {"id": {"by": "css", "expr": "td:nth-child(1)"}, "title": {"by": "css", "expr": "td:nth-child(2)"}},
+        "documents": {"links": {"by": "css", "expr": "ul.unterlagen a", "attr": "href", "many": True}},
+    }
+    report, _ = await core._dry_run(make_ctx(), json.dumps(t), 2)
+    assert "VERDICT: NOT GOOD" in report and "leads to a login" in report and "report_blocked" in report
