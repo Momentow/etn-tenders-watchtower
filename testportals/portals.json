@@ -94,7 +94,7 @@
       "use": "dev",
       "openTendersTed": 571,
       "openTendersPortal": 2582,
-      "docsVerified": "pending",
+      "docsVerified": "5/5",
       "listUrl": "https://www.tenderned.nl/papi/tenderned-rs-tns/v2/publicaties?page=0&size=50&publicatieDatumPreset=AF30",
       "tenderUrlPattern": "https://www.tenderned.nl/aankondigingen/overzicht/{publicatieId}",
       "detailApi": "https://www.tenderned.nl/papi/tenderned-rs-tns/v2/publicaties/{publicatieId}",
@@ -102,8 +102,11 @@
         "Angular micro-frontend: the HTML shell is empty and loads ~60 JS chunks, so rendering it at 1 req/s takes > 1 min; read the public JSON API instead",
         "List JSON is Spring-paged (content, totalElements, totalPages); the list mixes notice types (typePublicatie) including award and early-termination notices",
         "Detail JSON: aanbestedingNaam, opdrachtgeverNaam, sluitingsDatum (local time, no offset, Europe/Amsterdam), procedureCode, typeOpdrachtCode, cpvCodes[].code, referentieNummer",
+        "Documents: GET .../publicaties/{id}/documenten lists files (documentNaam, grootte in bytes, links.download.href = .../documenten/{docId}/content); links.downloadZip = .../documenten/zip for all files",
+        "The Documenten tab in the UI loads only on click; no login or token needed for the JSON API or the downloads",
         "Notice PDF at /papi/tenderned-rs-tns/v2/publicaties/{id}/pdf"
-      ]
+      ],
+      "documentsApi": "https://www.tenderned.nl/papi/tenderned-rs-tns/v2/publicaties/{publicatieId}/documenten"
     },
     {
       "key": "publicprocurement.be",
@@ -118,8 +121,11 @@
       "tenderUrlPattern": "https://www.publicprocurement.be/publication-workspaces/{uuid}/documents",
       "quirks": [
         "Vue app; the shell says 'doesn't work properly without JavaScript'",
-        "The app first fetches an anonymous token: POST /auth/realms/supplier/protocol/openid-connect/token with grant_type=client_credentials"
-      ]
+        "The app first fetches an anonymous token: POST /auth/realms/supplier/protocol/openid-connect/token with grant_type=client_credentials",
+        "Documents JSON: versions[].document.originalFileName and fileHash (sha256); 8 files on the sampled tender",
+        "Heavy app start: it loads several MB of reference JSON (cities, CPVs, NUTS) first, so a polite render takes minutes; call the JSON API"
+      ],
+      "documentsApi": "https://www.publicprocurement.be/api/dos/publication-workspaces/{uuid}/documents?full=false&type=WORKSPACE&type=ESPD_REQUEST&type=SDI"
     },
     {
       "key": "contractaciopublica.cat",
@@ -130,11 +136,17 @@
       "access": "open",
       "use": "dev",
       "openTendersTed": 168,
-      "docsVerified": "pending",
+      "docsVerified": "1/1 (browser click)",
       "quirks": [
         "Angular app (base href /ca/), lazy chunks",
-        "Summary-page trap: TED document links point to the buyer profile (/ca/perfils-contractant/detall/{id}), not the tender"
-      ]
+        "Summary-page trap: TED document links point to the buyer profile (/ca/perfils-contractant/detall/{id}), not the tender",
+        "List entries carry fasesVigents: ANUNCI_EN_TERMINI = open; ADJUDICACIO / FORMALITZACIO = award phases; lots appear as separate entries (expedientId;lotId)",
+        "Detail JSON lists documents with titol, mida (bytes), hash (MD5, not sha256) and an opaque path token; the page groups them under 'Documentacio'",
+        "Download in the UI is a JS fetch turned into a blob: URL (no plain href); the size matched 'mida' exactly. The underlying download endpoint was not captured; find it from the XHR log when building the template"
+      ],
+      "listApi": "https://contractaciopublica.cat/portal-api/cerca-avancada?page=0&size=20&sortField=dataUltimaPublicacio&sortOrder=desc",
+      "detailApi": "https://contractaciopublica.cat/portal-api/detall-publicacio-expedient/{expedientId}/{id}",
+      "tenderUrlPattern": "https://contractaciopublica.cat/ca/detall-publicacio/{expedientId}/{id}"
     },
     {
       "key": "provia.at",

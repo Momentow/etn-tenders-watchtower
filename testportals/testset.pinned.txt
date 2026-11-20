@@ -1,18 +1,25 @@
 # Pinned Watchtower test set. `build` uses this instead of auto-selection
 # (pass --no-pin to ignore it). Format: portalKey [working|blocked|holdout]  # note
+# Verified live on 2026-11-20; details in portals.json and docs/portals/registry.md.
 
-# --- working: should deliver tenders + documents without login ---
-dtvp.de                  working  # DE vmp-satellite, server-rendered, multi-step documents
-evergabe.nrw.de          working  # DE vmp-satellite, 2nd host of the same software (/VMPSatellite/ path)
-provia.at                working  # AT server-rendered, file list with sizes + hashes
-tenderned.nl             working  # NL JS app
-publicprocurement.be     working  # BE JS app
-contractaciopublica.cat  working  # ES JS app
-cloud.3p.eu              working  # BE multi-step (country-selection redirect)
-marches-publics.info     working  # FR captcha shown, but anonymous DCE download offered
-marches-publics.gouv.fr  working  # FR PLACE/Atexo, TED link lands on homepage (summary-page trap)
-achatpublic.com          working  # FR public tender page; captcha + login form near documents, verify by hand
+# --- working: deliver tenders + documents without login ---
+dtvp.de                  working  # DE vmp-satellite, multi-step, 6/6 anonymous ZIPs
+evergabe.nrw.de          working  # DE vmp-satellite (2nd host, /VMPSatellite/), 4/6
+marches-publics.gouv.fr  working  # FR PLACE/atexo-mpe, summary-page trap, 4/6
+achatpublic.com          working  # FR captcha shown but anonymous DCE works (captcha-bypassable), 4/5
+tenderned.nl             working  # NL JS app, public JSON API /papi/tenderned-rs-tns/v2
+publicprocurement.be     working  # BE JS app, public JSON API /api/dos
+contractaciopublica.cat  working  # ES JS app, public JSON API /portal-api
 
 # --- blocked: system must report `failed` with a reason ---
-s2c.mercell.com          blocked  # 403 on every request
-acquistinretepa.it       blocked  # tender pages redirect to SSO login
+provia.at                blocked  # AT: documents redirect to login
+cloud.3p.eu              blocked  # BE: invisible bot check (captcha) before documents
+marches-publics.info     blocked  # FR: image captcha before the anonymous DCE (enforcement not tested)
+s2c.mercell.com          blocked  # unverified with a browser User-Agent
+acquistinretepa.it       blocked  # unverified
+
+# --- holdout: unseen until the final test (T-020) ---
+gv.vergabeportal.at           holdout  # AT vergabeportal-at
+vergabe.autobahn.de           holdout  # DE netserver
+marches.megalis.bretagne.bzh  holdout  # FR atexo-mpe (template reuse vs PLACE)
+fcc.tuttogare.it              holdout  # IT tuttogare
