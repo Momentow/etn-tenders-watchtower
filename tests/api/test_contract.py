@@ -327,7 +327,7 @@ async def test_file_known_but_missing_on_disk_is_404(client, store):
 # ---------------------------------------------------------------- shared routes
 
 
-async def test_dashboard_still_at_root_and_docs_path_free(client):
+async def test_dashboard_still_at_root_and_docs_at_docs(client):
     r = await client.get("/")
     assert r.status_code == 200 and r.headers["content-type"].startswith("text/html")
-    assert (await client.get("/docs")).status_code == 404  # reserved for the docs site (T-019)
+    assert (await client.get("/docs")).headers["location"] == "/docs/"  # the docs site (T-019), not Swagger
