@@ -1,0 +1,25 @@
+{
+  "timezone": "Europe/Warsaw",
+  "country": "PL",
+  "software": "mock-search-form",
+  "list": {
+    "kind": "html",
+    "request": {"url": "http://localhost:8081/form/przetargi", "method": "POST", "form": {"status": "otwarte"}},
+    "steps": [],
+    "items": {"by": "xpath", "expr": "//table[@id='wyniki']/tbody/tr"},
+    "pagination": {"kind": "param", "name": "strona", "location": "form", "start": 1}
+  },
+  "fields": {
+    "id": {"by": "xpath", "expr": "./td[1]"},
+    "url": {"by": "xpath", "expr": "./td[2]/a", "attr": "href"},
+    "title": {"by": "xpath", "expr": "./td[2]/a"},
+    "buyerName": {"by": "xpath", "expr": "./td[3]"},
+    "publicationDate": {"by": "xpath", "expr": "./td[4]", "formats": ["%Y-%m-%d"]},
+    "submissionDeadline": {"by": "xpath", "expr": "./td[5]", "formats": ["%Y-%m-%d %H:%M"]}
+  },
+  "documents": {
+    "on": "item",
+    "links": {"by": "xpath", "expr": "./td[6]//a", "attr": "href", "many": true}
+  },
+  "notes": "The tender list is the result of a POSTed search form; pages are selected with a form field. Everything needed is on the list row, so there is no detail page."
+}

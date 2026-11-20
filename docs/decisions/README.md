@@ -7,5 +7,5 @@ Never edit an accepted ADR; supersede it with a new one.
 |---|---|---|---|
 | [0001](0001-tech-stack.md) | Tech stack | accepted | 2026-11-20 |
 | [0002](0002-architecture.md) | Architecture, module boundaries and interfaces | accepted | 2026-11-20 |
-| 0003 | Template format (reserved for T-008) | — | — |
+| [0003](0003-template-format.md) | Template format | accepted | 2026-11-20 |
 | [0004](0004-storage.md) | Storage: SQLite schema and `core.store` API | accepted | 2026-11-20 |

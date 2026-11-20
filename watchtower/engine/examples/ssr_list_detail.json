@@ -1,0 +1,66 @@
+{
+  "timezone": "Europe/Berlin",
+  "country": "DE",
+  "software": "mock-ssr",
+  "list": {
+    "kind": "html",
+    "request": {"url": "http://localhost:8081/ssr/ausschreibungen"},
+    "items": {"by": "css", "expr": "table.tenders tbody tr"},
+    "pagination": {
+      "kind": "next_link",
+      "link": {"by": "css", "expr": "a[rel=next]", "attr": "href"}
+    }
+  },
+  "detail": {
+    "link": {"by": "css", "expr": "td.title a", "attr": "href"}
+  },
+  "fields": {
+    "id": {"by": "css", "expr": "td.ref", "pattern": "^\\s*(\\S+)"},
+    "title": {"by": "css", "expr": "td.title a"},
+    "buyerName": {"by": "css", "expr": "td.buyer"},
+    "publicationDate": {"by": "css", "expr": "td.published", "formats": ["%d.%m.%Y"]},
+    "submissionDeadline": {
+      "by": "xpath",
+      "expr": "//dt[normalize-space()='Angebotsfrist']/following-sibling::dd[1]",
+      "on": "detail",
+      "formats": ["%d.%m.%Y %H:%M"]
+    },
+    "referenceNumber": {"by": "css", "expr": "td.ref"},
+    "description": {"by": "css", "expr": "section.description", "on": "detail"},
+    "procedureType": {
+      "by": "xpath",
+      "expr": "//dt[normalize-space()='Verfahrensart']/following-sibling::dd[1]",
+      "on": "detail",
+      "map": {
+        "Offenes Verfahren": "open",
+        "Öffentliche Ausschreibung": "open",
+        "Nicht offenes Verfahren": "restricted",
+        "Beschränkte Ausschreibung": "restricted",
+        "Verhandlungsverfahren": "negotiated"
+      }
+    },
+    "contractNature": {
+      "by": "xpath",
+      "expr": "//dt[normalize-space()='Art des Auftrags']/following-sibling::dd[1]",
+      "on": "detail",
+      "map": {"Bauleistung": "works", "Dienstleistung": "services", "Lieferleistung": "supplies"}
+    },
+    "cpvCodes": {"by": "css", "expr": "ul.cpv li", "on": "detail", "many": true, "pattern": "(\\d{8})"},
+    "placeOfPerformance": {
+      "postalCode": {"by": "css", "expr": "span.plz", "on": "detail"},
+      "city": {"by": "css", "expr": "span.ort", "on": "detail"},
+      "countryCode": {"by": "const", "expr": "DE"}
+    }
+  },
+  "documents": {
+    "on": "detail",
+    "links": {"by": "css", "expr": "ul.documents a", "attr": "href", "many": true},
+    "names": {"by": "css", "expr": "ul.documents a", "many": true}
+  },
+  "status": {
+    "value": {"by": "css", "expr": "td.status"},
+    "withdrawn": ["aufgehoben", "zurückgezogen"],
+    "closed": ["abgelaufen", "beendet"]
+  },
+  "notes": "Server-rendered list with a detail page per tender; deadline and documents only on the detail page."
+}
