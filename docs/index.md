@@ -9,5 +9,6 @@ Watchtower attaches to public-procurement portals on its own, watches over them,
 ## Engineering
 - [Decisions (ADRs)](decisions/README.md): [tech stack](decisions/0001-tech-stack.md), [architecture](decisions/0002-architecture.md), [storage](decisions/0004-storage.md)
 - [Store](core/store.md): the database layer
+- [Network layer](net/network.md): politeness, HTTP client, browser, block detection
 - [Test-portal registry](portals/registry.md)
 - [Model usage & cost](cost/model-usage.md)
