@@ -8,3 +8,4 @@ docs/*.pdf
 .ruff_cache
 .pytest_cache
 testportals
+site
