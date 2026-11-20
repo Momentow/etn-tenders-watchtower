@@ -98,6 +98,7 @@ merges PRs on the GitHub web UI.** Remote: `git@github.com:Momentow/etn-tenders-
 
 - Markdown in `docs/` is the **single source** (English). The container serves it as a static site at `/docs`, styled as
   modern, minimal product docs. The site is generated from these files; never hand-edit generated output.
+- **A new page goes into `nav` in `mkdocs.yml`** (a test enforces it). Details: [docs/docs-site/docs-site.md](docs/docs-site/docs-site.md).
 - **Every feature PR updates the relevant docs in the same branch.** A PR with no docs change states why in its description.
 - Which doc owns what:
 
@@ -164,6 +165,7 @@ uv run python -m mockportals                    # mock portals on :8081 (docs/te
 uv run pytest                                   # all tests
 uv run pytest tests/test_smoke.py::test_index_serves_placeholder_page   # single test
 uv run ruff check . && uv run ruff format .     # lint + format
+uv run --group docs zensical build              # docs site → site/, served at /docs
 docker build -t watchtower . && docker run -p 8080:8080 -e OPENAI_API_KEY watchtower
 ```
 

@@ -20,3 +20,4 @@ Watchtower attaches to public-procurement portals on its own, watches over them,
 - [Dashboard](dashboard/dashboard.md): the operator pages at `/`, run timeline, live refresh
 - [Test-portal registry](portals/registry.md) · [Mock portals](test-portals/mock-portals.md)
 - [Model usage & cost](cost/model-usage.md)
+- [Docs site](docs-site/docs-site.md): how this site is built and served, and how to add a page

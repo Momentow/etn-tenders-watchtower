@@ -63,6 +63,7 @@ nav:
       - Mock portals: test-portals/mock-portals.md
   - Cost:
       - Model usage: cost/model-usage.md
+  - Docs site: docs-site/docs-site.md
   - Decisions:
       - decisions/README.md
       - "0000 Template": decisions/0000-template.md
