@@ -4,52 +4,209 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 
 **Statuses:** `todo` · `in-progress` · `review` (PR open) · `done` · `blocked`
 **Claim:** set Status, Owner and Branch in a tiny commit pushed straight to `master`. Only claim a task once all its dependencies are `done`.
-**Areas:** `core` · `attach` · `notice` · `repair` · `dashboard` · `docs-site` · `infra` · `test-portals` · `cost`
+**Areas:** `core` · `api` · `net` · `engine` · `notice` · `repair` · `agent` · `documents` · `dashboard` · `docs-site` · `infra` · `test-portals` · `cost`
+**Interfaces:** every module codes against [ADR 0002](docs/decisions/0002-architecture.md). Stub a dependency that isn't merged yet; never wait on another session's branch.
 
 | ID | Title | Area | Status | Owner | Branch | Depends on | Refs |
 |---|---|---|---|---|---|---|---|
 | T-000 | Collaboration protocol & docs skeleton | docs-site | review | Momentow | docs/T-000-collab-protocol | — | [CLAUDE.md](CLAUDE.md) |
-| T-001 | Build test-portal registry | test-portals | todo | | | T-000 | [registry](docs/portals/registry.md), [requirements](docs/spec/requirements.md) |
-| T-002 | Choose tech stack (ADR) + fill CLAUDE.md stack section | core | todo | | | T-000 | [requirements](docs/spec/requirements.md), [decisions](docs/decisions/README.md) |
-| T-099 | LLM usage metering & cost per portal (last MVP task) | cost | todo | | | all other MVP tasks | [model-usage](docs/cost/model-usage.md) |
+| T-001 | Build test-portal registry | test-portals | todo | | | T-000 | [registry](docs/portals/registry.md) |
+| T-002 | Tech stack & architecture ADRs | core | review | Momentow | docs/T-000-collab-protocol | T-000 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
+| T-003 | Project skeleton, Dockerfile, checks | infra | todo | | | T-002 | [0001](docs/decisions/0001-tech-stack.md) |
+| T-004 | SQLite store & data models | core | todo | | | T-003 | [0002](docs/decisions/0002-architecture.md), [api-contract](docs/spec/api-contract.md) |
+| T-005 | HTTP API per contract | api | todo | | | T-004 | [api-contract](docs/spec/api-contract.md) |
+| T-006 | Scheduler, job queue & state machine | core | todo | | | T-004 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
+| T-007 | Polite network layer (`PoliteClient`, `BrowserPool`) | net | todo | | | T-003 | [0002](docs/decisions/0002-architecture.md) |
+| T-008 | Template format (ADR 0003 + pydantic schema) | engine | todo | | | T-003 | [0002](docs/decisions/0002-architecture.md) |
+| T-009 | Engine executor (`run_template`) | engine | todo | | | T-007, T-008 | [0002](docs/decisions/0002-architecture.md) |
+| T-010 | Normalizers & tender content hash | engine | todo | | | T-003 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
+| T-011 | Validators (`validate.check`) | notice | todo | | | T-009 | [0002](docs/decisions/0002-architecture.md) |
+| T-012 | Document downloader & `/files` store | documents | todo | | | T-004, T-007 | [api-contract → Tender](docs/spec/api-contract.md#tender) |
+| T-013 | Mock portals + mutated variants | test-portals | todo | | | T-003 | [requirements](docs/spec/requirements.md#finding-test-portals) |
+| T-014 | Agent runtime & tools | agent | todo | | | T-007, T-009 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
+| T-015 | Scenario `generate_template` (Attach) | agent | todo | | | T-013, T-014 | [0002](docs/decisions/0002-architecture.md) |
+| T-016 | Scenario `investigate` (Notice → Repair) | repair | todo | | | T-011, T-013, T-014 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
+| T-017 | Read pipeline wiring (attach / read / heal flows) | core | todo | | | T-006, T-009, T-010, T-011, T-012 | [0002 read pipeline](docs/decisions/0002-architecture.md#read-pipeline-no-model-call) |
+| T-018 | Dashboard | dashboard | todo | | | T-005 | [requirements](docs/spec/requirements.md) |
+| T-019 | Docs site at `/docs` | docs-site | todo | | | T-003 | [0001](docs/decisions/0001-tech-stack.md) |
+| T-020 | End-to-end tests & real-portal smoke run | test-portals | todo | | | T-001, T-015, T-016, T-017 | [requirements → Judging](docs/spec/requirements.md#judging) |
+| T-021 | README & demo video script | docs-site | todo | | | T-020 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
+| T-099 | LLM usage metering & cost per portal (last MVP task) | cost | todo | | | T-020 | [model-usage](docs/cost/model-usage.md) |
 
-> Concrete MVP tasks (API skeleton, state machine, attach, notice, repair, dashboard, docs site, Dockerfile) get added once T-002 is done.
+**Critical path:** T-003 → T-007/T-008 → T-009 → T-014 → T-015/T-016 → T-017 → T-020 → T-099.
+**Can start in parallel right after T-003:** T-004, T-007, T-008, T-010, T-013, T-019. T-001 can start now (no code needed).
 
 ---
 
 ### T-000 — Collaboration protocol & docs skeleton
 **Goal:** Every session follows one protocol for git, tasks, docs and contracts.
 **Acceptance:**
-- [x] `CLAUDE.md` with the stack-agnostic protocol
-- [x] `TASKS.md` board
-- [x] `docs/` skeleton: spec, decisions, portal registry, cost placeholder
+- [x] `CLAUDE.md` protocol · [x] `TASKS.md` board · [x] `docs/` skeleton
 **Refs:** [CLAUDE.md](CLAUDE.md)
-**Notes:** —
 
 ### T-001 — Build test-portal registry
 **Goal:** Our own test set, as the brief asks for.
 **Acceptance:**
-- [ ] Each portal has a public tender list and ≥ 5 open tenders whose documents download without login
-- [ ] Covers ≥ 4 countries and ≥ 3 different portal software packages
-- [ ] Mixes server-rendered pages, JS apps with a JSON API, and multi-step downloads
-- [ ] 1–2 portals that need a login or captcha (to test that we report the block)
-- [ ] A few portals marked `unseen`, held back for the final test
-**Refs:** [docs/portals/registry.md](docs/portals/registry.md), [requirements](docs/spec/requirements.md#finding-test-portals)
-**Notes:** —
+- [ ] Each portal: a public tender list, ≥ 5 open tenders with documents downloadable without login
+- [ ] ≥ 4 countries, ≥ 3 portal software packages
+- [ ] Mix of `ssr`, `js-api` and `multi-step`; 1–2 `login`/`captcha` portals
+- [ ] A few marked `unseen` (held back for the final test)
+**Refs:** [registry](docs/portals/registry.md), [requirements](docs/spec/requirements.md#finding-test-portals)
 
-### T-002 — Choose tech stack
-**Goal:** Pick the language, framework, storage, scraping/browser approach, LLM provider and docs-site generator.
+### T-002 — Tech stack & architecture ADRs
 **Acceptance:**
-- [ ] ADR `0001-tech-stack.md` accepted
-- [ ] The "Tech stack, commands, architecture" section of CLAUDE.md is filled in
-- [ ] Concrete MVP tasks added to this board, with dependencies
-**Refs:** [requirements](docs/spec/requirements.md), [api-contract](docs/spec/api-contract.md)
-**Notes:** —
+- [x] ADR 0001 and ADR 0002 accepted
+- [x] CLAUDE.md stack and architecture sections filled in
+- [x] MVP tasks on this board
+**Refs:** [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md)
+
+### T-003 — Project skeleton, Dockerfile, checks
+**Goal:** An empty but runnable service that everyone builds on.
+**Acceptance:**
+- [ ] `pyproject.toml` + `uv.lock` with the ADR 0001 libraries pinned; package `watchtower/` with the ADR 0002 sub-packages (empty modules)
+- [ ] FastAPI app factory; `GET /` returns a placeholder page; app starts with `uv run …`
+- [ ] `ruff` and `pytest` configured, with one passing smoke test
+- [ ] `Dockerfile` on the Playwright Python base image; `docker build .` works on linux/amd64; the container serves `:8080`
+- [ ] CLAUDE.md "Commands" section filled in with the real commands
+**Refs:** [0001](docs/decisions/0001-tech-stack.md)
+
+### T-004 — SQLite store & data models
+**Goal:** `core.store`, the only DB access layer.
+**Acceptance:**
+- [ ] Tables: portals, runs, template_versions, tenders, documents, jobs. Migrations applied at startup (WAL mode)
+- [ ] Async repository functions used by the API, the scheduler and the pipeline
+- [ ] Portal URL normalisation so the same address returns the same id
+**Refs:** [0002](docs/decisions/0002-architecture.md), [api-contract](docs/spec/api-contract.md)
+
+### T-005 — HTTP API per contract
+**Acceptance:**
+- [ ] Every endpoint, status code and field exactly as in the contract; times with offsets; unknown id → 404
+- [ ] `POST /portals` returns 201 at once and enqueues an attach; `refresh` returns 202 with the running read's `runId` if one is running; `changedSince` filter works
+- [ ] Contract tests for every endpoint
+**Refs:** [api-contract](docs/spec/api-contract.md)
+
+### T-006 — Scheduler, job queue & state machine
+**Acceptance:**
+- [ ] Persisted jobs (`attach`, `read`, `investigate`, `download`) resume after a restart; asyncio workers
+- [ ] At most one active attach/read/investigate per portal; periodic reads of `serving` portals
+- [ ] The state machine is the only writer of `state`/`reason`, and implements the ADR 0002 lifecycle table
+- [ ] Deleted portals: no requests within a minute
+**Refs:** [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle)
+
+### T-007 — Polite network layer
+**Acceptance:**
+- [ ] `PoliteClient.get/stream`: ≤ 1 req/s per host (tested), timeouts, retries with backoff, honest User-Agent
+- [ ] `BrowserPool.render`: a shared Chromium that returns HTML plus captured JSON/XHR responses, going through the same limiter
+- [ ] Login/captcha detection helpers (used for `Blocked`)
+**Refs:** [0002](docs/decisions/0002-architecture.md)
+
+### T-008 — Template format
+**Goal:** The contract between the agent and the engine.
+**Acceptance:**
+- [ ] ADR 0003 accepted, covering:
+  - the list source (HTML / JSON API / multi-step)
+  - pagination
+  - field extractors (CSS / XPath / JSONPath / regex + constants)
+  - detail-page follow
+  - document links and multi-step downloads
+  - time zone and date formats
+  - status signals (how the portal marks a tender `withdrawn`/cancelled)
+  - the browser-needed flag
+- [ ] Pydantic `Template` model + JSON schema (the agent uses it for structured output)
+- [ ] Example templates for every mock portal kind
+**Refs:** [0002](docs/decisions/0002-architecture.md)
+
+### T-009 — Engine executor
+**Acceptance:**
+- [ ] `run_template` returns a `ReadResult` exactly per ADR 0002, with no DB access and no LLM call
+- [ ] Works on the mock portals with their example templates; `limit` supports dry runs
+**Refs:** [0002](docs/decisions/0002-architecture.md)
+
+### T-010 — Normalizers & content hash
+**Acceptance:**
+- [ ] Local date/time + portal time zone → ISO 8601 with offset; publication date as a date
+- [ ] CPV check digit stripped; procedureType and contractNature mapped (unknown → leave out); ISO country codes
+- [ ] A content hash that's stable across reads (drives `lastChangedAt`)
+- [ ] Unit tests covering several locales (DE, FR, ES, NL, PL formats)
+**Refs:** [api-contract → Tender](docs/spec/api-contract.md#tender)
+
+### T-011 — Validators
+**Acceptance:**
+- [ ] `check(result, history)` flags: fetch/parse errors, zero tenders, a sharp drop versus recent reads, required fields newly null, invalid dates, duplicate ids
+- [ ] Problems written as plain sentences (they feed `reason` and the dashboard)
+**Refs:** [0002](docs/decisions/0002-architecture.md)
+
+### T-012 — Document downloader
+**Acceptance:**
+- [ ] Streams to disk with sha256; content-addressed; never fully in RAM
+- [ ] Unpacks ZIPs (nested too) on disk; skips files over 250 MB (checked from the headers or while streaming)
+- [ ] `GET /files/{id}` serves the bytes; `documents[]` entries match the contract
+**Refs:** [api-contract → Tender](docs/spec/api-contract.md#tender)
+
+### T-013 — Mock portals + mutated variants
+**Acceptance:**
+- [ ] Locally served portals: SSR list + detail pages, a JS app with a JSON API, a multi-step download, a captcha/login variant
+- [ ] Mutated variants (changed markup, renamed JSON keys, moved pagination) for Notice and Repair tests
+- [ ] Usable from pytest and runnable for the demo
+**Refs:** [requirements](docs/spec/requirements.md#finding-test-portals)
+
+### T-014 — Agent runtime & tools
+**Acceptance:**
+- [ ] Agents SDK setup reading `OPENAI_API_KEY` / `WATCHTOWER_MODEL`; the only place model calls happen
+- [ ] Tools: `fetch`, `render`, `try_template` (engine dry run), `submit_template`, `report_blocked`, `report_transient`
+- [ ] HTML pruning before content reaches the model; per-scenario budgets (turns, tokens, wall time)
+**Refs:** [0002](docs/decisions/0002-architecture.md)
+
+### T-015 — Scenario `generate_template`
+**Acceptance:**
+- [ ] Returns an `AttachOutcome`; handles summary-page links (finds the real tender list); detects login/captcha → `Blocked`
+- [ ] Doesn't report `Blocked` when a captcha is shown but the list and documents still download without it (try first, then decide)
+- [ ] Produces a validated template for every mock portal kind
+**Refs:** [0002](docs/decisions/0002-architecture.md)
+
+### T-016 — Scenario `investigate`
+**Acceptance:**
+- [ ] Returns a `Diagnosis`; repairs every mutated mock variant (`Changed` with a validated template)
+- [ ] Separates transient errors from blocked, gone and unrepairable portals
+**Refs:** [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle)
+
+### T-017 — Read pipeline wiring
+**Acceptance:**
+- [ ] Attach, read and heal flows per the ADR 0002 lifecycle, with `run` records for each
+- [ ] Tender upsert: `lastChangedAt`; `closed` when the deadline has passed or the tender is no longer listed
+- [ ] While healing, the last correct tenders are still served; template versions are promoted only after validation
+- [ ] Calls agent scenarios through the ADR 0002 interfaces (stubbed until T-015/T-016 merge)
+**Refs:** [0002 read pipeline](docs/decisions/0002-architecture.md#read-pipeline-no-model-call)
+
+### T-018 — Dashboard
+**Acceptance:**
+- [ ] `/`: every portal with state, reason, tender count and last success; live refresh via htmx
+- [ ] Portal detail: run timeline (reads, repairs, diagnoses), template versions, tenders
+**Refs:** [requirements](docs/spec/requirements.md)
+
+### T-019 — Docs site at `/docs`
+**Acceptance:**
+- [ ] `mkdocs.yml` covering all of `docs/`; built with Zensical during `docker build` (fall back to pinned mkdocs-material if Zensical fails)
+- [ ] Served statically at `/docs` by the app; clean, minimal look with search
+**Refs:** [0001](docs/decisions/0001-tech-stack.md)
+
+### T-020 — End-to-end tests & real-portal smoke run
+**Acceptance:**
+- [ ] E2E on mock portals: attach → serving; mutate → healing → serving; captcha → failed with reason
+- [ ] Smoke run against the registry's `dev` portals; results noted in the registry
+- [ ] Final run against the `unseen` portals
+**Refs:** [requirements → Judging](docs/spec/requirements.md#judging)
+
+### T-021 — README & demo video script
+**Acceptance:**
+- [ ] One-page README: how it works, env vars, cost per portal (filled in from T-099)
+- [ ] Shot list for a video of at most 3 minutes, including the dashboard
+**Refs:** [requirements → Hand-in](docs/spec/requirements.md#hand-in)
 
 ### T-099 — LLM usage metering & cost per portal
-**Goal:** Measure tokens and cost per portal (attach, check, repair) and report it in the README, as the "Approach" judging criterion asks.
+**Goal:** Measure tokens and cost per portal (attach, investigate) for the README and the "Approach" criterion.
 **Acceptance:**
-- [ ] Model usage recorded per portal and per run
+- [ ] Usage recorded per run from Agents SDK usage data; shown on the dashboard
 - [ ] `docs/cost/model-usage.md` and the README state the cost of one portal
-**Refs:** [docs/cost/model-usage.md](docs/cost/model-usage.md)
-**Notes:** Deliberately last. Until then, keep all model calls behind one module.
+**Refs:** [model-usage](docs/cost/model-usage.md)
+**Notes:** Deliberately last.

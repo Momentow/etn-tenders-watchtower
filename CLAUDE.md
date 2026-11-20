@@ -121,7 +121,33 @@ other sessions depend on: the tech stack, module boundaries and interfaces, the 
 usage strategy, and any API contract clarification. Add it to the index in `docs/decisions/README.md` and commit it on the
 task's branch. If an accepted ADR changes, write a new ADR that supersedes it; don't edit the old one.
 
-## Tech stack, commands, architecture
+## Tech stack
 
-_To be decided. See TASKS.md `T-002`. Once the stack ADR is accepted, this section gets build / run / test (including a
-single test) / lint / docs-build commands, the env-var list and a big-picture architecture overview._
+Python 3.12+, asyncio throughout · FastAPI + uvicorn · httpx · selectolax / lxml / jsonpath-ng · Playwright (Chromium) ·
+SQLite via aiosqlite · OpenAI Agents SDK · Jinja2 + htmx dashboard · Zensical docs site · uv · ruff · pytest.
+Rationale and rejected options: [ADR 0001](docs/decisions/0001-tech-stack.md).
+
+Env vars: `OPENAI_API_KEY` (required), `WATCHTOWER_MODEL`, `DATA_DIR` (default `/data`).
+
+## Architecture
+
+Full boundaries, interfaces and the portal lifecycle: [ADR 0002](docs/decisions/0002-architecture.md). Read it before touching a module.
+
+- **Static engine, agent writes templates.** The `engine` reads every portal by executing a declarative template, with no
+  model call. The `agent` runs only for `generate_template` (attach) and `investigate` (notice → repair), and outputs a
+  template or a diagnosis, **never code**. The engine validates every template before it is promoted.
+- **Single owners, never bypassed:**
+  - all portal traffic → `net` (enforces ≤ 1 req/s per host);
+  - all model calls → `agent`;
+  - all `state`/`reason` changes → the state machine in `core`;
+  - all DB access → `core.store`.
+- Read pipeline: engine run → `validate.check` → upsert tenders and `lastChangedAt` → enqueue document downloads → record
+  the run → state transition. A failed validation moves the portal to `healing` and enqueues `investigate`, while the last correct tenders keep being served.
+- Everything runs in one process: API, dashboard, `/docs`, scheduler and workers. Jobs are persisted in SQLite. Files are streamed to `$DATA_DIR/files/<sha256>`.
+- `mockportals/` holds local fake portals plus mutated variants. Use them to test Attach, Notice and Repair offline.
+
+## Commands
+
+_Filled in by T-003 (project skeleton) once `pyproject.toml` and the `Dockerfile` exist. Planned:_
+`uv sync` · `uv run pytest` · `uv run pytest path::test_name` (single test) · `uv run ruff check . && uv run ruff format .` ·
+`docker build -t watchtower . && docker run -p 8080:8080 -e OPENAI_API_KEY watchtower`.
