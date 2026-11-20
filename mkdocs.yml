@@ -59,6 +59,7 @@ nav:
       - Normalisers: engine/normalize.md
       - Read validation: validate/checks.md
       - Document downloader: documents/downloader.md
+      - Agent runtime and tools: agent/runtime.md
   - Test portals:
       - Registry: portals/registry.md
       - Mock portals: test-portals/mock-portals.md
@@ -77,3 +78,4 @@ nav:
       - "0007 Date parsing": decisions/0007-date-parsing.md
       - "0008 Read validation": decisions/0008-read-validation.md
       - "0009 Pipeline outcomes": decisions/0009-pipeline-and-agent-outcomes.md
+      - "0010 Agent runtime": decisions/0010-agent-runtime-and-tools.md
