@@ -1,10 +1,8 @@
-"""Repair diffs: list-page structure now vs the last good read, and what two templates read differently."""
+"""Repair diff: what two templates read differently."""
 
 from __future__ import annotations
 
-import difflib
 import json
-import re
 from typing import Any
 
 from watchtower.engine.result import ReadResult
@@ -22,32 +20,6 @@ COMPARED = (
     "cpvCodes",
     "placeOfPerformance",
 )
-_CLASS = re.compile(r"[.#]([\w-]+)")
-
-
-def diff_snapshots(old: dict[str, Any], new: dict[str, Any], max_lines: int = 60) -> list[str]:
-    """Unified diff of two `engine.snapshot` outlines (HTML) or key shapes (JSON), plus vanished/new class names."""
-    if old.get("kind") != new.get("kind"):
-        return [f"the list changed from {old.get('kind')} to {new.get('kind')}"]
-    if new.get("kind") == "json":
-        a = json.dumps(old.get("shape"), indent=1, ensure_ascii=False).splitlines()
-        b = json.dumps(new.get("shape"), indent=1, ensure_ascii=False).splitlines()
-    else:
-        a, b = (old.get("outline") or "").splitlines(), (new.get("outline") or "").splitlines()
-    out = []
-    if old.get("url") != new.get("url"):
-        out.append(f"url: {old.get('url')} → {new.get('url')}")
-    gone = sorted(set(_CLASS.findall("\n".join(a))) - set(_CLASS.findall("\n".join(b))))
-    added = sorted(set(_CLASS.findall("\n".join(b))) - set(_CLASS.findall("\n".join(a))))
-    if gone or added:
-        out.append(f"names gone: {', '.join(gone[:15]) or '-'} | names new: {', '.join(added[:15]) or '-'}")
-    body = [ln for ln in difflib.unified_diff(a, b, "last good", "now", n=1, lineterm="")][2:]
-    if not body:
-        out.append("no structural difference")
-    out += body[:max_lines]
-    if len(body) > max_lines:
-        out.append(f"… {len(body) - max_lines} more diff lines")
-    return out
 
 
 def diff_reads(a: ReadResult, b: ReadResult, max_lines: int = 30) -> list[str]:

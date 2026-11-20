@@ -54,7 +54,7 @@ def test_toolkit_is_registered_per_scenario():
     attach = {t.name for t in tools_for("attach")}
     investigate = {t.name for t in tools_for("investigate")}
     assert TOOLKIT <= attach and TOOLKIT <= investigate
-    assert {"diff_structure", "diff_outputs"} <= investigate - attach
+    assert "diff_outputs" in investigate - attach
 
 
 async def test_find_repeating_blocks_gives_items_and_field_selectors(ctx):
@@ -182,21 +182,11 @@ async def test_template_reuse_by_software(ctx):
     assert "No template known" in await call(c, "find_template_for_software", software="cosinex")
 
 
-async def test_diff_structure_shows_the_markup_change(ctx):
-    from watchtower.engine import run_template
-
-    template = load_example("ssr_list_detail")
-    good = await run_template(template, ctx().client, None, limit=1)
-    c = ctx({"ssr": "markup"}, template=template, last_good_snapshot=good.snapshot)
-    out = await call(c, "diff_structure", url=None)
-    assert "names gone:" in out and "tenders" in out.split("names new:")[0]
-    assert "ergebnisse" in out
-
-
 async def test_diff_outputs_compares_two_templates(ctx):
     old = load_example("ssr_list_detail")
     new = json.loads(old.model_dump_json(exclude_defaults=True))
     new["fields"]["buyerName"] = {"by": "css", "expr": "td.status"}
-    c = ctx(template=old)
+    c = ctx()
+    c.extra["template"] = old
     out = await call(c, "diff_outputs", new_template=json.dumps(new), old_template=None)
     assert "A: 5 tenders, B: 5 tenders, 5 shared" in out and "buyerName: differs on 5/5" in out

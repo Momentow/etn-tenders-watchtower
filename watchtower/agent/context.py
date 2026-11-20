@@ -29,9 +29,6 @@ class AgentContext:
     client: PoliteClient
     browser: BrowserPool | None = None
     history: PortalHistory = field(default_factory=PortalHistory)
-    # Investigate: the template in use and the list-page structure of the last good read (repair diffs, T-022).
-    template: Template | None = None
-    last_good_snapshot: dict[str, Any] | None = None
     # Templates of other portals by software fingerprint, for reuse (`find_template_for_software`).
     known_templates: dict[str, Template] = field(default_factory=dict)
     # Pages already fetched in this run, by requested URL: a second look (another `focus`) costs no request.

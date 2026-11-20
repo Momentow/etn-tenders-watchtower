@@ -1,4 +1,4 @@
-# 0011 — Agent toolkit: analysis modules, context inputs, verified suggestions
+# 0012 — Agent toolkit: analysis modules, context inputs, verified suggestions
 
 - **Status:** accepted
 - **Date:** 2026-11-20
@@ -14,18 +14,17 @@ from them, and what the tools promise.
 ### Layout
 - `watchtower/agent/analysis/`: pure functions on engine scopes (no I/O, no model): `discovery` (repeating blocks, link
   classes), `selectors` (verified CSS for groups and within records), `recognition` (label → field, dates, software
-  fingerprints), `diff` (snapshots, reads).
+  fingerprints), `diff` (what two template reads differ on).
 - `watchtower/agent/pages.py`: the per-run page cache (`get_page`, also for rendered pages), `page_scope` (engine
   parse) and `probe_document`. Core and toolkit tools share it.
-- `watchtower/agent/tools/{discovery,recognition,verification,repair}.py`: thin `@tool` wrappers. Repair tools are
-  registered for `investigate` only; the rest for both scenarios.
+- `watchtower/agent/tools/{discovery,recognition,verification,repair}.py`: thin `@tool` wrappers. The repair tool
+  (`diff_outputs`) is registered for `investigate` only; the rest for both scenarios.
 
-### Inputs from the scenarios (`AgentContext`, all optional)
-| Field | Set by | Used by |
-|---|---|---|
-| `template` | investigate: the template in use | `diff_structure` (default page), `diff_outputs` (default old) |
-| `last_good_snapshot` | investigate: `PortalView.last_good_snapshot` | `diff_structure` |
-| `known_templates` | both: promoted templates of other portals by `software` | `fingerprint_software`, `find_template_for_software` |
+### Inputs from the scenarios
+- `AgentContext.known_templates` (new, optional): promoted templates of other portals by `software`, used by
+  `fingerprint_software` and `find_template_for_software`. The attach scenario fills it when the pipeline provides them.
+- `diff_outputs` reads the template in use from `ctx.extra["template"]`, as the investigate scenario sets it
+  ([ADR 0011](0011-investigate-deterministic-first.md)). The structure diff is that scenario's own `diff_structure`.
 
 ### What tools promise
 - Every selector or snippet a tool suggests has been run on the live page with the engine's own parser and CSS.
@@ -37,7 +36,6 @@ from them, and what the tools promise.
 `BASE_INSTRUCTIONS` tells the model to prefer these tools and use their suggestions as given.
 
 ## Consequences
-- T-015/T-016 should fill `known_templates` (from the store, through the pipeline) and, for investigate, `template`
-  and `last_good_snapshot`. Without them the tools still work, minus reuse and diffs.
+- Attach should fill `known_templates` (from the store, through the pipeline); without it, reuse is simply unavailable.
 - More tool schemas and outputs in the context: a run on an easy portal can cost more tokens than without the toolkit,
   in exchange for completeness on hard ones. T-099 measures it; trimming the method or tool set comes after.

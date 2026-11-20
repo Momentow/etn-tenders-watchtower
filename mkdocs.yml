@@ -82,4 +82,4 @@ nav:
       - "0009 Pipeline outcomes": decisions/0009-pipeline-and-agent-outcomes.md
       - "0010 Agent runtime": decisions/0010-agent-runtime-and-tools.md
       - "0011 Investigate": decisions/0011-investigate-deterministic-first.md
-      - "0011 Agent toolkit": decisions/0011-agent-toolkit.md
+      - "0012 Agent toolkit": decisions/0012-agent-toolkit.md

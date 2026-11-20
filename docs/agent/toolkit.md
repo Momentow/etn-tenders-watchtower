@@ -1,7 +1,7 @@
 # Agent toolkit
 
 The deterministic tools the agent calls while attaching or repairing a portal ([ADR 0002 → toolkit](../decisions/0002-architecture.md#agent-toolkit-deterministic-first),
-[ADR 0011](../decisions/0011-agent-toolkit.md)). The model makes the judgement calls; these tools compute selectors,
+[ADR 0012](../decisions/0012-agent-toolkit.md)). The model makes the judgement calls; these tools compute selectors,
 pagination, field rules and verdicts, **check them on the live page**, and answer with short text the model can paste
 into a template. The core tools (`fetch`, `render`, `try_template`, `submit_template`, `report_*`) are described in
 [agent runtime](runtime.md).
@@ -42,8 +42,10 @@ built on the engine's own parser and CSS implementation, so a selector a tool su
 
 | Tool | What it answers |
 |---|---|
-| `diff_structure(url?)` | The list page's structure now against `AgentContext.last_good_snapshot`: class names gone and new, and a unified diff of the outline (or JSON shape). Default page: the first list page the current template reaches. |
-| `diff_outputs(new_template, old_template?)` | Reads the first tenders with two templates (default old: `AgentContext.template`) and compares: ids only one finds, and per field how many shared tenders differ, with an example. |
+| `diff_outputs(new_template, old_template?)` | Reads the first tenders with two templates (default old: the template in use, `ctx.extra["template"]`) and compares: ids only one finds, and per field how many shared tenders differ, with an example. |
+
+The structure diff against the last good snapshot (`diff_structure`), `show_read` and `count_list` belong to the
+investigate scenario ([investigate](../repair/investigate.md)).
 
 ## Adding a tool
 
