@@ -11,7 +11,7 @@ The outcome rules are fixed in [ADR 0009](../decisions/0009-pipeline-and-agent-o
 |---|---|---|---|
 | `attach` | `integrating` | `generate_template` → store as new version → engine run → `validate.check` (no history) → promote → deliver | `attach_succeeded` / `attach_failed` |
 | `read` | `serving` | engine run with the current template → `validate.check` against history → deliver | `read_succeeded` / `start_healing` |
-| `investigate` (repair) | `healing` | audit candidate → plain re-read → `investigate(trigger="failure")` → re-read or validate the new template. After an audit finding, a re-read that passes doesn't count as a repair ([ADR 0012](../decisions/0012-audit-finding-repair.md)) | `repair_succeeded` / `repair_failed` |
+| `investigate` (repair) | `healing` | audit candidate → plain re-read → `investigate(trigger="failure")` → re-read or validate the new template. After an audit finding, a re-read that passes doesn't count as a repair ([ADR 0013](../decisions/0013-audit-finding-repair.md)) | `repair_succeeded` / `repair_failed` |
 | `investigate` (audit) | `serving` | re-read → `investigate(trigger="audit")` | `audit_healthy` / `start_healing(found_by_audit=True)` |
 
 A job whose portal was deleted, or isn't in the state the flow expects, closes its run as `failed`

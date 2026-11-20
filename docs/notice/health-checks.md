@@ -37,7 +37,7 @@ without a model call.
   3. A finding goes to the agent. `Changed` → the proposed template is stored unpromoted and the portal goes to
      `healing` (reason "The scheduled audit found a problem: …"); the repair run (`trigger="audit_finding"`) promotes
      it only if it validates. Any other finding → `healing`, then `failed` with the audit's reason
-     ([ADR 0012](../decisions/0012-audit-finding-repair.md)): the portal never returns to `serving` while the silent
+     ([ADR 0013](../decisions/0013-audit-finding-repair.md)): the portal never returns to `serving` while the silent
      problem is still there.
 - A crashed audit changes nothing; the next one is due again later.
 

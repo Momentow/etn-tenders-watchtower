@@ -177,7 +177,7 @@ class Pipeline:
         checked = await self._read(portal.id, template, tv.version)
         if checked.ok:
             if trigger == "audit_finding":
-                # The audit's read passed validation too: a re-read proves nothing about a silent problem (ADR 0012).
+                # The audit's read passed validation too: a re-read proves nothing about a silent problem (ADR 0013).
                 # Without a working proposed template, the audit's diagnosis stands.
                 reason = finding.get("diagnosis_reason") or "the audit's finding could not be repaired"
                 count = len(checked.result.tenders)

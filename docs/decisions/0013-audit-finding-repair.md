@@ -1,4 +1,4 @@
-# 0012 — Repairing an audit finding (amends 0009)
+# 0013 — Repairing an audit finding (amends 0009)
 
 - **Status:** accepted
 - **Date:** 2026-11-21
