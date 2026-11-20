@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Portals</h1>
+<p class="muted">Which portals deliver, which broke, and what the system did about it. Updates every 5 seconds.</p>
+<div id="overview" hx-get="/dashboard/partials/portals" hx-trigger="every 5s" hx-swap="innerHTML">
+  {% include "_overview.html" %}
+</div>
+{% endblock %}

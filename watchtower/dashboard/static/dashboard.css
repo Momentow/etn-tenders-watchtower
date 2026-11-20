@@ -1,0 +1,103 @@
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --text: #16181d;
+  --muted: #5d6470;
+  --border: #e3e6eb;
+  --link: #2251c8;
+  --serving: #1a7f4b;
+  --serving-bg: #e3f4ea;
+  --healing: #a35c00;
+  --healing-bg: #fdf0dc;
+  --integrating: #2251c8;
+  --integrating-bg: #e4ebfb;
+  --failed: #b4232f;
+  --failed-bg: #fbe4e6;
+  --code-bg: #f0f2f5;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111317;
+    --surface: #1a1d23;
+    --text: #e8eaee;
+    --muted: #9aa1ad;
+    --border: #2c3039;
+    --link: #8cacff;
+    --serving: #5fd394;
+    --serving-bg: #17301f;
+    --healing: #f2b45a;
+    --healing-bg: #3a2a12;
+    --integrating: #8cacff;
+    --integrating-bg: #1c2744;
+    --failed: #ff8a92;
+    --failed-bg: #401b1f;
+    --code-bg: #22262d;
+    color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header.top {
+  display: flex; align-items: center; gap: 16px;
+  padding: 12px 24px; background: var(--surface); border-bottom: 1px solid var(--border);
+}
+header.top .brand { font-weight: 700; font-size: 16px; color: var(--text); }
+header.top nav { margin-left: auto; display: flex; gap: 16px; }
+main { max-width: 1280px; margin: 0 auto; padding: 24px; }
+h1 { font-size: 22px; margin: 0 0 4px; }
+h2 { font-size: 16px; margin: 32px 0 12px; }
+.muted { color: var(--muted); }
+.small { font-size: 12px; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 16px 0 24px; }
+.tile { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; }
+.tile .n { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.tile .l { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+.tile.serving .n { color: var(--serving); }
+.tile.healing .n { color: var(--healing); }
+.tile.integrating .n { color: var(--integrating); }
+.tile.failed .n { color: var(--failed); }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.url { max-width: 340px; word-break: break-all; }
+td.reason { max-width: 420px; }
+
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap;
+}
+.badge.serving, .badge.ok, .badge.open { color: var(--serving); background: var(--serving-bg); }
+.badge.healing, .badge.withdrawn { color: var(--healing); background: var(--healing-bg); }
+.badge.integrating, .badge.running { color: var(--integrating); background: var(--integrating-bg); }
+.badge.failed { color: var(--failed); background: var(--failed-bg); }
+.badge.closed { color: var(--muted); background: var(--code-bg); }
+
+.empty { padding: 40px; text-align: center; color: var(--muted); }
+.empty code, code { background: var(--code-bg); padding: 1px 6px; border-radius: 4px; }
+
+.summary { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 12px; }
+.summary div span { display: block; }
+.reason-box { margin-top: 12px; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); }
+.reason-box.healing { border-color: var(--healing); }
+.reason-box.failed { border-color: var(--failed); }
+
+ul.problems { margin: 4px 0 0; padding-left: 18px; }
+ul.problems li { margin: 2px 0; }
+dl.extra { margin: 4px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 0 8px; }
+dl.extra dt { color: var(--muted); }
+dl.extra dd { margin: 0; word-break: break-word; }
+.pulse { animation: pulse 1.6s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .45; } }

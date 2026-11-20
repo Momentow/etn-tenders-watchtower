@@ -1,0 +1,55 @@
+<div class="tiles">
+  <div class="tile"><div class="n">{{ ov.rows|length }}</div><div class="l">Portals</div></div>
+  {% for s in STATES %}
+  <div class="tile {{ s }}"><div class="n">{{ ov.counts[s] }}</div><div class="l">{{ STATE_LABELS[s] }}</div></div>
+  {% endfor %}
+  <div class="tile"><div class="n">{{ ov.total_tenders }}</div><div class="l">Tenders served</div></div>
+</div>
+
+<div class="card">
+{% if not ov.rows %}
+  <div class="empty">
+    No portals yet. Add one with <code>POST /portals</code> and body <code>{"url": "…"}</code>.
+  </div>
+{% else %}
+  <table>
+    <thead>
+      <tr>
+        <th>State</th>
+        <th>Portal</th>
+        <th>Reason</th>
+        <th class="num">Tenders</th>
+        <th>Last success</th>
+        <th>Last activity</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for r in ov.rows %}
+      {% set p = r.portal %}
+      <tr>
+        <td><span class="badge {{ p.state }}">{{ STATE_LABELS[p.state] }}</span></td>
+        <td class="url">
+          <a href="/dashboard/portals/{{ p.id }}">{{ p.url }}</a>
+          <div class="muted small mono">{{ p.id }}</div>
+        </td>
+        <td class="reason">{{ p.reason }}</td>
+        <td class="num">{{ p.tender_count }}</td>
+        <td><span title="{{ p.last_success_at|iso }}">{{ p.last_success_at|ago(ov.generated_at) }}</span></td>
+        <td>
+          {% if r.running %}
+            <span class="badge running pulse">{{ r.activity }}</span>
+            <div class="muted small">started {{ r.running.started_at|ago(ov.generated_at) }}</div>
+          {% else %}
+            {{ r.activity }}
+            {% if r.last_run %}
+            <div class="muted small" title="{{ r.last_run.finished_at|iso }}">{{ r.last_run.finished_at|ago(ov.generated_at) }}</div>
+            {% endif %}
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+</div>
+<p class="muted small">Updated <span title="{{ ov.generated_at|iso }}">{{ ov.generated_at|iso }}</span></p>

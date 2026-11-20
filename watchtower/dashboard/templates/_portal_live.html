@@ -1,0 +1,64 @@
+{% set p = d.row.portal %}
+<h1 class="url">{{ p.url }}</h1>
+<div class="muted small mono">{{ p.id }}</div>
+
+<div class="summary">
+  <div><span class="muted small">State</span><span class="badge {{ p.state }}">{{ STATE_LABELS[p.state] }}</span></div>
+  <div><span class="muted small">Tenders served</span><strong>{{ p.tender_count }}</strong></div>
+  <div><span class="muted small">Last success</span><span title="{{ p.last_success_at|iso }}">{{ p.last_success_at|ago }}</span></div>
+  <div><span class="muted small">Template</span>{{ "v%d"|format(p.current_template_version) if p.current_template_version else "none yet" }}</div>
+  <div><span class="muted small">Activity</span>
+    {% if d.row.running %}<span class="badge running pulse">{{ d.row.activity }}</span>{% else %}{{ d.row.activity }}{% endif %}
+  </div>
+  <div><span class="muted small">Added</span><span title="{{ p.created_at|iso }}">{{ p.created_at|ago }}</span></div>
+  {% if p.url|safe_href %}<div><span class="muted small">Open portal</span><a href="{{ p.url|safe_href }}" target="_blank" rel="noopener noreferrer">↗ visit</a></div>{% endif %}
+</div>
+
+<div class="reason-box {{ p.state }}">{{ p.reason }}</div>
+
+<h2>Run timeline</h2>
+<div class="card">
+{% if not d.runs %}
+  <div class="empty">No runs yet.</div>
+{% else %}
+  <table>
+    <thead>
+      <tr>
+        <th>Run</th>
+        <th>Result</th>
+        <th>Started</th>
+        <th>Duration</th>
+        <th class="num">Tenders</th>
+        <th class="num">Template</th>
+        <th>What happened</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for r in d.runs %}
+      <tr>
+        <td>
+          <strong>{{ r.label }}</strong>
+          <div class="muted small">{{ r.kind }}{% if r.trigger %} · {{ r.trigger }}{% endif %}</div>
+        </td>
+        <td><span class="badge {{ r.status }}{% if r.running %} pulse{% endif %}">{{ r.status }}</span></td>
+        <td><span title="{{ r.started_at|iso }}">{{ r.started_at|ago }}</span></td>
+        <td>{{ r.duration_seconds|duration if not r.running else "running" }}</td>
+        <td class="num">{{ r.tender_count if r.tender_count is not none else "—" }}</td>
+        <td class="num">{{ "v%d"|format(r.template_version) if r.template_version else "—" }}</td>
+        <td>
+          {% if r.diagnosis %}<div><span class="muted">Diagnosis:</span> {{ r.diagnosis }}</div>{% endif %}
+          {% if r.error %}<div>{{ r.error }}</div>{% endif %}
+          {% if r.problems %}
+          <ul class="problems">{% for prob in r.problems %}<li>{{ prob }}</li>{% endfor %}</ul>
+          {% endif %}
+          {% if r.extra %}
+          <dl class="extra small">{% for k, v in r.extra %}<dt>{{ k }}</dt><dd>{{ v }}</dd>{% endfor %}</dl>
+          {% endif %}
+          {% if not (r.diagnosis or r.error or r.problems or r.extra) %}<span class="muted">—</span>{% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+</div>
