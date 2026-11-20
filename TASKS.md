@@ -26,7 +26,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-014 | Agent runtime & tools | agent | in-progress | Momentow | feat/T-014-agent-runtime | T-007, T-009 | [0001](docs/decisions/0001-tech-stack.md), [0002](docs/decisions/0002-architecture.md) |
 | T-015 | Scenario `generate_template` (Attach) | agent | todo | | | T-013, T-014 | [0002](docs/decisions/0002-architecture.md) |
 | T-016 | Scenario `investigate` (Notice → Repair) | repair | todo | | | T-011, T-013, T-014 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
-| T-017 | Read pipeline wiring (attach / read / heal flows) | core | in-progress | OrangeCanvas705 | feat/T-017-read-pipeline | T-006, T-009, T-010, T-011, T-012 | [0002 read pipeline](docs/decisions/0002-architecture.md#read-pipeline-no-model-call) |
+| T-017 | Read pipeline wiring (attach / read / heal flows) | core | review | OrangeCanvas705 | feat/T-017-read-pipeline | T-006, T-009, T-010, T-011, T-012 | [0002 read pipeline](docs/decisions/0002-architecture.md#read-pipeline-no-model-call) |
 | T-018 | Dashboard | dashboard | in-progress | Lavrtajx | feat/T-018-dashboard | T-005 | [requirements](docs/spec/requirements.md) |
 | T-019 | Docs site at `/docs` | docs-site | todo | | | T-003 | [0001](docs/decisions/0001-tech-stack.md) |
 | T-022 | Deterministic agent toolkit | agent | todo | | | T-007, T-009, T-010 | [0002 toolkit](docs/decisions/0002-architecture.md#agent-toolkit-deterministic-first) |
