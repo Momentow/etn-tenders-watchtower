@@ -30,8 +30,9 @@ A failed read stores nothing: its run gets `details.problems`, and the first pro
 
 ## Agent scenarios
 The pipeline calls the agent only through `Scenarios(generate_template, investigate)`, set with
-`pipeline.configure(...)` in `app.py`. Until T-015/T-016 land, stubs in `watchtower/agent/stubs.py` make no model call:
-attach reports the portal as unreadable, and a repair is just a re-read.
+`pipeline.configure(...)` in `app.py`: `generate_template` is the [attach scenario](../agent/attach.md) (T-015) and
+`investigate` is the [investigate scenario](../repair/investigate.md) (T-016). The stubs in `watchtower/agent/stubs.py`
+make no model call and remain the defaults when `configure` is given no scenarios (tests).
 
 ## Testing
 `tests/core/test_pipeline.py` runs every flow on the mock portals (`ssr` kind, including the `markup` variant) with fake

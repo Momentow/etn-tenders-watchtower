@@ -60,6 +60,7 @@ nav:
       - Read validation: validate/checks.md
       - Document downloader: documents/downloader.md
       - Agent runtime and tools: agent/runtime.md
+      - "Attach: generate_template": agent/attach.md
       - Investigate (repair, audits): repair/investigate.md
       - Agent toolkit: agent/toolkit.md
   - Test portals:

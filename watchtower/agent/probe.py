@@ -3,7 +3,8 @@
     uv run --env-file .env python -m watchtower.agent.probe http://localhost:8081/ssr/      # start mockportals first
     uv run --env-file .env python -m watchtower.agent.probe --mock ssr                      # serves the mocks itself
 
-Uses a draft attach prompt; the real `generate_template` scenario (T-015) replaces it. Costs real tokens.
+Runs the real `generate_template` scenario (T-015) and prints its raw run plus the outcome the pipeline would get.
+Costs real tokens.
 """
 
 from __future__ import annotations
@@ -15,16 +16,10 @@ import json
 import logging
 import sys
 
-from watchtower.agent.context import AgentContext
+from watchtower.agent.attach import run_attach
 from watchtower.agent.outcomes import TemplateFound
-from watchtower.agent.runtime import Budget, run_scenario
+from watchtower.agent.runtime import Budget
 from watchtower.net import BrowserPool, HostRateLimiter, PoliteClient
-
-DRAFT_ATTACH_PROMPT = """\
-Attach a new portal: find its list of open tenders and produce a template that reads every open tender with its
-documents. End with exactly one of: `submit_template` (verdict GOOD), `report_blocked`, `report_unreadable`,
-`report_transient`.
-"""
 
 
 async def probe(url: str, *, browser: bool, budget: Budget) -> int:
@@ -32,24 +27,26 @@ async def probe(url: str, *, browser: bool, budget: Budget) -> int:
     async with PoliteClient(limiter=limiter) as client:
         pool = BrowserPool(limiter=limiter) if browser else None
         try:
-            ctx = AgentContext(url, client, pool)
-            run = await run_scenario("attach", DRAFT_ATTACH_PROMPT, f"Portal URL: {url}", ctx, budget=budget)
+            result = await run_attach(url, client, pool, budget=budget)
         finally:
             if pool is not None:
                 await pool.aclose()
-    print(f"\nstop: {run.stop_reason}   outcome: {type(run.outcome).__name__ if run.outcome else None}")
-    print(
-        f"model calls: {run.requests}   tokens: {run.input_tokens} in ({run.cached_tokens} cached) / "
-        f"{run.output_tokens} out   time: {run.seconds:.0f}s"
-    )
-    if isinstance(run.outcome, TemplateFound):
-        print("notes:", run.outcome.notes)
-        print(json.dumps(run.outcome.template.model_dump(mode="json", exclude_defaults=True), ensure_ascii=False))
-    elif run.outcome is not None:
-        print("reason:", getattr(run.outcome, "reason", ""))
-    elif run.final_text:
-        print("final text:", run.final_text)
-    return 0 if run.outcome is not None else 1
+    run, outcome = result.run, result.outcome
+    if run is not None:
+        print(f"\nstop: {run.stop_reason}   raw outcome: {type(run.outcome).__name__ if run.outcome else None}")
+        print(
+            f"model calls: {run.requests}   tokens: {run.input_tokens} in ({run.cached_tokens} cached) / "
+            f"{run.output_tokens} out   time: {run.seconds:.0f}s"
+        )
+        if run.outcome is None and run.final_text:
+            print("final text:", run.final_text)
+    print(f"outcome: {type(outcome).__name__}")
+    if isinstance(outcome, TemplateFound):
+        print("notes:", outcome.notes)
+        print(json.dumps(outcome.template.model_dump(mode="json", exclude_defaults=True), ensure_ascii=False))
+        return 0
+    print("reason:", outcome.reason)
+    return 1
 
 
 def main() -> int:

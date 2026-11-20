@@ -7,6 +7,7 @@ from pathlib import Path
 
 from fastapi import FastAPI
 
+from watchtower.agent.attach import make_generate_template
 from watchtower.agent.investigate import make_investigate
 from watchtower.api.routes import router as api_router
 from watchtower.core import pipeline  # registers the attach/read/investigate job handlers
@@ -35,10 +36,14 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     documents_handler.use_client(app.state.http)
     # Chromium starts lazily, on the first template that needs rendering (T-017).
     app.state.browser = BrowserPool(limiter=app.state.limiter)
+    # Agent scenarios (ADR 0009): generate_template (T-015) and investigate (T-016).
     pipeline.configure(
         client=app.state.http,
         browser=app.state.browser,
-        scenarios=pipeline.Scenarios(investigate=make_investigate(app.state.http, app.state.browser)),  # T-016
+        scenarios=pipeline.Scenarios(
+            generate_template=make_generate_template(app.state.http, app.state.browser),
+            investigate=make_investigate(app.state.http, app.state.browser),
+        ),
     )
     # Scheduler and workers (T-006). Handlers come from the modules that register them (T-012, T-017).
     scheduler = Scheduler(store, HANDLERS, healthcheck=healthcheck)
