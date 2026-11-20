@@ -15,7 +15,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-003 | Project skeleton, Dockerfile, checks | infra | done | Momentow | chore/T-003-project-skeleton | T-002 | [0001](docs/decisions/0001-tech-stack.md) |
 | T-004 | SQLite store & data models | core | done | Lavrtajx | feat/T-004-sqlite-store | T-003 | [0002](docs/decisions/0002-architecture.md), [api-contract](docs/spec/api-contract.md) |
 | T-005 | HTTP API per contract | api | done | Lavrtajx | feat/T-005-http-api | T-004 | [api-contract](docs/spec/api-contract.md) |
-| T-006 | Scheduler, job queue & state machine | core | review | Lavrtajx | feat/T-006-scheduler-state-machine | T-004 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
+| T-006 | Scheduler, job queue & state machine | core | done | Lavrtajx | feat/T-006-scheduler-state-machine | T-004 | [0002 lifecycle](docs/decisions/0002-architecture.md#portal-lifecycle) |
 | T-007 | Polite network layer (`PoliteClient`, `BrowserPool`) | net | done | Lavrtajx | feat/T-007-polite-network-layer | T-003 | [0002](docs/decisions/0002-architecture.md) |
 | T-008 | Template format (ADR 0003 + pydantic schema) | engine | done | Lavrtajx | feat/T-008-template-format | T-003 | [0002](docs/decisions/0002-architecture.md) |
 | T-009 | Engine executor (`run_template`) | engine | review | OrangeCanvas705 | feat/T-009-engine-executor | T-007, T-008 | [0002](docs/decisions/0002-architecture.md) |
