@@ -188,7 +188,7 @@ def _build(kind: str, base: date) -> Portal:
                 description=f"{subj}. {rnd.choice(_LOT_WORDS.get(country, _LOT_WORDS['*']))} ({ref}).",
                 procedure=procedures[i % len(procedures)],
                 nature=nature,
-                cpv=(cpv,) + (("71000000",) if i % 3 == 0 else ()),
+                cpv=(cpv,) + (("71000000",) if i % 3 == 0 and cpv != "71000000" else ()),
                 postal_code=plz,
                 city=city,
                 country=country,

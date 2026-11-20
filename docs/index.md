@@ -12,5 +12,6 @@ Watchtower attaches to public-procurement portals on its own, watches over them,
 - [Store](core/store.md): the database layer
 - [Scheduler and state machine](core/scheduler.md): workers, periodic reads, audits, portal states
 - [Network layer](net/network.md): politeness, HTTP client, browser, block detection
+- [Engine executor](engine/executor.md): how a template is run, errors, normalisation, snapshots
 - [Test-portal registry](portals/registry.md) · [Mock portals](test-portals/mock-portals.md)
 - [Model usage & cost](cost/model-usage.md)
