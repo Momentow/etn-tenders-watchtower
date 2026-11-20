@@ -32,7 +32,7 @@ workload is I/O-bound: politeness caps throughput long before CPU does. The team
 | Variable | Default | Meaning |
 |---|---|---|
 | `OPENAI_API_KEY` | — (required) | Model key |
-| `WATCHTOWER_MODEL` | set in T-014 | Model name used by the agent |
+| `WATCHTOWER_MODEL` | `gpt-5.6-luna` | Model name used by the agent (set in T-014) |
 | `DATA_DIR` | `/data` | SQLite database and stored files |
 | `WATCHTOWER_HEALTHCHECK_MODE` | `proactive` | `reactive` or `proactive`; see [ADR 0002](0002-architecture.md#health-check-modes) |
 | `WATCHTOWER_HEALTHCHECK_INTERVAL_HOURS` | `24` | Interval of the scheduled audit (proactive mode only) |
