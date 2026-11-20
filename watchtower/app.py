@@ -8,12 +8,13 @@ from pathlib import Path
 from fastapi import FastAPI
 
 from watchtower.api.routes import router as api_router
+from watchtower.core import pipeline  # registers the attach/read/investigate job handlers
 from watchtower.core.handlers import HANDLERS
 from watchtower.core.scheduler import HealthcheckSettings, Scheduler
 from watchtower.core.store import Store
 from watchtower.dashboard.routes import router as dashboard_router
 from watchtower.documents import handler as documents_handler  # registers the download job handler
-from watchtower.net import HostRateLimiter, PoliteClient
+from watchtower.net import BrowserPool, HostRateLimiter, PoliteClient
 
 
 def database_path() -> Path:
@@ -30,6 +31,9 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     app.state.limiter = HostRateLimiter()
     app.state.http = PoliteClient(limiter=app.state.limiter)
     documents_handler.use_client(app.state.http)
+    # Chromium starts lazily, on the first template that needs rendering (T-017).
+    app.state.browser = BrowserPool(limiter=app.state.limiter)
+    pipeline.configure(client=app.state.http, browser=app.state.browser)
     # Scheduler and workers (T-006). Handlers come from the modules that register them (T-012, T-017).
     scheduler = Scheduler(store, HANDLERS, healthcheck=healthcheck)
     app.state.scheduler = scheduler
@@ -40,6 +44,7 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     finally:
         if app.state.run_scheduler:
             await scheduler.stop()
+        await app.state.browser.aclose()
         await app.state.http.aclose()
         await store.close()
 
