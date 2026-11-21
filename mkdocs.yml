@@ -87,3 +87,5 @@ nav:
       - "0011 Investigate": decisions/0011-investigate-deterministic-first.md
       - "0012 Agent toolkit": decisions/0012-agent-toolkit.md
       - "0013 Audit finding repair": decisions/0013-audit-finding-repair.md
+      - "0014 Template format v2": decisions/0014-template-format-v2.md
+      - "0015 Agent v2 and model tiers": decisions/0015-agent-v2-explorer-and-tiers.md
