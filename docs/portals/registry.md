@@ -98,6 +98,44 @@ appear nowhere in `dev`. megalis runs the same software as PLACE, so it tests te
 How to run one: [E2E and smoke runs](../test-portals/e2e-and-smoke.md). **Verdict** compares what Watchtower reported with
 what we know about the portal: ✓ right, ⚠ right state but a gap, ✗ wrong state.
 
+### 2026-11-21: the same 12 portals on engine v2 and agent v2 (T-038, second live run)
+
+Strong tier `gpt-6.2-sol`, light tier the default model, fresh database, portals added 5 s apart, 4 workers. Before
+this run, a first v2 attempt stalled for 80 minutes on two bugs, both fixed on the T-038 branch: the explorer's
+browser session held one of the pool's 2 slots for a whole attach (other attaches starved, and two could wait on each
+other), and the attach job was killed at exactly the agent's own time budget, before it returned.
+
+**3 serving, 8 failed, 1 still attaching after 90 minutes.**
+
+| Portal | Use | Reported | Verdict |
+|---|---|---|---|
+| evergabe.nrw.de | dev | `serving`, **1,311 tenders**; files for 941 | ✓ The platform's search API (`POST /VMPCenter/api/v2/project/search`, a JWT captured by the browser session), calls for competition only, every deadline in the future. `referenceNumber` on 171; procedure, nature and CPV not read |
+| tenderned.nl | dev | still `integrating` | ✗ The template was right (API, `publicatieType=AAO`, deadline from `{{today}}`, early terminations excluded), found in 4 min. Its first full read (a detail and a documents call per open call, ~5,200 requests at 1 req/s, ~90 min) outlasted the job, which was killed and retried |
+| dtvp.de | dev | `failed`: project links of three tenders redirect to a login | ✗ The truthful-blocks evidence was met for the detail links; documents download anonymously once the list page's session exists (registry quirk), which the agent didn't try |
+| marches-publics.gouv.fr | dev | `failed`: the anonymous DCE download is a form submit with no file link | ✗ Template format: a document reached through a form, not a link |
+| achatpublic.com | dev | `failed`: pagination stops after 20 of 1,540; downloads are a form workflow | ⚠ Truthful, but the list was found this time |
+| publicprocurement.be | dev | `failed`: the ZIP endpoint answers 409 for tenders whose documents live elsewhere | ✗ Template format: no fallback when a documents call fails for some tenders |
+| contractaciopublica.cat | dev | `failed`: a download URL needs a document id and a hash from two JSON fields | ✗ Template format: a URL built from two values of the same document |
+| provia.at | blocked | `serving`, 100 tenders; files for 2, 100 downloads failed (a web page instead of a file) | ✗ **Notice error.** The dry run downloaded files right after opening each tender's page; the download jobs fetch the links alone, later, and get a login page. The portal reports `serving` while documents fail |
+| cloud.3p.eu | blocked | `failed`: only a logo at the base URL | ✓ State (as in run 1) |
+| marches-publics.info | blocked | `failed`: the search needs filters before it lists anything | ✓ State; the reason isn't the captcha we expected |
+| s2c.mercell.com | unverified | `failed`: HTTP 403 from the Azure gateway on the entry page | ✓ Now reported as a block, not as temporary (T-039) |
+| acquistinretepa.it | unverified | `serving`, 22 tenders, **no documents** | ⚠ The template reads no documents and nothing flags it |
+
+Model usage per attach (tokens in / out, both tiers): 26k–568k in, 0.1k–6k out; the light tier was barely used.
+
+**What T-030's acceptance still needs:**
+
+1. **Long first reads** (tenderned.nl): a full read at 1 req/s can take longer than a job may run. Reads need to fit
+   (only fetch details of new or changed tenders, or leave out calls the list already answers) or the read timeout
+   must allow them.
+2. **Documents in the read's session** (provia.at, dtvp.de): links that only work right after the tender page was
+   opened need the download to happen in that context, or a template `session`.
+3. **Notice on documents**: a portal whose document downloads all fail, or whose template reads none
+   (acquistinretepa.it), must not look healthy.
+4. **Template format gaps** (3 portals): documents behind a form submit, a fallback documents source, a URL from two
+   fields.
+
 ### 2026-11-21: the 12 `dev`, `blocked` and `unverified` portals (first live run)
 
 Real model, fresh database, portals added 5 s apart. All 12 settled within 10 minutes; **1 serving, 11 failed**.
