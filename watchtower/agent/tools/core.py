@@ -131,7 +131,16 @@ def _json_focus(value: Any, expr: str) -> str:
         return f"Invalid JSONPath {expr!r}: {e}"
     shown = [_clip(json.dumps(v, ensure_ascii=False), 600) for v in matches[:3]]
     more = f"\n… {len(matches) - 3} more matches" if len(matches) > 3 else ""
-    return f"focus {expr!r}: {len(matches)} match(es)\n" + "\n".join(shown) + more
+    out = f"focus {expr!r}: {len(matches)} match(es)\n" + "\n".join(shown) + more
+    scalars = [v for v in matches if isinstance(v, str | int | float | bool) or v is None]
+    if len(matches) > 3 and len(scalars) == len(matches):  # codes and flags: every value a `map` must cover
+        counts: dict[str, int] = {}
+        for v in scalars:
+            key = json.dumps(v, ensure_ascii=False)
+            counts[key] = counts.get(key, 0) + 1
+        values = ", ".join(f"{k} ×{n}" for k, n in sorted(counts.items(), key=lambda kv: -kv[1])[:30])
+        out += f"\ndistinct values ({len(counts)}): {values}"
+    return out
 
 
 # --------------------------------------------------------------------------- dry runs

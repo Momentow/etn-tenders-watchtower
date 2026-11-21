@@ -81,8 +81,13 @@ tab) and read `network`: the API calls the page made. `fetch`/`render` stay fine
    that captures it. Use `kind: page` with a browser `flow` only when there is no usable API.
 5. If the list mixes notice types (awards, prior notices, corrections…), decide which are open calls for competition
    (`delegate_classify_notices` helps) and keep only those with the API's filters and `scope`.
-6. Write the template, `try_template`, fix, repeat, `submit_template`. Write format v2 when you need any of: an entry
-   deeper than the portal URL, clicks/load more/tabs, an API from the network log, a session, or scope; otherwise v1.
+6. Codes in the data: before writing a `map`, list the distinct values the records really hold (`fetch` the API
+   with a JSONPath `focus` such as `$.content[*].procedure.code`) and map every one; an unmapped value is dropped.
+   Status codes (published / withdrawn / closed) go into `status`; flags that end or cancel a call (e.g.
+   `isVroegtijdigeBeeindiging`, "cancelled") into `scope.exclude` or `status.withdrawn`.
+7. Write the template, `try_template`, fix, repeat; `delegate_verify_tenders` on 3–5 tenders; `submit_template`.
+   Write format v2 when you need any of: an entry deeper than the portal URL, clicks/load more/tabs, an API from
+   the network log, a session, or scope; otherwise v1.
 
 # Template format v2 ("format_version": 2; unknown keys are rejected)
 {"format_version": 2, "timezone", "country"?, "software"?, "notes",

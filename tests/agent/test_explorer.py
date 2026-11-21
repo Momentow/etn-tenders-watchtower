@@ -139,3 +139,11 @@ async def test_explorer_clicks_through_finds_the_api_and_attaches_in_api_mode(se
     assert "SAME DATA WITHOUT A BROWSER" in replay_answers[0], replay_answers[0]
     assert isinstance(run.outcome, TemplateFound), run.outcome
     assert isinstance(run.outcome.template, TemplateV2) and run.outcome.template.list.kind == "api"
+
+
+def test_a_json_focus_lists_every_distinct_code_a_map_must_cover():
+    from watchtower.agent.tools.core import _json_focus
+
+    data = {"content": [{"procedure": {"code": c}} for c in ["OPE", "ONG", "OPE", "CCD", "OPE"]]}
+    out = _json_focus(data, "$.content[*].procedure.code")
+    assert 'distinct values (3): "OPE" ×3, "ONG" ×1, "CCD" ×1' in out
