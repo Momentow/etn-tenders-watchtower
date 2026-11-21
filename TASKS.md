@@ -36,7 +36,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-031 | ADRs: engine v2 template format + agent v2 model tiers | engine, agent | done | Momentow | docs/T-031-engine-v2-adrs | T-030 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-032 | Browser sessions: actions, long polite boot, network capture | net | done | Momentow | feat/T-032-browser-sessions | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-033 | Template format v2 + executor (actions, entry shortcut, API mode, filters, row groups) | engine | done | Lavrtajx | feat/T-033-template-v2-executor | T-031, T-032 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
-| T-034 | Agent v2 explorer: browser tools, recorded flow → API, v2 templates | agent | in-progress | Momentow | feat/T-034-agent-v2-explorer | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-034 | Agent v2 explorer: browser tools, recorded flow → API, v2 templates | agent | review | Momentow | feat/T-034-agent-v2-explorer | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-035 | Agent v2 tiers: strong planner, light workers, budgets per tier | agent | done | OrangeCanvas705 | feat/T-035-model-tiers | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-036 | Completeness: never `serving` on a partial read | validate, notice | done | Lavrtajx | feat/T-036-completeness | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-039 | Truthful blocks: `Blocked` only on evidence; constant gateway 403 is a block (split from T-036) | agent, notice | done | OrangeCanvas705 | feat/T-039-truthful-blocks | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
