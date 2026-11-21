@@ -226,3 +226,17 @@ async def test_failed_read_ends_failed_with_an_exact_reason(world, variant, reas
     portal = await w.portal()
     assert portal.state == "failed" and reason in portal.reason
     assert w.model.instructions is None  # decided by the deterministic pre-check
+
+
+async def test_proactive_audit_catches_a_capped_list(world):
+    """T-041: the list is capped at 15 of its 20 hits. Validation passes (a 25 % drop); the audit compares the read with
+    the portal's own count, and an unrepairable cap ends `failed`, never a silent partial `serving`."""
+    w = world("proactive", [[call("report_unrepairable", reason="the portal shows at most 15 of its 20 hits")]])
+    await w.attach()
+    w.mock.state.variants["ssr"] = "silent-cut"
+    await w.later(49)
+    runs = await w.runs()
+    assert kinds(runs)[-3:] == ["read:ok", "audit:failed", "repair:failed"]
+    assert w.model.instructions is not None  # the audit's finding went to the agent (a healthy audit makes no call)
+    portal = await w.portal()
+    assert portal.state == "failed" and "at most 15 of its 20" in portal.reason
