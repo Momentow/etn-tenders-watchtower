@@ -2,17 +2,21 @@
 
 from __future__ import annotations
 
+from contextlib import AsyncExitStack
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any
 
 from watchtower.agent.blocks import BlockEvidence
 from watchtower.agent.outcomes import Blocked, Gone, Healthy, TemplateFound, Transient, Unreadable, Unrepairable
 from watchtower.engine.template import Template
-from watchtower.net import BrowserPool, PoliteClient
+from watchtower.net import BrowserPool, BrowserSession, PoliteClient, SessionBudget
 from watchtower.validate import PortalHistory
 
 if TYPE_CHECKING:
     from watchtower.agent.runtime import LightWorker
+
+# The explorer's browser session (ADR 0015): exploring at 1 req/s is slow, so the wall clock matches the attach budget.
+EXPLORE_SESSION_BUDGET = SessionBudget(active_seconds=600.0, max_seconds=1800.0)
 
 # What a closing tool records; each scenario maps it onto its own outcome type (ADR 0009).
 Outcome = TemplateFound | Blocked | Unreadable | Transient | Healthy | Gone | Unrepairable
@@ -46,3 +50,22 @@ class AgentContext:
     light: LightWorker | None = None
     # Free-form per-scenario data (T-016 puts the failing read and its health report here).
     extra: dict[str, Any] = field(default_factory=dict)
+    # One browser session per run for the explorer tools (T-034): opened on first use, closed by `aclose()`.
+    session: BrowserSession | None = None
+    _stack: AsyncExitStack | None = None
+
+    async def browser_session(self) -> BrowserSession:
+        """The run's browser session, opened on first use. Raises RuntimeError when there is no browser."""
+        if self.session is None:
+            if self.browser is None:
+                raise RuntimeError("no browser is available in this process")
+            stack = AsyncExitStack()
+            self.session = await stack.enter_async_context(self.browser.session(budget=EXPLORE_SESSION_BUDGET))
+            self._stack = stack
+        return self.session
+
+    async def aclose(self) -> None:
+        """Close the run's browser session, if one was opened (`run_scenario` calls this when the run ends)."""
+        stack, self._stack, self.session = self._stack, None, None
+        if stack is not None:
+            await stack.aclose()

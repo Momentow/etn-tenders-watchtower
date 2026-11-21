@@ -13,6 +13,7 @@ from pydantic import BaseModel
 
 from watchtower.engine.result import ReadResult
 from watchtower.engine.template import Template
+from watchtower.engine.template_v2 import AnyTemplate
 from watchtower.validate import Health
 
 # ------------------------------------------------------------------ generate_template (attach)
@@ -20,7 +21,7 @@ from watchtower.validate import Health
 
 class TemplateFound(BaseModel):
     kind: Literal["template_found"] = "template_found"
-    template: Template
+    template: AnyTemplate  # v1 or v2 (ADR 0014/0015)
     notes: str = ""
 
 

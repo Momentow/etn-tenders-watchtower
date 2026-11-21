@@ -23,6 +23,7 @@ from watchtower.agent.registry import tool
 from watchtower.engine import ReadResult, run_template
 from watchtower.engine.executor import first_list_page
 from watchtower.engine.template import Template
+from watchtower.engine.template_v2 import AnyTemplate, TemplateV2
 from watchtower.net import detect_block
 from watchtower.validate import check
 from watchtower.validate.completeness import completeness_problems
@@ -138,18 +139,20 @@ def _json_focus(value: Any, expr: str) -> str:
 
 @tool()
 async def try_template(ctx: Ctx, template: str, sample: int = DEFAULT_SAMPLE) -> str:
-    """Dry-run a template (JSON text of a Template) with the real engine and report what it reads.
+    """Dry-run a template (JSON text of a v1 template, or v2 with "format_version": 2) with the real engine and
+    report what it reads.
 
-    Reports: schema errors with their path; a list check (up to 3 list pages: item count, pagination, duplicate ids);
-    a sample read of `sample` tenders through the detail pages (field coverage, documents, values, errors); and the
-    validator's verdict. Call it after every change; submit only a template whose verdict is GOOD.
+    Reports: schema errors with their path; a list check (up to 3 list pages: item count, pagination, duplicate ids;
+    for v2 also the portal's own total, records `scope` dropped, and whether the list was exhausted); a sample read of
+    `sample` tenders through the detail pages (field coverage, documents, values, errors); and the validator's verdict.
+    Call it after every change; submit only a template whose verdict is GOOD.
     """
     report, _ = await _dry_run(ctx.context, template, max(1, min(sample, MAX_SAMPLE)))
     return report
 
 
-async def _dry_run(c: AgentContext, raw: str, sample: int) -> tuple[str, Template | None]:
-    parsed = _parse_template(raw)
+async def _dry_run(c: AgentContext, raw: str, sample: int) -> tuple[str, AnyTemplate | None]:
+    parsed = _parse_any_template(raw)
     if isinstance(parsed, str):
         return parsed, None
     t = parsed
@@ -157,7 +160,7 @@ async def _dry_run(c: AgentContext, raw: str, sample: int) -> tuple[str, Templat
     problems: list[str] = []  # block submission
     warnings: list[str] = []  # likely incomplete; fix or rule out before submitting
 
-    list_only = _list_only(t)
+    list_only = _list_only_v2(t) if isinstance(t, TemplateV2) else _list_only(t)
     listed = None
     if list_only is not None:
         lr = await run_template(list_only, c.client, c.browser)
@@ -168,6 +171,8 @@ async def _dry_run(c: AgentContext, raw: str, sample: int) -> tuple[str, Templat
             + (f", {lr.stats.duplicate_ids} duplicate ids" if lr.stats.duplicate_ids else "")
             + (f", {lr.stats.skipped_items} items without id" if lr.stats.skipped_items else "")
         )
+        if isinstance(t, TemplateV2):
+            lines += _v2_list_lines(lr, listed)
         if lr.tenders:
             lines.append("  first ids: " + ", ".join(x.id for x in lr.tenders[:5]))
         problems += [f"list: {e}" for e in lr.errors]
@@ -178,7 +183,7 @@ async def _dry_run(c: AgentContext, raw: str, sample: int) -> tuple[str, Templat
         if lr.stats.duplicate_ids and lr.stats.duplicate_ids >= listed:
             problems.append("pagination repeats the same items")
 
-    if listed == 0 or t.list.pagination.kind == "none":
+    if isinstance(t, Template) and (listed == 0 or t.list.pagination.kind == "none"):
         lines += await _first_page_checks(c, t, listed, warnings)
 
     rr = await run_template(t, c.client, c.browser, limit=sample)
@@ -281,6 +286,7 @@ def _completeness_warnings(t: Template, r: ReadResult) -> list[str]:
 
 
 def _parse_template(raw: str) -> Template | str:
+    """A v1 template (investigate still repairs v1 only, until T-037)."""
     try:
         data = json.loads(raw)
     except ValueError as e:
@@ -288,12 +294,30 @@ def _parse_template(raw: str) -> Template | str:
     try:
         return Template.model_validate(data)
     except ValidationError as e:
-        errs = []
-        for err in e.errors()[:8]:
-            loc = ".".join(str(p) for p in err["loc"])
-            errs.append(f"- {loc}: {err['msg']}")
-        more = f"\n… {e.error_count() - 8} more" if e.error_count() > 8 else ""
-        return "Template rejected by the schema:\n" + "\n".join(errs) + more
+        return _schema_errors(e)
+
+
+def _parse_any_template(raw: str) -> AnyTemplate | str:
+    """A template of either format, picked by `format_version` (2 → ADR 0014)."""
+    try:
+        data = json.loads(raw)
+    except ValueError as e:
+        return f"Template is not valid JSON: {e}"
+    if not isinstance(data, dict):
+        return "Template must be a JSON object."
+    try:
+        return TemplateV2.model_validate(data) if data.get("format_version") == 2 else Template.model_validate(data)
+    except ValidationError as e:
+        return _schema_errors(e)
+
+
+def _schema_errors(e: ValidationError) -> str:
+    errs = []
+    for err in e.errors()[:8]:
+        loc = ".".join(str(p) for p in err["loc"])
+        errs.append(f"- {loc}: {err['msg']}")
+    more = f"\n… {e.error_count() - 8} more" if e.error_count() > 8 else ""
+    return "Template rejected by the schema:\n" + "\n".join(errs) + more
 
 
 def _list_only(t: Template) -> Template | None:
@@ -318,6 +342,53 @@ def _list_only(t: Template) -> Template | None:
         return Template.model_validate(d)
     except ValidationError:
         return None
+
+
+def _list_only_v2(t: TemplateV2) -> TemplateV2 | None:
+    """A v2 template reduced to its list, as `_list_only`: item fields, no detail, ≤ LIST_CHECK_PAGES pages."""
+    d = t.model_dump(mode="json", exclude_none=True, by_alias=True)
+    d.pop("detail", None)
+    fields = {k: v for k, v in d["fields"].items() if k != "placeOfPerformance" and v.get("on", "item") == "item"}
+    fields.setdefault("url", {"by": "const", "expr": t.entry.url})
+    d["fields"] = fields
+    docs = d.get("documents", {})
+    if docs.get("on", "detail") != "item" or "request" in docs:
+        d.pop("documents", None)
+    if d.get("status", {}).get("value", {}).get("on", "item") != "item":
+        d.pop("status", None)
+    pg = d["list"].get("pagination", {})
+    if pg.get("kind") == "load_more":
+        pg["max_clicks"] = min(pg.get("max_clicks", 50), LIST_CHECK_PAGES)
+    elif pg.get("kind") == "scroll":
+        pg["times"] = min(pg.get("times", 10), LIST_CHECK_PAGES)
+    elif pg.get("kind", "none") != "none":
+        pg["max_pages"] = min(pg.get("max_pages", 50), LIST_CHECK_PAGES)
+    try:
+        return TemplateV2.model_validate(d)
+    except ValidationError:
+        return None
+
+
+def _v2_list_lines(lr: ReadResult, listed: int) -> list[str]:
+    """What only v2 knows: the portal's own total, what `scope` dropped, and whether the check saw the whole list."""
+    out = []
+    if lr.declared_total is not None:
+        out.append(
+            f"  portal's own total: {lr.declared_total} (list check: {listed} kept + {lr.scope_dropped} dropped)"
+        )
+    else:
+        out.append("  portal's own total: unknown (give `list.total` if the page or API shows one)")
+    if lr.scope_dropped:
+        out.append(f"  scope dropped {lr.scope_dropped} record(s) that are not open tenders")
+    out.append(
+        "  list "
+        + (
+            "NOT exhausted: the check stops after a few pages/clicks; the full read goes on"
+            if lr.stats.hit_max_pages
+            else "exhausted within the check"
+        )
+    )
+    return out
 
 
 def _coverage(r: ReadResult) -> list[str]:
@@ -351,7 +422,7 @@ def _samples(r: ReadResult) -> list[str]:
     return out
 
 
-def _canonical(t: Template) -> str:
+def _canonical(t: AnyTemplate) -> str:
     return t.model_dump_json(exclude_defaults=True)
 
 
@@ -364,7 +435,7 @@ async def submit_template(ctx: Ctx, template: str, notes: str) -> str:
     again if it wasn't tried). `notes`: one or two sentences on how the portal is read and anything unusual.
     """
     c = ctx.context
-    parsed = _parse_template(template)
+    parsed = _parse_any_template(template)
     if isinstance(parsed, str):
         return parsed
     if not c.tried.get(_canonical(parsed)):

@@ -36,7 +36,7 @@ from watchtower.agent.outcomes import (
     Unreadable,
 )
 from watchtower.agent.runtime import Budget, ScenarioRun, TieredBudget, run_scenario
-from watchtower.engine.template import Template
+from watchtower.engine.template_v2 import AnyTemplate, load_template
 from watchtower.net import BrowserPool, PoliteClient
 
 log = logging.getLogger(__name__)
@@ -151,10 +151,10 @@ def _outcome(run: ScenarioRun, ctx: AgentContext) -> AttachOutcome:
     return Unreadable(reason=_budget_reason(run.stop_reason))
 
 
-def _good_template(ctx: AgentContext) -> Template | None:
+def _good_template(ctx: AgentContext) -> AnyTemplate | None:
     """The last template whose dry run was GOOD (ctx.tried keeps insertion order)."""
     good = [key for key, ok in ctx.tried.items() if ok]
-    return Template.model_validate_json(good[-1]) if good else None
+    return load_template(good[-1]) if good else None
 
 
 def _budget_reason(stop: str) -> str:
