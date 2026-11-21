@@ -94,7 +94,7 @@ strong `model`, as the light tier defaults to the strong model).
 
 ### Explorer tools
 
-`tools/explore.py`, attach only ([ADR 0015](../decisions/0015-agent-v2-explorer-and-tiers.md)): the agent explores
+`tools/explore.py`, attach and investigate ([ADR 0015](../decisions/0015-agent-v2-explorer-and-tiers.md)): the agent explores
 a portal the way a person does, in **one browser session per run** ([network layer → browser sessions](../net/network.md#browser-sessions)). The
 session opens on first use (`AgentContext.browser_session()`) and `run_scenario` closes it when the run ends,
 whatever the outcome. Its budget is 600 s of active time and 1,800 s in all; waiting for the rate limiter doesn't
