@@ -85,3 +85,19 @@ Measured on 2026-11-20 with the default model (`uv run --env-file .env python -m
 | `robot` | `Blocked` | 6 | 28 594 (22 486) / 809 | 25 s | document links redirect to a reCAPTCHA form |
 
 Every run stayed far below `ATTACH_BUDGET` (at most 11 of 30 calls and 65k of 400k tokens).
+
+## Live runs with the explorer (T-034)
+Measured on 2026-11-21 with the default model, before T-036's completeness checks:
+
+| Portal | Outcome | Model calls | Tokens in (cached) / out | Time | Result |
+|---|---|---|---|---|---|
+| mock `app` (first run) | `TemplateFound`, v2 API mode | 10 | 103 927 (90 532) / 2 738 | 72 s | Found the API, but guessed procedure codes, kept an early-terminated call and missed the withdrawn status |
+| mock `app` (after the prompt asked for every code and status flag) | `TemplateFound`, v2 API mode | 14 | 160 208 (144 509) / 3 135 | 96 s | `open` → click → `network` → `replay`; all 21 open calls with the right fields and every document. One wrong value left: a withdrawn call read as `open` (no `status` rule) |
+| tenderned.nl | `TemplateFound`, v2 API mode | 10 | 126 187 (106 730) / 2 305 | 166 s | Found `/papi/…/publicaties` through the browser and replay. Incomplete: it kept the page's "published in the last 30 days" filter instead of `publicatieType=AAO` and a deadline from `{{today}}`, so notice types aren't filtered and older open calls are missed |
+
+The live **scripted** run on tenderned.nl (open → click *Alle aankondigingen* → `network` → `replay`, page 2 → submit
+the hand-written template) took 112 s, and `replay` answered "SAME DATA WITHOUT A BROWSER", 5 of 5 records on the page.
+
+What's still missing is what T-036 checks: the portal's declared total versus the delivered count, notice types the
+records carry but `scope` ignores, and code values a `map` doesn't cover. The light tier wasn't used in any run;
+the model skipped `delegate_verify_tenders`, which would have flagged the withdrawn status.
