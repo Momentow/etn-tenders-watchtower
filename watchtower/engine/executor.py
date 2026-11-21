@@ -12,7 +12,7 @@ from __future__ import annotations
 import re
 import time
 from dataclasses import dataclass, field, replace
-from typing import Any
+from typing import TYPE_CHECKING, Any
 from urllib.parse import parse_qsl, quote, urlencode, urljoin, urlsplit, urlunsplit
 
 import httpx
@@ -42,6 +42,9 @@ from watchtower.engine.template import (
     Template,
 )
 from watchtower.net import BrowserPool, PoliteClient, detect_block
+
+if TYPE_CHECKING:
+    from watchtower.engine.template_v2 import TemplateV2
 
 
 class ReadError(Exception):
@@ -102,9 +105,17 @@ class _Item:
 
 
 async def run_template(
-    template: Template, client: PoliteClient, browser: BrowserPool | None, *, limit: int | None = None
+    template: Template | TemplateV2, client: PoliteClient, browser: BrowserPool | None, *, limit: int | None = None
 ) -> ReadResult:
-    """Read the portal. `limit` stops after that many tenders (a dry run for the agent's `try_template`)."""
+    """Read the portal. `limit` stops after that many tenders (a dry run for the agent's `try_template`).
+
+    Takes either template format: v2 templates (ADR 0014) run in `executor_v2`."""
+    from watchtower.engine.template_v2 import TemplateV2
+
+    if isinstance(template, TemplateV2):
+        from watchtower.engine.executor_v2 import run_template_v2
+
+        return await run_template_v2(template, client, browser, limit=limit)
     return await _Run(template, client, browser).run(limit)
 
 

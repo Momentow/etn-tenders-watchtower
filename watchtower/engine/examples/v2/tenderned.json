@@ -1,0 +1,47 @@
+{
+  "format_version": 2,
+  "timezone": "Europe/Amsterdam",
+  "country": "NL",
+  "software": "tenderned",
+  "entry": {"url": "https://www.tenderned.nl/aankondigingen/overzicht"},
+  "list": {
+    "kind": "api",
+    "request": {
+      "url": "https://www.tenderned.nl/papi/tenderned-rs-tns/v2/publicaties",
+      "params": {"size": "50", "publicatieType": "AAO", "sluitingsDatumVanaf": "{{today}}"},
+      "headers": {"Accept": "application/json"}
+    },
+    "items": "$.content[*]",
+    "total": "$.totalElements",
+    "pagination": {"kind": "param", "name": "page", "start": 0, "step": 1, "max_pages": 200}
+  },
+  "fields": {
+    "id": {"by": "jsonpath", "expr": "$.publicatieId"},
+    "url": {"by": "jsonpath", "expr": "$.link.href"},
+    "title": {"by": "jsonpath", "expr": "$.aanbestedingNaam"},
+    "buyerName": {"by": "jsonpath", "expr": "$.opdrachtgeverNaam"},
+    "publicationDate": {"by": "jsonpath", "expr": "$.publicatieDatum"},
+    "submissionDeadline": {"by": "jsonpath", "expr": "$.sluitingsDatum"},
+    "referenceNumber": {"by": "jsonpath", "expr": "$.kenmerk"},
+    "description": {"by": "jsonpath", "expr": "$.opdrachtBeschrijving"},
+    "procedureType": {
+      "by": "jsonpath", "expr": "$.procedure.code",
+      "map": {"OPE": "open", "NOP": "restricted", "OZB": "negotiated", "CCD": "other"}
+    },
+    "contractNature": {
+      "by": "jsonpath", "expr": "$.typeOpdracht.code",
+      "map": {"W": "works", "D": "services", "L": "supplies"}
+    },
+    "placeOfPerformance": {"countryCode": {"by": "const", "expr": "NL"}}
+  },
+  "documents": {
+    "request": {"url": "https://www.tenderned.nl/papi/tenderned-rs-tns/v2/publicaties/{id}/documenten"},
+    "links": {"by": "jsonpath", "expr": "$.documenten[*].links.download.href", "many": true},
+    "names": {"by": "jsonpath", "expr": "$.documenten[*].documentNaam", "many": true}
+  },
+  "scope": {
+    "include": [{"source": {"by": "jsonpath", "expr": "$.typePublicatie.code"}, "in": ["AAO"]}],
+    "exclude": [{"source": {"by": "jsonpath", "expr": "$.isVroegtijdigeBeeindiging"}, "equals": true}]
+  },
+  "notes": "Hand-written (T-033) from a probe on 2026-11-21. The list page is an Angular app over /papi/tenderned-rs-tns/v2/publicaties; read directly, no browser. publicatieType=AAO keeps calls for competition (the unfiltered list mixes award notices, rectifications, market consultations and early terminations) and sluitingsDatumVanaf={{today}} keeps open ones: ~2,900 notices, 58 list calls. List items carry every required field; CPV codes and the place are only on the detail call and are left out to save ~2,900 requests per read. Documents: one call per notice to …/{id}/documenten (relative download hrefs)."
+}

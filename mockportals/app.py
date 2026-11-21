@@ -16,7 +16,7 @@ from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Resp
 
 from mockportals import data, files
 from mockportals.html import e, page
-from mockportals.portals import blocked, captcha, form, js_api, multistep, ssr
+from mockportals.portals import app_spa, blocked, captcha, form, js_api, multistep, ssr
 
 # Variants every portal supports, handled here before the portal's own routes.
 GENERIC_VARIANTS = ("gone", "login-wall")
@@ -28,6 +28,7 @@ VARIANTS: dict[str, tuple[str, ...]] = {
     "captcha": ("base", *GENERIC_VARIANTS),
     "login": ("base", *GENERIC_VARIANTS),
     "robot": ("base", *GENERIC_VARIANTS),
+    "app": ("base", "relabelled", "api-moved", *GENERIC_VARIANTS),
 }
 
 # Entry URL of each portal: what you would `POST /portals` to Watchtower.
@@ -39,6 +40,7 @@ ENTRY = {
     "captcha": "/captcha/",
     "login": "/login/",
     "robot": "/robot/",
+    "app": "/app/",
 }
 # What a correct system reports for each portal in its base variant.
 EXPECTED_STATE = {
@@ -49,6 +51,7 @@ EXPECTED_STATE = {
     "captcha": "serving",  # captcha shown, but list and documents work without it
     "login": "failed",  # documents need a login
     "robot": "failed",  # documents behind a robot check (captcha)
+    "app": "serving",  # click-through SPA over a JSON API; needs engine v2 (ADR 0014)
 }
 
 
@@ -86,7 +89,7 @@ def create_app(variants: dict[str, str] | None = None) -> FastAPI:
             return RedirectResponse(f"/_auth/anmelden?ReturnUrl={quote(request.url.path)}", status_code=302)
         return await call_next(request)
 
-    for module in (ssr, js_api, multistep, form, captcha, blocked):
+    for module in (ssr, js_api, multistep, form, captcha, blocked, app_spa):
         app.include_router(module.router)
 
     @app.get("/", response_class=HTMLResponse)

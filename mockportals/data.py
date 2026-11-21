@@ -46,6 +46,8 @@ class MockTender:
     docs: tuple[Doc, ...] = ()
     docs_restricted: bool = False  # documents shown only to registered users (no links on the page)
     new: bool = False  # only visible in the `silent-missed` variant
+    notice: str = "call"  # app: call (call for competition) | award | prior (not open tenders)
+    early_termination: bool = False  # app: a call that was ended early (not an open tender)
 
 
 @dataclass(frozen=True)
@@ -132,6 +134,7 @@ _SPECS = {
     "captcha": ("Europe/Amsterdam", "NL", "AB-{y}-", 8),
     "login": ("Europe/Vienna", "AT", "W-{y}-", 6),
     "robot": ("Europe/Brussels", "BE", "B/{y}/", 6),
+    "app": ("Europe/Amsterdam", "NL", "TN-{y}-", 30),
 }
 KINDS = tuple(_SPECS)
 
@@ -158,16 +161,18 @@ def _build(kind: str, base: date) -> Portal:
         subj, nature, cpv = subjects[i % len(subjects)]
         buyer, plz, city = buyers[i % len(buyers)]
         ref = prefix.format(y=base.year) + f"{i + 1:03d}"
-        tid = {"js": f"{700000 + i * 7}", "multistep": f"EXP-{base.year}-{i + 1:04d}"}.get(kind, ref)
+        tid = {"js": f"{700000 + i * 7}", "multistep": f"EXP-{base.year}-{i + 1:04d}", "app": f"{450000 + i * 3}"}.get(
+            kind, ref
+        )
         if kind == "multistep":
             ref = tid  # the list shows one "expediente" number, used as id and reference
         published = base - timedelta(days=1 + (i * 3) % 28)
         # Deadlines in local time; one lands on a DST-change-free winter date, some in summer for offset variety.
         deadline = datetime.combine(base + timedelta(days=5 + (i * 11) % 200), time(10 + i % 3, 0 if i % 2 else 30), tz)
         status = "open"
-        if kind in ("ssr", "js") and i == 4:
+        if kind in ("ssr", "js", "app") and i == 4:
             status = "withdrawn"
-        if kind in ("ssr", "js") and i == 6:
+        if kind in ("ssr", "js", "app") and i == 6:
             status = "closed"
             deadline = datetime.combine(base - timedelta(days=2), time(12, 0), tz)
         names = _DOC_NAMES[country][: 1 + i % len(_DOC_NAMES[country])]
@@ -196,6 +201,8 @@ def _build(kind: str, base: date) -> Portal:
                 docs=() if restricted else docs,
                 docs_restricted=restricted,
                 new=kind in ("ssr", "js") and i >= count - 3,
+                notice=("award" if i % 5 == 2 else "prior" if i == 13 else "call") if kind == "app" else "call",
+                early_termination=kind == "app" and i == 8,
             )
         )
     return Portal(kind, tz_name, country, tuple(tenders))
@@ -220,6 +227,12 @@ def visible(kind: str, variant: str = "base", base: date | None = None) -> list[
     return [t for t in p.tenders if variant == "silent-missed" or not t.new]
 
 
+def open_call(t: MockTender, base: date | None = None) -> bool:
+    """A call for competition that is still open: what a scoped read (v2 `scope`, ADR 0014) delivers."""
+    deadline_passed = t.deadline.date() < (base or today())
+    return t.notice == "call" and not t.early_termination and not deadline_passed
+
+
 def expected_tenders(kind: str, variant: str = "base", base: date | None = None) -> list[dict]:
     """Contract-shaped expectation (api-contract.md) for what a correct read of this portal returns.
 
@@ -229,6 +242,8 @@ def expected_tenders(kind: str, variant: str = "base", base: date | None = None)
     """
     out = []
     for t in visible(kind, variant, base):
+        if kind == "app" and not open_call(t, base):
+            continue  # award notices, a prior notice, an early termination and a passed deadline: not open tenders
         rec = {
             "id": t.id,
             "url": None,
@@ -240,7 +255,7 @@ def expected_tenders(kind: str, variant: str = "base", base: date | None = None)
             "documents": sorted(n for d in t.docs for n in unpacked_names(t.id, d)),
             "referenceNumber": t.reference,
         }
-        if kind in ("ssr", "js"):
+        if kind in ("ssr", "js", "app"):
             rec |= {
                 "description": t.description,
                 "procedureType": t.procedure,

@@ -1,0 +1,2034 @@
+{
+  "$defs": {
+    "ApiDetail": {
+      "additionalProperties": false,
+      "description": "One JSON request per tender, with `{field}` placeholders from item fields. `page_url` is the tender's public\npage (`https://portal/…/{id}`), used as its `url` unless `fields.url` is given.",
+      "properties": {
+        "kind": {
+          "const": "api",
+          "title": "Kind",
+          "type": "string"
+        },
+        "request": {
+          "$ref": "#/$defs/RequestV2"
+        },
+        "page_url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Page Url"
+        }
+      },
+      "required": [
+        "kind",
+        "request"
+      ],
+      "title": "ApiDetail",
+      "type": "object"
+    },
+    "ApiList": {
+      "additionalProperties": false,
+      "description": "Tender list from JSON endpoints over plain HTTP: no browser on regular reads.",
+      "properties": {
+        "kind": {
+          "const": "api",
+          "title": "Kind",
+          "type": "string"
+        },
+        "request": {
+          "$ref": "#/$defs/RequestV2"
+        },
+        "items": {
+          "$ref": "#/$defs/Extract"
+        },
+        "total": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Extract"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "pagination": {
+          "default": {
+            "kind": "none"
+          },
+          "discriminator": {
+            "mapping": {
+              "cursor": "#/$defs/CursorPagination",
+              "next_link": "#/$defs/NextLinkPagination",
+              "none": "#/$defs/NoPagination",
+              "param": "#/$defs/ParamPagination"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/NoPagination"
+            },
+            {
+              "$ref": "#/$defs/NextLinkPagination"
+            },
+            {
+              "$ref": "#/$defs/ParamPagination"
+            },
+            {
+              "$ref": "#/$defs/CursorPagination"
+            }
+          ],
+          "title": "Pagination"
+        }
+      },
+      "required": [
+        "kind",
+        "request",
+        "items"
+      ],
+      "title": "ApiList",
+      "type": "object"
+    },
+    "Capture": {
+      "additionalProperties": false,
+      "description": "One session value. `from`:\n- `cookie`: a cookie whose domain matches `match`; `key` is its name, or `*` for all of them as a `Cookie` header;\n- `request_header` (browser): a header the page's own request to a URL matching `match` carried (`key`: its name);\n- `response_header` (http): a header of the response from a URL matching `match`;\n- `response_json`: a JSONPath `key` in the response from a URL matching `match`.",
+      "properties": {
+        "name": {
+          "pattern": "^[A-Za-z][A-Za-z0-9_]*$",
+          "title": "Name",
+          "type": "string"
+        },
+        "from": {
+          "enum": [
+            "cookie",
+            "request_header",
+            "response_header",
+            "response_json"
+          ],
+          "title": "From",
+          "type": "string"
+        },
+        "match": {
+          "title": "Match",
+          "type": "string"
+        },
+        "key": {
+          "title": "Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "from",
+        "match",
+        "key"
+      ],
+      "title": "Capture",
+      "type": "object"
+    },
+    "Click": {
+      "additionalProperties": false,
+      "properties": {
+        "do": {
+          "const": "click",
+          "title": "Do",
+          "type": "string"
+        },
+        "target": {
+          "$ref": "#/$defs/Target"
+        }
+      },
+      "required": [
+        "do",
+        "target"
+      ],
+      "title": "Click",
+      "type": "object"
+    },
+    "ClickPagination": {
+      "additionalProperties": false,
+      "description": "Click a \"next page\" control and read the new page, until it's gone or a page brings no new tenders.",
+      "properties": {
+        "kind": {
+          "const": "click",
+          "title": "Kind",
+          "type": "string"
+        },
+        "target": {
+          "$ref": "#/$defs/Target"
+        },
+        "max_pages": {
+          "default": 50,
+          "maximum": 500,
+          "minimum": 1,
+          "title": "Max Pages",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "target"
+      ],
+      "title": "ClickPagination",
+      "type": "object"
+    },
+    "Condition": {
+      "additionalProperties": false,
+      "description": "A test on a list item: `source` read from the item, then exactly one of `in` (any of the values), `matches`\n(regex search) or `equals`. Values compare as text; JSON booleans read as `true`/`false`.",
+      "properties": {
+        "source": {
+          "$ref": "#/$defs/Extract"
+        },
+        "in": {
+          "anyOf": [
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "In"
+        },
+        "matches": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Matches"
+        },
+        "equals": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Equals"
+        }
+      },
+      "required": [
+        "source"
+      ],
+      "title": "Condition",
+      "type": "object"
+    },
+    "CursorPagination": {
+      "additionalProperties": false,
+      "description": "JSON APIs that return a cursor/token for the next page; it's sent back in parameter `name`.",
+      "properties": {
+        "kind": {
+          "const": "cursor",
+          "title": "Kind",
+          "type": "string"
+        },
+        "cursor": {
+          "$ref": "#/$defs/Extract"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "location": {
+          "default": "query",
+          "enum": [
+            "query",
+            "form",
+            "json"
+          ],
+          "title": "Location",
+          "type": "string"
+        },
+        "max_pages": {
+          "default": 50,
+          "maximum": 500,
+          "minimum": 1,
+          "title": "Max Pages",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "cursor",
+        "name"
+      ],
+      "title": "CursorPagination",
+      "type": "object"
+    },
+    "DateRuleV2": {
+      "additionalProperties": false,
+      "properties": {
+        "by": {
+          "enum": [
+            "css",
+            "xpath",
+            "jsonpath",
+            "regex",
+            "const"
+          ],
+          "title": "By",
+          "type": "string"
+        },
+        "expr": {
+          "title": "Expr",
+          "type": "string"
+        },
+        "attr": {
+          "default": "text",
+          "title": "Attr",
+          "type": "string"
+        },
+        "many": {
+          "default": false,
+          "title": "Many",
+          "type": "boolean"
+        },
+        "pattern": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pattern"
+        },
+        "map": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Map"
+        },
+        "join": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Join"
+        },
+        "on": {
+          "default": "item",
+          "pattern": "^(item|detail|detail\\.[A-Za-z][A-Za-z0-9_]*)$",
+          "title": "On",
+          "type": "string"
+        },
+        "formats": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Formats",
+          "type": "array"
+        }
+      },
+      "required": [
+        "by",
+        "expr"
+      ],
+      "title": "DateRuleV2",
+      "type": "object"
+    },
+    "DocumentsV2": {
+      "additionalProperties": false,
+      "description": "As v1 `documents`, plus `on: detail.<view>` and `request`: a JSON call (`{field}` placeholders) returning the\nfile list, which is then the scope of `links`/`names`/`bundle`.",
+      "properties": {
+        "on": {
+          "default": "detail",
+          "pattern": "^(item|detail|detail\\.[A-Za-z][A-Za-z0-9_]*)$",
+          "title": "On",
+          "type": "string"
+        },
+        "request": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RequestV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "links": {
+          "$ref": "#/$defs/Extract"
+        },
+        "names": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Extract"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "bundle": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Extract"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "include": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Include"
+        },
+        "exclude": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Exclude"
+        },
+        "per_link": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/FollowStep"
+          },
+          "title": "Per Link",
+          "type": "array"
+        }
+      },
+      "required": [
+        "links"
+      ],
+      "title": "DocumentsV2",
+      "type": "object"
+    },
+    "Entry": {
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "pattern": "^https?://",
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "title": "Entry",
+      "type": "object"
+    },
+    "Extract": {
+      "additionalProperties": false,
+      "description": "Pull a value out of a scope (an HTML element/page or a JSON value).\n\n- `css` / `xpath`: relative to the scope element. `attr` picks what to read: `text` (default, whitespace collapsed),\n  `html`, or an attribute name such as `href`. URLs from `href`/`src` are made absolute by the engine.\n- `jsonpath`: relative to the scope JSON value, e.g. `$.title` or `$.lots[*].cpv`.\n- `regex`: searched in the scope's text (HTML) or serialised JSON; group 1 if the pattern has a group.\n- `const`: `expr` is the value itself.\n\nThen, in order: `pattern` (regex on each value, group 1 if present, no match → dropped), `map` (exact label → value,\nunmapped → dropped), and for `many` results `join` (into one string). A single-value extract takes the first match.",
+      "properties": {
+        "by": {
+          "enum": [
+            "css",
+            "xpath",
+            "jsonpath",
+            "regex",
+            "const"
+          ],
+          "title": "By",
+          "type": "string"
+        },
+        "expr": {
+          "title": "Expr",
+          "type": "string"
+        },
+        "attr": {
+          "default": "text",
+          "title": "Attr",
+          "type": "string"
+        },
+        "many": {
+          "default": false,
+          "title": "Many",
+          "type": "boolean"
+        },
+        "pattern": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pattern"
+        },
+        "map": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Map"
+        },
+        "join": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Join"
+        }
+      },
+      "required": [
+        "by",
+        "expr"
+      ],
+      "title": "Extract",
+      "type": "object"
+    },
+    "FieldRuleV2": {
+      "additionalProperties": false,
+      "properties": {
+        "by": {
+          "enum": [
+            "css",
+            "xpath",
+            "jsonpath",
+            "regex",
+            "const"
+          ],
+          "title": "By",
+          "type": "string"
+        },
+        "expr": {
+          "title": "Expr",
+          "type": "string"
+        },
+        "attr": {
+          "default": "text",
+          "title": "Attr",
+          "type": "string"
+        },
+        "many": {
+          "default": false,
+          "title": "Many",
+          "type": "boolean"
+        },
+        "pattern": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pattern"
+        },
+        "map": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Map"
+        },
+        "join": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Join"
+        },
+        "on": {
+          "default": "item",
+          "pattern": "^(item|detail|detail\\.[A-Za-z][A-Za-z0-9_]*)$",
+          "title": "On",
+          "type": "string"
+        }
+      },
+      "required": [
+        "by",
+        "expr"
+      ],
+      "title": "FieldRuleV2",
+      "type": "object"
+    },
+    "FieldsV2": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/FieldRuleV2"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRuleV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "title": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRuleV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "buyerName": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRuleV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "publicationDate": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DateRuleV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "submissionDeadline": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DateRuleV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "referenceNumber": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRuleV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "description": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRuleV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "procedureType": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRuleV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "contractNature": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRuleV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "cpvCodes": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRuleV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "placeOfPerformance": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PlaceRulesV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "title": "FieldsV2",
+      "type": "object"
+    },
+    "Fill": {
+      "additionalProperties": false,
+      "properties": {
+        "do": {
+          "const": "fill",
+          "title": "Do",
+          "type": "string"
+        },
+        "target": {
+          "$ref": "#/$defs/Target"
+        },
+        "value": {
+          "maxLength": 500,
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "do",
+        "target",
+        "value"
+      ],
+      "title": "Fill",
+      "type": "object"
+    },
+    "FollowStep": {
+      "additionalProperties": false,
+      "description": "Go to the URL a link on the current page points to.",
+      "properties": {
+        "action": {
+          "const": "follow",
+          "title": "Action",
+          "type": "string"
+        },
+        "link": {
+          "$ref": "#/$defs/Extract"
+        }
+      },
+      "required": [
+        "action",
+        "link"
+      ],
+      "title": "FollowStep",
+      "type": "object"
+    },
+    "Goto": {
+      "additionalProperties": false,
+      "properties": {
+        "do": {
+          "const": "goto",
+          "title": "Do",
+          "type": "string"
+        },
+        "url": {
+          "pattern": "^https?://",
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "do",
+        "url"
+      ],
+      "title": "Goto",
+      "type": "object"
+    },
+    "ItemGroup": {
+      "additionalProperties": false,
+      "description": "One tender spread over sibling elements: every `size` matches form one tender, or each match of `starts_at`\n(css, tested on the matched element itself) starts a new tender that runs until the next one.",
+      "properties": {
+        "size": {
+          "anyOf": [
+            {
+              "maximum": 50,
+              "minimum": 2,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Size"
+        },
+        "starts_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Starts At"
+        }
+      },
+      "title": "ItemGroup",
+      "type": "object"
+    },
+    "LoadMore": {
+      "additionalProperties": false,
+      "description": "Click a \"load more\" control until it's gone or disabled, nothing new appears, or a limit is reached.",
+      "properties": {
+        "do": {
+          "const": "load_more",
+          "title": "Do",
+          "type": "string"
+        },
+        "target": {
+          "$ref": "#/$defs/Target"
+        },
+        "max_clicks": {
+          "default": 20,
+          "maximum": 500,
+          "minimum": 1,
+          "title": "Max Clicks",
+          "type": "integer"
+        },
+        "until_count": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Until Count"
+        }
+      },
+      "required": [
+        "do",
+        "target"
+      ],
+      "title": "LoadMore",
+      "type": "object"
+    },
+    "LoadMorePagination": {
+      "additionalProperties": false,
+      "description": "Click \"load more\" until it's gone or disabled, nothing new appears, or `max_clicks`; then read the page once.",
+      "properties": {
+        "kind": {
+          "const": "load_more",
+          "title": "Kind",
+          "type": "string"
+        },
+        "target": {
+          "$ref": "#/$defs/Target"
+        },
+        "max_clicks": {
+          "default": 50,
+          "maximum": 500,
+          "minimum": 1,
+          "title": "Max Clicks",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "target"
+      ],
+      "title": "LoadMorePagination",
+      "type": "object"
+    },
+    "NextLinkPagination": {
+      "additionalProperties": false,
+      "description": "Follow a \"next page\" link (HTML) or a next-page URL in the response (JSON) until there is none.",
+      "properties": {
+        "kind": {
+          "const": "next_link",
+          "title": "Kind",
+          "type": "string"
+        },
+        "link": {
+          "$ref": "#/$defs/Extract"
+        },
+        "max_pages": {
+          "default": 50,
+          "maximum": 500,
+          "minimum": 1,
+          "title": "Max Pages",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "link"
+      ],
+      "title": "NextLinkPagination",
+      "type": "object"
+    },
+    "NoPagination": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "none",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "title": "NoPagination",
+      "type": "object"
+    },
+    "PageDetail": {
+      "additionalProperties": false,
+      "description": "The tender's page, from `link` (on the item) or `url_template` (`{field}` placeholders). `via: browser` loads it\nin the read's browser session; then `views` name action lists (switch to a tab…) whose resulting page is the scope\n`detail.<view>`. `resolve` (http) hops from a summary page to the real tender page.",
+      "properties": {
+        "kind": {
+          "const": "page",
+          "title": "Kind",
+          "type": "string"
+        },
+        "link": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Extract"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "url_template": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url Template"
+        },
+        "via": {
+          "default": "http",
+          "enum": [
+            "http",
+            "browser"
+          ],
+          "title": "Via",
+          "type": "string"
+        },
+        "views": {
+          "additionalProperties": {
+            "items": {
+              "discriminator": {
+                "mapping": {
+                  "click": "#/$defs/Click",
+                  "fill": "#/$defs/Fill",
+                  "goto": "#/$defs/Goto",
+                  "load_more": "#/$defs/LoadMore",
+                  "press": "#/$defs/Press",
+                  "scroll": "#/$defs/Scroll",
+                  "select": "#/$defs/Select",
+                  "tab": "#/$defs/Tab",
+                  "wait_for": "#/$defs/WaitFor"
+                },
+                "propertyName": "do"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/Goto"
+                },
+                {
+                  "$ref": "#/$defs/Click"
+                },
+                {
+                  "$ref": "#/$defs/Fill"
+                },
+                {
+                  "$ref": "#/$defs/Select"
+                },
+                {
+                  "$ref": "#/$defs/Press"
+                },
+                {
+                  "$ref": "#/$defs/WaitFor"
+                },
+                {
+                  "$ref": "#/$defs/LoadMore"
+                },
+                {
+                  "$ref": "#/$defs/Scroll"
+                },
+                {
+                  "$ref": "#/$defs/Tab"
+                }
+              ]
+            },
+            "type": "array"
+          },
+          "default": {},
+          "title": "Views",
+          "type": "object"
+        },
+        "resolve": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/FollowStep"
+          },
+          "title": "Resolve",
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "title": "PageDetail",
+      "type": "object"
+    },
+    "PageItems": {
+      "additionalProperties": false,
+      "description": "css/xpath selecting one element per tender (or per row, with `group`).",
+      "properties": {
+        "by": {
+          "enum": [
+            "css",
+            "xpath",
+            "jsonpath",
+            "regex",
+            "const"
+          ],
+          "title": "By",
+          "type": "string"
+        },
+        "expr": {
+          "title": "Expr",
+          "type": "string"
+        },
+        "attr": {
+          "default": "text",
+          "title": "Attr",
+          "type": "string"
+        },
+        "many": {
+          "default": false,
+          "title": "Many",
+          "type": "boolean"
+        },
+        "pattern": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pattern"
+        },
+        "map": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Map"
+        },
+        "join": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Join"
+        },
+        "group": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ItemGroup"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "by",
+        "expr"
+      ],
+      "title": "PageItems",
+      "type": "object"
+    },
+    "PageList": {
+      "additionalProperties": false,
+      "description": "Tender list on a page. `via: browser` (default): open `entry` in the read's browser session and run `flow`;\n`via: http`: fetch `entry` and read it (then `flow` must be empty).",
+      "properties": {
+        "kind": {
+          "const": "page",
+          "title": "Kind",
+          "type": "string"
+        },
+        "via": {
+          "default": "browser",
+          "enum": [
+            "browser",
+            "http"
+          ],
+          "title": "Via",
+          "type": "string"
+        },
+        "flow": {
+          "default": [],
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "click": "#/$defs/Click",
+                "fill": "#/$defs/Fill",
+                "goto": "#/$defs/Goto",
+                "load_more": "#/$defs/LoadMore",
+                "press": "#/$defs/Press",
+                "scroll": "#/$defs/Scroll",
+                "select": "#/$defs/Select",
+                "tab": "#/$defs/Tab",
+                "wait_for": "#/$defs/WaitFor"
+              },
+              "propertyName": "do"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/Goto"
+              },
+              {
+                "$ref": "#/$defs/Click"
+              },
+              {
+                "$ref": "#/$defs/Fill"
+              },
+              {
+                "$ref": "#/$defs/Select"
+              },
+              {
+                "$ref": "#/$defs/Press"
+              },
+              {
+                "$ref": "#/$defs/WaitFor"
+              },
+              {
+                "$ref": "#/$defs/LoadMore"
+              },
+              {
+                "$ref": "#/$defs/Scroll"
+              },
+              {
+                "$ref": "#/$defs/Tab"
+              }
+            ]
+          },
+          "title": "Flow",
+          "type": "array"
+        },
+        "items": {
+          "$ref": "#/$defs/PageItems"
+        },
+        "total": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Extract"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "pagination": {
+          "default": {
+            "kind": "none"
+          },
+          "discriminator": {
+            "mapping": {
+              "click": "#/$defs/ClickPagination",
+              "load_more": "#/$defs/LoadMorePagination",
+              "next_link": "#/$defs/NextLinkPagination",
+              "none": "#/$defs/NoPagination",
+              "param": "#/$defs/ParamPagination",
+              "scroll": "#/$defs/ScrollPagination"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/NoPagination"
+            },
+            {
+              "$ref": "#/$defs/NextLinkPagination"
+            },
+            {
+              "$ref": "#/$defs/ParamPagination"
+            },
+            {
+              "$ref": "#/$defs/ClickPagination"
+            },
+            {
+              "$ref": "#/$defs/LoadMorePagination"
+            },
+            {
+              "$ref": "#/$defs/ScrollPagination"
+            }
+          ],
+          "title": "Pagination"
+        }
+      },
+      "required": [
+        "kind",
+        "items"
+      ],
+      "title": "PageList",
+      "type": "object"
+    },
+    "ParamPagination": {
+      "additionalProperties": false,
+      "description": "Count a parameter up: page numbers (`start: 1, step: 1`) or offsets (`start: 0, step: 50`).\n\n`location` says where it goes: the query string, the form body, or a top-level key of the JSON body.\nStops at the first page with no items, or with no item ids that weren't seen already.",
+      "properties": {
+        "kind": {
+          "const": "param",
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "location": {
+          "default": "query",
+          "enum": [
+            "query",
+            "form",
+            "json"
+          ],
+          "title": "Location",
+          "type": "string"
+        },
+        "start": {
+          "default": 1,
+          "title": "Start",
+          "type": "integer"
+        },
+        "step": {
+          "default": 1,
+          "minimum": 1,
+          "title": "Step",
+          "type": "integer"
+        },
+        "max_pages": {
+          "default": 50,
+          "maximum": 500,
+          "minimum": 1,
+          "title": "Max Pages",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "name"
+      ],
+      "title": "ParamPagination",
+      "type": "object"
+    },
+    "PlaceRulesV2": {
+      "additionalProperties": false,
+      "properties": {
+        "postalCode": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRuleV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "city": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRuleV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "countryCode": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FieldRuleV2"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "title": "PlaceRulesV2",
+      "type": "object"
+    },
+    "Press": {
+      "additionalProperties": false,
+      "properties": {
+        "do": {
+          "const": "press",
+          "title": "Do",
+          "type": "string"
+        },
+        "target": {
+          "$ref": "#/$defs/Target"
+        },
+        "key": {
+          "pattern": "^[A-Za-z0-9+]{1,30}$",
+          "title": "Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "do",
+        "target",
+        "key"
+      ],
+      "title": "Press",
+      "type": "object"
+    },
+    "RequestV2": {
+      "additionalProperties": false,
+      "description": "An HTTP request. Strings may hold placeholders (module docstring). A `Cookie`/`Authorization` header is allowed\nonly when its value comes from the session (`{{session.x}}`): templates never carry credentials.",
+      "properties": {
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "method": {
+          "default": "GET",
+          "enum": [
+            "GET",
+            "POST"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {},
+          "title": "Params",
+          "type": "object"
+        },
+        "headers": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {},
+          "title": "Headers",
+          "type": "object"
+        },
+        "form": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "string"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Form"
+        },
+        "json": {
+          "anyOf": [
+            {},
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Json"
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "title": "RequestV2",
+      "type": "object"
+    },
+    "ScopeRules": {
+      "additionalProperties": false,
+      "description": "Which records are open tenders. A record is kept when it meets every `include` condition (a missing value\ndoesn't meet it) and no `exclude` condition. `open_by_deadline` drops records whose deadline has passed.\n\nPrefer the API's own filters (query parameters on `list.request`) and use `scope` for what they can't express.",
+      "properties": {
+        "include": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Condition"
+          },
+          "title": "Include",
+          "type": "array"
+        },
+        "exclude": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/Condition"
+          },
+          "title": "Exclude",
+          "type": "array"
+        },
+        "open_by_deadline": {
+          "default": true,
+          "title": "Open By Deadline",
+          "type": "boolean"
+        }
+      },
+      "title": "ScopeRules",
+      "type": "object"
+    },
+    "Scroll": {
+      "additionalProperties": false,
+      "properties": {
+        "do": {
+          "const": "scroll",
+          "title": "Do",
+          "type": "string"
+        },
+        "times": {
+          "default": 1,
+          "maximum": 50,
+          "minimum": 1,
+          "title": "Times",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "do"
+      ],
+      "title": "Scroll",
+      "type": "object"
+    },
+    "ScrollPagination": {
+      "additionalProperties": false,
+      "description": "Infinite list: scroll to the bottom `times` times, then read the page once.",
+      "properties": {
+        "kind": {
+          "const": "scroll",
+          "title": "Kind",
+          "type": "string"
+        },
+        "times": {
+          "default": 10,
+          "maximum": 50,
+          "minimum": 1,
+          "title": "Times",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "title": "ScrollPagination",
+      "type": "object"
+    },
+    "Select": {
+      "additionalProperties": false,
+      "properties": {
+        "do": {
+          "const": "select",
+          "title": "Do",
+          "type": "string"
+        },
+        "target": {
+          "$ref": "#/$defs/Target"
+        },
+        "value": {
+          "maxLength": 500,
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "do",
+        "target",
+        "value"
+      ],
+      "title": "Select",
+      "type": "object"
+    },
+    "Session": {
+      "additionalProperties": false,
+      "description": "Anonymous state a read needs, obtained fresh on every read (ADR 0014 §2). `via: browser` runs `steps` (actions)\nin the read's browser session; `via: http` sends `steps` (requests) with the polite client.",
+      "properties": {
+        "via": {
+          "enum": [
+            "http",
+            "browser"
+          ],
+          "title": "Via",
+          "type": "string"
+        },
+        "steps": {
+          "anyOf": [
+            {
+              "items": {
+                "discriminator": {
+                  "mapping": {
+                    "click": "#/$defs/Click",
+                    "fill": "#/$defs/Fill",
+                    "goto": "#/$defs/Goto",
+                    "load_more": "#/$defs/LoadMore",
+                    "press": "#/$defs/Press",
+                    "scroll": "#/$defs/Scroll",
+                    "select": "#/$defs/Select",
+                    "tab": "#/$defs/Tab",
+                    "wait_for": "#/$defs/WaitFor"
+                  },
+                  "propertyName": "do"
+                },
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/Goto"
+                  },
+                  {
+                    "$ref": "#/$defs/Click"
+                  },
+                  {
+                    "$ref": "#/$defs/Fill"
+                  },
+                  {
+                    "$ref": "#/$defs/Select"
+                  },
+                  {
+                    "$ref": "#/$defs/Press"
+                  },
+                  {
+                    "$ref": "#/$defs/WaitFor"
+                  },
+                  {
+                    "$ref": "#/$defs/LoadMore"
+                  },
+                  {
+                    "$ref": "#/$defs/Scroll"
+                  },
+                  {
+                    "$ref": "#/$defs/Tab"
+                  }
+                ]
+              },
+              "type": "array"
+            },
+            {
+              "items": {
+                "$ref": "#/$defs/RequestV2"
+              },
+              "type": "array"
+            }
+          ],
+          "minLength": 1,
+          "title": "Steps"
+        },
+        "capture": {
+          "items": {
+            "$ref": "#/$defs/Capture"
+          },
+          "minItems": 1,
+          "title": "Capture",
+          "type": "array"
+        }
+      },
+      "required": [
+        "via",
+        "steps",
+        "capture"
+      ],
+      "title": "Session",
+      "type": "object"
+    },
+    "StatusRuleV2": {
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "#/$defs/FieldRuleV2"
+        },
+        "withdrawn": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Withdrawn",
+          "type": "array"
+        },
+        "closed": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Closed",
+          "type": "array"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "StatusRuleV2",
+      "type": "object"
+    },
+    "Tab": {
+      "additionalProperties": false,
+      "description": "Open a tab or accordion section and wait for its content.",
+      "properties": {
+        "do": {
+          "const": "tab",
+          "title": "Do",
+          "type": "string"
+        },
+        "target": {
+          "$ref": "#/$defs/Target"
+        }
+      },
+      "required": [
+        "do",
+        "target"
+      ],
+      "title": "Tab",
+      "type": "object"
+    },
+    "Target": {
+      "additionalProperties": false,
+      "description": "Exactly one way to find an element. Prefer role + accessible name: it survives class-name churn.",
+      "properties": {
+        "role": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Role"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        },
+        "css": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Css"
+        },
+        "xpath": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Xpath"
+        },
+        "nth": {
+          "default": 0,
+          "maximum": 500,
+          "minimum": 0,
+          "title": "Nth",
+          "type": "integer"
+        }
+      },
+      "title": "Target",
+      "type": "object"
+    },
+    "UrlRules": {
+      "additionalProperties": false,
+      "description": "Volatile URL parts removed from tender URLs and document links.",
+      "properties": {
+        "drop_params": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Drop Params",
+          "type": "array"
+        },
+        "drop_matrix": {
+          "default": [
+            "jsessionid"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "title": "Drop Matrix",
+          "type": "array"
+        },
+        "drop_numeric_query": {
+          "default": false,
+          "title": "Drop Numeric Query",
+          "type": "boolean"
+        }
+      },
+      "title": "UrlRules",
+      "type": "object"
+    },
+    "WaitFor": {
+      "additionalProperties": false,
+      "properties": {
+        "do": {
+          "const": "wait_for",
+          "title": "Do",
+          "type": "string"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Target"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
+        },
+        "response": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Response"
+        }
+      },
+      "required": [
+        "do"
+      ],
+      "title": "WaitFor",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "format_version": {
+      "const": 2,
+      "title": "Format Version",
+      "type": "integer"
+    },
+    "timezone": {
+      "title": "Timezone",
+      "type": "string"
+    },
+    "country": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Country"
+    },
+    "software": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Software"
+    },
+    "entry": {
+      "$ref": "#/$defs/Entry"
+    },
+    "session": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Session"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "list": {
+      "discriminator": {
+        "mapping": {
+          "api": "#/$defs/ApiList",
+          "page": "#/$defs/PageList"
+        },
+        "propertyName": "kind"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/ApiList"
+        },
+        {
+          "$ref": "#/$defs/PageList"
+        }
+      ],
+      "title": "List"
+    },
+    "detail": {
+      "anyOf": [
+        {
+          "discriminator": {
+            "mapping": {
+              "api": "#/$defs/ApiDetail",
+              "page": "#/$defs/PageDetail"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/ApiDetail"
+            },
+            {
+              "$ref": "#/$defs/PageDetail"
+            }
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Detail"
+    },
+    "fields": {
+      "$ref": "#/$defs/FieldsV2"
+    },
+    "documents": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DocumentsV2"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "status": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/StatusRuleV2"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "scope": {
+      "$ref": "#/$defs/ScopeRules",
+      "default": {
+        "include": [],
+        "exclude": [],
+        "open_by_deadline": true
+      }
+    },
+    "urls": {
+      "$ref": "#/$defs/UrlRules",
+      "default": {
+        "drop_params": [],
+        "drop_matrix": [
+          "jsessionid"
+        ],
+        "drop_numeric_query": false
+      }
+    },
+    "notes": {
+      "default": "",
+      "title": "Notes",
+      "type": "string"
+    }
+  },
+  "required": [
+    "format_version",
+    "timezone",
+    "entry",
+    "list",
+    "fields"
+  ],
+  "title": "TemplateV2",
+  "type": "object"
+}
