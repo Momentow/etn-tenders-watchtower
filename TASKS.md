@@ -42,7 +42,8 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-039 | Truthful blocks: `Blocked` only on evidence; constant gateway 403 is a block (split from T-036) | agent, notice | in-progress | OrangeCanvas705 | feat/T-039-truthful-blocks | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-037 | Investigate/repair and audits on v2 | repair, notice | todo | | | T-034, T-035, T-036, T-039 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-038 | v2 live re-run: the 12-portal demo scenario, then `unseen` | test-portals | todo | | | T-037 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
-| T-021 | README & demo video script | docs-site | todo | | | T-020, T-038 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
+| T-021 | README: how it works, env vars, running it (split: demo script → T-040) | docs-site | in-progress | Momentow | docs/T-021-readme | T-020 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
+| T-040 | Demo video script (split from T-021) | docs-site | todo | | | T-021, T-038 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
 | T-099 | LLM usage metering & cost per portal (last MVP task) | cost | todo | | | T-020, T-035 | [model-usage](docs/cost/model-usage.md) |
 
 **Critical path:** T-003 → T-007/T-008 → T-009 → T-014 → T-015/T-016 → T-017 → T-023 → T-020 → **T-031 → T-032 → T-033 → T-034/T-035/T-036 → T-037 → T-038** → T-099.
@@ -426,9 +427,15 @@ the T-032 PR shows only its own two commits.
 - [ ] Then the final run against the `unseen` portals (moved here from T-020)
 **Refs:** [T-030](#t-030--engine-v2--agent-v2-epic)
 
-### T-021 — README & demo video script
+### T-021 — README (split from the demo script)
 **Acceptance:**
-- [ ] One-page README: how it works, env vars, cost per portal (filled in from T-099)
+- [ ] One-page README: how it works, env vars, how to run it, and a cost-per-portal section that T-099 fills in
+**Refs:** [requirements → Hand-in](docs/spec/requirements.md#hand-in)
+**Notes:** the demo video script moved to T-040 (it needs the v2 live re-run, T-038). The README can describe v2 only
+where it is merged; T-033/T-034 update it as they land.
+
+### T-040 — Demo video script (split from T-021)
+**Acceptance:**
 - [ ] Shot list for a video of at most 3 minutes, including the dashboard
 **Refs:** [requirements → Hand-in](docs/spec/requirements.md#hand-in)
 
