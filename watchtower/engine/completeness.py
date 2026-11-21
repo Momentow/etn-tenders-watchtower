@@ -61,6 +61,8 @@ _OTHER_NOTICES = (
     "wstępne ogłoszenie informacyjne", "marktconsultatie", "market consultation", "markterkundung",
     # ended early
     "vroegtijdige beëindiging",
+    # announced, not yet open (German "intended tender" notices, §20 VOB/A)
+    "beabsichtigte ausschreibung",
 )  # fmt: skip
 
 
@@ -69,10 +71,12 @@ def more_offered(scope: Scope, items: list[Scope]) -> list[str]:
     if isinstance(scope, JsonScope):
         return _json_more(scope.value, len(items))
     assert isinstance(scope, HtmlScope)
-    inside = {id(x) for s in items if isinstance(s, HtmlScope) for x in s.el.iter()}
+    # lxml reuses one proxy per element while it's referenced: `items` keeps the item elements alive, so identity works
+    # for them (not for throwaway proxies of their descendants).
+    item_els = {id(x.el) for x in items if isinstance(x, HtmlScope)}
     out: list[str] = []
     for el in scope.el.iter("a", "link", "button"):
-        if id(el) in inside:
+        if any(id(a) in item_els for a in (el, *el.iterancestors())):
             continue
         label = collapse(el.text_content()) if el.tag != "link" else ""
         aria = (el.get("aria-label") or el.get("title") or "").strip()

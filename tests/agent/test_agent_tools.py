@@ -152,7 +152,8 @@ async def test_dry_run_warns_about_missed_pagination_documents_and_fields(make_c
     t["list"]["pagination"] = {"kind": "none"}
     del t["documents"], t["fields"]["publicationDate"]
     report, _ = await core._dry_run(make_ctx(), json.dumps(t), 2)
-    assert "VERDICT: GOOD" in report  # warnings don't block, they steer
+    # Missed pagination blocks since T-036: the real read of this template fails validation as an excerpt.
+    assert "VERDICT: NOT GOOD" in report and "short excerpt" in report
     assert "numbered page control <button> '2' name=\"strona\"" in report
     assert "no documents on any of the 2 sampled tenders" in report
     assert "`publicationDate` is empty on every sampled tender" in report
