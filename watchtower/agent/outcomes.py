@@ -12,7 +12,6 @@ from typing import Any, Literal, Protocol
 from pydantic import BaseModel
 
 from watchtower.engine.result import ReadResult
-from watchtower.engine.template import Template
 from watchtower.engine.template_v2 import AnyTemplate
 from watchtower.validate import Health
 
@@ -60,7 +59,7 @@ class Changed(BaseModel):
     """The portal changed; `new_template` reads it again. Promoted only after it passes validation."""
 
     kind: Literal["changed"] = "changed"
-    new_template: Template
+    new_template: AnyTemplate  # v1 or v2; a repair keeps the format unless the portal needs the other one
     reason: str
 
 
@@ -98,5 +97,5 @@ class GenerateTemplate(Protocol):
 
 class Investigate(Protocol):
     async def __call__(
-        self, portal: PortalView, template: Template, result: ReadResult, health: Health, *, trigger: Trigger
+        self, portal: PortalView, template: AnyTemplate, result: ReadResult, health: Health, *, trigger: Trigger
     ) -> Diagnosis: ...

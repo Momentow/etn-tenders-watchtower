@@ -1,4 +1,5 @@
-"""Explorer tools (T-034, ADR 0015): browse a portal the way a person does, in one browser session per run.
+"""Explorer tools (T-034, ADR 0015; investigate since T-037): browse a portal the way a person does, in one browser
+session per run.
 
 `open` and `act` drive the run's session (ADR 0014 actions); `snapshot` shows the current page; `network` lists the
 XHR/fetch calls the page made; `replay` re-sends one of them over the polite client, without the browser, and says
@@ -19,7 +20,7 @@ from pydantic import TypeAdapter, ValidationError
 from watchtower.agent.context import AgentContext, Fetched
 from watchtower.agent.pages import _record_page_block, clip, short_err
 from watchtower.agent.prune import summarize_json
-from watchtower.agent.registry import ATTACH, tool
+from watchtower.agent.registry import ATTACH_AND_INVESTIGATE, tool
 from watchtower.net import Action, ActionResult, BrowserSession, Exchange, SessionBudgetExceeded
 from watchtower.net.actions import Goto
 
@@ -81,7 +82,7 @@ async def _report(c: AgentContext, r: ActionResult, max_chars: int) -> str:
     return "\n".join(lines)
 
 
-@tool(scenarios=ATTACH)
+@tool(scenarios=ATTACH_AND_INVESTIGATE)
 async def open(ctx: Ctx, url: str) -> str:  # noqa: A001 - the tool's name is what the model sees
     """Open a URL in the run's browser session (JavaScript runs, cookies and app state are kept for later actions)
     and show the page snapshot and the API calls the page made. Use it to explore like a person: then `act` on
@@ -90,7 +91,7 @@ async def open(ctx: Ctx, url: str) -> str:  # noqa: A001 - the tool's name is wh
     return err or await _report(ctx.context, r, SNAPSHOT_CHARS)
 
 
-@tool(scenarios=ATTACH)
+@tool(scenarios=ATTACH_AND_INVESTIGATE)
 async def snapshot(ctx: Ctx) -> str:
     """The current page of the browser session: headings, tabs, buttons, links, form fields, repeated blocks with
     counts and visible totals ("2,474 results")."""
@@ -100,7 +101,7 @@ async def snapshot(ctx: Ctx) -> str:
     return clip(await s.snapshot(), SNAPSHOT_CHARS)
 
 
-@tool(scenarios=ATTACH)
+@tool(scenarios=ATTACH_AND_INVESTIGATE)
 async def act(ctx: Ctx, action: str) -> str:
     """Do one action in the browser session; `action` is JSON, the same actions a v2 template's `flow` uses:
     {"do":"click","target":{"role":"link","name":"Alle aankondigingen"}} · {"do":"load_more","target":{"role":
@@ -118,7 +119,7 @@ async def act(ctx: Ctx, action: str) -> str:
     return err or await _report(ctx.context, r, ACT_SNAPSHOT_CHARS)
 
 
-@tool(scenarios=ATTACH)
+@tool(scenarios=ATTACH_AND_INVESTIGATE)
 async def network(ctx: Ctx, filter: str | None = None, show: int | None = None) -> str:  # noqa: A002
     """The XHR/fetch and JSON calls the browser session made, newest first (`filter`: a substring of the URL).
     `show`: one call's full request (method, URL, headers, body) and the shape of its JSON response, with the JSONPath
@@ -176,7 +177,7 @@ def _json_sample(body: str | None) -> str | None:
 # --------------------------------------------------------------------------- replay
 
 
-@tool(scenarios=ATTACH)
+@tool(scenarios=ATTACH_AND_INVESTIGATE)
 async def replay(ctx: Ctx, call: int, params: str | None = None, body: str | None = None) -> str:
     """Re-send a call from `network` over plain HTTP (no browser, no cookies) and compare its records with what the
     page received and shows. `params`: JSON object of query parameters to set, e.g. {"page": "1", "size": "50"} to

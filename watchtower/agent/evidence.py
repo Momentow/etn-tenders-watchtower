@@ -17,11 +17,12 @@ from urllib.parse import parse_qsl, urljoin, urlsplit
 import httpx
 
 from watchtower.engine.completeness import declared_counts
-from watchtower.engine.executor import Page, first_list_page
+from watchtower.engine.executor import Page, first_list_page, run_template
 from watchtower.engine.extract import Scope, collapse, parse_html, parse_json, select
 from watchtower.engine.result import ReadResult
 from watchtower.engine.snapshot import json_shape, snapshot
 from watchtower.engine.template import Template
+from watchtower.engine.template_v2 import AnyTemplate, ApiList, TemplateV2
 from watchtower.net import BrowserPool, PoliteClient, detect_block
 from watchtower.validate.completeness import TOTAL_TOLERANCE
 
@@ -109,12 +110,22 @@ async def probe(client: PoliteClient, url: str) -> Probe:
     return p
 
 
-async def precheck(client: PoliteClient, portal_url: str, template: Template) -> PreCheck:
+def list_address(template: AnyTemplate) -> str | None:
+    """The address a GET reaches the list at: v1 and v2 api lists their request URL, a v2 page list its entry."""
+    if isinstance(template, TemplateV2) and not isinstance(template.list, ApiList):
+        return template.entry.url
+    req = template.list.request
+    if req.method != "GET" or "{{" in req.url:  # a POST or a session/today placeholder: not probed bare
+        return None
+    return req.url
+
+
+async def precheck(client: PoliteClient, portal_url: str, template: AnyTemplate) -> PreCheck:
     """Probe the portal address and the template's list address (GET only). Decides the obvious cases."""
     urls = [portal_url]
-    req = template.list.request
-    if req.method == "GET" and req.url not in urls:
-        urls.append(req.url)
+    list_url = list_address(template)
+    if list_url is not None and list_url not in urls:
+        urls.append(list_url)
     probes = [await probe(client, u) for u in urls]
     pc = PreCheck(probes)
     if all(p.gone for p in probes):
@@ -134,8 +145,19 @@ async def precheck(client: PoliteClient, portal_url: str, template: Template) ->
 # --------------------------------------------------------------------------- structure diff (repair)
 
 
-async def live_snapshot(template: Template, client: PoliteClient, browser: BrowserPool | None) -> dict[str, Any] | str:
+async def live_snapshot(
+    template: AnyTemplate, client: PoliteClient, browser: BrowserPool | None
+) -> dict[str, Any] | str:
     """The first list page as the engine reaches it, as a structural snapshot (or an error sentence)."""
+    if isinstance(template, TemplateV2):
+        # The v2 executor snapshots its first list page itself (as stored with every good read): one tender is enough.
+        try:
+            r = await run_template(template, client, browser, limit=1)
+        except Exception as e:  # a missing browser, an exhausted session, …
+            return f"could not load the first list page: {type(e).__name__}: {e}".splitlines()[0][:200]
+        if r.snapshot is None:
+            return "could not load the first list page: " + ("; ".join(r.errors[:2]) or "no list page was read")[:300]
+        return r.snapshot
     try:
         page = await first_list_page(template, client, browser)
     except Exception as e:  # ReadError, a missing browser, …
@@ -191,13 +213,13 @@ class AuditFindings:
 
 
 async def audit(
-    client: PoliteClient, browser: BrowserPool | None, portal_url: str, template: Template, result: ReadResult
+    client: PoliteClient, browser: BrowserPool | None, portal_url: str, template: AnyTemplate, result: ReadResult
 ) -> AuditFindings:
     """Compare what the engine read with the live portal: missed tenders, the portal's own count, and values read
     from the wrong place."""
     af = AuditFindings()
     first = _FirstPage(template, client, browser)
-    if template.list.kind == "json":
+    if template.list.kind in ("json", "api"):
         await _site_api_calls(client, portal_url, template, af)
     else:
         await _unread_links(first, result, af)
@@ -209,7 +231,7 @@ async def audit(
 class _FirstPage:
     """The template's first list page, fetched at most once per audit (None when it can't be loaded)."""
 
-    def __init__(self, template: Template, client: PoliteClient, browser: BrowserPool | None):
+    def __init__(self, template: AnyTemplate, client: PoliteClient, browser: BrowserPool | None):
         self.template, self.client, self.browser = template, client, browser
         self._page: Page | None = None
         self._tried = False
@@ -218,10 +240,19 @@ class _FirstPage:
         if not self._tried:
             self._tried = True
             try:
-                self._page = await first_list_page(self.template, self.client, self.browser)
+                self._page = await self._load()
             except Exception:  # the read passed moments ago; a failing page here is not evidence
                 self._page = None
         return self._page
+
+    async def _load(self) -> Page | None:
+        t = self.template
+        if isinstance(t, Template):
+            return await first_list_page(t, self.client, self.browser)
+        if isinstance(t.list, ApiList) or t.list.via != "http" or t.session is not None:
+            return None  # an API list has no links to compare; a browser flow isn't replayed for an audit
+        resp = await self.client.get(t.entry.url)
+        return Page(str(resp.url), resp.status_code, resp.text, dict(resp.headers))
 
 
 def _norm_url(url: str) -> str:
@@ -266,7 +297,7 @@ async def _unread_links(first: _FirstPage, result: ReadResult, af: AuditFindings
         af.checked.append(f"all {total} tender links on the first list page were delivered by the read")
 
 
-async def _declared_total(first: _FirstPage, template: Template, result: ReadResult, af: AuditFindings) -> None:
+async def _declared_total(first: _FirstPage, template: AnyTemplate, result: ReadResult, af: AuditFindings) -> None:
     """Does the read reach the portal's own count of its list (T-041)? Below 95 % of it, tenders are being missed:
     pagination that stops early, a cap on the result list, a filter. ADR 0018's tolerance."""
     reached = len(result.tenders) + result.scope_dropped
@@ -313,7 +344,7 @@ def _scope(page: Page) -> Scope | None:
     return parse_html(page.text, page.url)
 
 
-async def _site_api_calls(client: PoliteClient, portal_url: str, template: Template, af: AuditFindings) -> None:
+async def _site_api_calls(client: PoliteClient, portal_url: str, template: AnyTemplate, af: AuditFindings) -> None:
     """For a JSON list: does the site's own app call the same endpoint with different filters than the template?"""
     api = urlsplit(template.list.request.url)
     ours = dict(parse_qsl(api.query)) | {k: str(v) for k, v in template.list.request.params.items()}
@@ -344,7 +375,7 @@ async def _site_api_calls(client: PoliteClient, portal_url: str, template: Templ
     diffs = []
     for where, theirs in calls:
         for k, v in theirs.items():
-            if k == page_param or "{" in v or "$" in v:
+            if k == page_param or "{" in v or "$" in v or "{{" in ours.get(k, ""):  # placeholders: {{today}}…
                 continue
             if k in ours and ours[k] != v:
                 diffs.append(f"{k}={v} (template: {k}={ours[k]}) in {where}")
@@ -385,10 +416,10 @@ def _same(a: str, b: str) -> bool:
     return bool(a and b) and (a == b or a in b or b in a)
 
 
-async def _value_labels(client: PoliteClient, template: Template, result: ReadResult, af: AuditFindings) -> None:
+async def _value_labels(client: PoliteClient, template: AnyTemplate, result: ReadResult, af: AuditFindings) -> None:
     """On a few tender pages: is each value we read shown under the label the portal uses for that field?"""
-    if template.detail is not None and template.detail.format == "json":
-        return
+    if isinstance(template, Template) and template.detail is not None and template.detail.format == "json":
+        return  # (v2 api reads still have public tender pages; an app shell simply shows no labels)
     sampled = [t for t in result.tenders if t.url and t.status == "open"][:VALUE_CHECK_TENDERS]
     checked = 0
     for t in sampled:

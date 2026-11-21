@@ -16,9 +16,9 @@ from watchtower.agent import evidence
 from watchtower.agent.context import AgentContext
 from watchtower.agent.outcomes import Gone, Healthy, Unrepairable
 from watchtower.agent.registry import INVESTIGATE, tool
-from watchtower.agent.tools.core import _canonical, _list_only, _parse_template
+from watchtower.agent.tools.core import _canonical, _list_only, _list_only_v2, _parse_any_template
 from watchtower.engine import run_template
-from watchtower.engine.template import Template
+from watchtower.engine.template_v2 import AnyTemplate, TemplateV2
 
 Ctx = RunContextWrapper[AgentContext]
 COUNT_MAX_PAGES = 30
@@ -36,12 +36,12 @@ async def show_read(ctx: Ctx) -> str:
     """Show the read under investigation: the current template (JSON), what the engine read with it (count, errors,
     first ids, two sample tenders), the validator's problems and the usual tender count from recent good reads."""
     c = ctx.context
-    template: Template = c.extra["template"]
+    template: AnyTemplate = c.extra["template"]
     result = c.extra["result"]
     health = c.extra["health"]
     lines = [
         "CURRENT TEMPLATE:",
-        template.model_dump_json(exclude_defaults=True),
+        _canonical(template),
         f"READ: {len(result.tenders)} tenders on {result.stats.list_pages} list page(s)"
         + (f"; usual count {expected_count(c)}" if expected_count(c) is not None else ""),
     ]
@@ -67,7 +67,7 @@ async def diff_structure(ctx: Ctx, template: str | None = None) -> str:
     c = ctx.context
     t = c.extra["template"]
     if template:
-        parsed = _parse_template(template)
+        parsed = _parse_any_template(template)
         if isinstance(parsed, str):
             return parsed
         t = parsed
@@ -82,14 +82,14 @@ async def count_list(ctx: Ctx, template: str) -> str:
     the usual count from recent good reads. Run it before submitting a repair: a template that reads far fewer tenders
     than usual will be rejected by validation (missed pages or a filtered list)."""
     c = ctx.context
-    parsed = _parse_template(template)
+    parsed = _parse_any_template(template)
     if isinstance(parsed, str):
         return parsed
-    list_only = _list_only(parsed)
+    list_only = _list_only_v2(parsed, COUNT_MAX_PAGES) if isinstance(parsed, TemplateV2) else _list_only(parsed)
     if list_only is None:
         return "Could not reduce the template to its list; check the fields that are read from the list row."
     pg = list_only.list.pagination
-    if pg.kind != "none":
+    if not isinstance(list_only, TemplateV2) and pg.kind != "none":
         list_only = list_only.model_copy(update={"list": list_only.list.model_copy(update={"pagination": pg.model_copy(
             update={"max_pages": COUNT_MAX_PAGES})})})  # fmt: skip
     r = await run_template(list_only, c.client, c.browser)

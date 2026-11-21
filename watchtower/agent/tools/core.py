@@ -353,8 +353,8 @@ def _list_only(t: Template) -> Template | None:
         return None
 
 
-def _list_only_v2(t: TemplateV2) -> TemplateV2 | None:
-    """A v2 template reduced to its list, as `_list_only`: item fields, no detail, ≤ LIST_CHECK_PAGES pages."""
+def _list_only_v2(t: TemplateV2, pages: int = LIST_CHECK_PAGES) -> TemplateV2 | None:
+    """A v2 template reduced to its list, as `_list_only`: item fields, no detail, ≤ `pages` pages or clicks."""
     d = t.model_dump(mode="json", exclude_none=True, by_alias=True)
     d.pop("detail", None)
     fields = {k: v for k, v in d["fields"].items() if k != "placeOfPerformance" and v.get("on", "item") == "item"}
@@ -367,11 +367,11 @@ def _list_only_v2(t: TemplateV2) -> TemplateV2 | None:
         d.pop("status", None)
     pg = d["list"].get("pagination", {})
     if pg.get("kind") == "load_more":
-        pg["max_clicks"] = min(pg.get("max_clicks", 50), LIST_CHECK_PAGES)
+        pg["max_clicks"] = min(pg.get("max_clicks", 50), pages)
     elif pg.get("kind") == "scroll":
-        pg["times"] = min(pg.get("times", 10), LIST_CHECK_PAGES)
+        pg["times"] = min(pg.get("times", 10), pages)
     elif pg.get("kind", "none") != "none":
-        pg["max_pages"] = min(pg.get("max_pages", 50), LIST_CHECK_PAGES)
+        pg["max_pages"] = min(pg.get("max_pages", 50), pages)
     try:
         return TemplateV2.model_validate(d)
     except ValidationError:
@@ -426,7 +426,7 @@ def _samples(r: ReadResult) -> list[str]:
 
 
 def _canonical(t: AnyTemplate) -> str:
-    return t.model_dump_json(exclude_defaults=True)
+    return t.model_dump_json(exclude_defaults=True, by_alias=True)
 
 
 # --------------------------------------------------------------------------- ending the run
