@@ -33,7 +33,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-023 | Health-check modes (reactive / proactive audit) | notice | done | Lavrtajx | feat/T-023-health-check-modes | T-006, T-016, T-017 | [0002 health checks](docs/decisions/0002-architecture.md#health-check-modes) |
 | T-020 | End-to-end tests & real-portal smoke run | test-portals | review | Momentow | feat/T-020-e2e-smoke | T-001, T-015, T-016, T-017, T-023 | [requirements → Judging](docs/spec/requirements.md#judging) |
 | T-030 | **Epic: Engine v2 & Agent v2** (browser-first actions, API capture, tiered models) | engine, agent | todo | | | T-020 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
-| T-031 | ADRs: engine v2 template format + agent v2 model tiers | engine, agent | in-progress | Momentow | docs/T-031-engine-v2-adrs | T-030 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-031 | ADRs: engine v2 template format + agent v2 model tiers | engine, agent | review | Momentow | docs/T-031-engine-v2-adrs | T-030 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-032 | Browser sessions: actions, long polite boot, network capture | net | in-progress | Momentow | feat/T-032-browser-sessions | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-033 | Template format v2 + executor (actions, entry shortcut, API mode, filters, row groups) | engine | todo | | | T-031, T-032 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-034 | Agent v2 explorer: browser tools, recorded flow → API, v2 templates | agent | todo | | | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
@@ -365,7 +365,8 @@ for every request, browser sub-requests included; no logins or captcha solving; 
   row groups, normalisers, v1 compatibility; worked examples for tenderned.nl (api), dtvp.de (session + api) and a
   click/load-more HTML portal
 - [ ] ADR "Agent v2: explorer and model tiers" (amends 0010/0012): tools, tier roles, budgets, env vars
-  (`WATCHTOWER_MODEL_STRONG`, `WATCHTOWER_MODEL_LIGHT`; `WATCHTOWER_MODEL` stays as a fallback), added to the ADR 0001 table
+  (`WATCHTOWER_MODEL_STRONG`, `WATCHTOWER_MODEL_LIGHT`; `WATCHTOWER_MODEL` stays as a fallback); the ADR 0001 table and
+  README rows land with T-035, which implements them
 - [ ] Interfaces between T-032…T-036 named, so they can be built in parallel
 **Refs:** [T-030](#t-030--engine-v2--agent-v2-epic), [0003](docs/decisions/0003-template-format.md), [0010](docs/decisions/0010-agent-runtime-and-tools.md)
 
@@ -393,6 +394,7 @@ for every request, browser sub-requests included; no logins or captcha solving; 
 **Acceptance:**
 - [ ] Strong/light settings and budgets; light tasks are tools of the strong model, which reviews their output
 - [ ] Every model call still goes through `agent` and is tagged with its tier
+- [ ] `WATCHTOWER_MODEL_STRONG` / `WATCHTOWER_MODEL_LIGHT` in the ADR 0001 env table and the README
 **Refs:** [T-030](#t-030--engine-v2--agent-v2-epic), [runtime](docs/agent/runtime.md)
 
 ### T-036 — Completeness & truthful blocks
