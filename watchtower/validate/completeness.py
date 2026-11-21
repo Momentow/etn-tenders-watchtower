@@ -1,4 +1,4 @@
-"""Completeness: is this read the portal's whole list of open tenders? (T-036, ADR 0017.)
+"""Completeness: is this read the portal's whole list of open tenders? (T-036, ADR 0018.)
 
 Pure checks on the engine's evidence (`ReadResult.declared_total`, `scope_dropped`, `more_offered`, `other_notices`),
 run by `validate.check`. Any problem fails the read like every other check, so a partial read is never stored and a

@@ -12,6 +12,8 @@ template = load_template(stored_json)          # Template (v1) or TemplateV2, by
 result = await run_template(template, client, browser, limit=None)
 result.declared_total   # the portal's own count (`list.total`), v2 only
 result.scope_dropped    # records read but not open tenders in `scope`, v2 only
+result.more_offered     # both formats: an unpaginated list page's signs of more (completeness, ADR 0018)
+result.other_notices    # both formats: delivered tenders labelled as another notice type (ADR 0018)
 ```
 
 - Code: `watchtower/engine/template_v2.py` (schema and load-time checks) and `watchtower/engine/executor_v2.py`

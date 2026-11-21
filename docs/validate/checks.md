@@ -29,6 +29,14 @@ portal's `reason` and the dashboard.
 | Invalid dates | `publicationDate` isn't an ISO date, or `submissionDeadline` isn't an ISO date-time with an offset | `submissionDeadline is not a date-time with an offset on 1 tender(s) (c).` |
 | Implausible dates | publication more than a day in the future, or a deadline before publication | `submissionDeadline is before publicationDate on 1 tender(s) (d); the dates are probably misread.` |
 | Deadlines jump | ≥ 3 known tenders and more than half of them changed deadline at once ([ADR 0007](../decisions/0007-date-parsing.md)) | `The deadline changed on 6 of 6 known tenders at once (…); the date format has probably changed.` |
+| Below the portal's total | the portal's own count (`list.total`, v2) is known and tenders delivered + dropped by scope < 95 % of it | `The portal says its list holds 22, but the read reached only 10. Tenders are being missed.` |
+| Excerpt | a list read without pagination whose page offers more: a next or numbered page control, an "all tenders" / "load more" link, a JSON total larger than the page | `The read took 20 tenders from a single list page, but that page offers more (a link 'Alle Bekanntmachungen' to …). It is probably a short excerpt such as a 'latest tenders' box, not the full list.` |
+| Other notice types | ≥ 2 tenders, and ≥ 10 % of them, are labelled as awards, prior information, market consultations, intended tenders or early terminations | `7 of 20 tenders are other notice types, not calls for competition (e.g. 1138697: '…Vergebener Auftrag…'). The list's notice types need filtering.` |
+
+The last three are the completeness checks (T-036, [ADR 0018](../decisions/0018-completeness-checks.md)). They judge
+a read against the portal itself rather than against history, using evidence the engine records on the read
+(`declared_total`, `scope_dropped`, `more_offered`, `other_notices`). A dry run stopped at a `limit` isn't judged on
+them. The agent's `try_template` reports them for its list check too.
 
 Normal changes pass: a few tenders more or fewer, one extended deadline, a field the portal never showed, the same
 deadline written with another offset.
@@ -39,6 +47,15 @@ listed somewhere the template doesn't read (`silent-missed`). The proactive audi
 the live portal for those.
 
 ## Tests
+`tests/validate/test_completeness.py`:
+- The evergabe.nrw.de regression: a fixture with the real home page's structure, with the latest-20 box and an
+  "Alle Bekanntmachungen" link. It fails as an excerpt mixing award notices, and attaching it ends `failed`, never
+  `serving`.
+- The `app` mock read without its notice-type filter or as its first API page only, and the `js` API without
+  pagination: each ends `failed` with its reason.
+- Complete reads are served, and every base mock read carries no completeness evidence.
+- Thresholds, and the wording that must and must not count as evidence.
+
 `tests/validate/test_health.py` runs the real engine on the mock portals: base reads pass, and the `pagination`,
 `markup`, `renamed-keys`, `login-wall` and `gone` variants each fail with the expected sentence. Unit cases cover
 every threshold, and one test builds the history from a real `Store`.
