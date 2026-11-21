@@ -1,22 +1,33 @@
 """`BrowserPool`: one shared headless Chromium for JS-only portals (ADR 0002).
 
-Each render gets a fresh browser context (no cookies carried between portals). Every network request the page makes
-waits for the same per-host limiter as `PoliteClient`. Images, media and fonts are aborted (never sent): they cost
-requests and tell us nothing. JSON and XHR/fetch responses are captured, so the agent and engine can read a portal's
-API directly instead of scraping the rendered page.
+Each session (and each render, a one-step session) gets a fresh browser context: no cookies carried between portals or
+reads. Every network request the page makes waits for the same per-host limiter as `PoliteClient`. Images, media and
+fonts are aborted (never sent): they cost requests and tell us nothing. JSON and XHR/fetch responses are captured, so
+the agent and engine can read a portal's API directly instead of scraping the rendered page.
 """
 
 import asyncio
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from dataclasses import dataclass, field
 from typing import Any
 
+from watchtower.net.actions import Goto
 from watchtower.net.client import USER_AGENT
 from watchtower.net.limiter import HostRateLimiter
+from watchtower.net.session import (
+    CAPTURED_RESOURCE_TYPES,
+    MAX_CAPTURED_BODY_BYTES,
+    SKIPPED_RESOURCE_TYPES,
+    BrowserSession,
+    SessionBudget,
+    StaticCache,
+)
 
-SKIPPED_RESOURCE_TYPES = frozenset({"image", "media", "font"})
-CAPTURED_RESOURCE_TYPES = frozenset({"xhr", "fetch"})
-MAX_CAPTURED_BODY_BYTES = 2_000_000
-DEFAULT_RENDER_TIMEOUT_MS = 45_000
+DEFAULT_RENDER_TIMEOUT_MS = 45_000  # active time; rate-limiter waits don't count (ADR 0014)
+RENDER_MAX_SECONDS = 600.0  # wall clock for one render, waits included
+
+__all__ = ["CAPTURED_RESOURCE_TYPES", "MAX_CAPTURED_BODY_BYTES", "SKIPPED_RESOURCE_TYPES"]
 
 
 @dataclass
@@ -57,6 +68,7 @@ class BrowserPool:
         self._start_lock = asyncio.Lock()
         self._playwright: Any = None
         self._browser: Any = None
+        self.cache = StaticCache()  # scripts/stylesheets shared by this pool's sessions
 
     async def _ensure_browser(self) -> Any:
         async with self._start_lock:
@@ -68,72 +80,41 @@ class BrowserPool:
                 self._browser = await self._playwright.chromium.launch(headless=True)
             return self._browser
 
-    async def render(self, url: str, *, wait_until: str = "networkidle") -> RenderResult:
-        """Load `url` in a fresh context; return the rendered HTML plus captured JSON/XHR responses."""
+    @asynccontextmanager
+    async def session(self, *, budget: SessionBudget | None = None) -> AsyncIterator[BrowserSession]:
+        """One fresh browser context held for several actions (ADR 0014 §1): cookies and app state carry over."""
+        budget = budget or SessionBudget()
         browser = await self._ensure_browser()
         async with self._pages:
             context = await browser.new_context(user_agent=self.user_agent, java_script_enabled=True)
-            context.set_default_timeout(self.timeout_ms)
-            captured: list[CapturedResponse] = []
-            pending: set[asyncio.Task] = set()
+            # The session enforces its own (polite) budget; Playwright's timeouts only backstop it.
+            context.set_default_timeout(budget.max_seconds * 1000)
             try:
-                await context.route("**/*", self._route)
                 page = await context.new_page()
-
-                def on_response(response: Any) -> None:
-                    task = asyncio.ensure_future(self._capture(response, captured))
-                    pending.add(task)
-                    task.add_done_callback(pending.discard)
-
-                page.on("response", on_response)
-                main = await page.goto(url, wait_until=wait_until, timeout=self.timeout_ms)
-                html = await page.content()
-                if pending:
-                    await asyncio.wait(set(pending), timeout=5)
-                return RenderResult(
-                    url=page.url,
-                    status=None if main is None else main.status,
-                    html=html,
-                    responses=list(captured),
-                )
+                session = BrowserSession(context, page, limiter=self.limiter, budget=budget, cache=self.cache)
+                await session._attach()
+                yield session
             finally:
                 await context.close()
 
-    async def _route(self, route: Any) -> None:
-        request = route.request
-        if request.resource_type in SKIPPED_RESOURCE_TYPES:
-            await route.abort()
-            return
-        if request.url.startswith(("http://", "https://")):
-            await self.limiter.acquire(request.url)
-        await route.continue_()
+    async def render(self, url: str) -> RenderResult:
+        """Load `url` in a fresh session; return the rendered HTML plus captured JSON/XHR responses.
 
-    @staticmethod
-    async def _capture(response: Any, sink: list[CapturedResponse]) -> None:
-        request = response.request
-        content_type = (await response.header_value("content-type") or "").lower()
-        if request.resource_type not in CAPTURED_RESOURCE_TYPES and "json" not in content_type:
-            return
-        body: str | None = None
-        truncated = False
-        try:
-            raw = await response.body()
-            if len(raw) > MAX_CAPTURED_BODY_BYTES:
-                raw, truncated = raw[:MAX_CAPTURED_BODY_BYTES], True
-            body = raw.decode("utf-8", errors="replace")
-        except Exception:  # redirects, aborted or evicted bodies: keep the metadata only
-            body = None
-        sink.append(
-            CapturedResponse(
-                url=response.url,
-                method=request.method,
-                status=response.status,
-                content_type=content_type,
-                resource_type=request.resource_type,
-                body=body,
-                truncated=truncated,
+        `timeout_ms` is *active* time: waiting for the rate limiter doesn't count, so a slow polite boot still ends."""
+        budget = SessionBudget(active_seconds=self.timeout_ms / 1000, max_seconds=RENDER_MAX_SECONDS)
+        async with self.session(budget=budget) as s:
+            result = await s.act(Goto(do="goto", url=url))
+            if result.error:
+                raise RuntimeError(f"Rendering {url} failed: {result.error}")
+            return RenderResult(
+                url=s.url,
+                status=result.status,
+                html=await s.html(),
+                responses=[
+                    CapturedResponse(e.url, e.method, e.status, e.content_type, e.resource_type, e.body, e.truncated)
+                    for e in s.network
+                ],
             )
-        )
 
     async def aclose(self) -> None:
         if self._browser is not None:
