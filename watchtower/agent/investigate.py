@@ -38,7 +38,7 @@ from watchtower.agent.outcomes import (
     Unreadable,
     Unrepairable,
 )
-from watchtower.agent.runtime import Budget, ScenarioRun, run_scenario
+from watchtower.agent.runtime import Budget, ScenarioRun, TieredBudget, run_scenario
 from watchtower.engine.result import ReadResult
 from watchtower.engine.template import Template
 from watchtower.net import BrowserPool, PoliteClient
@@ -46,8 +46,9 @@ from watchtower.validate import Health
 
 log = logging.getLogger(__name__)
 
-FAILURE_BUDGET = Budget(max_turns=25, max_tokens=300_000, wall_seconds=900)
-AUDIT_BUDGET = Budget(max_turns=15, max_tokens=150_000, wall_seconds=600)
+_LIGHT = Budget(max_turns=30, max_tokens=200_000, wall_seconds=120)  # ADR 0015
+FAILURE_BUDGET = TieredBudget(strong=Budget(max_turns=25, max_tokens=300_000, wall_seconds=900), light=_LIGHT)
+AUDIT_BUDGET = TieredBudget(strong=Budget(max_turns=15, max_tokens=150_000, wall_seconds=600), light=_LIGHT)
 
 SCENARIO_PROMPT = """\
 INVESTIGATE a portal we already read with a template. Either a regular read failed validation (trigger "failure"),
@@ -91,7 +92,7 @@ async def investigate(
     trigger: Trigger,
     client: PoliteClient,
     browser: BrowserPool | None = None,
-    budget: Budget | None = None,
+    budget: Budget | TieredBudget | None = None,
     model: Model | None = None,
 ) -> InvestigateRun:
     pc = await evidence.precheck(client, portal.url, template)
@@ -168,7 +169,7 @@ def make_investigate(
     client: PoliteClient,
     browser: BrowserPool | None = None,
     *,
-    budget: Budget | None = None,
+    budget: Budget | TieredBudget | None = None,
     model: Model | None = None,
 ) -> Investigate:
     """The `Investigate` callable the pipeline is configured with (`core.pipeline.Scenarios`)."""

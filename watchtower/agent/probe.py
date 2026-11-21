@@ -12,17 +12,18 @@ from __future__ import annotations
 import argparse
 import asyncio
 import contextlib
+import dataclasses
 import json
 import logging
 import sys
 
-from watchtower.agent.attach import run_attach
+from watchtower.agent.attach import ATTACH_BUDGET, run_attach
 from watchtower.agent.outcomes import TemplateFound
-from watchtower.agent.runtime import Budget
+from watchtower.agent.runtime import TieredBudget
 from watchtower.net import BrowserPool, HostRateLimiter, PoliteClient
 
 
-async def probe(url: str, *, browser: bool, budget: Budget) -> int:
+async def probe(url: str, *, browser: bool, budget: TieredBudget) -> int:
     limiter = HostRateLimiter()
     async with PoliteClient(limiter=limiter) as client:
         pool = BrowserPool(limiter=limiter) if browser else None
@@ -38,6 +39,9 @@ async def probe(url: str, *, browser: bool, budget: Budget) -> int:
             f"model calls: {run.requests}   tokens: {run.input_tokens} in ({run.cached_tokens} cached) / "
             f"{run.output_tokens} out   time: {run.seconds:.0f}s"
         )
+        for tier, u in run.by_tier.items():
+            tokens = f"{u.input_tokens} in ({u.cached_tokens} cached) / {u.output_tokens} out"
+            print(f"  {tier}: {u.requests} calls, {tokens}")
         if run.outcome is None and run.final_text:
             print("final text:", run.final_text)
     print(f"outcome: {type(outcome).__name__}")
@@ -54,12 +58,13 @@ def main() -> int:
     ap.add_argument("url", nargs="?")
     ap.add_argument("--mock", help="serve the mock portals on :8081 and probe this kind (ssr, js, form, …)")
     ap.add_argument("--no-browser", action="store_true")
-    ap.add_argument("--max-turns", type=int, default=30)
-    ap.add_argument("--max-tokens", type=int, default=400_000)
+    ap.add_argument("--max-turns", type=int, default=ATTACH_BUDGET.strong.max_turns, help="strong-model turns")
+    ap.add_argument("--max-tokens", type=int, default=ATTACH_BUDGET.strong.max_tokens, help="strong-model tokens")
     args = ap.parse_args()
     logging.basicConfig(level=logging.WARNING, format="%(message)s")
     logging.getLogger("watchtower.agent").setLevel(logging.INFO)
-    budget = Budget(max_turns=args.max_turns, max_tokens=args.max_tokens)
+    strong = dataclasses.replace(ATTACH_BUDGET.strong, max_turns=args.max_turns, max_tokens=args.max_tokens)
+    budget = dataclasses.replace(ATTACH_BUDGET, strong=strong)
 
     serve = contextlib.nullcontext()
     url = args.url

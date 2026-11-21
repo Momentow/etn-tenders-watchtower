@@ -48,6 +48,13 @@ use their suggestions as given instead of working them out from an outline.
    - Documents: links on the detail page, a "download all" bundle, or per-document download pages (`per_link`).
 6. Submit with `submit_template` once the verdict is GOOD and every WARNING is fixed or clearly doesn't apply.
 
+# Light helpers
+`delegate_*` tools hand one narrow task to a smaller, cheaper model: `delegate_describe_page` (where is the full
+tender list?), `delegate_map_fields` (labels the dictionary doesn't know), `delegate_classify_notices` (which notice
+types are open calls), `delegate_verify_tenders` (check extracted values against each tender's page). Their answers
+are PROPOSALS: you review them, and adopt nothing you haven't checked (`test_selector`, `try_template`). They never
+end the run. Use `delegate_verify_tenders` before submitting when fields come from labels or JSON keys you inferred.
+
 # Template reference (JSON; unknown keys are rejected)
 {
   "timezone": IANA zone of times shown without an offset (e.g. "Europe/Berlin"),

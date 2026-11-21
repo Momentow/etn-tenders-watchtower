@@ -32,7 +32,9 @@ workload is I/O-bound: politeness caps throughput long before CPU does. The team
 | Variable | Default | Meaning |
 |---|---|---|
 | `OPENAI_API_KEY` | — (required) | Model key |
-| `WATCHTOWER_MODEL` | `gpt-5.6-luna` | Model name used by the agent (set in T-014) |
+| `WATCHTOWER_MODEL` | `gpt-5.6-luna` | Model name used by the agent (set in T-014); since T-035 the fallback for both tiers below |
+| `WATCHTOWER_MODEL_STRONG` | `WATCHTOWER_MODEL` | Strong tier: runs attach and investigate (explore, plan, judge); [ADR 0015](0015-agent-v2-explorer-and-tiers.md#model-tiers-t-035) |
+| `WATCHTOWER_MODEL_LIGHT` | the strong model | Light tier: narrow tasks the strong model delegates (map fields, verify tenders, classify notices) |
 | `DATA_DIR` | `/data` | SQLite database and stored files |
 | `WATCHTOWER_HEALTHCHECK_MODE` | `proactive` | `reactive` or `proactive`; see [ADR 0002](0002-architecture.md#health-check-modes) |
 | `WATCHTOWER_HEALTHCHECK_INTERVAL_HOURS` | `24` | Interval of the scheduled audit (proactive mode only) |

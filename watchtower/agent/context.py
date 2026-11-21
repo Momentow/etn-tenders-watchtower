@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
 from watchtower.agent.outcomes import Blocked, Gone, Healthy, TemplateFound, Transient, Unreadable, Unrepairable
 from watchtower.engine.template import Template
 from watchtower.net import BrowserPool, PoliteClient
 from watchtower.validate import PortalHistory
+
+if TYPE_CHECKING:
+    from watchtower.agent.runtime import LightWorker
 
 # What a closing tool records; each scenario maps it onto its own outcome type (ADR 0009).
 Outcome = TemplateFound | Blocked | Unreadable | Transient | Healthy | Gone | Unrepairable
@@ -36,5 +39,7 @@ class AgentContext:
     # Canonical template JSON → whether its last dry run was good enough to submit.
     tried: dict[str, bool] = field(default_factory=dict)
     outcome: Outcome | None = None
+    # The light tier for `delegate_*` tools (ADR 0015); set by `run_scenario`, None outside a scenario run.
+    light: LightWorker | None = None
     # Free-form per-scenario data (T-016 puts the failing read and its health report here).
     extra: dict[str, Any] = field(default_factory=dict)
