@@ -44,7 +44,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-038 | v2 live re-run: the 12-portal demo scenario, then `unseen` | test-portals | todo | | | T-037 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-021 | README: how it works, env vars, running it (split: demo script → T-040) | docs-site | done | Momentow | docs/T-021-readme | T-020 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
 | T-040 | Demo video script (split from T-021) | docs-site | todo | | | T-021, T-038 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
-| T-099 | LLM usage metering & cost per portal (last MVP task) | cost | in-progress | OrangeCanvas705 | feat/T-099-usage-metering | T-020, T-035 | [model-usage](docs/cost/model-usage.md) |
+| T-099 | LLM usage metering & cost per portal (last MVP task) | cost | review | OrangeCanvas705 | feat/T-099-usage-metering | T-020, T-035 | [model-usage](docs/cost/model-usage.md) |
 
 **Critical path:** T-003 → T-007/T-008 → T-009 → T-014 → T-015/T-016 → T-017 → T-023 → T-020 → **T-031 → T-032 → T-033 → T-034/T-035/T-036 → T-037 → T-038** → T-099.
 **T-022 runs alongside T-014–T-016:** the scenarios adopt toolkit tools as they're merged; they don't wait for all of them.
