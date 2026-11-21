@@ -152,12 +152,18 @@ load();
 """
 
 
+def _bundle(name: str, request: Request) -> str:
+    """Script URL with a version per variant, as real apps hash their bundles: a changed portal ships a new URL, so a
+    browser cache (net's StaticCache) never serves the old script after a change."""
+    return f"/app/static/{name}.js?v={variant(request, KIND)}"
+
+
 @router.get("/app/aankondigingen", response_class=HTMLResponse)
-async def list_page():
+async def list_page(request: Request):
     return page(
         "Aankondigingen",
         "<h1>Aankondigingen</h1><p class='result-count' id='count'>Laden…</p><div id='list'></div>"
-        "<button id='more' hidden></button><script src='/app/static/list.js'></script>",
+        f"<button id='more' hidden></button><script src='{_bundle('list', request)}'></script>",
         lang="nl",
     )
 
@@ -208,11 +214,11 @@ fetch(API + '/publicaties/' + ID).then(r => r.json()).then(p => {
 
 
 @router.get("/app/aankondigingen/{tid}", response_class=HTMLResponse)
-async def detail_page(tid: str):
+async def detail_page(tid: str, request: Request):
     _find(tid)
     return page(
         "Aankondiging",
-        f"<div id='app' data-id='{e(tid)}'>Laden…</div><script src='/app/static/detail.js'></script>",
+        f"<div id='app' data-id='{e(tid)}'>Laden…</div><script src='{_bundle('detail', request)}'></script>",
         lang="nl",
     )
 

@@ -38,9 +38,10 @@ from watchtower.agent.outcomes import (
     Unreadable,
     Unrepairable,
 )
+from watchtower.agent.prompts import TEMPLATE_V2_REFERENCE
 from watchtower.agent.runtime import Budget, ScenarioRun, TieredBudget, run_scenario
 from watchtower.engine.result import ReadResult
-from watchtower.engine.template import Template
+from watchtower.engine.template_v2 import AnyTemplate
 from watchtower.net import BrowserPool, PoliteClient
 from watchtower.validate import Health
 
@@ -71,7 +72,18 @@ Method:
    - `report_gone`: the portal or its tender list no longer exists;
    - `report_unrepairable`: tenders are there but no template can read them; say why.
 A wrong value is worse than a missing one: never submit a template that reads a field from the wrong place.
+
+Format v2 templates ("format_version": 2) are repaired in v2, with the browser explorer tools:
+- A failed `flow` step, `load_more`/`click` pagination or detail view names the action and its target: `open` the
+  entry page, `snapshot` it (and `act` through the flow) to find what the control is called now, then change only
+  that target.
+- A failing `api` list, detail or documents call (404, other JSON): `open` the page the portal shows the list on,
+  read `network` for the call the page makes now, `replay` it ("SAME DATA WITHOUT A BROWSER"), and change only the
+  request URL, parameters or JSONPaths that moved.
+- A header the call now needs becomes a `session` capture; the page itself never needs a login.
 """
+
+SCENARIO_PROMPT += "\n" + TEMPLATE_V2_REFERENCE
 
 
 @dataclass
@@ -85,7 +97,7 @@ class InvestigateRun:
 
 async def investigate(
     portal: PortalView,
-    template: Template,
+    template: AnyTemplate,
     result: ReadResult,
     health: Health,
     *,
@@ -175,7 +187,7 @@ def make_investigate(
     """The `Investigate` callable the pipeline is configured with (`core.pipeline.Scenarios`)."""
 
     async def _investigate(
-        portal: PortalView, template: Template, result: ReadResult, health: Health, *, trigger: Trigger
+        portal: PortalView, template: AnyTemplate, result: ReadResult, health: Health, *, trigger: Trigger
     ) -> Diagnosis:
         run = await investigate(
             portal, template, result, health, trigger=trigger, client=client, browser=browser, budget=budget,

@@ -37,7 +37,8 @@ portals; `tests/mockportals/` checks that their selectors read the mocks correct
 - File bytes are deterministic, so sha256 values are stable across runs.
 - `app` lists 30 notices but only 21 are open tenders. Leave out 6 award notices (`AGO`), 1 prior notice (`VAK`), 1
   call ended early (`isVroegtijdigeBeeindiging`) and 1 call whose deadline passed. `expected_tenders("app")` gives the 21
-  that a scoped v2 read delivers. Every `app` page is a JS shell: the list API is `/app/api/publicaties?page=&size=`,
+  that a scoped v2 read delivers. Its scripts are versioned per variant (`/app/static/list.js?v=relabelled`), so a browser cache never serves a variant
+  the old script. Every `app` page is a JS shell: the list API is `/app/api/publicaties?page=&size=`,
   filterable by `publicatieType` and `sluitingsDatumVanaf`, and the documents load only when the *Documenten* tab is
   clicked.
 

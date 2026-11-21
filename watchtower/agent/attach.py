@@ -20,7 +20,6 @@ dry run), `report_blocked`, `report_unreadable` or `report_transient`. This wrap
 
 from __future__ import annotations
 
-import json
 import logging
 from dataclasses import dataclass
 
@@ -36,8 +35,8 @@ from watchtower.agent.outcomes import (
     Transient,
     Unreadable,
 )
+from watchtower.agent.prompts import TEMPLATE_V2_REFERENCE
 from watchtower.agent.runtime import Budget, ScenarioRun, TieredBudget, run_scenario
-from watchtower.engine.examples import _DIR_V2 as EXAMPLES_V2_DIR
 from watchtower.engine.template_v2 import AnyTemplate, load_template
 from watchtower.net import BrowserPool, PoliteClient
 
@@ -88,48 +87,9 @@ tab) and read `network`: the API calls the page made. `fetch`/`render` stay fine
 7. Write the template, `try_template`, fix, repeat; `delegate_verify_tenders` on 3–5 tenders; `submit_template`.
    Write format v2 when you need any of: an entry deeper than the portal URL, clicks/load more/tabs, an API from
    the network log, a session, or scope; otherwise v1.
-
-# Template format v2 ("format_version": 2; unknown keys are rejected)
-{"format_version": 2, "timezone", "country"?, "software"?, "notes",
- "entry": {"url"}  where reading starts, e.g. the list page itself,
- "session"?: {"via": "http"|"browser", "steps": [Request...] (http) | [Action...] (browser),
-   "capture": [{"name", "from": "cookie"|"request_header"|"response_header"|"response_json", "match": URL regex,
-   "key": cookie or header name ("*" = all cookies) | JSONPath}]}   → use as {{session.<name>}} in any request,
- "list": {"kind": "api", "request": Request, "items": "$.content[*]", "total"?: "$.totalElements",
-          "pagination": none | param | cursor | next_link (as v1)}
-       | {"kind": "page", "via": "browser"(default)|"http", "flow": [Action...] (run after opening entry),
-          "items": Extract(css|xpath) + "group"?: {"size": N} | {"starts_at": css} (one tender over sibling rows),
-          "total"?: Extract on the page, "pagination": none | next_link | param | {"kind": "click", "target"} |
-          {"kind": "load_more", "target", "max_clicks"} | {"kind": "scroll", "times"}},
- "detail"?: {"kind": "api", "request": Request with {field} placeholders, "page_url": "https://…/{id}" (the tender's
-            public page: required unless fields.url is given)}
-          | {"kind": "page", "link": Extract | "url_template", "via": "http"(default)|"browser",
-            "views"?: {"docs": [Action...]} (browser only; fields/documents then use "on": "detail.docs"),
-            "resolve"?: [FollowStep...] (http)},
- "fields": as v1 (JSONPath for api scopes, css/xpath for pages; "on": "item"|"detail"|"detail.<view>"),
- "documents"?: as v1, plus "request": Request (a JSON call listing the files, {id} placeholders) and
-   "on": "detail.<view>",
- "status"?: as v1,
- "scope"?: {"include": [Condition...], "exclude": [Condition...], "open_by_deadline": true}
-   Condition = {"source": Extract on the list item, "in": [values] | "matches": regex | "equals": value},
- "urls"?: {"drop_params": [], "drop_matrix": ["jsessionid"], "drop_numeric_query": false}}
-Request = {"url", "method": "GET"|"POST", "params": {}, "headers": {}, "form"?: {}, "json"?: body}; placeholders
-{{today}} (YYYY-MM-DD in the template's zone), {{session.<name>}}; Cookie/Authorization headers only as {{session.*}}.
-Action = {"do": "goto"|"click"|"fill"|"select"|"press"|"wait_for"|"load_more"|"scroll"|"tab", "target"?: {"role",
-"name"} | {"text"} | {"css"} | {"xpath"}, …} exactly as `act` takes them. Every request stays on the portal's site.
 """
 
-
-def _v2_example() -> str:
-    """tenderned.nl in API mode (hand-written, T-033): the shape a good explorer run ends with."""
-    data = json.loads((EXAMPLES_V2_DIR / "tenderned.json").read_text(encoding="utf-8"))
-    data.pop("notes", None)
-    return "\n## Example v2 template: tenderned.nl, API mode\n" + json.dumps(
-        data, ensure_ascii=False, separators=(",", ":")
-    )
-
-
-ATTACH_PROMPT += _v2_example()
+ATTACH_PROMPT += "\n" + TEMPLATE_V2_REFERENCE
 
 
 @dataclass

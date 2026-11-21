@@ -32,6 +32,33 @@ Deterministic first ([ADR 0011](../decisions/0011-investigate-deterministic-firs
   value under the portal's own label for that field (`Vergabestelle`, `acheteur`, `órgano de contratación`,
   `zamawiający`, …). A mismatch names the label where the read value actually appears.
 
+## Format v2 templates (T-037)
+Investigate reads, audits and repairs [format v2](../engine/template-v2.md) templates as well as v1. A repair keeps
+the template's format; `Changed` carries either.
+
+| Stage | On a v2 template |
+|---|---|
+| Pre-check | Probes the v2 list address: the `api` list request (GET without placeholders), or the page list's `entry` |
+| Structure diff | The live side is the snapshot a one-tender v2 read takes of its first list page, the same kind the pipeline stores with every good read. When the list can't be read, the diff says why (e.g. `HTTP 404`) |
+| Audit: missed tenders | `api` lists get the site's-own-calls check (`{{today}}` and session placeholders are skipped); plain-HTTP page lists the unread-links check. Browser flows aren't replayed for an audit |
+| Audit: own count, labels | As for v1; a v2 read with `list.total` was already compared by `validate.check` |
+| Agent | The [explorer tools](../agent/runtime.md#explorer-tools) (`open`, `snapshot`, `act`, `network`, `replay`) and the v2 reference are in the investigate prompt. A failed flow step or view names its action and target: the agent looks up what the control is called now and changes only that. A moved endpoint: `network` shows the call the page makes now, `replay` confirms it |
+
+`show_read` shows the current template as stored (aliases such as `from` and `in`); `diff_structure` and `count_list`
+take v1 or v2 templates.
+
+### Live repairs (2026-11-21, strong tier `gpt-6.2-sol`)
+
+| Variant | Diagnosis | Model calls | Tokens in (cached) / out | Time | Repaired read |
+|---|---|---|---|---|---|
+| `app=api-moved`, v2 API template | `Changed`: list, detail and documents moved to `/app/api/v3` | 8 | 89 999 (42 779) / 2 333 | 51 s | 21/21 open calls, every field and document right |
+| `app=relabelled`, v2 browser flow | `Changed`: the link, the *load more* button and the documents tab renamed | 9 | 106 490 (53 229) / 2 885 | 112 s | 21/21, every field and document right |
+
+The first `relabelled` run looked right but only renamed the link: the browser pool's static cache (net, 1 h, no
+revalidation) still served the old app script, whose button and tab kept their old names. The mock's scripts now have
+a URL per variant, as real apps version their bundles. A real portal that changes a script **at the same URL** would
+show the same effect for up to an hour; the next read after that fails and is repaired again.
+
 ## Agent tools (investigate only)
 
 | Tool | Returns |
@@ -60,6 +87,9 @@ Tested offline in `tests/agent/test_investigate.py` with a scripted model:
 | `ssr=markup`, `ssr=pagination`, `js=renamed-keys` | `Changed`; the repaired template passes validation with history |
 | `ssr=silent-missed`, `ssr=silent-swap`, `js=silent-missed` | audit findings → `Changed`; the repaired read has no findings |
 | unchanged `ssr`, `js` | audit `Healthy`, no model call |
+| `app=api-moved`, v2 API template (`tests/agent/test_repair_v2.py`) | `Changed`: only the endpoint path changes; also through the pipeline (healing keeps the last tenders, the v2 repair is promoted as version 2) |
+| `app=relabelled`, v2 browser flow | `Changed` after `open` shows the new control names (needs Chromium) |
+| unchanged `app`, v2 API template | audit `Healthy`, no model call |
 | `ssr=silent-cut` (`tests/agent/test_audit_declared_total.py`) | audit finding: "says the list holds 20 ('20 Treffer'), but the read delivered only 15"; the unchanged `ssr`/`js` reads match their own count |
 
 The scripted model supplies the repairs, so these tests prove the plumbing, evidence and validation, not the model's
