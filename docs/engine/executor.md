@@ -14,6 +14,9 @@ result.stats      # pages, requests, durations, duplicate ids, max_pages hit
 result.snapshot   # structure of the first list page, for repair diffs
 ```
 
+This page describes v1 templates. A v2 template (`format_version: 2`) goes to the v2 executor; see
+[Template format v2](template-v2.md).
+
 ## What a run does
 
 1. **List request**, then the navigation `steps`: `follow` a link, or `submit` a form (its hidden inputs such as

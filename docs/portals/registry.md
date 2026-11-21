@@ -62,6 +62,11 @@ appear nowhere in `dev`. megalis runs the same software as PLACE, so it tests te
 - TED shows +02:00 offsets for November deadlines here. Don't trust TED offsets; use Europe/Paris.
 
 ### tenderned.nl
+- **v2 template** (T-033): `watchtower/engine/examples/v2/tenderned.json` reads the API directly, with no browser.
+  `publicatieType=AAO&sluitingsDatumVanaf={{today}}` keeps calls for competition with a deadline from today (2,884
+  records on 2026-11-21). That filter still returns 301 early-termination notices and 1 rectification, which `scope`
+  drops, leaving **2,582 open calls**, the portal's own count. The list takes 59 calls (about 60 s), and documents
+  take one `/documenten` call per tender.
 - Angular micro-frontend: the HTML shell is empty and loads about 60 JS chunks, so rendering at 1 req/s takes more than a minute. Read the public JSON API instead:
   `GET /papi/tenderned-rs-tns/v2/publicaties?page=0&size=50` (Spring paging: `content`, `totalElements`) and `/publicaties/{id}`.
 - The list mixes notice types (`typePublicatie`), including award and early-termination notices: filter to calls for competition.

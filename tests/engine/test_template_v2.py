@@ -2,6 +2,7 @@
 
 import copy
 import json
+from pathlib import Path
 
 import pytest
 from pydantic import ValidationError
@@ -50,6 +51,12 @@ def test_jsonpath_shorthand_for_api_items_and_total():
     t = load_example_v2("tenderned")
     assert (t.list.items.by, t.list.items.expr) == ("jsonpath", "$.content[*]")
     assert t.list.total.expr == "$.totalElements"
+
+
+def test_schema_file_is_current():
+    """Regenerate with: uv run python -m watchtower.engine.template_v2 > docs/engine/template-v2.schema.json"""
+    path = Path(__file__).parents[2] / "docs" / "engine" / "template-v2.schema.json"
+    assert json.loads(path.read_text(encoding="utf-8")) == template_v2_json_schema()
 
 
 def test_schema_uses_the_json_names():

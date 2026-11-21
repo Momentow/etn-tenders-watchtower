@@ -20,3 +20,4 @@ Never edit an accepted ADR; supersede it with a new one.
 | [0013](0013-audit-finding-repair.md) | Repairing an audit finding (amends 0009) | accepted | 2026-11-21 |
 | [0014](0014-template-format-v2.md) | Template format v2 and browser sessions (amends 0003) | accepted | 2026-11-21 |
 | [0015](0015-agent-v2-explorer-and-tiers.md) | Agent v2: explorer and model tiers (amends 0010, 0012) | accepted | 2026-11-21 |
+| [0016](0016-template-v2-implementation-notes.md) | Template v2 implementation notes: `{{today}}`, scope semantics, `via` (amends 0014) | accepted | 2026-11-21 |

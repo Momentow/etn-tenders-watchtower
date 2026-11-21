@@ -23,6 +23,7 @@ portals; `tests/mockportals/` checks that their selectors read the mocks correct
 | `captcha` | `/captcha/` → `/captcha/aanbestedingen` | NL, Europe/Amsterdam | `captcha_bypassable` | `serving` | Captcha widget shown, but list (built by JS) and documents work without it |
 | `login` | `/login/` → `/login/ausschreibungen` | AT, Europe/Vienna | — | `failed` | Public list, documents redirect to a login form (like provia.at) |
 | `robot` | `/robot/` → `/robot/opdrachten` | BE, Europe/Brussels | — | `failed` | Documents behind a robot check that fails without solving (like cloud.3p.eu) |
+| `app` | `/app/` → click *Alle aankondigingen* → `/app/aankondigingen` (SPA) | NL, Europe/Amsterdam | `v2/app_api`, `v2/app_click` | `serving` | Engine v2 (like tenderned.nl): click-through, *Laad meer*, detail tabs, a JSON API behind every page, mixed notice types (30 notices, 21 open calls for competition) |
 
 ### Built-in quirks (from real portals)
 - Deadlines in local time without an offset (`29.12.2026 10:00`, `24/11/2026 12:00`); the expected value has the offset.
@@ -34,6 +35,11 @@ portals; `tests/mockportals/` checks that their selectors read the mocks correct
 - `multistep` lists a 300 MB `Planos.zip` (`Content-Length` known up front, body streamed lazily): may be skipped.
 - `multistep` also lists an `Ayuda.html` link among the documents: it isn't a file (the example excludes `.html`).
 - File bytes are deterministic, so sha256 values are stable across runs.
+- `app` lists 30 notices but only 21 are open tenders. Leave out 6 award notices (`AGO`), 1 prior notice (`VAK`), 1
+  call ended early (`isVroegtijdigeBeeindiging`) and 1 call whose deadline passed. `expected_tenders("app")` gives the 21
+  that a scoped v2 read delivers. Every `app` page is a JS shell: the list API is `/app/api/publicaties?page=&size=`,
+  filterable by `publicatieType` and `sluitingsDatumVanaf`, and the documents load only when the *Documenten* tab is
+  clicked.
 
 ## Variants (mutations)
 
@@ -51,6 +57,8 @@ curl localhost:8081/_mock/variants        # current, available, entry URLs, expe
 | `pagination` | ssr, js, form | Pagination moves (`?start=` offsets; `offset` instead of `page`; `?page=` instead of the form field) | Sharp drop in tender count → repair |
 | `silent-missed` | ssr, js | 3 new tenders appear where the template doesn't look (a second table; only with `etat=tous`); still parses | Only a proactive audit catches it |
 | `silent-swap` | ssr | The buyer column shows the city; still parses, values wrong | Only an audit catches it |
+| `relabelled` | app | The link, button and tab are renamed (*Zoeken in publicaties*, *Toon meer resultaten*, *Stukken*); the API is unchanged | A browser flow on the old names fails → repair the flow step (or switch to the API) |
+| `api-moved` | app | The API moves to `/app/api/v3/…`, and the old paths answer 404; the pages use the new API | An API-mode read fails → repair the endpoint |
 | `gone` | all | Every page answers 410 | `failed` (gone) |
 | `login-wall` | all | Every page redirects to a login form | `failed` (blocked by login) |
 
