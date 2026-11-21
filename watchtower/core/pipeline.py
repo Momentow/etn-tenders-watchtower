@@ -48,6 +48,7 @@ from watchtower.documents.handler import enqueue_downloads
 from watchtower.engine import ReadResult, TenderRecord, run_template
 from watchtower.engine.normalize import content_hash
 from watchtower.engine.template import Template
+from watchtower.engine.template_v2 import load_template
 from watchtower.net import BrowserPool, PoliteClient
 from watchtower.validate import Health, PortalHistory, check
 
@@ -452,8 +453,10 @@ def _deadline_passed(deadline: str | None, now: datetime) -> bool:
 
 
 def _dump(template: Template) -> dict[str, Any]:
-    return template.model_dump(mode="json", exclude_none=True)
+    # by_alias: v2 templates (ADR 0014) spell some keys as aliases (`from`, `in`, `json`); v1 has none.
+    return template.model_dump(mode="json", exclude_none=True, by_alias=True)
 
 
 def _load(tv: TemplateVersion) -> Template:
-    return Template.model_validate(tv.template)
+    """Either template format (v2: ADR 0014); the stored JSON says which."""
+    return load_template(tv.template)  # type: ignore[return-value] - the scenarios still type v1; v2 reads run as-is

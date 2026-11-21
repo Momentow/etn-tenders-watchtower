@@ -71,6 +71,9 @@ class ReadResult(BaseModel):
     errors: list[str] = []  # plain sentences; any error means the read is not trustworthy
     stats: ReadStats = Field(default_factory=ReadStats)
     snapshot: dict[str, Any] | None = None  # structure of the first list page (snapshot.py), for repair diffs
+    # v2 templates (ADR 0014), for completeness checks (T-036):
+    declared_total: int | None = None  # the portal's own count of what the list holds (`list.total`)
+    scope_dropped: int = 0  # records read but not open tenders in the template's `scope` (never returned)
 
     @property
     def ok(self) -> bool:
