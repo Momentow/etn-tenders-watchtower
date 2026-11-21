@@ -47,6 +47,18 @@ the template's format; `Changed` carries either.
 `show_read` shows the current template as stored (aliases such as `from` and `in`); `diff_structure` and `count_list`
 take v1 or v2 templates.
 
+### Live repairs (2026-11-21, strong tier `gpt-6.2-sol`)
+
+| Variant | Diagnosis | Model calls | Tokens in (cached) / out | Time | Repaired read |
+|---|---|---|---|---|---|
+| `app=api-moved`, v2 API template | `Changed`: list, detail and documents moved to `/app/api/v3` | 8 | 89 999 (42 779) / 2 333 | 51 s | 21/21 open calls, every field and document right |
+| `app=relabelled`, v2 browser flow | `Changed`: the link, the *load more* button and the documents tab renamed | 9 | 106 490 (53 229) / 2 885 | 112 s | 21/21, every field and document right |
+
+The first `relabelled` run looked right but only renamed the link: the browser pool's static cache (net, 1 h, no
+revalidation) still served the old app script, whose button and tab kept their old names. The mock's scripts now have
+a URL per variant, as real apps version their bundles. A real portal that changes a script **at the same URL** would
+show the same effect for up to an hour; the next read after that fails and is repaired again.
+
 ## Agent tools (investigate only)
 
 | Tool | Returns |
