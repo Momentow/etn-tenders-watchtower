@@ -32,10 +32,19 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-022 | Deterministic agent toolkit | agent | done | Momentow | feat/T-022-agent-toolkit | T-007, T-009, T-010 | [0002 toolkit](docs/decisions/0002-architecture.md#agent-toolkit-deterministic-first) |
 | T-023 | Health-check modes (reactive / proactive audit) | notice | done | Lavrtajx | feat/T-023-health-check-modes | T-006, T-016, T-017 | [0002 health checks](docs/decisions/0002-architecture.md#health-check-modes) |
 | T-020 | End-to-end tests & real-portal smoke run | test-portals | in-progress | Momentow | feat/T-020-e2e-smoke | T-001, T-015, T-016, T-017, T-023 | [requirements → Judging](docs/spec/requirements.md#judging) |
-| T-021 | README & demo video script | docs-site | todo | | | T-020 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
-| T-099 | LLM usage metering & cost per portal (last MVP task) | cost | todo | | | T-020 | [model-usage](docs/cost/model-usage.md) |
+| T-030 | **Epic: Engine v2 & Agent v2** (browser-first actions, API capture, tiered models) | engine, agent | todo | | | T-020 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-031 | ADRs: engine v2 template format + agent v2 model tiers | engine, agent | todo | | | T-030 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-032 | Browser sessions: actions, long polite boot, network capture | net | todo | | | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-033 | Template format v2 + executor (actions, entry shortcut, API mode, filters, row groups) | engine | todo | | | T-031, T-032 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-034 | Agent v2 explorer: browser tools, recorded flow → API, v2 templates | agent | todo | | | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-035 | Agent v2 tiers: strong planner, light workers, budgets per tier | agent | todo | | | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-036 | Completeness & truthful blocks: never `serving` on a partial read | validate, notice | todo | | | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-037 | Investigate/repair and audits on v2 | repair, notice | todo | | | T-034, T-035, T-036 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-038 | v2 live re-run: the 12-portal demo scenario, then `unseen` | test-portals | todo | | | T-037 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-021 | README & demo video script | docs-site | todo | | | T-020, T-038 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
+| T-099 | LLM usage metering & cost per portal (last MVP task) | cost | todo | | | T-020, T-035 | [model-usage](docs/cost/model-usage.md) |
 
-**Critical path:** T-003 → T-007/T-008 → T-009 → T-014 → T-015/T-016 → T-017 → T-023 → T-020 → T-099.
+**Critical path:** T-003 → T-007/T-008 → T-009 → T-014 → T-015/T-016 → T-017 → T-023 → T-020 → **T-031 → T-032 → T-033 → T-034/T-035/T-036 → T-037 → T-038** → T-099.
 **T-022 runs alongside T-014–T-016:** the scenarios adopt toolkit tools as they're merged; they don't wait for all of them.
 **Can start in parallel right after T-003:** T-004, T-007, T-008, T-010, T-013, T-019. T-001 can start now (no code needed).
 
@@ -276,8 +285,134 @@ registry, returns a compact structured summary, goes through `net`, and has unit
 **Acceptance:**
 - [ ] E2E on mock portals: attach → serving; mutate → healing → serving; captcha → failed with reason
 - [ ] Smoke run against the registry's `dev` portals; results noted in the registry
-- [ ] Final run against the `unseen` portals
+- [ ] ~~Final run against the `unseen` portals~~ moved to T-038 (needs engine v2)
 **Refs:** [requirements → Judging](docs/spec/requirements.md#judging)
+
+### T-030 — Engine v2 & Agent v2 (epic)
+
+**Why.** The first live smoke run (2026-11-21, [registry → Smoke runs](docs/portals/registry.md#smoke-runs)) served
+1 of 12 real portals, and that one was wrong too: evergabe.nrw.de served the homepage's "latest 20" widget as if it were
+every open tender. Probing tenderned.nl by hand shows what real portals need and what v1 can't express:
+
+| Human path on tenderned.nl | What it really is | v1 |
+|---|---|---|
+| Home → click **Alle aankondigingen** | `/aankondigingen/overzicht`; the portal URL isn't the list URL | ✗ only HTTP `follow`/`submit` steps |
+| The list renders | Angular app: 95 requests (93 s at 1 req/s) before the first list call | ✗ one render, 45 s timeout |
+| **Laad meer** | `GET /papi/tenderned-rs-tns/v2/publicaties?page=N&size=50` | ✗ no clicks; the API was never captured |
+| Click a tender → `/aankondigingen/overzicht/450459`, tabs per category | SPA route + detail and `…/documenten` JSON | ✗ no tabs, no clicks |
+| "All open" | The list mixes notice types (450459 is an early-termination notice); 2,474 in 30 days, 147,334 in total | ✗ no filters: would serve awards as open tenders |
+
+Once the API is known, the regular read is 50 JSON calls a minute and no browser. dtvp.de and evergabe.nrw.de need the same
+pattern with a session (`POST /Center/api/v2/project/search` with an `X-JWT` the search page issues). The other failures
+were: one login redirect ending the attach (dtvp.de, PLACE: both download anonymously), lists not found (achatpublic.com,
+contractaciopublica.cat) and one tender spread over sibling rows (marches-publics.info).
+
+**Goal.** Watchtower learns portals the way a person explores them (open, click, load more, open a tender, switch tabs),
+records what the page fetches, and keeps the cheapest **declarative** template that reproduces it: plain API calls when
+the flow reveals an API, browser actions when it doesn't. Strong models explore and judge; light models do repetitive
+checks under a strong model's supervision.
+
+**Unchanged rules (CLAUDE.md):** templates stay data, never code; regular reads make no model call; ≤ 1 req/s per portal
+for every request, browser sub-requests included; no logins or captcha solving; a wrong value is worse than a missing one.
+
+**Design outline (to be fixed by T-031's ADRs):**
+
+1. **Browser-first sessions (net, T-032).** A portal read can hold one browser context for the whole read (cookies,
+   tokens, SPA state). Actions: `goto`, `click` (role/text/selector), `fill`, `select`, `press`, `wait_for`
+   (selector/text/network response), `load_more` (click until gone or a limit), `scroll`, `tab`. The time budget counts
+   *our* waiting separately from the limiter's spacing, so a 95-request boot isn't a timeout. Every XHR/fetch is recorded
+   (method, URL, body, status, content type, size) with the action that caused it. Scripts/CSS are cached per portal
+   across reads to cut the boot cost.
+2. **Template format v2 (engine, T-033).** `format_version: 2`; v1 templates keep running.
+   - `entry`: where reading starts, which may be a shortcut deeper than the portal URL (`https://www.tenderned.nl/` →
+     `/aankondigingen/overzicht`).
+   - `flow`: declarative action steps (above) for list, pagination and detail, including tab switches per field group.
+   - `api` mode: list/detail/documents read straight from JSON endpoints, with an optional `bootstrap` (a session
+     cookie, a token from a `client_credentials` call, a header captured during a browser boot) refreshed when it expires.
+   - `scope`: which records count as open tenders: notice-type allow-list, `deadline > now`, status values; declared
+     total (`totalElements`, "2,474 results") recorded for completeness checks.
+   - `items.group`: one tender spread over N sibling rows, or from one marker element to the next.
+   - URL normalisers (strip `;jsessionid`, Wicket `?N`).
+3. **Agent v2 explorer (agent, T-034).** Browser tools: open, accessibility snapshot (roles, names, links, buttons,
+   counts of repeated blocks), click/fill/load-more, network log since the last action, "replay this XHR without the
+   browser", "turn this flow into a template and dry-run it". Prefers API mode when the replay matches what the page shows.
+4. **Model tiers (agent, T-035).** `WATCHTOWER_MODEL_STRONG` (explore, plan, judge, repair) and `WATCHTOWER_MODEL_LIGHT`
+   (map labels to fields, check one tender against its page, classify notice types, verify a selector on samples),
+   with budgets per tier. The strong model dispatches light tasks as tools and reviews their results; all calls stay
+   in `agent` so T-099 can meter them per tier.
+5. **Completeness and truthful blocks (validate/notice, T-036).**
+   - Not `serving` when the read is partial: fewer tenders than the portal's declared total in scope; a "latest N"
+     widget used as the list (no pagination while the page offers more); a list whose notice types aren't filtered.
+   - A block is reported only after: at least 2 tenders tried, the list page's session reused, and any
+     anonymous-download route tried. A constant 403 from a gateway is a block, not "temporary".
+6. **Repair and audits on v2 (T-037).** Investigate replays the recorded flow, diffs network calls and snapshots against
+   the last good read, and repairs a step, a selector or an endpoint. Proactive audits also re-check the declared total.
+
+**Acceptance (epic, measured by T-038 with `testportals/smoke.py dev blocked unverified`):**
+- [ ] tenderned.nl, publicprocurement.be, evergabe.nrw.de, dtvp.de and marches-publics.gouv.fr `serving` with **every
+  open tender in scope** (count within 5 % of the portal's own total for open calls for competition), documents
+  downloaded for tenders that offer them anonymously
+- [ ] No `dev` portal reported `failed` with a login/captcha reason when its documents download anonymously
+- [ ] The 3 `blocked` portals `failed`, with a block reason that is true
+- [ ] No portal `serving` on a partial read (the evergabe "latest 20" case must end `failed` or keep integrating)
+- [ ] Regular reads: zero model calls; API-mode reads use no browser
+- [ ] Mock portals: all of `tests/` green, plus a new mock portal kind for click/load-more/tabs (T-033)
+- [ ] Model cost per attach written down per tier (feeds T-099)
+
+### T-031 — ADRs: engine v2 template format + agent v2 model tiers
+**Acceptance:**
+- [ ] ADR "Template format v2" (supersedes the relevant parts of 0003): entry, flow actions, api mode + bootstrap, scope,
+  row groups, normalisers, v1 compatibility; worked examples for tenderned.nl (api), dtvp.de (session + api) and a
+  click/load-more HTML portal
+- [ ] ADR "Agent v2: explorer and model tiers" (amends 0010/0012): tools, tier roles, budgets, env vars
+  (`WATCHTOWER_MODEL_STRONG`, `WATCHTOWER_MODEL_LIGHT`; `WATCHTOWER_MODEL` stays as a fallback), added to the ADR 0001 table
+- [ ] Interfaces between T-032…T-036 named, so they can be built in parallel
+**Refs:** [T-030](#t-030--engine-v2--agent-v2-epic), [0003](docs/decisions/0003-template-format.md), [0010](docs/decisions/0010-agent-runtime-and-tools.md)
+
+### T-032 — Browser sessions: actions, long polite boot, network capture
+**Acceptance:**
+- [ ] One context per read; the actions listed in T-030 §1; per-portal script cache
+- [ ] Time budget excludes limiter waits: tenderned.nl's list renders (probe: 95 requests) without a timeout
+- [ ] Network log per action; limiter still spaces every sub-request (test)
+**Refs:** [T-030](#t-030--engine-v2--agent-v2-epic), [network](docs/net/network.md)
+
+### T-033 — Template format v2 + executor
+**Acceptance:**
+- [ ] Executes v2 (`entry`, `flow`, `api` + `bootstrap`, `scope`, `items.group`, normalisers); v1 unchanged
+- [ ] New mock portal kind: home → link → list with "load more" and detail tabs, with a JSON API behind it, plus variants
+- [ ] Hand-written v2 templates read tenderned.nl and the new mock portal correctly
+**Refs:** [T-030](#t-030--engine-v2--agent-v2-epic), [executor](docs/engine/executor.md)
+
+### T-034 — Agent v2 explorer
+**Acceptance:**
+- [ ] Browser tools from T-030 §3; produces v2 templates; prefers API mode when a replay matches
+- [ ] Attaches the new mock portal kind and tenderned.nl with a scripted model, and live with a real model
+**Refs:** [T-030](#t-030--engine-v2--agent-v2-epic), [attach](docs/agent/attach.md), [toolkit](docs/agent/toolkit.md)
+
+### T-035 — Agent v2 model tiers
+**Acceptance:**
+- [ ] Strong/light settings and budgets; light tasks are tools of the strong model, which reviews their output
+- [ ] Every model call still goes through `agent` and is tagged with its tier
+**Refs:** [T-030](#t-030--engine-v2--agent-v2-epic), [runtime](docs/agent/runtime.md)
+
+### T-036 — Completeness & truthful blocks
+**Acceptance:**
+- [ ] Declared-total and widget checks; notice-type scope check; partial reads never promote to `serving`
+- [ ] Block only after the checks in T-030 §5; constant gateway 403 → block reason, not temporary
+- [ ] Regression fixtures for the evergabe widget and the dtvp/PLACE false blocks
+**Refs:** [T-030](#t-030--engine-v2--agent-v2-epic), [read validation](docs/validate/checks.md)
+
+### T-037 — Investigate/repair and audits on v2
+**Acceptance:**
+- [ ] Repair of a changed flow step, selector or endpoint on the new mock portal's variants
+- [ ] Audits compare against the declared total
+**Refs:** [T-030](#t-030--engine-v2--agent-v2-epic), [investigate](docs/repair/investigate.md), [health checks](docs/notice/health-checks.md)
+
+### T-038 — v2 live re-run
+**Acceptance:**
+- [ ] The demo scenario ([E2E and smoke runs](docs/test-portals/e2e-and-smoke.md)) on v2 meets T-030's acceptance; results in the registry
+- [ ] Then the final run against the `unseen` portals (moved here from T-020)
+**Refs:** [T-030](#t-030--engine-v2--agent-v2-epic)
 
 ### T-021 — README & demo video script
 **Acceptance:**
