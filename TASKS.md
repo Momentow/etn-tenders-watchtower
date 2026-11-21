@@ -31,10 +31,10 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-019 | Docs site at `/docs` | docs-site | done | OrangeCanvas705 | docs/T-019-docs-site | T-003 | [0001](docs/decisions/0001-tech-stack.md) |
 | T-022 | Deterministic agent toolkit | agent | done | Momentow | feat/T-022-agent-toolkit | T-007, T-009, T-010 | [0002 toolkit](docs/decisions/0002-architecture.md#agent-toolkit-deterministic-first) |
 | T-023 | Health-check modes (reactive / proactive audit) | notice | done | Lavrtajx | feat/T-023-health-check-modes | T-006, T-016, T-017 | [0002 health checks](docs/decisions/0002-architecture.md#health-check-modes) |
-| T-020 | End-to-end tests & real-portal smoke run | test-portals | in-progress | Momentow | feat/T-020-e2e-smoke | T-001, T-015, T-016, T-017, T-023 | [requirements → Judging](docs/spec/requirements.md#judging) |
+| T-020 | End-to-end tests & real-portal smoke run | test-portals | review | Momentow | feat/T-020-e2e-smoke | T-001, T-015, T-016, T-017, T-023 | [requirements → Judging](docs/spec/requirements.md#judging) |
 | T-030 | **Epic: Engine v2 & Agent v2** (browser-first actions, API capture, tiered models) | engine, agent | todo | | | T-020 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
-| T-031 | ADRs: engine v2 template format + agent v2 model tiers | engine, agent | todo | | | T-030 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
-| T-032 | Browser sessions: actions, long polite boot, network capture | net | todo | | | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-031 | ADRs: engine v2 template format + agent v2 model tiers | engine, agent | in-progress | Momentow | docs/T-031-engine-v2-adrs | T-030 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-032 | Browser sessions: actions, long polite boot, network capture | net | in-progress | Momentow | feat/T-032-browser-sessions | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-033 | Template format v2 + executor (actions, entry shortcut, API mode, filters, row groups) | engine | todo | | | T-031, T-032 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-034 | Agent v2 explorer: browser tools, recorded flow → API, v2 templates | agent | todo | | | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-035 | Agent v2 tiers: strong planner, light workers, budgets per tier | agent | todo | | | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
