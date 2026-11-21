@@ -39,12 +39,12 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-034 | Agent v2 explorer: browser tools, recorded flow → API, v2 templates | agent | in-progress | Momentow | feat/T-034-agent-v2-explorer | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-035 | Agent v2 tiers: strong planner, light workers, budgets per tier | agent | done | OrangeCanvas705 | feat/T-035-model-tiers | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-036 | Completeness: never `serving` on a partial read | validate, notice | in-progress | Lavrtajx | feat/T-036-completeness | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
-| T-039 | Truthful blocks: `Blocked` only on evidence; constant gateway 403 is a block (split from T-036) | agent, notice | review | OrangeCanvas705 | feat/T-039-truthful-blocks | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-039 | Truthful blocks: `Blocked` only on evidence; constant gateway 403 is a block (split from T-036) | agent, notice | done | OrangeCanvas705 | feat/T-039-truthful-blocks | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-037 | Investigate/repair and audits on v2 | repair, notice | todo | | | T-034, T-035, T-036, T-039 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-038 | v2 live re-run: the 12-portal demo scenario, then `unseen` | test-portals | todo | | | T-037 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-021 | README: how it works, env vars, running it (split: demo script → T-040) | docs-site | done | Momentow | docs/T-021-readme | T-020 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
 | T-040 | Demo video script (split from T-021) | docs-site | todo | | | T-021, T-038 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
-| T-099 | LLM usage metering & cost per portal (last MVP task) | cost | todo | | | T-020, T-035 | [model-usage](docs/cost/model-usage.md) |
+| T-099 | LLM usage metering & cost per portal (last MVP task) | cost | in-progress | OrangeCanvas705 | feat/T-099-usage-metering | T-020, T-035 | [model-usage](docs/cost/model-usage.md) |
 
 **Critical path:** T-003 → T-007/T-008 → T-009 → T-014 → T-015/T-016 → T-017 → T-023 → T-020 → **T-031 → T-032 → T-033 → T-034/T-035/T-036 → T-037 → T-038** → T-099.
 **T-022 runs alongside T-014–T-016:** the scenarios adopt toolkit tools as they're merged; they don't wait for all of them.
@@ -445,4 +445,6 @@ where it is merged; T-033/T-034 update it as they land.
 - [ ] Usage recorded per run from Agents SDK usage data; shown on the dashboard
 - [ ] `docs/cost/model-usage.md` and the README state the cost of one portal
 **Refs:** [model-usage](docs/cost/model-usage.md)
-**Notes:** Deliberately last.
+**Notes:** Deliberately last. Started once model calls settled in one place with tiers (T-035): metering, storage
+and dashboard now; the cost figures in the docs and README are measured on the mock portals now and re-measured on
+the T-038 live run.
