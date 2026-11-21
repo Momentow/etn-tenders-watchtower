@@ -9,6 +9,7 @@ Not shipped in the Docker image (`.dockerignore`).
 | `fixtures/<portal>.json` | Expected tenders from TED (published 2026-10-21 to 2026-11-20). `id`, `url` and `documents` are null: match extracted tenders on title, buyer and reference number, not as exact answers. |
 | `testset.pinned.txt` | Input for `ted_portals.py build`: the pinned portal keys and roles. |
 | `ted_portals.py` | Standard-library script that finds portals through the public TED Search API and writes the fixtures. |
+| `smoke.py` | Smoke run (T-020): adds a set of portals to a running Watchtower and reports what it delivered. See [docs/test-portals/e2e-and-smoke.md](../docs/test-portals/e2e-and-smoke.md). |
 
 **Don't open `unseen` portals while developing.** They are held back for the final test (T-020).
 

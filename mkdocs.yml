@@ -67,6 +67,7 @@ nav:
   - Test portals:
       - Registry: portals/registry.md
       - Mock portals: test-portals/mock-portals.md
+      - E2E and smoke runs: test-portals/e2e-and-smoke.md
   - Cost:
       - Model usage: cost/model-usage.md
   - Docs site: docs-site/docs-site.md

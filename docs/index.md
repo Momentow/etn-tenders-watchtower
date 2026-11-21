@@ -23,6 +23,6 @@ Watchtower attaches to public-procurement portals on its own, watches over them,
 - [Health checks](notice/health-checks.md): reactive and proactive modes, audits, what the dashboard shows
 - [Investigate](repair/investigate.md): diagnosing failed reads, audits, repairs; deterministic checks first
 - [Agent toolkit](agent/toolkit.md): discovery, recognition, verification and repair tools
-- [Test-portal registry](portals/registry.md) · [Mock portals](test-portals/mock-portals.md)
+- [Test-portal registry](portals/registry.md) · [Mock portals](test-portals/mock-portals.md) · [E2E and smoke runs](test-portals/e2e-and-smoke.md)
 - [Model usage & cost](cost/model-usage.md)
 - [Docs site](docs-site/docs-site.md): how this site is built and served, and how to add a page
