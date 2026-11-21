@@ -13,6 +13,7 @@ from typing import Any
 from agents import RunContextWrapper
 from pydantic import ValidationError
 
+from watchtower.agent import blocks
 from watchtower.agent.context import AgentContext, Fetched
 from watchtower.agent.hints import pagination_hints
 from watchtower.agent.outcomes import Blocked, TemplateFound, Transient, Unreadable
@@ -232,12 +233,16 @@ def _as_fetched(page: Any) -> Fetched:
 
 async def _probe_documents(c: AgentContext, r: ReadResult) -> tuple[list[str], list[str], list[str]]:
     """Download the start of a few sampled document links: a file must come back, not a login, captcha or error page."""
-    refs = [d for x in r.tenders for d in x.documents][:DOC_PROBES]
+    # One document per tender first: a block must hold for several tenders (T-039), and a file from any tender
+    # disproves it for that tender.
+    firsts = [(x, x.documents[0]) for x in r.tenders if x.documents]
+    rest = [(x, d) for x in r.tenders for d in x.documents[1:]]
+    refs = (firsts + rest)[:DOC_PROBES]
     if not refs:
         return [], [], []
     lines, problems, warnings = ["DOCUMENT CHECK:"], [], []
-    for ref in refs:
-        probe = await probe_document(c, ref.url)
+    for x, ref in refs:
+        probe = await probe_document(c, ref.url, tender=x.url or x.id, source=x.url)
         if probe.file_name is None and ref.fileName:
             probe.file_name = ref.fileName
         if probe.is_file:
@@ -369,11 +374,20 @@ async def submit_template(ctx: Ctx, template: str, notes: str) -> str:
 
 @tool()
 async def report_blocked(ctx: Ctx, reason: str) -> str:
-    """End the run: the tenders or their documents can't be read without logging in or solving a captcha. Only after
-    checking: a captcha or login box on a page is not a block if the list and the documents still load without it.
+    """End the run: the tenders or their documents can't be read without logging in or solving a captcha.
+
+    Accepted only on evidence (otherwise it answers with what is missing and you go on): the entry page itself is a
+    login/captcha wall or the firewall refuses every path; or the list or the documents are blocked for at least TWO
+    different tenders, still blocked after their pages were loaded first (session cookies; this tool re-tries), and no
+    anonymous-download route on the pages works ("download anonymously", "sans identification", "anoniem"…; this tool
+    follows the links it saw). A captcha or login box on a page is not a block if the list and documents load anyway.
     `reason`: one plain sentence for operators, e.g. "Documents require a login (redirect to /login)."
     """
-    ctx.context.outcome = Blocked(reason=reason)
+    c = ctx.context
+    refusal = await blocks.review(c, reason)
+    if refusal is not None:
+        return refusal
+    c.outcome = Blocked(reason=reason)
     return "Reported."
 
 
@@ -389,9 +403,14 @@ async def report_unreadable(ctx: Ctx, reason: str) -> str:
 @tool()
 async def report_transient(ctx: Ctx, reason: str) -> str:
     """End the run: the portal is temporarily failing (timeouts, 5xx errors, maintenance page), so nothing can be
-    learned now; it will be retried later. `reason`: one plain sentence with what was seen.
+    learned now; it will be retried later. `reason`: one plain sentence with what was seen. A firewall answering
+    HTTP 403 on every path is not temporary: it is recorded as a block (this tool checks).
     """
-    ctx.context.outcome = Transient(reason=reason)
+    c = ctx.context
+    if (wall := await blocks.probe_firewall(c)) is not None:
+        c.outcome = Blocked(reason=wall[0].upper() + wall[1:] + ".")
+        return "Recorded as a block, not temporary: " + wall
+    c.outcome = Transient(reason=reason)
     return "Reported."
 
 

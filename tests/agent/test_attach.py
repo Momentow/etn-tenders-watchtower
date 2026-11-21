@@ -55,10 +55,11 @@ async def test_a_block_report_loses_to_a_template_that_already_worked(client):
 
 
 async def test_a_real_block_is_reported(client):
-    login_list = example("ssr_list_detail").replace("/ssr/ausschreibungen", "/login/ausschreibungen")
+    # The evidence T-039 asks for: the documents of two different tenders lead to the login.
     model = ScriptedModel(
         [
-            [call("try_template", template=login_list)],
+            [call("detect_block", url=f"{BASE}/login/verfahren/W-2026-001")],
+            [call("detect_block", url=f"{BASE}/login/verfahren/W-2026-002")],
             [call("report_blocked", reason="Documents need a login (redirect to /login).")],
         ]
     )

@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any
 
+from watchtower.agent.blocks import BlockEvidence
 from watchtower.agent.outcomes import Blocked, Gone, Healthy, TemplateFound, Transient, Unreadable, Unrepairable
 from watchtower.engine.template import Template
 from watchtower.net import BrowserPool, PoliteClient
@@ -39,6 +40,8 @@ class AgentContext:
     # Canonical template JSON → whether its last dry run was good enough to submit.
     tried: dict[str, bool] = field(default_factory=dict)
     outcome: Outcome | None = None
+    # What pages and document probes showed about logins/captchas (T-039); `report_blocked` reviews it.
+    blocks: BlockEvidence = field(default_factory=BlockEvidence)
     # The light tier for `delegate_*` tools (ADR 0015); set by `run_scenario`, None outside a scenario run.
     light: LightWorker | None = None
     # Free-form per-scenario data (T-016 puts the failing read and its health report here).

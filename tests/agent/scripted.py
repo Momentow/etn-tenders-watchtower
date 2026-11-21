@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import itertools
 import json
 from typing import Any
 
@@ -10,10 +11,13 @@ from agents.models.interface import Model
 from agents.usage import Usage
 from openai.types.responses import ResponseFunctionToolCall, ResponseOutputMessage, ResponseOutputText
 
+_ids = itertools.count(1)
+
 
 def call(name: str, **args: Any) -> ResponseFunctionToolCall:
+    # A counter, not id(args): ids of freed dicts are reused, and the SDK rejects a reused call id.
     return ResponseFunctionToolCall(
-        type="function_call", name=name, arguments=json.dumps(args), call_id=f"call_{name}_{id(args)}", id=None
+        type="function_call", name=name, arguments=json.dumps(args), call_id=f"call_{name}_{next(_ids)}", id=None
     )
 
 

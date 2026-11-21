@@ -8,7 +8,7 @@ from scripted import ScriptedModel, call, say
 
 from mockportals.app import create_app
 from watchtower.agent.context import AgentContext
-from watchtower.agent.outcomes import Blocked, TemplateFound
+from watchtower.agent.outcomes import TemplateFound, Unreadable
 from watchtower.agent.pages import get_page
 from watchtower.agent.registry import ATTACH, tool, tools_for
 from watchtower.agent.runtime import Budget, run_scenario
@@ -112,12 +112,12 @@ async def test_refused_submit_lets_the_model_continue(make_ctx):
     model = ScriptedModel(
         [
             [call("submit_template", template=example("ssr_list_detail"), notes="")],
-            [call("report_blocked", reason="Documents need a login.")],
+            [call("report_unreadable", reason="The list markup can't be read.")],
         ]
     )
     run = await run_scenario("attach", "Attach.", "go", ctx, model=model)
     assert "Not accepted" in model.seen_tool_outputs[0]
-    assert run.outcome == Blocked(reason="Documents need a login.") and run.requests == 2
+    assert run.outcome == Unreadable(reason="The list markup can't be read.") and run.requests == 2
 
 
 @pytest.mark.parametrize(

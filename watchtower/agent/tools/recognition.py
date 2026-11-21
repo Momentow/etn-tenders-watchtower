@@ -131,10 +131,14 @@ async def detect_block(ctx: Ctx, url: str) -> str:
         lines.append(f"records on the page: {blocks[0].count if blocks else 0}")
         docs = [g for g in analysis.classify_links(scope) if g.kind == "document"]
         if docs:
-            probe = await pages.probe_document(c, docs[0].links[0][1])
+            probe = await pages.probe_document(c, docs[0].links[0][1], tender=page.url, source=page.url)
             lines.append("document probe: " + probe.sentence())
             if probe.blocks:
-                lines.append("VERDICT: BLOCKED — documents need a " + probe.blocks[0].kind + " (report_blocked)")
+                n = len(c.blocks.blocked_tenders())
+                lines.append(
+                    f"VERDICT: BLOCKED HERE — this document needs a {probe.blocks[0].kind}. Seen on {n} tender(s) so "
+                    "far: check at least one more tender and any anonymous-download option before report_blocked"
+                )
                 return "\n".join(lines)
             if probe.is_file:
                 lines.append("VERDICT: NOT BLOCKED — documents download without logging in")
