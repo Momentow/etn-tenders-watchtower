@@ -13,7 +13,8 @@ On top of the shared rules and method, the attach prompt (`ATTACH_PROMPT`) asks 
   list entries land on a summary page.
 - **Open tenders, every page.** If the portal only lists everything, a `status` rule marks closed and withdrawn ones.
 - **Try first, then decide.** `report_blocked` only after a dry run or a direct fetch shows that the list or the
-  documents really need a login or a solved captcha.
+  documents really need a login or a solved captcha. The tool checks the evidence itself ([truthful blocks](blocks.md)):
+  two tenders, the session, anonymous routes.
 
 ## Outcomes
 The run ends with a closing tool call; `run_attach` maps it onto an `AttachOutcome`:
@@ -22,7 +23,9 @@ The run ends with a closing tool call; `run_attach` maps it onto an `AttachOutco
 |---|---|
 | `submit_template` accepted (its dry run was GOOD) | `TemplateFound` |
 | `report_blocked`, but a template already passed the dry run, documents included | `TemplateFound` with that template |
-| `report_blocked` | `Blocked` → the portal fails with the reason |
+| `report_blocked` with the evidence [truthful blocks](blocks.md) needs | `Blocked` → the portal fails with the reason |
+| `report_blocked` refused, then the run ends without an outcome | `TemplateFound` with a template whose dry run was GOOD; else `Unreadable`: the block was suspected but not confirmed, and why |
+| `report_transient` while the firewall answers 403 on every path | `Blocked`: access refused by the portal's firewall |
 | `report_unreadable` | `Unreadable` with the reason |
 | `report_transient` | `Unreadable`: "the portal could not be read right now (…)" |
 | turn, token or time budget exhausted, or no closing call | `Unreadable` naming what ran out |

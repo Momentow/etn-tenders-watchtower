@@ -90,7 +90,7 @@ strong `model`, as the light tier defaults to the strong model).
 | `render(url, focus?)` | Headless browser. Outline of the rendered page plus a summary of each captured JSON/XHR response (so a JS app's API can be read directly). |
 | `try_template(template, sample=3)` | Engine dry run. Schema errors with paths; a **list check** (up to 3 list pages: count, pagination, duplicate ids); a **sample read** of N tenders with field coverage and values; a **document check** (the first bytes of 2 document links must be a file, not a login, captcha or error page); **warnings** (pagination controls the template ignores, no documents, required fields always empty); the validator's verdict. |
 | `submit_template(template, notes)` | Accepted only if this exact template's last dry run was GOOD (it is dry-run if it wasn't tried). |
-| `report_blocked(reason)` · `report_unreadable(reason)` · `report_transient(reason)` | End the run with that outcome; `reason` is a plain sentence for operators. |
+| `report_blocked(reason)` · `report_unreadable(reason)` · `report_transient(reason)` | End the run with that outcome; `reason` is a plain sentence for operators. `report_blocked` is accepted only on evidence, and `report_transient` becomes a block when the firewall refuses every path ([truthful blocks](blocks.md)). |
 
 ### Pruned outline
 

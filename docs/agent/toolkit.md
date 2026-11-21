@@ -28,7 +28,7 @@ built on the engine's own parser and CSS implementation, so a selector a tool su
 | `find_template_for_software(software)` | A known template for the same software with its URLs moved to this portal's host, to dry-run and adjust. Templates come from `AgentContext.known_templates` (the scenario fills it). |
 | `map_field_labels(url)` | Label/value pairs (`dt`/`dd`, `th`/`td`, two-cell rows, `<b>Label:</b> value`, `Label: value`) mapped to contract fields with a multilingual synonym table, each with a ready XPath rule (and `pattern` when the label is in the same text). |
 | `probe_dates(samples, country?)` | strptime `formats` that read every sample, the time zone of the country, what the engine makes of each sample (ISO with offset), and a warning when day and month are ambiguous. |
-| `detect_block(url)` | Login/captcha signals on the page **and** a download of a document linked from it: documents that download → NOT BLOCKED even with a captcha widget; a document that lands on a login or captcha page → BLOCKED. |
+| `detect_block(url)` | Login/captcha signals on the page **and** a download of a document linked from it: documents that download → NOT BLOCKED even with a captcha widget; a document that lands on a login or captcha page → BLOCKED HERE, with how many tenders are blocked so far (a block needs two; see [truthful blocks](blocks.md)). |
 
 ## Verification
 

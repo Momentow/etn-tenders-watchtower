@@ -65,6 +65,7 @@ nav:
       - "Attach: generate_template": agent/attach.md
       - Investigate (repair, audits): repair/investigate.md
       - Agent toolkit: agent/toolkit.md
+      - Truthful blocks: agent/blocks.md
   - Test portals:
       - Registry: portals/registry.md
       - Mock portals: test-portals/mock-portals.md
