@@ -38,7 +38,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-033 | Template format v2 + executor (actions, entry shortcut, API mode, filters, row groups) | engine | done | Lavrtajx | feat/T-033-template-v2-executor | T-031, T-032 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-034 | Agent v2 explorer: browser tools, recorded flow → API, v2 templates | agent | todo | | | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-035 | Agent v2 tiers: strong planner, light workers, budgets per tier | agent | done | OrangeCanvas705 | feat/T-035-model-tiers | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
-| T-036 | Completeness: never `serving` on a partial read | validate, notice | todo | | | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-036 | Completeness: never `serving` on a partial read | validate, notice | in-progress | Lavrtajx | feat/T-036-completeness | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-039 | Truthful blocks: `Blocked` only on evidence; constant gateway 403 is a block (split from T-036) | agent, notice | in-progress | OrangeCanvas705 | feat/T-039-truthful-blocks | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-037 | Investigate/repair and audits on v2 | repair, notice | todo | | | T-034, T-035, T-036, T-039 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-038 | v2 live re-run: the 12-portal demo scenario, then `unseen` | test-portals | todo | | | T-037 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
