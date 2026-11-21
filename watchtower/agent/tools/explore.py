@@ -132,7 +132,12 @@ async def network(ctx: Ctx, filter: str | None = None, show: int | None = None) 
         return _show(c.session.network[show])
     calls = [x for x in reversed(c.session.network) if not filter or filter in x.url]
     if not calls:
-        return "No calls" + (f" matching {filter!r}" if filter else "") + " so far."
+        return (
+            "No calls"
+            + (f" matching {filter!r}" if filter else "")
+            + ' so far. A slow app may still be loading: act {"do": "wait_for", "response": "<URL regex>"} or '
+            '{"do": "wait_for", "text": "…"}, then look again.'
+        )
     lines = [f"{len(calls)} call(s)" + (f" matching {filter!r}" if filter else "") + ", newest first:"]
     for x in calls[:NETWORK_LIMIT]:
         lines.append(_exchange_line(x) + f"  [action {x.action_index}]")

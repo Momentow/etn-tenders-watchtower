@@ -16,6 +16,25 @@ On top of the shared rules and method, the attach prompt (`ATTACH_PROMPT`) asks 
   documents really need a login or a solved captcha. The tool checks the evidence itself ([truthful blocks](blocks.md)):
   two tenders, the session, anonymous routes.
 
+### Explore like a person (T-034)
+The prompt also teaches the explorer method of [ADR 0015](../decisions/0015-agent-v2-explorer-and-tiers.md), with the
+[explorer tools](runtime.md#explorer-tools):
+
+1. Find the page a person would use to see **all** current tenders, and the portal's own total. A home-page widget
+   with the latest N tenders is not the list.
+2. Make the list complete: pagination, *load more*, scrolling.
+3. Open at least two tenders and their tabs.
+4. Read `network`; `replay` the call that carries the tenders. "Same data without a browser" → a `kind: api`
+   template (list, detail and documents from JSON calls), checked for paging with `replay(call, params=…)`. A header
+   the call needs becomes a `session` capture. A browser `flow` only when there's no usable API.
+5. Keep only open calls for competition: the API's own filters and `scope` (`delegate_classify_notices` helps).
+6. Write the template, dry-run, fix, submit.
+
+The prompt carries a compact [template v2](../engine/template-v2.md) reference and the tenderned.nl API-mode template
+as a worked example. The agent writes v2 when it needs an entry deeper than the portal URL, clicks, *load more*, tabs,
+an API from the network log, a session or scope; otherwise v1. `TemplateFound` carries either format, and the pipeline
+stores and runs both. Investigate and audits still repair v1 templates until T-037.
+
 ## Outcomes
 The run ends with a closing tool call; `run_attach` maps it onto an `AttachOutcome`:
 
@@ -34,7 +53,8 @@ The run ends with a closing tool call; `run_attach` maps it onto an `AttachOutco
 The block override is deterministic: a GOOD dry run means the list was read and sampled document links returned real
 files, so a captcha or login box on the page didn't stop delivery.
 
-Budget: 30 model calls, 400 000 tokens, 15 minutes (`ATTACH_BUDGET`). Each run logs model calls, tokens (cached
+Budget: strong 40 model calls, 600 000 tokens, 30 minutes for the run; light 60 calls, 400 000 tokens
+(`ATTACH_BUDGET`, [model tiers](runtime.md#model-tiers)). Each run logs model calls, tokens (cached
 included) and time.
 
 ## Wiring
