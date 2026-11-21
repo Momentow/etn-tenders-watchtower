@@ -1,0 +1,61 @@
+{
+  "format_version": 2,
+  "timezone": "Europe/Amsterdam",
+  "country": "NL",
+  "software": "mock-app",
+  "entry": {"url": "http://localhost:8081/app/aankondigingen"},
+  "list": {
+    "kind": "api",
+    "request": {
+      "url": "http://localhost:8081/app/api/publicaties",
+      "params": {"size": "10", "publicatieType": "AAO", "sluitingsDatumVanaf": "{{today}}"},
+      "headers": {"Accept": "application/json"}
+    },
+    "items": "$.content[*]",
+    "total": "$.totalElements",
+    "pagination": {"kind": "param", "name": "page", "start": 0, "step": 1}
+  },
+  "detail": {
+    "kind": "api",
+    "request": {"url": "http://localhost:8081/app/api/publicaties/{id}"},
+    "page_url": "http://localhost:8081/app/aankondigingen/{id}"
+  },
+  "fields": {
+    "id": {"by": "jsonpath", "expr": "$.publicatieId"},
+    "title": {"by": "jsonpath", "expr": "$.aanbestedingNaam"},
+    "buyerName": {"by": "jsonpath", "expr": "$.opdrachtgeverNaam"},
+    "publicationDate": {"by": "jsonpath", "expr": "$.publicatieDatum"},
+    "submissionDeadline": {"by": "jsonpath", "expr": "$.sluitingsDatum"},
+    "referenceNumber": {"by": "jsonpath", "expr": "$.kenmerk"},
+    "description": {"by": "jsonpath", "expr": "$.opdrachtBeschrijving", "on": "detail"},
+    "procedureType": {
+      "by": "jsonpath", "expr": "$.procedure.code",
+      "map": {"OPE": "open", "NOP": "restricted", "ONG": "negotiated", "CCD": "other"}
+    },
+    "contractNature": {
+      "by": "jsonpath", "expr": "$.typeOpdracht.code",
+      "map": {"W": "works", "D": "services", "L": "supplies"}
+    },
+    "cpvCodes": {"by": "jsonpath", "expr": "$.cpvCodes[*].code", "many": true, "on": "detail"},
+    "placeOfPerformance": {
+      "postalCode": {"by": "jsonpath", "expr": "$.plaatsVanUitvoering.postcode", "on": "detail"},
+      "city": {"by": "jsonpath", "expr": "$.plaatsVanUitvoering.plaats", "on": "detail"},
+      "countryCode": {"by": "jsonpath", "expr": "$.plaatsVanUitvoering.land", "on": "detail"}
+    }
+  },
+  "documents": {
+    "request": {"url": "http://localhost:8081/app/api/publicaties/{id}/documenten"},
+    "links": {"by": "jsonpath", "expr": "$.documenten[*].links.download.href", "many": true},
+    "names": {"by": "jsonpath", "expr": "$.documenten[*].documentNaam", "many": true}
+  },
+  "status": {
+    "value": {"by": "jsonpath", "expr": "$.publicatiestatus.code"},
+    "withdrawn": ["^ING$"],
+    "closed": ["^GES$"]
+  },
+  "scope": {
+    "include": [{"source": {"by": "jsonpath", "expr": "$.typePublicatie.code"}, "in": ["AAO"]}],
+    "exclude": [{"source": {"by": "jsonpath", "expr": "$.isVroegtijdigeBeeindiging"}, "equals": true}]
+  },
+  "notes": "SPA over a JSON API, read without a browser. The API's own filters keep calls for competition (publicatieType=AAO) with a deadline from today; scope also drops calls that were ended early. Deadlines are local Amsterdam time without an offset."
+}

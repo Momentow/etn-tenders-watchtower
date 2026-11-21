@@ -1,0 +1,59 @@
+{
+  "format_version": 2,
+  "timezone": "Europe/Amsterdam",
+  "country": "NL",
+  "software": "mock-app",
+  "entry": {"url": "http://localhost:8081/app/"},
+  "list": {
+    "kind": "page",
+    "flow": [{"do": "click", "target": {"role": "link", "name": "Alle aankondigingen"}}],
+    "items": {"by": "css", "expr": "article.publicatie"},
+    "total": {"by": "css", "expr": ".result-count", "pattern": "([\\d.]+) resultaten"},
+    "pagination": {"kind": "load_more", "target": {"role": "button", "name": "Laad meer"}, "max_clicks": 50}
+  },
+  "detail": {
+    "kind": "page",
+    "link": {"by": "css", "expr": "h2 a", "attr": "href"},
+    "via": "browser",
+    "views": {"documents": [{"do": "tab", "target": {"role": "tab", "name": "Documenten"}}]}
+  },
+  "fields": {
+    "id": {"by": "css", "expr": "article.publicatie", "attr": "data-id"},
+    "title": {"by": "css", "expr": "h2 a"},
+    "buyerName": {"by": "css", "expr": ".opdrachtgever"},
+    "publicationDate": {"by": "css", "expr": "time.gepubliceerd", "attr": "datetime"},
+    "submissionDeadline": {"by": "css", "expr": ".sluiting", "formats": ["%d-%m-%Y %H:%M"]},
+    "referenceNumber": {"by": "css", "expr": ".kenmerk"},
+    "description": {"by": "css", "expr": "dd.omschrijving", "on": "detail"},
+    "procedureType": {
+      "by": "css", "expr": "dd.procedure", "on": "detail",
+      "map": {"Openbaar": "open", "Niet-openbaar": "restricted", "Onderhandelingsprocedure": "negotiated",
+              "Concurrentiegerichte dialoog": "other"}
+    },
+    "contractNature": {
+      "by": "css", "expr": "dd.type-opdracht", "on": "detail",
+      "map": {"Werken": "works", "Diensten": "services", "Leveringen": "supplies"}
+    },
+    "cpvCodes": {"by": "css", "expr": "ul.cpv li", "many": true, "on": "detail"},
+    "placeOfPerformance": {
+      "postalCode": {"by": "css", "expr": ".plaats .postcode", "on": "detail"},
+      "city": {"by": "css", "expr": ".plaats .stad", "on": "detail"},
+      "countryCode": {"by": "css", "expr": ".plaats .land", "on": "detail"}
+    }
+  },
+  "documents": {
+    "on": "detail.documents",
+    "links": {"by": "css", "expr": "ul.documenten a.download", "attr": "href", "many": true},
+    "names": {"by": "css", "expr": "ul.documenten a.download", "many": true}
+  },
+  "status": {
+    "value": {"by": "css", "expr": ".status"},
+    "withdrawn": ["^Ingetrokken$"],
+    "closed": ["^Gesloten$"]
+  },
+  "scope": {
+    "include": [{"source": {"by": "css", "expr": "article.publicatie", "attr": "data-type"}, "in": ["AAO"]}],
+    "exclude": [{"source": {"by": "css", "expr": "article.publicatie", "attr": "data-vb"}, "equals": "true"}]
+  },
+  "notes": "The same portal read the way a person does, for when there is no usable API: home → 'Alle aankondigingen' → 'Laad meer' until it's gone → each notice's page, then its 'Documenten' tab. The list mixes notice types; scope keeps calls for competition that weren't ended early, and open_by_deadline drops passed deadlines."
+}
