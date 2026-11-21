@@ -7,8 +7,8 @@ about it. Code: `watchtower/dashboard/` (T-018).
 
 | Path | Shows | Live refresh |
 |---|---|---|
-| `GET /` | Counts per state and total tenders served; one row per portal with state, reason, tender count, last success and last activity. Problems sort first: `failed`, `healing`, `integrating`, then `serving`. | every 5 s |
-| `GET /dashboard/portals/{id}` | Portal header (state, reason, current template version, activity), the **run timeline**, **template versions** and **tenders** with their documents. Unknown or deleted id → 404 page. | header and timeline every 5 s; templates and tenders every 30 s |
+| `GET /` | Counts per state and total tenders served; one row per portal with state, reason, tender count, last success, last activity and **model cost** (with a total tile; see [model usage](../cost/model-usage.md)). Problems sort first: `failed`, `healing`, `integrating`, then `serving`. | every 5 s |
+| `GET /dashboard/portals/{id}` | Portal header (state, reason, current template version, activity), the **run timeline**, **model usage** (calls, tokens and cost per scenario, tier and model), **template versions** and **tenders** with their documents. Unknown or deleted id → 404 page. | header and timeline every 5 s; templates and tenders every 30 s |
 | `GET /dashboard/portals/{id}/templates/{version}.json` | One template version as JSON. | — |
 
 The `/dashboard/partials/...` routes return the HTML fragments that htmx swaps in on each poll. They aren't part of the

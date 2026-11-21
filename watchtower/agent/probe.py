@@ -17,7 +17,9 @@ import json
 import logging
 import sys
 
+from watchtower.agent import usage
 from watchtower.agent.attach import ATTACH_BUDGET, run_attach
+from watchtower.agent.config import load_settings
 from watchtower.agent.outcomes import TemplateFound
 from watchtower.agent.runtime import TieredBudget
 from watchtower.net import BrowserPool, HostRateLimiter, PoliteClient
@@ -39,9 +41,16 @@ async def probe(url: str, *, browser: bool, budget: TieredBudget) -> int:
             f"model calls: {run.requests}   tokens: {run.input_tokens} in ({run.cached_tokens} cached) / "
             f"{run.output_tokens} out   time: {run.seconds:.0f}s"
         )
+        settings = load_settings()
+        total = 0.0
         for tier, u in run.by_tier.items():
             tokens = f"{u.input_tokens} in ({u.cached_tokens} cached) / {u.output_tokens} out"
-            print(f"  {tier}: {u.requests} calls, {tokens}")
+            model = settings.model_for(tier)
+            cost = usage.cost_usd(model, u.input_tokens, u.cached_tokens, u.output_tokens)
+            total += cost or 0.0
+            shown = "price unknown" if cost is None else f"${cost:.4f}"
+            print(f"  {tier} ({model}): {u.requests} calls, {tokens}, {shown}")
+        print(f"cost: ${total:.4f}")
         if run.outcome is None and run.final_text:
             print("final text:", run.final_text)
     print(f"outcome: {type(outcome).__name__}")
