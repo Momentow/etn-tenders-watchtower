@@ -35,7 +35,7 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-030 | **Epic: Engine v2 & Agent v2** (browser-first actions, API capture, tiered models) | engine, agent | todo | | | T-020 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-031 | ADRs: engine v2 template format + agent v2 model tiers | engine, agent | review | Momentow | docs/T-031-engine-v2-adrs | T-030 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-032 | Browser sessions: actions, long polite boot, network capture | net | review | Momentow | feat/T-032-browser-sessions | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
-| T-033 | Template format v2 + executor (actions, entry shortcut, API mode, filters, row groups) | engine | todo | | | T-031, T-032 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-033 | Template format v2 + executor (actions, entry shortcut, API mode, filters, row groups) | engine | in-progress | Lavrtajx | feat/T-033-template-v2-executor | T-031, T-032 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-034 | Agent v2 explorer: browser tools, recorded flow → API, v2 templates | agent | todo | | | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-035 | Agent v2 tiers: strong planner, light workers, budgets per tier | agent | in-progress | OrangeCanvas705 | feat/T-035-model-tiers | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-036 | Completeness & truthful blocks: never `serving` on a partial read | validate, notice | todo | | | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
