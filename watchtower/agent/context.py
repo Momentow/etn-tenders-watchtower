@@ -60,7 +60,9 @@ class AgentContext:
             if self.browser is None:
                 raise RuntimeError("no browser is available in this process")
             stack = AsyncExitStack()
-            self.session = await stack.enter_async_context(self.browser.session(budget=EXPLORE_SESSION_BUDGET))
+            self.session = await stack.enter_async_context(
+                self.browser.session(budget=EXPLORE_SESSION_BUDGET, held=True)
+            )
             self._stack = stack
         return self.session
 

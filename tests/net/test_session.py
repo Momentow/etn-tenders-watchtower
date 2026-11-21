@@ -243,3 +243,20 @@ async def test_second_boot_serves_scripts_from_the_cache(site, pool):
     assert len(script_hits) == SCRIPTS  # each chunk fetched once over two boots
     assert counts["cache_hit"] == SCRIPTS
     assert sum(1 for _, p in hits if "items-0.json" in p) == 2  # data is never cached
+
+
+@browser_only
+async def test_a_held_session_and_a_short_one_never_wait_for_each_other(site):
+    """An agent run holds its explorer session for the whole run and opens short sessions (renders, dry runs) inside
+    it. With one slot of each kind both open at once: held sessions have slots of their own (no deadlock)."""
+    import asyncio
+
+    base, _ = site
+    pool = BrowserPool(limiter=HostRateLimiter(0), max_pages=1, max_held=1)
+    try:
+        async with pool.session(held=True) as outer:
+            await outer.act(act(do="goto", url=base + "/about.html"))
+            rendered = await asyncio.wait_for(pool.render(base + "/about.html"), timeout=60)
+            assert "About" in rendered.html
+    finally:
+        await pool.aclose()

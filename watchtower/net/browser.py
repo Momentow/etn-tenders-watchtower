@@ -59,12 +59,16 @@ class BrowserPool:
         limiter: HostRateLimiter,
         user_agent: str = USER_AGENT,
         max_pages: int = 2,
+        max_held: int = 4,
         timeout_ms: int = DEFAULT_RENDER_TIMEOUT_MS,
     ):
         self.limiter = limiter
         self.user_agent = user_agent
         self.timeout_ms = timeout_ms
-        self._pages = asyncio.Semaphore(max_pages)
+        self._pages = asyncio.Semaphore(max_pages)  # short sessions: renders and reads
+        # Sessions held for a whole agent run (the explorer, ADR 0015) have their own slots, one per worker: they
+        # never wait for, or starve, the short sessions they open inside the same run (no slot deadlock).
+        self._held = asyncio.Semaphore(max_held)
         self._start_lock = asyncio.Lock()
         self._playwright: Any = None
         self._browser: Any = None
@@ -81,11 +85,14 @@ class BrowserPool:
             return self._browser
 
     @asynccontextmanager
-    async def session(self, *, budget: SessionBudget | None = None) -> AsyncIterator[BrowserSession]:
-        """One fresh browser context held for several actions (ADR 0014 §1): cookies and app state carry over."""
+    async def session(
+        self, *, budget: SessionBudget | None = None, held: bool = False
+    ) -> AsyncIterator[BrowserSession]:
+        """One fresh browser context held for several actions (ADR 0014 §1): cookies and app state carry over.
+        `held`: the session lives for a whole agent run, so it takes a slot of its own kind (`max_held`)."""
         budget = budget or SessionBudget()
         browser = await self._ensure_browser()
-        async with self._pages:
+        async with self._held if held else self._pages:
             context = await browser.new_context(user_agent=self.user_agent, java_script_enabled=True)
             # The session enforces its own (polite) budget; Playwright's timeouts only backstop it.
             context.set_default_timeout(budget.max_seconds * 1000)
