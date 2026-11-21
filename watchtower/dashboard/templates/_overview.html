@@ -4,6 +4,9 @@
   <div class="tile {{ s }}"><div class="n">{{ ov.counts[s] }}</div><div class="l">{{ STATE_LABELS[s] }}</div></div>
   {% endfor %}
   <div class="tile"><div class="n">{{ ov.total_tenders }}</div><div class="l">Tenders served</div></div>
+  {% if ov.rows|selectattr("model_cost")|list %}
+  <div class="tile"><div class="n">{{ ov.total_cost_usd|usd }}</div><div class="l">Model cost</div></div>
+  {% endif %}
 </div>
 
 {% if ov.health %}<p class="muted small">{{ ov.health.summary }}</p>{% endif %}
@@ -23,6 +26,7 @@
         <th>Last success</th>
         <th>Last activity</th>
         <th>Last audit</th>
+        <th class="num">Model cost</th>
       </tr>
     </thead>
     <tbody>
@@ -49,6 +53,10 @@
           {% endif %}
         </td>
         <td>{% include "_audit_cell.html" %}</td>
+        <td class="num">
+          {% if r.model_cost %}{{ r.model_cost.cost_usd|usd }}<div class="muted small">{{ r.model_cost.requests }} calls</div>
+          {% else %}<span class="muted">—</span>{% endif %}
+        </td>
       </tr>
     {% endfor %}
     </tbody>

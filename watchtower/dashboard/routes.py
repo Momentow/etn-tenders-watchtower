@@ -32,6 +32,8 @@ env.filters.update(
     iso=views.iso,
     safe_href=views.safe_href,
     filesize=views.filesize,
+    usd=views.usd,
+    tokens=views.tokens,
 )
 env.globals.update(STATE_LABELS=views.STATE_LABELS, STATES=views.STATES)
 

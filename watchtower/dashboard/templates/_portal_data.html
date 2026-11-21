@@ -1,4 +1,30 @@
 {% set p = d.row.portal %}
+{% set mc = d.row.model_cost %}
+<h2>Model usage {% if mc %}<span class="muted small">{{ mc.cost_usd|usd }} · {{ mc.requests }} calls · {{ mc.tokens|tokens }} tokens</span>{% endif %}</h2>
+<div class="card">
+{% if not mc %}
+  <div class="empty">No model calls for this portal yet. Regular reads never call a model.</div>
+{% else %}
+  <table>
+    <thead><tr><th>Scenario</th><th>Tier</th><th>Model</th><th class="num">Runs</th><th class="num">Calls</th><th class="num">Input (cached)</th><th class="num">Output</th><th class="num">Cost</th></tr></thead>
+    <tbody>
+    {% for u in mc.rows %}
+      <tr>
+        <td>{{ u.scenario }}</td>
+        <td>{{ u.tier }}</td>
+        <td class="mono">{{ u.model }}</td>
+        <td class="num">{{ u.runs }}</td>
+        <td class="num">{{ u.requests }}</td>
+        <td class="num">{{ u.input_tokens|tokens }} ({{ u.cached_tokens|tokens }})</td>
+        <td class="num">{{ u.output_tokens|tokens }}</td>
+        <td class="num">{{ u.cost_usd|usd }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+</div>
+
 <h2>Template versions</h2>
 <div class="card">
 {% if not d.templates %}
