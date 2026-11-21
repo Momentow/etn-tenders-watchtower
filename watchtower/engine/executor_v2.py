@@ -25,6 +25,7 @@ import httpx
 import lxml.html
 
 from watchtower.engine import normalize
+from watchtower.engine.completeness import more_offered, other_notice
 from watchtower.engine.executor import Page, ReadError, Req, _short
 from watchtower.engine.extract import (
     ExtractError,
@@ -40,7 +41,7 @@ from watchtower.engine.extract import (
 )
 from watchtower.engine.result import DocumentRef, ReadResult, ReadStats, TenderRecord, TenderStatus
 from watchtower.engine.snapshot import snapshot
-from watchtower.engine.template import CursorPagination, NextLinkPagination, ParamPagination
+from watchtower.engine.template import CursorPagination, NextLinkPagination, NoPagination, ParamPagination
 from watchtower.engine.template_v2 import (
     _DOUBLE,
     _SINGLE,
@@ -94,6 +95,8 @@ class _RunV2:
         self._bs: BrowserSession | None = None
         self._last_note = ""
         self._seen: set[str] = set()
+        self.more: list[str] = []
+        self.other: dict[str, str] = {}
 
     async def run(self, limit: int | None) -> ReadResult:
         started = time.monotonic()
@@ -112,6 +115,8 @@ class _RunV2:
                         self.scope_dropped += 1
                     else:
                         tenders.append(record)
+                        if label := other_notice(item.scope):
+                            self.other[record.id] = label
                 self.stats.detail_seconds = time.monotonic() - detail_start
         self.stats.total_seconds = time.monotonic() - started
         return ReadResult(
@@ -121,6 +126,8 @@ class _RunV2:
             snapshot=self.snapshot,
             declared_total=self.declared_total,
             scope_dropped=self.scope_dropped,
+            more_offered=self.more,
+            other_notices=self.other,
         )
 
     # ------------------------------------------------------------------ browser and http
@@ -303,7 +310,7 @@ class _RunV2:
             else:
                 await self._http_list(self.t.list, items, limit)
         except _Enough:
-            pass
+            self.stats.limited = True
         except (ReadError, ExtractError) as e:
             self.errors.append(f"Reading the tender list failed: {e}")
         if self.stats.skipped_items:
@@ -323,6 +330,8 @@ class _RunV2:
             found = _grouped(found, lst.items.group)
         if first_page and not found and isinstance(scope, HtmlScope):
             self._explain_empty(page)
+        if first_page and found and isinstance(lst.pagination, NoPagination):
+            self.more = more_offered(scope, found)
         new = 0
         for s in found:
             raw = {n: value(r, s, url=n == "url") for n, r in self.rules.items() if r.on == "item"}

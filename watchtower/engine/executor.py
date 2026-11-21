@@ -18,6 +18,7 @@ from urllib.parse import parse_qsl, quote, urlencode, urljoin, urlsplit, urlunsp
 import httpx
 
 from watchtower.engine import normalize
+from watchtower.engine.completeness import more_offered, other_notice
 from watchtower.engine.extract import (
     ExtractError,
     HtmlScope,
@@ -36,6 +37,7 @@ from watchtower.engine.template import (
     CursorPagination,
     FollowStep,
     NextLinkPagination,
+    NoPagination,
     ParamPagination,
     Request,
     SubmitStep,
@@ -140,6 +142,8 @@ class _Run:
         self.errors: list[str] = []
         self.snapshot: dict[str, Any] | None = None
         self.rules = template.fields.rules()
+        self.more: list[str] = []
+        self.other: dict[str, str] = {}
 
     async def run(self, limit: int | None) -> ReadResult:
         started = time.monotonic()
@@ -151,10 +155,20 @@ class _Run:
             self.stats.list_seconds = time.monotonic() - started
             detail_start = time.monotonic()
             for item in items:
-                tenders.append(await self._read_tender(item))
+                record = await self._read_tender(item)
+                tenders.append(record)
+                if label := other_notice(item.scope):
+                    self.other[record.id] = label
             self.stats.detail_seconds = time.monotonic() - detail_start
         self.stats.total_seconds = time.monotonic() - started
-        return ReadResult(tenders=tenders, errors=self.errors, stats=self.stats, snapshot=self.snapshot)
+        return ReadResult(
+            tenders=tenders,
+            errors=self.errors,
+            stats=self.stats,
+            snapshot=self.snapshot,
+            more_offered=self.more,
+            other_notices=self.other,
+        )
 
     # ------------------------------------------------------------------ fetching
 
@@ -211,6 +225,8 @@ class _Run:
                 found = select(lst.items, scope)
                 if n == 0 and not found and isinstance(scope, HtmlScope):
                     self._explain_empty(page)
+                if n == 0 and found and isinstance(pg, NoPagination):
+                    self.more = more_offered(scope, found)
                 new = 0
                 for s in found:
                     raw = {n: value(r, s, url=n == "url") for n, r in self.rules.items() if r.on == "item"}
@@ -225,6 +241,7 @@ class _Run:
                     items.append(_Item(s, raw, page.url))
                     new += 1
                     if limit is not None and len(items) >= limit:
+                        self.stats.limited = True
                         return items
                 if not found or new == 0:
                     break
