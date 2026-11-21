@@ -200,7 +200,15 @@ async def test_a_captcha_whose_documents_still_download_is_served(e2e_browser):
     ],
 )
 async def test_a_blocked_portal_fails_with_the_reason(e2e, kind, reason):
-    e2e.use_models([[call("detect_block", url=e2e.base + ENTRY[kind])], [call("report_blocked", reason=reason)]])
+    # Evidence for the block (T-039): two tenders' documents lead to the login or robot check.
+    detail = {"login": "/login/verfahren/W-2026-00{}", "robot": "/robot/opdracht/B%2F2026%2F00{}"}[kind]
+    e2e.use_models(
+        [
+            [call("detect_block", url=e2e.base + detail.format(1))],
+            [call("detect_block", url=e2e.base + detail.format(2))],
+            [call("report_blocked", reason=reason)],
+        ]
+    )
     pid = await e2e.add(kind)
     portal = await e2e.get(f"/portals/{pid}")
     assert portal["state"] == "failed"

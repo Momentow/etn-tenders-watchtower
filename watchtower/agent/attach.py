@@ -8,7 +8,9 @@ dry run), `report_blocked`, `report_unreadable` or `report_transient`. This wrap
 |---|---|
 | an accepted template | `TemplateFound` |
 | `report_blocked` after a template passed the dry run, documents included | `TemplateFound` with it (try first) |
-| `report_blocked` | `Blocked` |
+| `report_blocked` with the evidence `blocks.review` needs | `Blocked` |
+| `report_blocked` refused, then the run ends, after a GOOD dry run | `TemplateFound` with it |
+| `report_blocked` refused, then the run ends | `Unreadable`: the block wasn't confirmed, and why |
 | `report_unreadable` / `report_transient` | `Unreadable` with the reason |
 | budget exhausted or no closing call | `Unreadable` naming what ran out |
 | no model key configured | `Unreadable` saying so |
@@ -136,6 +138,16 @@ def _outcome(run: ScenarioRun, ctx: AgentContext) -> AttachOutcome:
         return Unreadable(reason=f"the portal could not be read right now ({outcome.reason.rstrip('.')})")
     if outcome is not None:  # an investigate-only outcome: not an answer to attach
         return Unreadable(reason=f"the attach ended with an unexpected {outcome.kind} report")
+    if (refused := ctx.blocks.refused) is not None:
+        if (good := _good_template(ctx)) is not None:
+            log.info("attach %s: block report refused, and a template passed the dry run; using it", ctx.portal_url)
+            return TemplateFound(
+                template=good,
+                notes=f"The model reported a block ({refused}.), but the evidence didn't confirm it and this "
+                "template read the list and downloaded documents.",
+            )
+        why = ctx.blocks.refused_why.split("; ")[0]
+        return Unreadable(reason=f"a login or captcha block was suspected ({refused}) but not confirmed: {why}")
     return Unreadable(reason=_budget_reason(run.stop_reason))
 
 

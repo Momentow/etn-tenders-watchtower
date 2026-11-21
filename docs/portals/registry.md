@@ -125,6 +125,8 @@ Real model, fresh database, portals added 5 s apart. All 12 settled within 10 mi
 2. **One login redirect ends the attach (2 portals: dtvp.de, marches-publics.gouv.fr).** The agent reports `Blocked` after a
    document link of one tender redirects to a login, without trying other tenders, a session cookie from the list page,
    or the portal's anonymous-download route. A `failed` portal that could deliver is a Notice error.
+   T-039 makes `report_blocked` check exactly this ([truthful blocks](../agent/blocks.md)), with regression fixtures for
+   both portals and for the s2c.mercell.com gateway 403.
 3. **List not found (2 portals: achatpublic.com, contractaciopublica.cat).**
 4. **Template format: one tender over several sibling rows (1 portal: marches-publics.info).**
 5. **Partial reads are served without a warning (evergabe.nrw.de):** one page of the list, and detail rules that fit only some

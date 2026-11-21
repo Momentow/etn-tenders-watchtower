@@ -14,6 +14,7 @@ from email.message import Message
 
 import httpx
 
+from watchtower.agent.blocks import tender_key
 from watchtower.agent.context import AgentContext, Fetched
 from watchtower.engine.extract import HtmlScope, JsonScope, parse_html, parse_json
 from watchtower.net import BlockSignal, detect_block
@@ -57,7 +58,20 @@ async def get_page(c: AgentContext, url: str, *, rendered: bool = False) -> Fetc
         except httpx.HTTPError as e:
             return f"GET {url} failed: {short_err(e)}"
     c.pages[key] = page
+    _record_page_block(c, url, page)
     return page
+
+
+def _record_page_block(c: AgentContext, requested: str, page: Fetched) -> None:
+    """A page that IS a login or captcha wall counts as a block of the tender (or list) it was meant to show: keyed by
+    the URL asked for, since every blocked page may redirect to the same login page."""
+    if page.text.startswith("[file:") or is_json(page):
+        return
+    strong = [s for s in detect_block(page.text, url=page.url, status=page.status) if s.strong]
+    if strong:
+        s = strong[0]
+        what = f"{requested} leads to a {s.kind} page ({'; '.join(s.evidence[:2])})"
+        c.blocks.add_block(tender_key(requested), requested, what)
 
 
 def is_json(page: Fetched) -> bool:
@@ -104,8 +118,23 @@ class DocProbe:
         return f"{name!r}: {self.content_type or 'unknown type'}, {self.size or '?'} bytes, file OK{moved}"
 
 
-async def probe_document(c: AgentContext, url: str) -> DocProbe:
-    """Download the first bytes of a document link: a file, or an HTML page (download page, login, captcha)?"""
+async def probe_document(
+    c: AgentContext, url: str, *, tender: str | None = None, source: str | None = None
+) -> DocProbe:
+    """Download the first bytes of a document link: a file, or an HTML page (download page, login, captcha)?
+
+    The result is recorded as block evidence (`ctx.blocks`) for `tender` (its page URL or id; else guessed from the
+    URL), with `source` the page the link was found on."""
+    probe = await _probe(c, url)
+    key = tender_key(url, tender=tender, document=True)
+    if probe.is_file:
+        c.blocks.downloaded.add(key)
+    elif probe.blocks or probe.status in (401, 403):
+        c.blocks.add_block(key, url, "document " + probe.sentence(), source)
+    return probe
+
+
+async def _probe(c: AgentContext, url: str) -> DocProbe:
     probe = DocProbe(url)
     try:
         async with c.client.stream("GET", url) as resp:

@@ -144,7 +144,7 @@ def test_probe_dates_finds_formats_zone_and_ambiguity():
 async def test_detect_block_tries_a_document_before_deciding(ctx):
     c = ctx()
     out = await call(c, "detect_block", url=f"{B}/login/verfahren/W-2026-001")
-    assert "VERDICT: BLOCKED — documents need a login" in out
+    assert "VERDICT: BLOCKED HERE — this document needs a login" in out and "Seen on 1 tender(s)" in out
     out = await call(c, "detect_block", url=f"{B}/ssr/ausschreibung/VG-2026-001")
     assert "VERDICT: NOT BLOCKED" in out
 
