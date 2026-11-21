@@ -19,12 +19,12 @@ No model call here: the agent scenarios are called through `Scenarios` (stubs un
 from __future__ import annotations
 
 import logging
-from collections.abc import Callable
+from collections.abc import Awaitable, Callable
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Any
+from typing import Any, TypeVar
 
-from watchtower.agent import stubs
+from watchtower.agent import stubs, usage
 from watchtower.agent.outcomes import (
     Blocked,
     Changed,
@@ -53,6 +53,7 @@ from watchtower.net import BrowserPool, PoliteClient
 from watchtower.validate import Health, PortalHistory, check
 
 log = logging.getLogger(__name__)
+T = TypeVar("T")
 
 
 @dataclass
@@ -128,7 +129,7 @@ class Pipeline:
     # ------------------------------------------------------------------ flows
 
     async def attach(self, portal: Portal, run_id: str) -> None:
-        outcome = await self.scenarios.generate_template(portal.url)
+        outcome = await self._metered(portal.id, run_id, lambda: self.scenarios.generate_template(portal.url))
         if isinstance(outcome, Blocked | Unreadable):
             await self.store.finish_run(
                 run_id, "failed", details={"outcome": outcome.kind, "problems": [outcome.reason]}
@@ -193,7 +194,11 @@ class Pipeline:
 
         # 3. Ask the agent.
         view = await self._view(portal, tv.version)
-        diagnosis = await self.scenarios.investigate(view, template, checked.result, checked.health, trigger="failure")
+        diagnosis = await self._metered(
+            portal.id,
+            run_id,
+            lambda: self.scenarios.investigate(view, template, checked.result, checked.health, trigger="failure"),
+        )
         details = _diagnosis_details(diagnosis)
         if isinstance(diagnosis, Transient):
             again = await self._read(portal.id, template, tv.version)
@@ -235,7 +240,11 @@ class Pipeline:
             await self.states.start_healing(portal.id, checked.problem)
             return
         view = await self._view(portal, tv.version)
-        diagnosis = await self.scenarios.investigate(view, template, checked.result, checked.health, trigger="audit")
+        diagnosis = await self._metered(
+            portal.id,
+            run_id,
+            lambda: self.scenarios.investigate(view, template, checked.result, checked.health, trigger="audit"),
+        )
         details |= _diagnosis_details(diagnosis)
         if isinstance(diagnosis, Healthy | Transient):
             count = await self._deliver(portal.id, run_id, checked, details=details)
@@ -251,6 +260,18 @@ class Pipeline:
         await self.states.start_healing(portal.id, reason, found_by_audit=True)
 
     # ------------------------------------------------------------------ steps
+
+    async def _metered(self, portal_id: str, run_id: str, call: Callable[[], Awaitable[T]]) -> T:
+        """Run a scenario and store what its model calls used for this run, whatever the outcome (ADR 0017)."""
+        with usage.collect() as used:
+            try:
+                return await call()
+            finally:
+                if used:
+                    try:
+                        await self.store.add_model_usage(portal_id, run_id, [u.as_row() for u in used])
+                    except Exception:  # metering must never fail a run
+                        log.exception("could not store model usage for run %s", run_id)
 
     async def _read(
         self, portal_id: str, template: Template, version: int, *, history: PortalHistory | None = None

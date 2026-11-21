@@ -68,6 +68,32 @@ class RunView:
 
 
 @dataclass
+class ModelCost:
+    """What the agent's model calls cost for one portal (T-099, ADR 0017), summed from `store.model_usage_summary`."""
+
+    rows: list[dict[str, Any]]  # per scenario, tier and model
+    requests: int
+    tokens: int
+    cost_usd: float | None  # None: a model without a price was used
+
+    @classmethod
+    def of(cls, rows: list[dict[str, Any]]) -> "ModelCost | None":
+        if not rows:
+            return None
+        costs = [r["cost_usd"] for r in rows]
+        return cls(
+            rows=rows,
+            requests=sum(r["requests"] for r in rows),
+            tokens=sum(r["input_tokens"] + r["output_tokens"] for r in rows),
+            cost_usd=None if any(c is None for c in costs) else sum(costs),
+        )
+
+    def scenario_cost(self, scenario: str) -> float | None:
+        costs = [r["cost_usd"] for r in self.rows if r["scenario"] == scenario]
+        return None if not costs or any(c is None for c in costs) else sum(costs)
+
+
+@dataclass
 class PortalRow:
     portal: Portal
     last_run: RunView | None
@@ -76,6 +102,7 @@ class PortalRow:
     activity: str  # what the system did / is doing, in words
     last_audit: RunView | None = None
     next_audit_at: datetime | None = None  # None: reactive mode, or not known
+    model_cost: ModelCost | None = None  # None: no model call for this portal yet
 
 
 @dataclass
@@ -100,6 +127,7 @@ class Overview:
     total_tenders: int
     generated_at: datetime
     health: HealthChecks | None = None
+    total_cost_usd: float | None = None  # model cost over all portals; None: none yet, or a model without a price
 
 
 @dataclass
@@ -189,7 +217,11 @@ def activity(portal: Portal, last_run: RunView | None, running: RunView | None, 
 
 
 async def _portal_row(
-    store: Store, portal: Portal, runs: list[Run] | None = None, audits: dict[str, dict] | None = None
+    store: Store,
+    portal: Portal,
+    runs: list[Run] | None = None,
+    audits: dict[str, dict] | None = None,
+    usage: list[dict[str, Any]] | None = None,
 ) -> tuple[PortalRow, list[RunView]]:
     views = [run_view(r) for r in (runs if runs is not None else await store.list_runs(portal.id, limit=_RECENT_RUNS))]
     running = next((v for v in views if v.running), None)
@@ -203,6 +235,7 @@ async def _portal_row(
         activity=activity(portal, last_run, running, last_repair),
         last_audit=next((v for v in views if v.trigger == "audit" and not v.running), None),
         next_audit_at=(audits or {}).get(portal.id, {}).get("next_audit_at"),
+        model_cost=ModelCost.of(usage or []),
     )
     return row, views
 
@@ -218,7 +251,10 @@ async def _health(scheduler: Any) -> tuple[HealthChecks | None, dict[str, dict]]
 async def overview(store: Store, scheduler: Any = None) -> Overview:
     health, audits = await _health(scheduler)
     portals = await store.list_portals()
-    rows = [(await _portal_row(store, p, audits=audits))[0] for p in portals]
+    usage: dict[str, list[dict[str, Any]]] = {}
+    for u in await store.model_usage_summary():
+        usage.setdefault(u["portal_id"], []).append(u)
+    rows = [(await _portal_row(store, p, audits=audits, usage=usage.get(p.id)))[0] for p in portals]
     # Problems first: failed, healing, integrating, then serving; newest first inside a state.
     order = {"failed": 0, "healing": 1, "integrating": 2, "serving": 3}
     rows.sort(key=lambda r: (order.get(r.portal.state, 9), -r.portal.created_at.timestamp()))
@@ -231,7 +267,14 @@ async def overview(store: Store, scheduler: Any = None) -> Overview:
         total_tenders=sum(r.portal.tender_count for r in rows),
         generated_at=utcnow(),
         health=health,
+        total_cost_usd=_total_cost([r.model_cost for r in rows if r.model_cost]),
     )
+
+
+def _total_cost(costs: list[ModelCost]) -> float | None:
+    if not costs or any(c.cost_usd is None for c in costs):
+        return None
+    return sum(c.cost_usd for c in costs if c.cost_usd is not None)
 
 
 async def portal_detail(
@@ -241,7 +284,8 @@ async def portal_detail(
     if portal is None:
         return None
     health, audits = await _health(scheduler)
-    row, runs = await _portal_row(store, portal, await store.list_runs(portal.id, limit=200), audits)
+    runs_ = await store.list_runs(portal.id, limit=200)
+    row, runs = await _portal_row(store, portal, runs_, audits, await store.model_usage_summary(portal.id))
     tenders = await store.list_tenders(portal.id) if with_tenders else []
     tenders.sort(key=lambda t: t.last_changed_at, reverse=True)
     return PortalDetail(
@@ -310,6 +354,21 @@ def safe_href(value: Any) -> str | None:
     if isinstance(value, str) and value.lower().startswith(("http://", "https://")):
         return value
     return None
+
+
+def usd(value: float | None) -> str:
+    """A model cost: `$0.0123`, `<$0.0001`, or `price unknown`."""
+    if value is None:
+        return "price unknown"
+    if 0 < value < 0.0001:
+        return "<$0.0001"
+    return f"${value:.4f}" if value < 1 else f"${value:.2f}"
+
+
+def tokens(value: int | None) -> str:
+    if not value:
+        return "0"
+    return f"{value / 1000:.1f}k" if value < 1_000_000 else f"{value / 1_000_000:.2f}M"
 
 
 def filesize(size: int | None) -> str:

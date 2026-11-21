@@ -214,3 +214,31 @@ async def test_health_checks_and_audits_are_shown(client, store, app):
     app.state.scheduler.healthcheck.mode = "reactive"
     r = await client.get("/")
     assert "Reactive health checks" in r.text and "next audit" not in r.text
+
+
+async def test_model_cost_per_portal_and_scenario(client, store):
+    # T-099: model usage stored by the pipeline shows on the overview and the portal page.
+    pid = await serving_portal(store)
+    run = (await store.list_runs(pid))[-1]
+    row = dict(scenario="attach", tier="strong", model="gpt-5.6-luna", requests=12, input_tokens=180_000)
+    await store.add_model_usage(
+        pid,
+        run.id,
+        [
+            {**row, "cached_tokens": 120_000, "output_tokens": 4_000, "cost_usd": 0.0168},
+            {**row, "tier": "light", "requests": 5, "input_tokens": 20_000, "cached_tokens": 0, "output_tokens": 2_000,
+             "cost_usd": 0.0064},
+        ],
+    )  # fmt: skip
+    overview = (await client.get("/")).text
+    assert "Model cost" in overview and "$0.0232" in overview and "17 calls" in overview
+    page = (await client.get(f"/dashboard/portals/{pid}")).text
+    assert "Model usage" in page and "gpt-5.6-luna" in page and "$0.0168" in page and "180.0k (120.0k)" in page
+
+
+async def test_a_model_without_a_price_shows_as_unknown(client, store):
+    pid = await serving_portal(store)
+    u = dict(scenario="investigate", tier="strong", model="mystery", requests=1, input_tokens=10, cached_tokens=0)
+    await store.add_model_usage(pid, None, [{**u, "output_tokens": 1, "cost_usd": None}])
+    assert "price unknown" in (await client.get("/")).text
+    assert views.usd(0.00004) == "<$0.0001" and views.usd(2.5) == "$2.50"
