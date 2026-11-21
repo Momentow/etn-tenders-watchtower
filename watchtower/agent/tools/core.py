@@ -380,14 +380,8 @@ def _v2_list_lines(lr: ReadResult, listed: int) -> list[str]:
         out.append("  portal's own total: unknown (give `list.total` if the page or API shows one)")
     if lr.scope_dropped:
         out.append(f"  scope dropped {lr.scope_dropped} record(s) that are not open tenders")
-    out.append(
-        "  list "
-        + (
-            "NOT exhausted: the check stops after a few pages/clicks; the full read goes on"
-            if lr.stats.hit_max_pages
-            else "exhausted within the check"
-        )
-    )
+    if not lr.stats.hit_max_pages:
+        out.append("  list exhausted within the check")
     return out
 
 
