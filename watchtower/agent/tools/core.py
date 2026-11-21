@@ -25,6 +25,7 @@ from watchtower.engine.executor import first_list_page
 from watchtower.engine.template import Template
 from watchtower.net import detect_block
 from watchtower.validate import check
+from watchtower.validate.completeness import completeness_problems
 
 log = logging.getLogger(__name__)
 
@@ -170,6 +171,8 @@ async def _dry_run(c: AgentContext, raw: str, sample: int) -> tuple[str, Templat
         if lr.tenders:
             lines.append("  first ids: " + ", ".join(x.id for x in lr.tenders[:5]))
         problems += [f"list: {e}" for e in lr.errors]
+        # A "latest N" excerpt or unfiltered notice types fail the real read too (T-036): say so before submitting.
+        problems += [f"list: {p}" for p in completeness_problems(lr)]
         if listed == 0:
             problems.append("the list reads no tenders")
         if lr.stats.duplicate_ids and lr.stats.duplicate_ids >= listed:

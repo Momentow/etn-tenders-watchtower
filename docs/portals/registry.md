@@ -131,6 +131,8 @@ Real model, fresh database, portals added 5 s apart. All 12 settled within 10 mi
 4. **Template format: one tender over several sibling rows (1 portal: marches-publics.info).**
 5. **Partial reads are served without a warning (evergabe.nrw.de):** one page of the list, and detail rules that fit only some
    of the hosts a portal links to.
+   Since T-036 ([ADR 0018](../decisions/0018-completeness-checks.md)) such a read fails validation as an excerpt that
+   also mixes in award notices, so it is never served.
 
 ## How to rebuild
 

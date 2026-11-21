@@ -61,6 +61,7 @@ class ReadStats(BaseModel):
     duplicate_ids: int = 0  # list items whose id was already seen in this read
     skipped_items: int = 0  # list items without an id
     hit_max_pages: bool = False  # pagination stopped at `max_pages` with pages possibly left
+    limited: bool = False  # the read stopped at the caller's `limit` (a dry run): not every tender was read
     list_seconds: float = 0.0
     detail_seconds: float = 0.0
     total_seconds: float = 0.0
@@ -74,6 +75,9 @@ class ReadResult(BaseModel):
     # v2 templates (ADR 0014), for completeness checks (T-036):
     declared_total: int | None = None  # the portal's own count of what the list holds (`list.total`)
     scope_dropped: int = 0  # records read but not open tenders in the template's `scope` (never returned)
+    # Completeness evidence (engine/completeness.py, T-036), checked by `validate.check`:
+    more_offered: list[str] = []  # a list read without pagination: the page's controls/counts showing there's more
+    other_notices: dict[str, str] = {}  # delivered tender id → the label marking it as another notice type
 
     @property
     def ok(self) -> bool:

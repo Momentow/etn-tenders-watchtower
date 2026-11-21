@@ -17,6 +17,7 @@ from typing import TYPE_CHECKING, Any
 from pydantic import BaseModel
 
 from watchtower.engine.result import ReadResult, TenderRecord
+from watchtower.validate.completeness import completeness_problems
 
 if TYPE_CHECKING:  # validate must not import core at runtime (core's pipeline imports validate)
     from watchtower.core.models import Run, StoredTender
@@ -87,6 +88,7 @@ def check(result: ReadResult, history: PortalHistory | None = None, *, today: da
     problems: list[str] = []
     problems += _engine_errors(result)
     problems += _count(result, history)
+    problems += completeness_problems(result)  # the portal's own total, "latest N" excerpts, notice types (T-036)
     if result.tenders:
         problems += _duplicates(result)
         problems += _fields(result.tenders, history)

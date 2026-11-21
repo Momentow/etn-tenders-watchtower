@@ -93,3 +93,4 @@ nav:
       - "0015 Agent v2 and model tiers": decisions/0015-agent-v2-explorer-and-tiers.md
       - "0016 Template v2 notes": decisions/0016-template-v2-implementation-notes.md
       - "0017 Model usage metering": decisions/0017-model-usage-metering.md
+      - "0018 Completeness checks": decisions/0018-completeness-checks.md
