@@ -31,6 +31,7 @@ from agents import (
 from agents.items import ModelResponse
 from openai.types.shared import Reasoning
 
+from watchtower.agent import usage
 from watchtower.agent.config import TIERS, AgentSettings, Tier, load_settings
 from watchtower.agent.context import AgentContext, Outcome
 from watchtower.agent.prompts import instructions
@@ -291,6 +292,7 @@ async def run_scenario(
         output_tokens=hooks.total("output_tokens"),
     )
     by_tier: dict[Tier, TierUsage] = {"strong": strong, "light": light.usage}
+    _meter(scenario, by_tier, settings=settings, model=model, light_model=light_model or model)
     return ScenarioRun(
         outcome=ctx.outcome,
         stop_reason=stop,
@@ -302,6 +304,37 @@ async def run_scenario(
         final_text=final_text,
         by_tier=by_tier,
     )
+
+
+def _meter(
+    scenario: Scenario,
+    by_tier: dict[Tier, TierUsage],
+    *,
+    settings: AgentSettings | None,
+    model: Model | None,
+    light_model: Model | None,
+) -> None:
+    """Report each tier's usage to the active collector (ADR 0017; T-099)."""
+    for tier, u in by_tier.items():
+        if u.requests <= 0:
+            continue
+        given = model if tier == "strong" else light_model
+        if given is not None:
+            name = str(getattr(given, "model", None) or type(given).__name__)
+        else:
+            try:
+                name = (settings or load_settings()).model_for(tier)
+            except Exception:  # noqa: BLE001 - metering must never fail a run
+                name = "unknown"
+        usage.record(
+            scenario,
+            tier,
+            name,
+            requests=u.requests,
+            input_tokens=u.input_tokens,
+            cached_tokens=u.cached_tokens,
+            output_tokens=u.output_tokens,
+        )
 
 
 def _cached(usage: Any) -> int:

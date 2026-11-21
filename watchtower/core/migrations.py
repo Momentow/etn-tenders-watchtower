@@ -88,4 +88,22 @@ MIGRATIONS: list[str] = [
     CREATE INDEX jobs_ready ON jobs (status, run_after, id);
     CREATE INDEX jobs_portal_status ON jobs (portal_id, status);
     """,
+    # 2 — model usage per run, scenario and tier (T-099, ADR 0017)
+    """
+    CREATE TABLE model_usage (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        run_id TEXT REFERENCES runs(id),
+        portal_id TEXT NOT NULL REFERENCES portals(id),
+        scenario TEXT NOT NULL,
+        tier TEXT NOT NULL,
+        model TEXT NOT NULL,
+        requests INTEGER NOT NULL,
+        input_tokens INTEGER NOT NULL,
+        cached_tokens INTEGER NOT NULL,
+        output_tokens INTEGER NOT NULL,
+        cost_usd REAL,
+        created_at TEXT NOT NULL
+    );
+    CREATE INDEX model_usage_portal ON model_usage (portal_id, scenario);
+    """,
 ]

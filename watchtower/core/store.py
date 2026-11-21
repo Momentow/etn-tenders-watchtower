@@ -642,6 +642,58 @@ class Store:
         row = await _one(db, "SELECT * FROM jobs WHERE id = ?", job_id)
         return None if row is None else _job(row)
 
+    # ------------------------------------------------------------------ model usage (T-099, ADR 0017)
+
+    async def add_model_usage(self, portal_id: str, run_id: str | None, rows: Iterable[dict[str, Any]]) -> int:
+        """Store what a scenario run's model calls used (`agent.usage.ModelUsage.as_row()` dicts). Returns the count."""
+        rows = list(rows)
+        if not rows:
+            return 0
+        now = to_db(utcnow())
+        async with self._tx() as db:
+            await db.executemany(
+                "INSERT INTO model_usage (run_id, portal_id, scenario, tier, model, requests, input_tokens,"
+                " cached_tokens, output_tokens, cost_usd, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                [
+                    (
+                        run_id,
+                        portal_id,
+                        r["scenario"],
+                        r["tier"],
+                        r["model"],
+                        r["requests"],
+                        r["input_tokens"],
+                        r["cached_tokens"],
+                        r["output_tokens"],
+                        r.get("cost_usd"),
+                        now,
+                    )
+                    for r in rows
+                ],
+            )
+        return len(rows)
+
+    async def model_usage_summary(self, portal_id: str | None = None) -> list[dict[str, Any]]:
+        """Usage summed per portal, scenario, tier and model (all portals, or one). `cost_usd` is None when any row
+        lacks a price; `unpriced` counts those rows."""
+        sql = (
+            "SELECT portal_id, scenario, tier, model, COUNT(DISTINCT run_id) AS runs, SUM(requests) AS requests,"
+            " SUM(input_tokens) AS input_tokens, SUM(cached_tokens) AS cached_tokens,"
+            " SUM(output_tokens) AS output_tokens, SUM(cost_usd) AS cost_usd,"
+            " SUM(cost_usd IS NULL) AS unpriced FROM model_usage"
+        )
+        params: tuple = ()
+        if portal_id is not None:
+            sql += " WHERE portal_id = ?"
+            params = (portal_id,)
+        sql += " GROUP BY portal_id, scenario, tier, model ORDER BY portal_id, scenario, tier, model"
+        async with self._tx() as db:
+            out = [dict(r) for r in await _all(db, sql, *params)]
+        for r in out:
+            if r["unpriced"]:
+                r["cost_usd"] = None
+        return out
+
 
 # ---------------------------------------------------------------------- helpers
 
