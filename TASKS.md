@@ -38,8 +38,9 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-033 | Template format v2 + executor (actions, entry shortcut, API mode, filters, row groups) | engine | in-progress | Lavrtajx | feat/T-033-template-v2-executor | T-031, T-032 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-034 | Agent v2 explorer: browser tools, recorded flow → API, v2 templates | agent | todo | | | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-035 | Agent v2 tiers: strong planner, light workers, budgets per tier | agent | done | OrangeCanvas705 | feat/T-035-model-tiers | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
-| T-036 | Completeness & truthful blocks: never `serving` on a partial read | validate, notice | todo | | | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
-| T-037 | Investigate/repair and audits on v2 | repair, notice | todo | | | T-034, T-035, T-036 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-036 | Completeness: never `serving` on a partial read | validate, notice | todo | | | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-039 | Truthful blocks: `Blocked` only on evidence; constant gateway 403 is a block (split from T-036) | agent, notice | in-progress | OrangeCanvas705 | feat/T-039-truthful-blocks | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-037 | Investigate/repair and audits on v2 | repair, notice | todo | | | T-034, T-035, T-036, T-039 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-038 | v2 live re-run: the 12-portal demo scenario, then `unseen` | test-portals | todo | | | T-037 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-021 | README & demo video script | docs-site | todo | | | T-020, T-038 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
 | T-099 | LLM usage metering & cost per portal (last MVP task) | cost | todo | | | T-020, T-035 | [model-usage](docs/cost/model-usage.md) |
@@ -399,12 +400,19 @@ the T-032 PR shows only its own two commits.
 - [ ] `WATCHTOWER_MODEL_STRONG` / `WATCHTOWER_MODEL_LIGHT` in the ADR 0001 env table and the README
 **Refs:** [T-030](#t-030--engine-v2--agent-v2-epic), [runtime](docs/agent/runtime.md)
 
-### T-036 — Completeness & truthful blocks
+### T-036 — Completeness
 **Acceptance:**
 - [ ] Declared-total and widget checks; notice-type scope check; partial reads never promote to `serving`
-- [ ] Block only after the checks in T-030 §5; constant gateway 403 → block reason, not temporary
-- [ ] Regression fixtures for the evergabe widget and the dtvp/PLACE false blocks
+- [ ] Regression fixture for the evergabe widget
+**Notes:** the truthful-blocks half moved to T-039 (it doesn't need the v2 executor).
 **Refs:** [T-030](#t-030--engine-v2--agent-v2-epic), [read validation](docs/validate/checks.md)
+
+### T-039 — Truthful blocks (split from T-036)
+**Acceptance:**
+- [ ] `report_blocked` accepted only with the evidence in [ADR 0015 → Truthful blocks](docs/decisions/0015-agent-v2-explorer-and-tiers.md#truthful-blocks-t-036): the block on ≥ 2 tenders, tried in the list page's session, anonymous routes tried, or a whole-site block on the entry page; otherwise it answers with what's missing
+- [ ] Constant gateway/WAF 403 on every path → block reason ("access refused by the portal's firewall"), not temporary
+- [ ] Regression fixtures for the dtvp.de and PLACE false blocks (login redirect on one document link, anonymous route available)
+**Refs:** [T-030](#t-030--engine-v2--agent-v2-epic), [ADR 0015](docs/decisions/0015-agent-v2-explorer-and-tiers.md), [toolkit](docs/agent/toolkit.md)
 
 ### T-037 — Investigate/repair and audits on v2
 **Acceptance:**
