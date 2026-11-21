@@ -151,3 +151,92 @@ def _json_strings(v: Any, depth: int = 0) -> list[str]:
     if isinstance(v, list):
         return [s for x in v[:20] for s in _json_strings(x, depth + 1)]
     return []
+
+
+# --------------------------------------------------------------------------- declared counts (audits, T-041)
+
+_NUM = r"(\d{1,3}(?:[.,\s  '’]\d{3})+|\d+)"
+_COUNT_NOUNS = (
+    r"(results?|treffer|ergebnis(?:se)?|résultats?|resultats?|resultados?|resultaten|resultaat|wyników|wyniki|risultati"
+    r"|hits|records|entries|einträge|tenders|ausschreibungen|bekanntmachungen|vergaben|verfahren|consultations"
+    r"|aankondigingen|opdrachten|avis|annonces|licitaciones|anuncios|expedientes|przetargi|postępowania|postępowań"
+    r"|ogłoszeń|ogłoszenia|bandi|gare|notices|opportunities|procedures|procédures)"
+)
+_COUNT_PATTERNS = (
+    # "1–10 von 20", "Showing 1 to 10 of 2,474"
+    re.compile(
+        _NUM + r"\s*(?:-|–|—|to|bis|à|a|tot|do|al)\s*" + _NUM + r"\s+(?:of|von|sur|de|van|z|di|aus)\s+" + _NUM + r"\b"
+    ),
+    # "20 Treffer", "2.474 resultaten gevonden", "33 offene Ausschreibungen"
+    re.compile(r"(?:^|\s|\()" + _NUM + r"\s+(?:[^\W\d]+\s+)?" + _COUNT_NOUNS + r"\b"),
+    # "Treffer: 20", "Résultats : 2 474", "Gefunden: 33"
+    re.compile(
+        r"(?:" + _COUNT_NOUNS[1:-1] + r"|gefunden|found|trouvés?|encontrados?|gevonden|znaleziono|trovati|total|gesamt"
+        r"|insgesamt|anzahl|totaal)\s*:\s*" + _NUM + r"\s*\)?$"
+    ),
+)
+_PER_PAGE = re.compile(
+    r"pro seite|je seite|per page|par page|por página|per pagina|op pagina|na stron|anzeigen pro|weergeven per", re.I
+)
+_COUNT_MAX_CHARS = 80
+_NOT_TEXT = ("script", "style", "option", "select", "textarea", "head", "title")
+
+
+def declared_counts(scope: Scope, items: list[Scope]) -> list[tuple[int, str]]:
+    """The portal's own counts of what its list holds, found on the first list page: (count, evidence), distinct counts.
+
+    JSON: a total key (`total`, `totalElements`, …) at the top or one level deep. HTML: a short text outside the list
+    items such as "20 Treffer", "Ergebnisse: 20" or "1–10 von 20"; "10 per page" choices and form options don't count.
+    Used by proactive audits for templates that declare no `list.total` (v1). More than one distinct count means the
+    page is ambiguous; the caller decides.
+    """
+    found: dict[int, str] = {}
+    if isinstance(scope, JsonScope):
+        for key, n in _json_totals(scope.value):
+            found.setdefault(n, f'"{key}": {n}')
+        return list(found.items())[:MAX_EVIDENCE]
+    assert isinstance(scope, HtmlScope)
+    item_els = {id(x.el) for x in items if isinstance(x, HtmlScope)}
+    # Elements holding list items (the table, the list) read the items' text too. `holders` keeps their proxies alive so
+    # their ids stay valid while the page is walked (see `more_offered`).
+    holders = [a for x in items if isinstance(x, HtmlScope) for a in x.el.iterancestors()]
+    holder_ids = {id(a) for a in holders}
+    for el in scope.el.iter():
+        if not isinstance(el.tag, str) or el.tag in _NOT_TEXT or id(el) in holder_ids:
+            continue
+        text = collapse(el.text_content())
+        if not text or len(text) > _COUNT_MAX_CHARS or not any(c.isdigit() for c in text) or _PER_PAGE.search(text):
+            continue
+        if any(id(a) in item_els or a.tag in ("select", "option") for a in (el, *el.iterancestors())):
+            continue
+        n = _claimed(text)
+        if n is not None:
+            found.setdefault(n, text)
+        if len(found) >= MAX_EVIDENCE:
+            break
+    return list(found.items())
+
+
+def _claimed(text: str) -> int | None:
+    low = text.casefold()
+    for i, rx in enumerate(_COUNT_PATTERNS):
+        m = rx.search(low)
+        if m:
+            return _int(m.group(3) if i == 0 else m.group(1))
+    return None
+
+
+def _int(s: str) -> int:
+    return int(re.sub(r"\D", "", s))
+
+
+def _json_totals(value: Any, path: str = "") -> list[tuple[str, int]]:
+    out: list[tuple[str, int]] = []
+    if not isinstance(value, dict):
+        return out
+    for k, v in value.items():
+        if _TOTAL_KEYS.match(k) and isinstance(v, int) and not isinstance(v, bool) and v >= 0:
+            out.append((f"{path}{k}", v))
+        elif isinstance(v, dict) and not path:
+            out += _json_totals(v, f"{k}.")
+    return out
