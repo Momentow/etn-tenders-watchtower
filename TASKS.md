@@ -40,7 +40,8 @@ Shared board for every human and Claude session. Protocol: [CLAUDE.md → TASKS.
 | T-035 | Agent v2 tiers: strong planner, light workers, budgets per tier | agent | done | OrangeCanvas705 | feat/T-035-model-tiers | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-036 | Completeness: never `serving` on a partial read | validate, notice | done | Lavrtajx | feat/T-036-completeness | T-033 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-039 | Truthful blocks: `Blocked` only on evidence; constant gateway 403 is a block (split from T-036) | agent, notice | done | OrangeCanvas705 | feat/T-039-truthful-blocks | T-031 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
-| T-037 | Investigate/repair and audits on v2 | repair, notice | todo | | | T-034, T-035, T-036, T-039 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-037 | Investigate/repair and audits on v2 (split: declared-total audit → T-041) | repair, notice | todo | | | T-034, T-035, T-036, T-039 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
+| T-041 | Audits compare against the portal's declared total (split from T-037) | notice | in-progress | OrangeCanvas705 | feat/T-041-audit-declared-total | T-036 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-038 | v2 live re-run: the 12-portal demo scenario, then `unseen` | test-portals | todo | | | T-037 | [T-030 section](#t-030--engine-v2--agent-v2-epic) |
 | T-021 | README: how it works, env vars, running it (split: demo script → T-040) | docs-site | done | Momentow | docs/T-021-readme | T-020 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
 | T-040 | Demo video script (split from T-021) | docs-site | todo | | | T-021, T-038 | [requirements → Hand-in](docs/spec/requirements.md#hand-in) |
@@ -418,8 +419,17 @@ the T-032 PR shows only its own two commits.
 ### T-037 — Investigate/repair and audits on v2
 **Acceptance:**
 - [ ] Repair of a changed flow step, selector or endpoint on the new mock portal's variants
-- [ ] Audits compare against the declared total
+- [ ] ~~Audits compare against the declared total~~ → moved to T-041 (needs only T-036)
 **Refs:** [T-030](#t-030--engine-v2--agent-v2-epic), [investigate](docs/repair/investigate.md), [health checks](docs/notice/health-checks.md)
+
+### T-041 — Audits compare against the declared total (split from T-037)
+**Acceptance:**
+- [ ] A proactive audit finds the portal's own count on the live first list page (JSON total key, or a short
+  "N results" / "1–20 of N" text) when the template doesn't declare one, and reports a finding when the read reached
+  < 95 % of it (ADR 0018 tolerance); conflicting or missing counts → no finding
+- [ ] Reads that declare a total (v2 `list.total`) are noted as checked; no extra requests
+- [ ] Mock-portal regression: a variant whose list is silently cut short is caught by the audit; base portals stay healthy
+**Refs:** [ADR 0018](docs/decisions/0018-completeness-checks.md), [investigate → audit checks](docs/repair/investigate.md#audit-checks), [health checks](docs/notice/health-checks.md)
 
 ### T-038 — v2 live re-run
 **Acceptance:**
