@@ -82,8 +82,11 @@ class SchedulerSettings:
     max_attempts: dict[str, int] = field(
         default_factory=lambda: {"attach": 2, "read": 2, "investigate": 2, "download": 3}
     )
+    # An attach or investigate job runs the agent (attach: 1,800 s budget; investigate: 900 s) and then the first read
+    # with the new template, which may take as long as a read job (3,600 s: a large API list at 1 req/s). A job killed
+    # at the agent's own budget loses the agent's outcome, so both get the agent's budget plus a read.
     timeouts: dict[str, float] = field(
-        default_factory=lambda: {"attach": 1800, "read": 3600, "investigate": 1800, "download": 3600}
+        default_factory=lambda: {"attach": 1800 + 3600, "read": 3600, "investigate": 900 + 3600, "download": 3600}
     )
     retry_delay: timedelta = timedelta(seconds=30)  # times the attempt number
 
