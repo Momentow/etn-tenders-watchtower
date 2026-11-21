@@ -20,6 +20,14 @@ Deterministic first ([ADR 0011](../decisions/0011-investigate-deterministic-firs
   read delivered, but not delivered (e.g. a second "new" table).
 - **Missed tenders, JSON list:** the site's own page and scripts call the list endpoint with other filter values than
   the template (e.g. `etat=tous` vs `etat=en_cours`).
+- **Below the portal's own count** (T-041): the portal's count of its list, read from the template's first list
+  page, compared with tenders delivered + dropped by scope. JSON: a total key (`total`, `totalElements`, …). HTML: a
+  short text outside the list items, such as `20 Treffer`, `Ergebnisse: 33` or `1–10 von 2.474`. "Per page" choices and
+  form options don't count (`engine.completeness.declared_counts`). Below 95 % of it ([ADR 0018](../decisions/0018-completeness-checks.md)
+  tolerance) is a finding: pagination that stops early, a capped result list, a filter. The validators' sharp-drop
+  check only fires below 60 %, so a list cut from 20 to 15 needs this. Several different counts on the page, or none,
+  give no finding. A v2 read that declares `list.total` was already compared by `validate.check`; the audit only notes
+  it and makes no request. The first list page is fetched once per audit and shared with the missed-links check.
 - **Values from the wrong place:** on 2 open tenders' pages, `buyerName` and `referenceNumber` are compared with the
   value under the portal's own label for that field (`Vergabestelle`, `acheteur`, `órgano de contratación`,
   `zamawiający`, …). A mismatch names the label where the read value actually appears.
@@ -52,6 +60,7 @@ Tested offline in `tests/agent/test_investigate.py` with a scripted model:
 | `ssr=markup`, `ssr=pagination`, `js=renamed-keys` | `Changed`; the repaired template passes validation with history |
 | `ssr=silent-missed`, `ssr=silent-swap`, `js=silent-missed` | audit findings → `Changed`; the repaired read has no findings |
 | unchanged `ssr`, `js` | audit `Healthy`, no model call |
+| `ssr=silent-cut` (`tests/agent/test_audit_declared_total.py`) | audit finding: "says the list holds 20 ('20 Treffer'), but the read delivered only 15"; the unchanged `ssr`/`js` reads match their own count |
 
 The scripted model supplies the repairs, so these tests prove the plumbing, evidence and validation, not the model's
 skill. Check a real model with `OPENAI_API_KEY` set (see [agent runtime → Checking it live](../agent/runtime.md)).
