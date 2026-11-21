@@ -92,3 +92,4 @@ nav:
       - "0014 Template format v2": decisions/0014-template-format-v2.md
       - "0015 Agent v2 and model tiers": decisions/0015-agent-v2-explorer-and-tiers.md
       - "0016 Template v2 notes": decisions/0016-template-v2-implementation-notes.md
+      - "0017 Model usage metering": decisions/0017-model-usage-metering.md
