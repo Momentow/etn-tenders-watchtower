@@ -33,13 +33,17 @@ from watchtower.agent.outcomes import (
     Transient,
     Unreadable,
 )
-from watchtower.agent.runtime import Budget, ScenarioRun, run_scenario
+from watchtower.agent.runtime import Budget, ScenarioRun, TieredBudget, run_scenario
 from watchtower.engine.template import Template
 from watchtower.net import BrowserPool, PoliteClient
 
 log = logging.getLogger(__name__)
 
-ATTACH_BUDGET = Budget(max_turns=30, max_tokens=400_000, wall_seconds=900)
+# ADR 0015: exploring at 1 req/s is slow, and light checks run inside the strong model's wall time.
+ATTACH_BUDGET = TieredBudget(
+    strong=Budget(max_turns=40, max_tokens=600_000, wall_seconds=1800),
+    light=Budget(max_turns=60, max_tokens=400_000, wall_seconds=120),
+)
 
 ATTACH_PROMPT = """\
 Attach a new portal. You get only its URL. Produce a template that reads EVERY open tender on the portal (all list
@@ -72,19 +76,24 @@ async def run_attach(
     client: PoliteClient,
     browser: BrowserPool | None,
     *,
-    budget: Budget = ATTACH_BUDGET,
+    budget: Budget | TieredBudget = ATTACH_BUDGET,
     model: Model | None = None,
+    light_model: Model | None = None,
 ) -> AttachRun:
     ctx = AgentContext(portal_url, client, browser)
     try:
-        run = await run_scenario("attach", ATTACH_PROMPT, f"Portal URL: {portal_url}", ctx, budget=budget, model=model)
+        task = f"Portal URL: {portal_url}"
+        run = await run_scenario(
+            "attach", ATTACH_PROMPT, task, ctx, budget=budget, model=model, light_model=light_model
+        )
     except AgentConfigError as e:
         return AttachRun(Unreadable(reason=f"the agent is not configured ({e})"), None)
     log.info(
-        "attach %s: %s after %d model calls, %d+%d tokens (%d cached), %.0fs",
+        "attach %s: %s after %d model calls (%d light), %d+%d tokens (%d cached), %.0fs",
         portal_url,
         run.stop_reason,
         run.requests,
+        run.by_tier["light"].requests,
         run.input_tokens,
         run.output_tokens,
         run.cached_tokens,
@@ -97,7 +106,7 @@ def make_generate_template(
     client: PoliteClient,
     browser: BrowserPool | None,
     *,
-    budget: Budget = ATTACH_BUDGET,
+    budget: Budget | TieredBudget = ATTACH_BUDGET,
     model: Model | None = None,
 ) -> GenerateTemplate:
     """The `generate_template(portal_url)` the pipeline calls, bound to the process's network objects."""
