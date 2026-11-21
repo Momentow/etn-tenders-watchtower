@@ -129,7 +129,7 @@ Python 3.12+, asyncio throughout · FastAPI + uvicorn · httpx · selectolax / l
 SQLite via aiosqlite · OpenAI Agents SDK · Jinja2 + htmx dashboard · Zensical docs site · uv · ruff · pytest.
 Rationale and rejected options: [ADR 0001](docs/decisions/0001-tech-stack.md).
 
-Env vars (full table in ADR 0001): `OPENAI_API_KEY` (required), `WATCHTOWER_MODEL`, `DATA_DIR` (default `/data`),
+Env vars (full table in ADR 0001): `OPENAI_API_KEY` (required), `WATCHTOWER_MODEL` (or per tier `WATCHTOWER_MODEL_STRONG` / `WATCHTOWER_MODEL_LIGHT`), `DATA_DIR` (default `/data`),
 `WATCHTOWER_HEALTHCHECK_MODE` (`reactive` | `proactive`, default `proactive`), `WATCHTOWER_HEALTHCHECK_INTERVAL_HOURS` (default `24`).
 A new env var is added to the ADR 0001 table and the README in the same PR.
 

@@ -15,28 +15,72 @@ a tool (T-022 adds more), not into the prompt.
 
 ```python
 from watchtower.agent.context import AgentContext
-from watchtower.agent.runtime import Budget, run_scenario
+from watchtower.agent.runtime import Budget, TieredBudget, run_scenario
 
 ctx = AgentContext(portal_url, client, browser)            # PoliteClient / BrowserPool from net
-run = await run_scenario("attach", SCENARIO_PROMPT, f"Portal URL: {portal_url}", ctx, budget=Budget())
+budget = TieredBudget(strong=Budget(max_turns=40), light=Budget(max_turns=60))
+run = await run_scenario("attach", SCENARIO_PROMPT, f"Portal URL: {portal_url}", ctx, budget=budget)
 run.outcome      # an ADR 0009 outcome (TemplateFound, Blocked, Unreadable, Transient, …) or None
 run.stop_reason  # outcome | turns | tokens | time | no_outcome
-run.requests, run.input_tokens, run.cached_tokens, run.output_tokens, run.seconds
+run.requests, run.input_tokens, run.cached_tokens, run.output_tokens, run.seconds   # both tiers summed
+run.by_tier["strong"], run.by_tier["light"]              # TierUsage: requests, input/cached/output tokens
 ```
 
-- **Model and key:** `OPENAI_API_KEY` (required) and `WATCHTOWER_MODEL` (default `gpt-5.6-luna`) from the environment
-  (`config.py`). `run_agent()` in `runtime.py` is the one function every model call goes through, so T-099 can meter
-  usage there. Reasoning effort defaults to `low`.
+- **Model and key:** `OPENAI_API_KEY` (required) and one model per [tier](#model-tiers) from the environment
+  (`config.py`). `run_agent(..., tier=)` in `runtime.py` is the one function every model call goes through, tagged
+  with its tier (`workflow_name` `watchtower:strong` / `watchtower:light`), so T-099 can meter usage there per tier.
+  Reasoning effort defaults to `low`.
 - **The run ends when a tool records an outcome** (`submit_template` accepted, or a `report_*` tool). A refused
   `submit_template` returns its reasons and the model continues.
-- **Budget** (`Budget(max_turns=30, max_tokens=400_000, wall_seconds=900)`): turns are model calls, tokens are summed
-  over all calls, wall time covers tools too. Exceeding one stops the run with `outcome=None` and the `stop_reason`;
-  it never raises.
+- **Budget** (`TieredBudget(strong=Budget(...), light=Budget(...))`; a plain `Budget` is the strong tier with the
+  default light budget): for the strong tier, turns are model calls, tokens are summed over its calls, and its
+  `wall_seconds` is the whole run's wall time, tools and light calls included. Exceeding one stops the run with
+  `outcome=None` and the `stop_reason`; it never raises. The light tier's limits are calls (`max_turns`), tokens, and
+  `wall_seconds` per single call; when they run out, `delegate_*` tools answer "do this check yourself" and the
+  strong model goes on.
 - **Nudges:** a model that answers with plain text instead of a closing tool call is reminded, at most twice, within
   the same budget.
 - **Instructions** (`prompts.py`): rules (a wrong value is worse than a missing one; no login or captcha solving; try
   first, then decide), the working method, a compact template reference and two example templates. The text is static,
   so the provider's prompt cache serves it cheaply after the first call. Scenario prompts are appended to it.
+
+## Model tiers
+
+[ADR 0015](../decisions/0015-agent-v2-explorer-and-tiers.md): a **strong** model runs every scenario (explores,
+plans, writes templates, judges, decides the outcome); a **light** model does narrow, repetitive tasks that the strong
+model hands out as tools.
+
+| Tier | Env var | Falls back to |
+|---|---|---|
+| strong | `WATCHTOWER_MODEL_STRONG` | `WATCHTOWER_MODEL`, then `gpt-5.6-luna` |
+| light | `WATCHTOWER_MODEL_LIGHT` | the strong model |
+
+`WATCHTOWER_MODEL` alone sets both. Budgets per scenario:
+
+| Scenario | Strong | Light |
+|---|---|---|
+| attach | 40 turns · 600,000 tokens · 1,800 s for the run | 60 calls · 400,000 tokens · 120 s per call |
+| investigate (failure) | 25 turns · 300,000 tokens · 900 s | 30 calls · 200,000 tokens · 120 s per call |
+| investigate (audit) | 15 turns · 150,000 tokens · 600 s | 30 calls · 200,000 tokens · 120 s per call |
+
+`run_scenario` puts a `LightWorker` on `ctx.light`; each light task is **one** model call with fixed instructions and
+a pydantic output type, counted against the light budget (calls are reserved before they start, so tasks run in
+parallel can't overrun it). A failed, timed-out or malformed light answer comes back as a sentence, never an exception.
+
+### Light tasks (`tools/delegate.py`)
+
+Each tool collects its input deterministically, makes the light call, checks what it can of the answer, and labels the
+result `LIGHT-MODEL PROPOSAL` for the strong model to review. A light task never ends a run.
+
+| Tool | Input it gathers | Light model answers | Checked deterministically |
+|---|---|---|---|
+| `delegate_describe_page(url, rendered?)` | the page's pruned outline | is this the full list, the total it shows, ≤ 5 routes to the list | every quoted text, link and total is on the page |
+| `delegate_map_fields(url)` | the page's label/value pairs (toolkit) | a contract field per label, or none | field names exist; each rule extracts its value; disagreement with the synonym dictionary shown |
+| `delegate_classify_notices(notice_types, examples?)` | given by the strong model | open call: yes / no / unsure, with a reason | types not asked about are dropped; unanswered ones are `unsure` |
+| `delegate_verify_tenders(template, tenders?, rendered?)` | a dry run of ≤ 5 tenders and each tender's page text | per field: right / wrong / not on the page, with evidence | values found verbatim on the page are confirmed without a call; one call per tender, in parallel |
+
+Tests script the light tier with its own `ScriptedModel` (`run_scenario(..., light_model=…)`; it defaults to the
+strong `model`, as the light tier defaults to the strong model).
 
 ## Tools
 
@@ -81,6 +125,6 @@ uv run --env-file .env python -m watchtower.agent.probe --mock form  # attach ru
 uv run --env-file .env python -m watchtower.agent.probe https://portal.example/   # any URL
 ```
 
-`probe` runs the [attach scenario](attach.md) and prints the outcome, the template or reason, model calls, tokens (and
-how many were cached) and time. Offline tests use a scripted model
+`smoke` checks the light model too when it differs from the strong one. `probe` runs the [attach scenario](attach.md)
+and prints the outcome, the template or reason, model calls and tokens (with how many were cached) per tier, and time. Offline tests use a scripted model
 (`tests/agent/scripted.py`) and the mock portals; no key needed.
