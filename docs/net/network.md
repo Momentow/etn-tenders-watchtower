@@ -37,11 +37,46 @@ budgets per host, so never build a second one.
 - `render(url)` → `RenderResult(url, status, html, responses)`: the final URL, the main document's status, the
   rendered HTML and every captured XHR/fetch or JSON response (`CapturedResponse`: url, method, status, content type,
   body as text up to 2 MB). `result.json_responses()` keeps the JSON ones, which is usually the portal's own API.
-- One shared headless Chromium, a fresh context (no cookies) per render, at most 2 pages at once, 45 s timeout,
-  waits for network idle.
+- One shared headless Chromium, at most 2 pages at once. `render` is a one-`goto` [session](#browser-sessions): a fresh
+  context (no cookies), 45 s of **active** time (waiting for the rate limiter doesn't count), 600 s wall clock.
 - Every request the page makes waits for the same limiter. Images, media and fonts are aborted, so they're never sent.
+- Scripts and stylesheets are cached per pool (64 MB, 1 hour, not when the portal says `no-store`/`no-cache`), so the
+  second boot of a JS app costs a few requests instead of dozens. Data (XHR/fetch, documents) is never cached.
 - Known gap: redirect hops *inside* the browser are followed by Chromium without passing through the route hook, so
   only the first request of a redirect chain is spaced. Portal pages rarely chain more than one hop.
+
+## Browser sessions
+
+A session holds one browser context across several actions, the way a person browses: cookies, storage and app state
+carry over ([ADR 0014](../decisions/0014-template-format-v2.md)).
+
+```python
+from pydantic import TypeAdapter
+from watchtower.net import Action, SessionBudget
+
+A = TypeAdapter(Action)
+async with browser.session(budget=SessionBudget()) as s:
+    await s.act(A.validate_python({"do": "goto", "url": "https://www.tenderned.nl/"}))
+    await s.act(A.validate_python({"do": "click", "target": {"role": "link", "name": "Alle aankondigingen"}}))
+    r = await s.act(A.validate_python({"do": "load_more", "target": {"role": "button", "name": "Laad meer"}}))
+    r.network        # the API calls that action caused (Exchange: method, url, headers, body, response body …)
+    await s.snapshot()   # compact text view: headings, tabs, buttons, form fields, repeated blocks, links, totals
+```
+
+- **Actions** (`watchtower.net.actions`): `goto`, `click`, `fill`, `select`, `press`, `wait_for` (an element, a text
+  or a response URL), `load_more` (click until the control is gone or disabled, nothing new appears, or `max_clicks`),
+  `scroll`, `tab`. A `Target` is exactly one of `{role, name}`, `{text}`, `{css}`, `{xpath}`, plus `nth`. There is no
+  action that runs JavaScript. The same models are used by v2 templates and agent tools.
+- **`act()`** waits until the page settles: nothing in flight *or queued at the limiter* for `idle_ms` (1.5 s). It
+  returns an `ActionResult`: page URL, status when it navigated, the `Exchange`s it caused, active and waiting seconds,
+  and `error`/`note` (e.g. `"2 clicks; the control is gone"`). A failed action (no such element, a `wait_for` that
+  never matches within 30 s of active time) comes back in `error`; the session stays usable.
+- **Budget** `SessionBudget(active_seconds=120, idle_ms=1500, max_seconds=1800)`. Only an exhausted budget raises
+  (`SessionBudgetExceeded`). Waiting for the limiter isn't active time, so politeness never causes a timeout: on
+  tenderned.nl the list page boots through 95 requests in ~91 s of waiting and ~3 s of active time.
+- **Network log**: `s.network` keeps every XHR/fetch and JSON exchange (request headers without `cookie`, request
+  body, response body up to 2 MB) with the index of the action that caused it, so an agent can replay a call over
+  `PoliteClient` and read the API without a browser. `s.counts` counts requests by type, plus cache hits and aborts.
 
 ## Block detection: `detect_block(html, url=, status=, headers=)`
 Returns a list of `BlockSignal(kind, strong, evidence)`, where `kind` is `captcha` or `login`. It's empty when there's
@@ -55,5 +90,6 @@ no sign of a block.
   the content first and only then report `Blocked` (T-015, T-022).
 
 ## Tests
-`uv run pytest tests/net`. The browser tests run against a local site and are skipped when Chromium is missing:
+`uv run pytest tests/net`. The browser and session tests run against local sites (`test_session.py` mimics a
+portal: link to the list, a chunked app boot, load more, detail tabs) and are skipped when Chromium is missing:
 install it with `uv run playwright install chromium` (the Docker image already has it).
