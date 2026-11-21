@@ -158,12 +158,12 @@ async def delegate_verify_tenders(ctx: Ctx, template: str, tenders: int = 3, ren
     check every extracted value against what the page says (right / wrong / not on the page, with evidence). Values
     found verbatim on the page are confirmed without the model. `rendered`: load the tender pages in the browser. Use
     it before submitting, to catch values read from the wrong label."""
-    from watchtower.agent.tools.core import _parse_template  # the same parsing and schema errors as try_template
+    from watchtower.agent.tools.core import _parse_any_template  # the same parsing and schema errors as try_template
 
     c = ctx.context
     if err := _no_light(c):
         return err
-    t = _parse_template(template)
+    t = _parse_any_template(template)
     if isinstance(t, str):
         return t
     n = max(1, min(tenders, MAX_VERIFY))

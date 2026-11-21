@@ -283,6 +283,8 @@ async def run_scenario(
         stop = "tokens"
     except TimeoutError:
         stop = "time"
+    finally:
+        await ctx.aclose()  # the explorer's browser session lives as long as the run
     if ctx.outcome is not None:
         stop = "outcome"
     strong = TierUsage(

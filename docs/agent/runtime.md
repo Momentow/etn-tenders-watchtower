@@ -88,9 +88,28 @@ strong `model`, as the light tier defaults to the strong model).
 |---|---|
 | `fetch(url, focus?)` | Plain HTTP GET. HTML → pruned outline; JSON → key shape, sample values, arrays of objects with JSONPath; files → type, size, name. `focus` (CSS or JSONPath) shows only the matches and their count: the model's selector check. Pages are cached per run. |
 | `render(url, focus?)` | Headless browser. Outline of the rendered page plus a summary of each captured JSON/XHR response (so a JS app's API can be read directly). |
-| `try_template(template, sample=3)` | Engine dry run. Schema errors with paths; a **list check** (up to 3 list pages: count, pagination, duplicate ids); a **sample read** of N tenders with field coverage and values; a **document check** (the first bytes of 2 document links must be a file, not a login, captcha or error page); **warnings** (pagination controls the template ignores, no documents, required fields always empty); the validator's verdict. |
-| `submit_template(template, notes)` | Accepted only if this exact template's last dry run was GOOD (it is dry-run if it wasn't tried). |
+| `try_template(template, sample=3)` | Engine dry run of a v1 or v2 template (`"format_version": 2`). Schema errors with paths; a **list check** (up to 3 list pages or *load more* clicks: count, pagination, duplicate ids; for v2 also the portal's own total, the records `scope` dropped, and whether the list was exhausted); a **sample read** of N tenders with field coverage and values; a **document check** (the first bytes of 2 document links must be a file, not a login, captcha or error page); **warnings** (pagination controls the template ignores, no documents, required fields always empty); the validator's verdict. |
+| `submit_template(template, notes)` | Accepted only if this exact template's last dry run was GOOD (it is dry-run if it wasn't tried). The outcome carries a v1 or v2 template. |
 | `report_blocked(reason)` · `report_unreadable(reason)` · `report_transient(reason)` | End the run with that outcome; `reason` is a plain sentence for operators. `report_blocked` is accepted only on evidence, and `report_transient` becomes a block when the firewall refuses every path ([truthful blocks](blocks.md)). |
+
+### Explorer tools
+
+`tools/explore.py`, attach only ([ADR 0015](../decisions/0015-agent-v2-explorer-and-tiers.md)): the agent explores
+a portal the way a person does, in **one browser session per run** ([network layer → browser sessions](../net/network.md#browser-sessions)). The
+session opens on first use (`AgentContext.browser_session()`) and `run_scenario` closes it when the run ends,
+whatever the outcome. Its budget is 600 s of active time and 1,800 s in all; waiting for the rate limiter doesn't
+count, so a 95-request app boot at 1 req/s fits.
+
+| Tool | What it returns |
+|---|---|
+| `open(url)` | `goto` in the session: final URL and status, the API calls the page made, and the snapshot |
+| `snapshot()` | The current page: headings, tabs, buttons, links, form fields, repeated blocks with counts, visible totals |
+| `act(action)` | One ADR 0014 action as JSON, the same a v2 `flow` uses (`click`, `fill`, `select`, `press`, `wait_for`, `load_more`, `scroll`, `tab`, `goto`): the new URL, any error, the calls it caused, the new snapshot |
+| `network(filter?, show?)` | The XHR/fetch and JSON calls so far, newest first, with the records each JSON answer holds (`$.content[*]: 50 records, keys …`). `show=N`: one call's full request (headers, body) and its response shape, for writing a `kind: api` request |
+| `replay(call, params?, body?)` | Re-sends a call over `PoliteClient` (no browser, no cookies) and compares: record count, whether the first records match the page's call, how many show in the page's text. **"SAME DATA WITHOUT A BROWSER"** is the signal for API mode. `params` checks paging (`{"page": "1"}` must give other records). If the call carries non-standard headers, it is sent again without them and the answer says whether the template needs a `session` that captures them |
+
+Pages opened in the session feed the same block evidence as `fetch` (a page that *is* a login or captcha wall). The
+tools reach portals only through the session and `PoliteClient`, so every request waits for the per-host limiter.
 
 ### Pruned outline
 

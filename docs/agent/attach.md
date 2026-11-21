@@ -16,6 +16,25 @@ On top of the shared rules and method, the attach prompt (`ATTACH_PROMPT`) asks 
   documents really need a login or a solved captcha. The tool checks the evidence itself ([truthful blocks](blocks.md)):
   two tenders, the session, anonymous routes.
 
+### Explore like a person (T-034)
+The prompt also teaches the explorer method of [ADR 0015](../decisions/0015-agent-v2-explorer-and-tiers.md), with the
+[explorer tools](runtime.md#explorer-tools):
+
+1. Find the page a person would use to see **all** current tenders, and the portal's own total. A home-page widget
+   with the latest N tenders is not the list.
+2. Make the list complete: pagination, *load more*, scrolling.
+3. Open at least two tenders and their tabs.
+4. Read `network`; `replay` the call that carries the tenders. "Same data without a browser" → a `kind: api`
+   template (list, detail and documents from JSON calls), checked for paging with `replay(call, params=…)`. A header
+   the call needs becomes a `session` capture. A browser `flow` only when there's no usable API.
+5. Keep only open calls for competition: the API's own filters and `scope` (`delegate_classify_notices` helps).
+6. Write the template, dry-run, fix, submit.
+
+The prompt carries a compact [template v2](../engine/template-v2.md) reference and the tenderned.nl API-mode template
+as a worked example. The agent writes v2 when it needs an entry deeper than the portal URL, clicks, *load more*, tabs,
+an API from the network log, a session or scope; otherwise v1. `TemplateFound` carries either format, and the pipeline
+stores and runs both. Investigate and audits still repair v1 templates until T-037.
+
 ## Outcomes
 The run ends with a closing tool call; `run_attach` maps it onto an `AttachOutcome`:
 
@@ -34,7 +53,8 @@ The run ends with a closing tool call; `run_attach` maps it onto an `AttachOutco
 The block override is deterministic: a GOOD dry run means the list was read and sampled document links returned real
 files, so a captcha or login box on the page didn't stop delivery.
 
-Budget: 30 model calls, 400 000 tokens, 15 minutes (`ATTACH_BUDGET`). Each run logs model calls, tokens (cached
+Budget: strong 40 model calls, 600 000 tokens, 30 minutes for the run; light 60 calls, 400 000 tokens
+(`ATTACH_BUDGET`, [model tiers](runtime.md#model-tiers)). Each run logs model calls, tokens (cached
 included) and time.
 
 ## Wiring
@@ -65,3 +85,19 @@ Measured on 2026-11-20 with the default model (`uv run --env-file .env python -m
 | `robot` | `Blocked` | 6 | 28 594 (22 486) / 809 | 25 s | document links redirect to a reCAPTCHA form |
 
 Every run stayed far below `ATTACH_BUDGET` (at most 11 of 30 calls and 65k of 400k tokens).
+
+## Live runs with the explorer (T-034)
+Measured on 2026-11-21 with the default model, before T-036's completeness checks:
+
+| Portal | Outcome | Model calls | Tokens in (cached) / out | Time | Result |
+|---|---|---|---|---|---|
+| mock `app` (first run) | `TemplateFound`, v2 API mode | 10 | 103 927 (90 532) / 2 738 | 72 s | Found the API, but guessed procedure codes, kept an early-terminated call and missed the withdrawn status |
+| mock `app` (after the prompt asked for every code and status flag) | `TemplateFound`, v2 API mode | 14 | 160 208 (144 509) / 3 135 | 96 s | `open` → click → `network` → `replay`; all 21 open calls with the right fields and every document. One wrong value left: a withdrawn call read as `open` (no `status` rule) |
+| tenderned.nl | `TemplateFound`, v2 API mode | 10 | 126 187 (106 730) / 2 305 | 166 s | Found `/papi/…/publicaties` through the browser and replay. Incomplete: it kept the page's "published in the last 30 days" filter instead of `publicatieType=AAO` and a deadline from `{{today}}`, so notice types aren't filtered and older open calls are missed |
+
+The live **scripted** run on tenderned.nl (open → click *Alle aankondigingen* → `network` → `replay`, page 2 → submit
+the hand-written template) took 112 s, and `replay` answered "SAME DATA WITHOUT A BROWSER", 5 of 5 records on the page.
+
+What's still missing is what T-036 checks: the portal's declared total versus the delivered count, notice types the
+records carry but `scope` ignores, and code values a `map` doesn't cover. The light tier wasn't used in any run;
+the model skipped `delegate_verify_tenders`, which would have flagged the withdrawn status.

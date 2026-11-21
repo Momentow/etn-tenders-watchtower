@@ -43,6 +43,8 @@ class ScriptedModel(Model):
         if isinstance(input, list):
             self.seen_tool_outputs = [str(i.get("output")) for i in input if i.get("type") == "function_call_output"]
         output = self.turns.pop(0) if self.turns else [say("nothing left to do")]
+        if callable(output):  # a turn that depends on what the tools answered (e.g. a network call's id)
+            output = output(self.seen_tool_outputs)
         usage = Usage(requests=1, input_tokens=self.tokens, output_tokens=0, total_tokens=self.tokens)
         return ModelResponse(output=output, usage=usage, response_id=None)
 
