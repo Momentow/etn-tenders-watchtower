@@ -16,12 +16,14 @@ from urllib.parse import parse_qsl, urljoin, urlsplit
 
 import httpx
 
-from watchtower.engine.executor import first_list_page
-from watchtower.engine.extract import collapse, parse_html
+from watchtower.engine.completeness import declared_counts
+from watchtower.engine.executor import Page, first_list_page
+from watchtower.engine.extract import Scope, collapse, parse_html, parse_json, select
 from watchtower.engine.result import ReadResult
 from watchtower.engine.snapshot import json_shape, snapshot
 from watchtower.engine.template import Template
 from watchtower.net import BrowserPool, PoliteClient, detect_block
+from watchtower.validate.completeness import TOTAL_TOLERANCE
 
 MAX_BODY = 2_000_000
 VALUE_CHECK_TENDERS = 2
@@ -191,14 +193,35 @@ class AuditFindings:
 async def audit(
     client: PoliteClient, browser: BrowserPool | None, portal_url: str, template: Template, result: ReadResult
 ) -> AuditFindings:
-    """Compare what the engine read with the live portal: missed tenders and values read from the wrong place."""
+    """Compare what the engine read with the live portal: missed tenders, the portal's own count, and values read
+    from the wrong place."""
     af = AuditFindings()
+    first = _FirstPage(template, client, browser)
     if template.list.kind == "json":
         await _site_api_calls(client, portal_url, template, af)
     else:
-        await _unread_links(client, browser, template, result, af)
+        await _unread_links(first, result, af)
+    await _declared_total(first, template, result, af)
     await _value_labels(client, template, result, af)
     return af
+
+
+class _FirstPage:
+    """The template's first list page, fetched at most once per audit (None when it can't be loaded)."""
+
+    def __init__(self, template: Template, client: PoliteClient, browser: BrowserPool | None):
+        self.template, self.client, self.browser = template, client, browser
+        self._page: Page | None = None
+        self._tried = False
+
+    async def get(self) -> Page | None:
+        if not self._tried:
+            self._tried = True
+            try:
+                self._page = await first_list_page(self.template, self.client, self.browser)
+            except Exception:  # the read passed moments ago; a failing page here is not evidence
+                self._page = None
+        return self._page
 
 
 def _norm_url(url: str) -> str:
@@ -206,9 +229,7 @@ def _norm_url(url: str) -> str:
     return url.rstrip("/")
 
 
-async def _unread_links(
-    client: PoliteClient, browser: BrowserPool | None, template: Template, result: ReadResult, af: AuditFindings
-) -> None:
+async def _unread_links(first: _FirstPage, result: ReadResult, af: AuditFindings) -> None:
     read_urls = {_norm_url(t.url) for t in result.tenders if t.url}
     if not read_urls:
         return
@@ -219,9 +240,8 @@ async def _unread_links(
     tender_dir, n = max(dirs.items(), key=lambda kv: kv[1])
     if n < 0.8 * len(read_urls):
         return  # tender URLs have no common shape: this check can't tell tender links apart
-    try:
-        page = await first_list_page(template, client, browser)
-    except Exception:  # the read passed moments ago; a failing page here is not evidence
+    page = await first.get()
+    if page is None:
         return
     root = parse_html(page.text, page.url).el
     missed: dict[str, str] = {}
@@ -244,6 +264,53 @@ async def _unread_links(
         )
     else:
         af.checked.append(f"all {total} tender links on the first list page were delivered by the read")
+
+
+async def _declared_total(first: _FirstPage, template: Template, result: ReadResult, af: AuditFindings) -> None:
+    """Does the read reach the portal's own count of its list (T-041)? Below 95 % of it, tenders are being missed:
+    pagination that stops early, a cap on the result list, a filter. ADR 0018's tolerance."""
+    reached = len(result.tenders) + result.scope_dropped
+    if result.declared_total:  # v2 `list.total`: `validate.check` already compared it on this very read
+        n = result.declared_total
+        af.checked.append(f"the portal's own count ({n}) was compared by the read ({reached} reached)")
+        return
+    if not isinstance(template, Template) or result.stats.limited or not result.tenders:
+        return
+    page = await first.get()
+    if page is None:
+        return
+    scope = _scope(page)
+    if scope is None:
+        return
+    try:
+        items = select(template.list.items, scope)
+    except Exception:
+        items = []
+    counts = declared_counts(scope, items)
+    if not counts:
+        return
+    if len(counts) > 1:
+        shown = "; ".join(f"{n} ({why!r})" for n, why in counts)
+        af.checked.append(f"the first list page shows several different counts ({shown}), so none was compared")
+        return
+    ((declared, why),) = counts
+    if reached >= declared * (1 - TOTAL_TOLERANCE):
+        af.checked.append(f"the portal's own count ({declared}, {why!r}) matches the {reached} tenders read")
+        return
+    af.findings.append(
+        f"The first list page says the list holds {declared} ({why!r}), but the read delivered only {reached}. "
+        "The template may miss part of the list: pagination that stops early, a cap on the results, or a filter."
+    )
+
+
+def _scope(page: Page) -> Scope | None:
+    text = page.text.lstrip()
+    if text[:1] in ("{", "["):
+        try:
+            return parse_json(text, page.url)
+        except ValueError:
+            return None
+    return parse_html(page.text, page.url)
 
 
 async def _site_api_calls(client: PoliteClient, portal_url: str, template: Template, af: AuditFindings) -> None:

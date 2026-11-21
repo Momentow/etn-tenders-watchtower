@@ -57,6 +57,7 @@ the mock portals with a controlled clock:
 | reactive + `ssr=silent-swap` | the wrong buyer names are served and nothing notices (no audit, no model call) |
 | proactive + `ssr=silent-swap` | the audit finds the swapped buyer → healing → repaired template v2 → correct buyer names; the next audit is healthy with no model call |
 | proactive, unchanged portal | audit healthy, no model call |
+| proactive + `ssr=silent-cut` | the list is capped at 15 of 20 hits; validation passes, but the audit compares the read with the page's "20 Treffer" → finding → `failed` with the agent's reason, not a partial `serving` (T-041) |
 | proactive, finding the agent can't repair | `failed` with the agent's reason, not a false "temporary" repair |
 | both modes + `ssr=markup` | failed read → healing → repaired → serving |
 | `gone`, `login-wall` | `failed` with an exact reason, no model call |

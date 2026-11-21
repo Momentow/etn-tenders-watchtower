@@ -8,6 +8,10 @@ Variants:
 - `pagination`: `rel=next` replaced by an offset pager (`?start=10`); `?seite=` is ignored (reads only page 1).
 - `silent-missed`: three new tenders appear in a second table the template doesn't read; everything still parses.
 - `silent-swap`: the buyer column now shows the city; still parses, but buyerName is wrong.
+- `silent-cut`: the result list is capped at 15 rows (page 2 shows 5, no further pages) while the hit count still says
+  20. A 25 % drop passes validation; only the audit's declared-total check sees it (T-041).
+
+Every variant shows the hit count ("20 Treffer") above the table, as real portals do.
 """
 
 from __future__ import annotations
@@ -21,6 +25,7 @@ from mockportals.html import cpv_with_check_digit, e, jsessionid, page, variant
 router = APIRouter()
 KIND = "ssr"
 PAGE_SIZE = 10
+CUT_AT = 15  # `silent-cut`: rows shown at most
 
 PROCEDURE = {
     "open": "Offenes Verfahren",
@@ -91,12 +96,14 @@ async def listing(request: Request, seite: int = 1, start: int = 0):
         offset = max(start, 0)
     else:
         offset = (max(seite, 1) - 1) * PAGE_SIZE
-    chunk = tenders[offset : offset + PAGE_SIZE]
-    body = "<h1>Aktuelle Ausschreibungen</h1>"
+    hits = len(tenders) + len(new)
+    shown = tenders[:CUT_AT] if v == "silent-cut" else tenders
+    chunk = shown[offset : offset + PAGE_SIZE]
+    body = f"<h1>Aktuelle Ausschreibungen</h1><p class='trefferzahl'>{hits} Treffer</p>"
     if v == "silent-missed" and offset == 0:
         body += "<h2>Neu eingegangen</h2>" + _table("neu-eingegangen", "".join(_row(t, c, v) for t in new))
     body += _table(c["table"], "".join(_row(t, c, v) for t in chunk))
-    more = offset + PAGE_SIZE < len(tenders)
+    more = offset + PAGE_SIZE < len(shown)
     if v == "pagination":
         pages = "".join(f"<a href='?start={o}'>{o // PAGE_SIZE + 1}</a> " for o in range(0, len(tenders), PAGE_SIZE))
         body += f"<nav class='pager'>{pages}</nav>"

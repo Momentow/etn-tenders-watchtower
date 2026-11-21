@@ -21,7 +21,7 @@ from mockportals.portals import app_spa, blocked, captcha, form, js_api, multist
 # Variants every portal supports, handled here before the portal's own routes.
 GENERIC_VARIANTS = ("gone", "login-wall")
 VARIANTS: dict[str, tuple[str, ...]] = {
-    "ssr": ("base", "markup", "pagination", "silent-missed", "silent-swap", *GENERIC_VARIANTS),
+    "ssr": ("base", "markup", "pagination", "silent-missed", "silent-swap", "silent-cut", *GENERIC_VARIANTS),
     "js": ("base", "renamed-keys", "pagination", "silent-missed", *GENERIC_VARIANTS),
     "multistep": ("base", "markup", *GENERIC_VARIANTS),
     "form": ("base", "pagination", *GENERIC_VARIANTS),

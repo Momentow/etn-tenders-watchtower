@@ -43,8 +43,9 @@ deadline written with another offset.
 
 ## What it does not catch
 Values that still look right but aren't, e.g. the buyer column now showing the city (`silent-swap`), or new tenders
-listed somewhere the template doesn't read (`silent-missed`). The proactive audit (T-023) compares engine output with
-the live portal for those.
+listed somewhere the template doesn't read (`silent-missed`), or a list capped below the portal's own hit count when
+the drop is under the sharp-drop threshold (`silent-cut`). The proactive audit (T-023, T-041) compares engine output
+with the live portal for those.
 
 ## Tests
 `tests/validate/test_completeness.py`:

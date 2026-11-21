@@ -16,7 +16,7 @@ portals; `tests/mockportals/` checks that their selectors read the mocks correct
 
 | Kind | Entry URL | Country / tz | Example template | Expected state | What it tests |
 |---|---|---|---|---|---|
-| `ssr` | `/ssr/` → `/ssr/ausschreibungen` | DE, Europe/Berlin | `ssr_list_detail` | `serving` | List table + detail pages, `rel=next` pagination (23 tenders, 10 per page) |
+| `ssr` | `/ssr/` → `/ssr/ausschreibungen` | DE, Europe/Berlin | `ssr_list_detail` | `serving` | List table + detail pages, `rel=next` pagination (23 tenders, 10 per page), a hit count above the table ("20 Treffer") |
 | `js` | `/js/` (empty shell) → `/js/api/consultations` | FR, Europe/Paris | `js_json_api` | `serving` | JS app whose script calls a JSON API (find it in captured XHR, then read it directly); 54 tenders |
 | `multistep` | `/multistep/` → `/multistep/licitaciones` | ES, Europe/Madrid | `multi_step_download` | `serving` | Summary-page trap, per-document download pages, a "download all" ZIP, a 300 MB file |
 | `form` | `/form/` → `POST /form/przetargi` | PL, Europe/Warsaw | `search_form` | `serving` | List behind a POSTed search form, paged by a form field |
@@ -57,6 +57,7 @@ curl localhost:8081/_mock/variants        # current, available, entry URLs, expe
 | `pagination` | ssr, js, form | Pagination moves (`?start=` offsets; `offset` instead of `page`; `?page=` instead of the form field) | Sharp drop in tender count → repair |
 | `silent-missed` | ssr, js | 3 new tenders appear where the template doesn't look (a second table; only with `etat=tous`); still parses | Only a proactive audit catches it |
 | `silent-swap` | ssr | The buyer column shows the city; still parses, values wrong | Only an audit catches it |
+| `silent-cut` | ssr | The list is capped at 15 rows (page 2 shows 5, then no more pages); the hit count still says 20. A 25 % drop passes validation | Only the audit's declared-total check catches it (T-041) |
 | `relabelled` | app | The link, button and tab are renamed (*Zoeken in publicaties*, *Toon meer resultaten*, *Stukken*); the API is unchanged | A browser flow on the old names fails → repair the flow step (or switch to the API) |
 | `api-moved` | app | The API moves to `/app/api/v3/…`, and the old paths answer 404; the pages use the new API | An API-mode read fails → repair the endpoint |
 | `gone` | all | Every page answers 410 | `failed` (gone) |
